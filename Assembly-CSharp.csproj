@@ -291,17 +291,14 @@
     <Reference Include="udpkit.common">
       <HintPath>Assets\Photon\PhotonBolt\assemblies\udpkit\udpkit.common.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>Assets\Plugins\JsonDotNet\Assemblies\Standalone\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="bolt">
       <HintPath>Assets\Photon\PhotonBolt\assemblies\bolt.dll</HintPath>
     </Reference>
     <Reference Include="Photon3Unity3D">
       <HintPath>Assets\Photon\PhotonLibs\Photon3Unity3D.dll</HintPath>
-    </Reference>
-    <Reference Include="bolt.user">
-      <HintPath>Assets\Photon\PhotonBolt\assemblies\bolt.user.dll</HintPath>
-    </Reference>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>Assets\Plugins\JsonDotNet\Assemblies\Standalone\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="websocket-sharp">
       <HintPath>Assets\Photon\PhotonLibs\WebSocket\websocket-sharp.dll</HintPath>
@@ -314,6 +311,9 @@
     </Reference>
     <Reference Include="udpkit.platform.dotnet">
       <HintPath>Assets\Photon\PhotonBolt\assemblies\udpkit\udpkit.platform.dotnet.dll</HintPath>
+    </Reference>
+    <Reference Include="bolt.user">
+      <HintPath>Assets\Photon\PhotonBolt\assemblies\bolt.user.dll</HintPath>
     </Reference>
     <Reference Include="udpkit">
       <HintPath>Assets\Photon\PhotonBolt\assemblies\udpkit\udpkit.dll</HintPath>
@@ -692,10 +692,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="PhotonRealtime.csproj">
-      <Project>{85E9EEB6-B3AE-AD5E-9246-9CD6BA166BAE}</Project>
-      <Name>PhotonRealtime</Name>
-    </ProjectReference>
     <ProjectReference Include="PhotonBolt.csproj">
       <Project>{20EA16BA-FB7C-8447-015B-F1DB98441203}</Project>
       <Name>PhotonBolt</Name>
@@ -707,6 +703,10 @@
     <ProjectReference Include="PhotonBolt-Editor.csproj">
       <Project>{B4FB78EA-A73F-3AB2-53D0-CE1A822D329D}</Project>
       <Name>PhotonBolt-Editor</Name>
+    </ProjectReference>
+    <ProjectReference Include="PhotonRealtime.csproj">
+      <Project>{85E9EEB6-B3AE-AD5E-9246-9CD6BA166BAE}</Project>
+      <Name>PhotonRealtime</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

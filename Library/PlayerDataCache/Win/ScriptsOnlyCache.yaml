@@ -5,6 +5,8 @@ ScriptsOnlyBuild:
     - Player
     Unity.Rider.Editor.dll:
     - Packages.Rider.Editor.UnitTesting.CallbackData
+    Unity.Timeline.Editor.dll:
+    - TimelineProjectSettings
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.Api.CallbacksHolder
     - UnityEditor.TestTools.TestRunner.TestListCacheData
@@ -23,6 +25,8 @@ ScriptsOnlyBuild:
     - Bolt.PrefabDatabase
     - BoltEntity
     - BoltRuntimeSettings
+    bolt.editor.dll:
+    - Bolt.Editor.Windows.BoltProjectWindow
   sceneClasses:
     Assets/Scenes/Title&Lobby.unity:
     - Class: 1
@@ -136,7 +140,7 @@ ScriptsOnlyBuild:
     className: TMP_InputField
   - hash:
       serializedVersion: 2
-      Hash: 964e85581c3371d83069c96d0e05090d
+      Hash: 44bc5acd3380341e2acd1790f63de3fb
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: NetworkManager

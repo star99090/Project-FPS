@@ -21,7 +21,9 @@ public class Player : EntityBehaviour<IPlayerState>
 
     bool isGround;
     bool jumpable = true;
+    public Vector3 tempPosition => state.transform.Position;
 
+    public void SetIsServer(bool isServer) => state.isServer = isServer;
     public override void Attached()
     {
         state.SetTransforms(state.transform, transform);
