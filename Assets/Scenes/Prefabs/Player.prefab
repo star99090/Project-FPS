@@ -81,7 +81,7 @@ MonoBehaviour:
   rotationLerp: 0.08
   jumpPower: 12
   jumpCoolTime: 0.8
-  nameText: {fileID: 4907263478561680824}
+  nickText: {fileID: 4907263478561680824}
   playerCanvas: {fileID: 1348472299977970198}
 --- !u!114 &8694546819879050080
 MonoBehaviour:

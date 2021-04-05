@@ -14,7 +14,7 @@ public class Player : EntityBehaviour<IPlayerState>
     [SerializeField] float jumpPower; //12
     [SerializeField] float jumpCoolTime; //0.8
 
-    [SerializeField] Text nameText;
+    [SerializeField] Text nickText;
     [SerializeField] Transform playerCanvas;
 
     Rigidbody rigid;
@@ -24,10 +24,18 @@ public class Player : EntityBehaviour<IPlayerState>
     public Vector3 tempPosition => state.transform.Position;
 
     public void SetIsServer(bool isServer) => state.isServer = isServer;
+
     public override void Attached()
     {
         state.SetTransforms(state.transform, transform);
         rigid = GetComponent<Rigidbody>();
+        state.nickname = NetworkManager.Instance.myNickName; 
+        state.AddCallback("nickname", NicknameCallback);
+    }
+
+    void NicknameCallback()
+    {
+        nickText.text = state.nickname;
     }
 
     public override void SimulateController()
@@ -109,11 +117,13 @@ public class Player : EntityBehaviour<IPlayerState>
     }
 
     void JumpCoolTimeDelay() => jumpable = true;
+
     void Update()
     {
         if (!entity.IsOwner) return;
 
         isGround = Physics.Raycast(transform.position + Vector3.up, Vector3.down, 1.05f);
     }
+
     void LateUpdate() => playerCanvas.rotation = transform.rotation;
 }

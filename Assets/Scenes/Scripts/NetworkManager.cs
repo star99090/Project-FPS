@@ -17,8 +17,8 @@ public class NetworkManager : GlobalEventListener
 
     [SerializeField] List<BoltEntity> entities;
     [SerializeField] BoltEntity myEntity;
-
-    public InputField nameInput;
+    [SerializeField] InputField nickInput;
+    public string myNickName => nickInput.text;
 
     bool isMyHost;
 
