@@ -27,7 +27,7 @@ public class Player : EntityBehaviour<IPlayerState>
 
     public override void Attached()
     {
-        state.SetTransforms(state.transform, transform);
+        state.SetTransforms(state.transform, transform); // 위치 동기화
         rigid = GetComponent<Rigidbody>();
         state.nickname = NetworkManager.Instance.myNickName; 
         state.AddCallback("nickname", NicknameCallback);
@@ -56,8 +56,10 @@ public class Player : EntityBehaviour<IPlayerState>
 
         if (resetState)
         {
-            cmd.Result.velocity = rigid.velocity;
-            cmd.Result.angularVelocity = rigid.angularVelocity;
+            //cmd.Result.velocity = rigid.velocity;
+            //cmd.Result.angularVelocity = rigid.angularVelocity;
+            rigid.velocity = cmd.Result.velocity;
+            rigid.angularVelocity = cmd.Result.angularVelocity;
         }
         else
         {
@@ -99,16 +101,18 @@ public class Player : EntityBehaviour<IPlayerState>
             }
 
 
-            Vector3 tempVelocity = dir.normalized * speed + Vector3.up * rigid.velocity.y;
+            //Vector3 tempVelocity = dir.normalized * speed + Vector3.up * rigid.velocity.y;
 
             if (cmd.Input.jump && jumpable && isGround)
             {
-                tempVelocity += Vector3.up * jumpPower;
+                rigid.AddForce(Vector3.up * jumpPower, ForceMode.Impulse);
+                //tempVelocity += Vector3.up * jumpPower * BoltNetwork.FrameDeltaTime;
                 Invoke(nameof(JumpCoolTimeDelay), jumpCoolTime);
+                //StartCoroutine(JumpCoolTimeDelay());
                 jumpable = false;
             }
 
-            rigid.velocity = tempVelocity;
+            //rigid.velocity = tempVelocity;
 
             cmd.Result.velocity = rigid.velocity;
             cmd.Result.angularVelocity = rigid.angularVelocity;
@@ -117,6 +121,11 @@ public class Player : EntityBehaviour<IPlayerState>
     }
 
     void JumpCoolTimeDelay() => jumpable = true;
+    /*IEnumerator JumpCoolTimeDelay()
+    {
+        yield return new WaitForSeconds(jumpCoolTime);
+        jumpable = true;
+    }*/
 
     void Update()
     {

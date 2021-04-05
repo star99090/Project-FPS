@@ -27,6 +27,14 @@ public class NetworkManager : GlobalEventListener
     public void StartServer() => BoltLauncher.StartServer();
     public void StartClient() => BoltLauncher.StartClient();
 
+    void BoltShutdownCallback()
+    {
+        if (isMyHost)
+            BoltLauncher.StartServer();
+        else
+            BoltLauncher.StartClient();
+    }
+
     public override void BoltStartDone()
     {
         if (BoltNetwork.IsServer)
@@ -48,10 +56,6 @@ public class NetworkManager : GlobalEventListener
             myEntity.GetComponent<Player>().SetIsServer(true);
     }
 
-    void UpdateEntity()
-    {
-        HostMigrationEntityChangeEvent.Create().Send();
-    }
 
     public override void Connected(BoltConnection connection)
     {
@@ -67,10 +71,12 @@ public class NetworkManager : GlobalEventListener
         }
         evnt.Send();
     }
-    public override void Disconnected(BoltConnection connection)
-    { 
-        Invoke("UpdateEntity", 0.1f);
-    }
+
+    void UpdateEntity() => HostMigrationEntityChangeEvent.Create().Send();
+
+    public override void Disconnected(BoltConnection connection) => Invoke("UpdateEntity", 0.1f);//StartCoroutine(UpdateEntity()); 
+
+    public override void BoltShutdownBegin(AddCallback registerDoneCallback, UdpConnectionDisconnectReason disconnectReason) => registerDoneCallback(BoltShutdownCallback);
 
     public override void OnEvent(HostMigrationEntityChangeEvent evnt)
     {
@@ -85,17 +91,10 @@ public class NetworkManager : GlobalEventListener
         }
     }
 
-    public override void BoltShutdownBegin(AddCallback registerDoneCallback, UdpConnectionDisconnectReason disconnectReason)
+    /*IEnumerator UpdateEntity()
     {
-        BoltLog.Info("BoltShutdownBegin");
-        registerDoneCallback(BoltShutdownCallback);
-    }
+        yield return new WaitForSeconds(0.1f);
+        HostMigrationEntityChangeEvent.Create().Send();
+    }*/
 
-    void BoltShutdownCallback()
-    {
-        if (isMyHost)
-            BoltLauncher.StartServer();
-        else
-            BoltLauncher.StartClient();
-    }
 }
