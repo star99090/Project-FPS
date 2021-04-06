@@ -204,7 +204,7 @@ ScriptsOnlyBuild:
     className: PlayerQuitHandler
   - hash:
       serializedVersion: 2
-      Hash: 7fb1f37193d834f68794fc6c6c32811e
+      Hash: 8832ac0fec241dc64d68a84a7eb397f1
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Player

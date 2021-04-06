@@ -19,7 +19,7 @@ public class Player : EntityBehaviour<IPlayerState>
 
     Rigidbody rigid;
 
-    bool isGround;
+    [SerializeField] bool isGround = true;
     bool jumpable = true;
     public Vector3 tempPosition => state.transform.Position;
 
@@ -56,8 +56,8 @@ public class Player : EntityBehaviour<IPlayerState>
 
         if (resetState)
         {
-            //cmd.Result.velocity = rigid.velocity;
-            //cmd.Result.angularVelocity = rigid.angularVelocity;
+            cmd.Result.velocity = rigid.velocity;
+            cmd.Result.angularVelocity = rigid.angularVelocity;
             rigid.velocity = cmd.Result.velocity;
             rigid.angularVelocity = cmd.Result.angularVelocity;
         }
@@ -100,19 +100,18 @@ public class Player : EntityBehaviour<IPlayerState>
                 */
             }
 
-
-            //Vector3 tempVelocity = dir.normalized * speed + Vector3.up * rigid.velocity.y;
+            Vector3 tempVelocity = dir.normalized * speed + Vector3.up * (rigid.velocity.y>=0 ? rigid.velocity.y : 1.1f * rigid.velocity.y);
 
             if (cmd.Input.jump && jumpable && isGround)
             {
-                rigid.AddForce(Vector3.up * jumpPower, ForceMode.Impulse);
-                //tempVelocity += Vector3.up * jumpPower * BoltNetwork.FrameDeltaTime;
-                Invoke(nameof(JumpCoolTimeDelay), jumpCoolTime);
-                //StartCoroutine(JumpCoolTimeDelay());
                 jumpable = false;
+                rigid.AddForce(Vector3.up * jumpPower, ForceMode.Impulse);
+                //tempVelocity += Vector3.up * jumpPower;
+                //Invoke(nameof(JumpCoolTimeDelay), jumpCoolTime);
+                StartCoroutine(JumpCoolTimeDelay());
             }
 
-            //rigid.velocity = tempVelocity;
+            rigid.velocity = tempVelocity;
 
             cmd.Result.velocity = rigid.velocity;
             cmd.Result.angularVelocity = rigid.angularVelocity;
@@ -120,12 +119,12 @@ public class Player : EntityBehaviour<IPlayerState>
         }
     }
 
-    void JumpCoolTimeDelay() => jumpable = true;
-    /*IEnumerator JumpCoolTimeDelay()
+    //void JumpCoolTimeDelay() => jumpable = true;
+    IEnumerator JumpCoolTimeDelay()
     {
         yield return new WaitForSeconds(jumpCoolTime);
         jumpable = true;
-    }*/
+    }
 
     void Update()
     {

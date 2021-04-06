@@ -72,9 +72,9 @@ public class NetworkManager : GlobalEventListener
         evnt.Send();
     }
 
-    void UpdateEntity() => HostMigrationEntityChangeEvent.Create().Send();
+    //void UpdateEntity() => HostMigrationEntityChangeEvent.Create().Send();
 
-    public override void Disconnected(BoltConnection connection) => Invoke("UpdateEntity", 0.1f);//StartCoroutine(UpdateEntity()); 
+    public override void Disconnected(BoltConnection connection) => StartCoroutine(UpdateEntity()); //Invoke("UpdateEntity", 0.1f);
 
     public override void BoltShutdownBegin(AddCallback registerDoneCallback, UdpConnectionDisconnectReason disconnectReason) => registerDoneCallback(BoltShutdownCallback);
 
@@ -91,10 +91,10 @@ public class NetworkManager : GlobalEventListener
         }
     }
 
-    /*IEnumerator UpdateEntity()
+    IEnumerator UpdateEntity()
     {
         yield return new WaitForSeconds(0.1f);
         HostMigrationEntityChangeEvent.Create().Send();
-    }*/
+    }
 
 }
