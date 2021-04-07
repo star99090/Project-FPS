@@ -83,7 +83,6 @@ MonoBehaviour:
   jumpCoolTime: 0.8
   nickText: {fileID: 4907263478561680824}
   playerCanvas: {fileID: 1348472299977970198}
-  isGround: 1
 --- !u!114 &8694546819879050080
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -6,6 +6,7 @@ using Bolt;
 using Bolt.Matchmaking;
 using System.Linq;
 using UdpKit;
+#pragma warning disable CS0618
 
 public class NetworkManager : GlobalEventListener
 {
@@ -17,6 +18,8 @@ public class NetworkManager : GlobalEventListener
 
     [SerializeField] List<BoltEntity> entities;
     [SerializeField] BoltEntity myEntity;
+    [SerializeField] Vector3 myEntityPos;
+    [SerializeField] Vector3 myEntityRot;
     [SerializeField] InputField nickInput;
     public string myNickName => nickInput.text;
 
@@ -49,13 +52,23 @@ public class NetworkManager : GlobalEventListener
 
         Vector3 spawnPos = new Vector3(Random.Range(-5f, 5f), 0, Random.Range(-5f, 5f));
 
-        myEntity = BoltNetwork.Instantiate(playerPrefab, spawnPos, Quaternion.identity);
+        if (myEntityPos != Vector3.zero) spawnPos = myEntityPos;
+
+        myEntity = BoltNetwork.Instantiate(playerPrefab, spawnPos, Quaternion.EulerAngles(myEntityRot));
         myEntity.TakeControl();
 
         if (BoltNetwork.IsServer)
             myEntity.GetComponent<Player>().SetIsServer(true);
     }
 
+    void FixedUpdate()
+    {
+        if (myEntity != null)
+        {
+            myEntityPos = myEntity.transform.position;
+            myEntityRot = new Vector3(myEntity.transform.rotation.x, myEntity.transform.rotation.y, myEntity.transform.rotation.z);
+        }
+    }
 
     public override void Connected(BoltConnection connection)
     {
@@ -73,7 +86,6 @@ public class NetworkManager : GlobalEventListener
     }
 
     //void UpdateEntity() => HostMigrationEntityChangeEvent.Create().Send();
-
     public override void Disconnected(BoltConnection connection) => StartCoroutine(UpdateEntity()); //Invoke("UpdateEntity", 0.1f);
 
     public override void BoltShutdownBegin(AddCallback registerDoneCallback, UdpConnectionDisconnectReason disconnectReason) => registerDoneCallback(BoltShutdownCallback);
@@ -94,7 +106,10 @@ public class NetworkManager : GlobalEventListener
     IEnumerator UpdateEntity()
     {
         yield return new WaitForSeconds(0.1f);
-        HostMigrationEntityChangeEvent.Create().Send();
+        var myEntityUpdate = HostMigrationEntityChangeEvent.Create();
+        myEntityUpdate.position = transform.position;
+        myEntityUpdate.rotation = transform.eulerAngles;
+        myEntityUpdate.Send();
     }
 
 }

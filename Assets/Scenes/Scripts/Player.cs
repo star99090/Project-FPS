@@ -19,12 +19,17 @@ public class Player : EntityBehaviour<IPlayerState>
 
     Rigidbody rigid;
 
-    [SerializeField] bool isGround = true;
+    bool isGround = true;
     bool jumpable = true;
-    public Vector3 tempPosition => state.transform.Position;
 
     public void SetIsServer(bool isServer) => state.isServer = isServer;
 
+    void NicknameCallback()
+    {
+        nickText.text = state.nickname;
+    }
+
+    // 서버나 클라이언트가 실행되면서 부착되는 함수로 Start()와 같은 개념
     public override void Attached()
     {
         state.SetTransforms(state.transform, transform); // 위치 동기화
@@ -33,11 +38,7 @@ public class Player : EntityBehaviour<IPlayerState>
         state.AddCallback("nickname", NicknameCallback);
     }
 
-    void NicknameCallback()
-    {
-        nickText.text = state.nickname;
-    }
-
+    // 미리 설정한 Bolt Asset의 Command에 받은 입력을 대입하여, 서버를 통해 입력받도록 하는 함수
     public override void SimulateController()
     {
         IPlayerCommandInput input = PlayerCommand.Create();
@@ -49,17 +50,16 @@ public class Player : EntityBehaviour<IPlayerState>
         entity.QueueInput(input);
     }
 
-    //입력받으면 부르는 콜백
+    // 입력받으면 부르는 콜백
     public override void ExecuteCommand(Command command, bool resetState)
     {
         PlayerCommand cmd = (PlayerCommand)command;
 
         if (resetState)
         {
-            cmd.Result.velocity = rigid.velocity;
-            cmd.Result.angularVelocity = rigid.angularVelocity;
             rigid.velocity = cmd.Result.velocity;
             rigid.angularVelocity = cmd.Result.angularVelocity;
+            transform.SetPositionAndRotation(cmd.Result.position, Quaternion.Euler(new Vector3(cmd.Result.rotation.x, cmd.Result.rotation.y, cmd.Result.rotation.z)));
         }
         else
         {
@@ -100,7 +100,7 @@ public class Player : EntityBehaviour<IPlayerState>
                 */
             }
 
-            Vector3 tempVelocity = dir.normalized * speed + Vector3.up * (rigid.velocity.y>=0 ? rigid.velocity.y : 1.1f * rigid.velocity.y);
+            Vector3 tempVelocity = dir.normalized * speed + Vector3.up * rigid.velocity.y;
 
             if (cmd.Input.jump && jumpable && isGround)
             {
@@ -113,9 +113,10 @@ public class Player : EntityBehaviour<IPlayerState>
 
             rigid.velocity = tempVelocity;
 
+            cmd.Result.position = transform.position;
+            cmd.Result.rotation = transform.eulerAngles;
             cmd.Result.velocity = rigid.velocity;
             cmd.Result.angularVelocity = rigid.angularVelocity;
-            //cmd.Result.po 
         }
     }
 
@@ -128,7 +129,11 @@ public class Player : EntityBehaviour<IPlayerState>
 
     void Update()
     {
-        if (!entity.IsOwner) return;
+        if (!entity.IsOwner)
+        {
+            transform.position = Vector3.Lerp(transform.position, state.transform.Position, BoltNetwork.FrameDeltaTime);
+            transform.rotation = Quaternion.Lerp(transform.rotation, entity.transform.rotation, 1f);
+        }
 
         isGround = Physics.Raycast(transform.position + Vector3.up, Vector3.down, 1.05f);
     }

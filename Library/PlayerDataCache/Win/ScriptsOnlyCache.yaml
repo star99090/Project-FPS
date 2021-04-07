@@ -138,7 +138,7 @@ ScriptsOnlyBuild:
     className: TMP_InputField
   - hash:
       serializedVersion: 2
-      Hash: 29f50762be540940f6c118242916317b
+      Hash: c267d95c1fd371bba60ad24e63719856
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: NetworkManager
@@ -204,7 +204,7 @@ ScriptsOnlyBuild:
     className: PlayerQuitHandler
   - hash:
       serializedVersion: 2
-      Hash: 8832ac0fec241dc64d68a84a7eb397f1
+      Hash: 7fb1f37193d834f68794fc6c6c32811e
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Player
