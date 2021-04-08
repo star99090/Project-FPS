@@ -1347,6 +1347,8 @@ MonoBehaviour:
   titlePanel: {fileID: 169943054799606619}
   entities: []
   myEntity: {fileID: 0}
+  myEntityPos: {x: 0, y: 0, z: 0}
+  myEntityRot: {x: 0, y: 0, z: 0}
   nickInput: {fileID: 1135157412}
 --- !u!1 &5132242971127384188
 GameObject:

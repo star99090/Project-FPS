@@ -85,8 +85,7 @@ public class NetworkManager : GlobalEventListener
         evnt.Send();
     }
 
-    //void UpdateEntity() => HostMigrationEntityChangeEvent.Create().Send();
-    public override void Disconnected(BoltConnection connection) => StartCoroutine(UpdateEntity()); //Invoke("UpdateEntity", 0.1f);
+    public override void Disconnected(BoltConnection connection) => StartCoroutine(UpdateEntity());
 
     public override void BoltShutdownBegin(AddCallback registerDoneCallback, UdpConnectionDisconnectReason disconnectReason) => registerDoneCallback(BoltShutdownCallback);
 

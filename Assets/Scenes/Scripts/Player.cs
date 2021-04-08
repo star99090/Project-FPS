@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using Bolt;
@@ -59,7 +58,9 @@ public class Player : EntityBehaviour<IPlayerState>
         {
             rigid.velocity = cmd.Result.velocity;
             rigid.angularVelocity = cmd.Result.angularVelocity;
-            transform.SetPositionAndRotation(cmd.Result.position, Quaternion.Euler(new Vector3(cmd.Result.rotation.x, cmd.Result.rotation.y, cmd.Result.rotation.z)));
+            transform.position = cmd.Result.position;
+            transform.rotation = Quaternion.Euler(
+                new Vector3(cmd.Result.rotation.x, cmd.Result.rotation.y, cmd.Result.rotation.z));
         }
         else
         {
@@ -69,35 +70,19 @@ public class Player : EntityBehaviour<IPlayerState>
             {
                 dir += transform.forward;
                 //회전 로직 필요
-                transform.rotation = Quaternion.Lerp(transform.rotation,
-                    Quaternion.LookRotation(transform.forward), rotationLerp);
             }
             else if (cmd.Input.down)
             {
                 dir += -transform.forward;
-                //transform.rotation = Quaternion.Lerp(transform.rotation,
-                //    Quaternion.LookRotation(-transform.forward), rotationLerp);
             }
 
             if (cmd.Input.right)
             {
                 dir += transform.right;
-                /*
-                Vector3 right = Quaternion.Euler(0, 90, 0) * transform.forward;
-                dir += right;
-                transform.rotation = Quaternion.Lerp(transform.rotation,
-                    Quaternion.LookRotation(right), rotationLerp);
-                */
             }
             else if (cmd.Input.left)
             {
                 dir += -transform.right;
-                /*
-                Vector3 left = Quaternion.Euler(0, -90, 0) * transform.forward;
-                dir += left;
-                transform.rotation = Quaternion.Lerp(transform.rotation,
-                    Quaternion.LookRotation(left), rotationLerp);
-                */
             }
 
             Vector3 tempVelocity = dir.normalized * speed + Vector3.up * rigid.velocity.y;
@@ -106,8 +91,6 @@ public class Player : EntityBehaviour<IPlayerState>
             {
                 jumpable = false;
                 rigid.AddForce(Vector3.up * jumpPower, ForceMode.Impulse);
-                //tempVelocity += Vector3.up * jumpPower;
-                //Invoke(nameof(JumpCoolTimeDelay), jumpCoolTime);
                 StartCoroutine(JumpCoolTimeDelay());
             }
 
@@ -120,7 +103,6 @@ public class Player : EntityBehaviour<IPlayerState>
         }
     }
 
-    //void JumpCoolTimeDelay() => jumpable = true;
     IEnumerator JumpCoolTimeDelay()
     {
         yield return new WaitForSeconds(jumpCoolTime);
@@ -132,7 +114,7 @@ public class Player : EntityBehaviour<IPlayerState>
         if (!entity.IsOwner)
         {
             transform.position = Vector3.Lerp(transform.position, state.transform.Position, BoltNetwork.FrameDeltaTime);
-            transform.rotation = Quaternion.Lerp(transform.rotation, entity.transform.rotation, 1f);
+            transform.rotation = Quaternion.Lerp(transform.rotation, state.transform.Rotation, 1f);
         }
 
         isGround = Physics.Raycast(transform.position + Vector3.up, Vector3.down, 1.05f);
