@@ -1,6 +1,8 @@
-﻿using System;
+﻿using Bolt;
+using System;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace FPSControllerLPFP
 {
@@ -8,7 +10,7 @@ namespace FPSControllerLPFP
     [RequireComponent(typeof(Rigidbody))]
     [RequireComponent(typeof(CapsuleCollider))]
     [RequireComponent(typeof(AudioSource))]
-    public class FpsControllerLPFP : MonoBehaviour
+    public class FpsControllerLPFP : EntityBehaviour<IPlayerState>
     {
 #pragma warning disable 649
 		[Header("Arms")]
@@ -57,6 +59,10 @@ namespace FPSControllerLPFP
         private FpsInput input;
 #pragma warning restore 649
 
+        public GameObject GunCamera;
+        [SerializeField] Text nicknameText;
+        [SerializeField] Transform nicknameCanvas;
+
         private Rigidbody _rigidbody;
         private CapsuleCollider _collider;
         private AudioSource _audioSource;
@@ -69,6 +75,9 @@ namespace FPSControllerLPFP
         private readonly RaycastHit[] _groundCastResults = new RaycastHit[8];
         private readonly RaycastHit[] _wallCastResults = new RaycastHit[8];
 
+        public void SetIsServer(bool isServer) => state.isServer = isServer;
+        void NicknameCallback() => nicknameText.text = state.nickname;
+        /*
         /// Initializes the FpsController on start.
         private void Start()
         {
@@ -86,7 +95,8 @@ namespace FPSControllerLPFP
             Cursor.lockState = CursorLockMode.Locked;
             ValidateRotationRestriction();
         }
-			
+		*/
+
         private Transform AssignCharactersCamera()
         {
             var t = transform;
@@ -131,9 +141,43 @@ namespace FPSControllerLPFP
 
             _isGrounded = true;
         }
-			
+
+        public override void Attached()
+        {
+            state.SetTransforms(state.transform, transform);
+            state.nickname = NetworkManager.Instance.myNickName;
+            state.AddCallback("nickname", NicknameCallback);
+
+
+            //스타트
+            _rigidbody = GetComponent<Rigidbody>();
+            _rigidbody.constraints = RigidbodyConstraints.FreezeRotation;
+            _collider = GetComponent<CapsuleCollider>();
+            _audioSource = GetComponent<AudioSource>();
+            arms = AssignCharactersCamera();
+            _audioSource.clip = walkingSound;
+            _audioSource.loop = true;
+            _rotationX = new SmoothRotation(RotationXRaw);
+            _rotationY = new SmoothRotation(RotationYRaw);
+            _velocityX = new SmoothVelocity();
+            _velocityZ = new SmoothVelocity();
+            Cursor.lockState = CursorLockMode.Locked;
+            ValidateRotationRestriction();
+        }
+
+        public override void SimulateController()
+        {   // 업데이트
+            arms.position = transform.position + transform.TransformVector(armPosition);
+            Jump();
+            PlayFootstepSounds();
+
+            // 픽스드업데이트
+            RotateCameraAndCharacter();
+            MoveCharacter();
+            _isGrounded = false;
+        }
         /// Processes the character movement and the camera rotation every fixed framerate frame.
-        private void FixedUpdate()
+        /*private void FixedUpdate()
         {
             // FixedUpdate is used instead of Update because this code is dealing with physics and smoothing.
             RotateCameraAndCharacter();
@@ -147,7 +191,9 @@ namespace FPSControllerLPFP
 			arms.position = transform.position + transform.TransformVector(armPosition);
             Jump();
             PlayFootstepSounds();
-        }
+        }*/
+
+        void LateUpdate() => nicknameCanvas.rotation = transform.rotation;
 
         private void RotateCameraAndCharacter()
         {

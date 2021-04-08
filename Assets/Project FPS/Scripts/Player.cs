@@ -53,8 +53,8 @@ public class Player : EntityBehaviour<IPlayerState>
             rigid.velocity = cmd.Result.velocity;
             rigid.angularVelocity = cmd.Result.angularVelocity;
             transform.position = cmd.Result.position;
-            transform.rotation = Quaternion.Euler(
-                new Vector3(cmd.Result.rotation.x, cmd.Result.rotation.y, cmd.Result.rotation.z));
+            //transform.rotation = Quaternion.Euler(
+              //  new Vector3(cmd.Result.rotation.x, cmd.Result.rotation.y, cmd.Result.rotation.z));
         }
         else
         {
@@ -95,7 +95,7 @@ public class Player : EntityBehaviour<IPlayerState>
         if (!entity.IsOwner)
         {
             transform.position = Vector3.Lerp(transform.position, state.transform.Position, BoltNetwork.FrameDeltaTime);
-            transform.rotation = Quaternion.Lerp(transform.rotation, state.transform.Rotation, 1f);
+            //transform.rotation = Quaternion.Lerp(transform.rotation, state.transform.Rotation, 1f);
         }
 
         isGround = Physics.Raycast(transform.position + Vector3.up, Vector3.down, 1.05f);

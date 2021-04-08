@@ -6,6 +6,7 @@ using Bolt;
 using Bolt.Matchmaking;
 using System.Linq;
 using UdpKit;
+using FPSControllerLPFP;
 #pragma warning disable CS0618
 
 public class NetworkManager : GlobalEventListener
@@ -15,6 +16,7 @@ public class NetworkManager : GlobalEventListener
 
     [SerializeField] GameObject playerPrefab;
     [SerializeField] GameObject titlePanel;
+    [SerializeField] GameObject lobbyCamera;
 
     [SerializeField] List<BoltEntity> entities;
     [SerializeField] BoltEntity myEntity;
@@ -22,6 +24,8 @@ public class NetworkManager : GlobalEventListener
     [SerializeField] Vector3 myEntityRot;
     [SerializeField] InputField nickInput;
     public string myNickName => nickInput.text;
+    public List<GameObject> players;
+    public GameObject myPlayer;
 
     bool isMyHost;
 
@@ -49,8 +53,9 @@ public class NetworkManager : GlobalEventListener
     public override void SceneLoadLocalDone(string scene, IProtocolToken token)
     {
         titlePanel.SetActive(false);
+        lobbyCamera.SetActive(false);
 
-        Vector3 spawnPos = new Vector3(Random.Range(-5f, 5f), 0, Random.Range(-5f, 5f));
+        Vector3 spawnPos = new Vector3(Random.Range(-5f, 5f), 1.3f, Random.Range(-5f, 5f));
 
         if (myEntityPos != Vector3.zero) spawnPos = myEntityPos;
 
@@ -58,7 +63,10 @@ public class NetworkManager : GlobalEventListener
         myEntity.TakeControl();
 
         if (BoltNetwork.IsServer)
-            myEntity.GetComponent<Player>().SetIsServer(true);
+            myEntity.GetComponent<FpsControllerLPFP>().SetIsServer(true);
+
+        RenewalPlayers();
+        MyCameraActive();
     }
 
     void FixedUpdate()
@@ -91,6 +99,25 @@ public class NetworkManager : GlobalEventListener
         myEntityUpdate.Send();
     }
 
+    void RenewalPlayers()
+    {
+        players = new List<GameObject>();
+        foreach(var player in GameObject.FindGameObjectsWithTag("FPSPlayer"))
+        {
+            players.Add(player);
+            if (player.GetComponent<BoltEntity>().IsOwner)
+                myPlayer = player;
+        }
+    }
+
+    void MyCameraActive()
+    {
+        foreach(var player in players)
+        {
+            bool owner = player.GetComponent<BoltEntity>().IsOwner;
+            player.GetComponent<FpsControllerLPFP>().GunCamera.SetActive(owner);
+        }
+    }
 
     public override void OnEvent(HostMigrationEntityChangeEvent evnt)
     {
