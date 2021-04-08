@@ -56,8 +56,20 @@
     <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio Tools for Unity\16.0\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scenes\Scripts\NetworkManager.cs" />
-    <Compile Include="Assets\Scenes\Scripts\Player.cs" />
+    <Compile Include="Assets\Project FPS\Scripts\NetworkManager.cs" />
+    <Compile Include="Assets\Project FPS\Scripts\Player.cs" />
+    <Compile Include="Assets\Resources\Low Poly FPS Pack - Free (Sample)\Components\Scripts\Explosions_&amp;_Impacts\ExplosionScript.cs" />
+    <Compile Include="Assets\Resources\Low Poly FPS Pack - Free (Sample)\Components\Scripts\Explosions_&amp;_Impacts\ImpactScript.cs" />
+    <Compile Include="Assets\Resources\Low Poly FPS Pack - Free (Sample)\Components\Scripts\Weapon_Scripts\AutomaticGunScriptLPFP.cs" />
+    <Compile Include="Assets\Resources\Low Poly FPS Pack - Free (Sample)\Components\Scripts\Casings_&amp;_Projectiles\CasingScript.cs" />
+    <Compile Include="Assets\Resources\Low Poly FPS Pack - Free (Sample)\Components\Scripts\FPSController\FpsControllerLPFP.cs" />
+    <Compile Include="Assets\Resources\Low Poly FPS Pack - Free (Sample)\Components\Scripts\Bullet\BulletScript.cs" />
+    <Compile Include="Assets\Resources\Low Poly FPS Pack - Free (Sample)\Components\Demo_Scene_Components\Scripts\DebrisScript.cs" />
+    <Compile Include="Assets\Resources\Low Poly FPS Pack - Free (Sample)\Components\Scripts\Misc\LookAtCamera.cs" />
+    <Compile Include="Assets\Resources\Low Poly FPS Pack - Free (Sample)\Components\Scripts\Casings_&amp;_Projectiles\GrenadeScript.cs" />
+    <Compile Include="Assets\Resources\Low Poly FPS Pack - Free (Sample)\Components\Demo_Scene_Components\Scripts\ExplosiveBarrelScript.cs" />
+    <Compile Include="Assets\Resources\Low Poly FPS Pack - Free (Sample)\Components\Scripts\Weapon_Scripts\HandgunScriptLPFP.cs" />
+    <Compile Include="Assets\Resources\Low Poly FPS Pack - Free (Sample)\Components\Demo_Scene_Components\Scripts\TargetScript.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\Photon\PhotonLibs\netstandard2.0\Photon3Unity3D.xml" />
