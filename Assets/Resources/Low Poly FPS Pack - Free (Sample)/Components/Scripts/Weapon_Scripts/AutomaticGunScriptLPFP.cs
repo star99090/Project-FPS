@@ -3,35 +3,29 @@ using System.Collections;
 using UnityEngine.UI;
 using Bolt;
 
-// ----- Low Poly FPS Pack Free Version -----
 public class AutomaticGunScriptLPFP : EntityBehaviour<IFPSPlayerState>
 {
-
-	//Animator component attached to weapon
 	Animator anim;
 
 	[Header("Gun Camera")]
-	//Main gun camera
 	public Camera gunCamera;
 
 	[Header("Gun Camera Options")]
-	//How fast the camera field of view changes when aiming 
-	[Tooltip("How fast the camera field of view changes when aiming.")]
+	[Tooltip("조준 시 카메라 변경 속도")]
 	public float fovSpeed = 15.0f;
-	//Default camera field of view
-	[Tooltip("Default value for camera field of view (40 is recommended).")]
+
+	[Tooltip("카메라 시야 기본 값")]
 	public float defaultFov = 40.0f;
 
 	public float aimFov = 25.0f;
 
-	[Header("UI Weapon Name")]
-	[Tooltip("Name of the current weapon, shown in the game UI.")]
+	[Header("Weapon Name UI")]
+	[Tooltip("총기 이름")]
 	public string weaponName;
 	private string storedWeaponName;
 
 	[Header("Weapon Sway")]
-	//Enables weapon sway
-	[Tooltip("Toggle weapon sway.")]
+	[Tooltip("총기 흔듦")]
 	public bool weaponSway;
 
 	public float swayAmount = 0.02f;
@@ -40,67 +34,39 @@ public class AutomaticGunScriptLPFP : EntityBehaviour<IFPSPlayerState>
 
 	private Vector3 initialSwayPosition;
 
-	//Used for fire rate
-	private float lastFired;
 	[Header("Weapon Settings")]
-	//How fast the weapon fires, higher value means faster rate of fire
-	[Tooltip("How fast the weapon fires, higher value means faster rate of fire.")]
+	[Tooltip("발사 속도")]
 	public float fireRate;
-	//Eanbles auto reloading when out of ammo
-	[Tooltip("Enables auto reloading when out of ammo.")]
+
+	[Tooltip("자동 장전")]
 	public bool autoReload;
-	//Delay between shooting last bullet and reloading
+
+	[Tooltip("발사 딜레이")]
 	public float autoReloadDelay;
-	//Check if reloading
+	private float lastFired;
+
 	private bool isReloading;
-
-	//Holstering weapon
-	private bool hasBeenHolstered = false;
-	//If weapon is holstered
-	private bool holstered;
-	//Check if running
 	private bool isRunning;
-	//Check if aiming
 	private bool isAiming;
-	//Check if walking
 	private bool isWalking;
-	//Check if inspecting weapon
-	private bool isInspecting;
 
-	//How much ammo is currently left
-	private int currentAmmo;
-	//Totalt amount of ammo
-	[Tooltip("How much ammo the weapon should have.")]
+	[Tooltip("최대 탄 수")]
 	public int ammo;
-	//Check if out of ammo
-	private bool outOfAmmo;
+	private int currentAmmo;
+	private bool outOfAmmo;	// 탄을 다 썼는지 확인
 
 	[Header("Bullet Settings")]
-	//Bullet
-	[Tooltip("How much force is applied to the bullet when shooting.")]
-	public float bulletForce = 400.0f;
-	[Tooltip("How long after reloading that the bullet model becomes visible " +
-		"again, only used for out of ammo reload animations.")]
+	[Tooltip("총탄 발사 힘")]
+	public float bulletForce = 500.0f;
+
+	[Tooltip("탄피 자동 삭제에 걸리는 딜레이")]
 	public float showBulletInMagDelay = 0.6f;
-	[Tooltip("The bullet model inside the mag, not used for all weapons.")]
+	[Tooltip("탄피 안의 총알 모델")]
 	public SkinnedMeshRenderer bulletInMagRenderer;
-
-	[Header("Grenade Settings")]
-	public float grenadeSpawnDelay = 0.35f;
-
-	[Header("Muzzleflash Settings")]
-	public bool randomMuzzleflash = false;
-	//min should always bee 1
-	private int minRandomValue = 1;
-
-	[Range(2, 25)]
-	public int maxRandomValue = 5;
 
 	private int randomMuzzleflashValue;
 
-	public bool enableMuzzleflash = true;
 	public ParticleSystem muzzleParticles;
-	public bool enableSparks = true;
 	public ParticleSystem sparkParticles;
 	public int minSparkEmission = 1;
 	public int maxSparkEmission = 7;
@@ -110,13 +76,10 @@ public class AutomaticGunScriptLPFP : EntityBehaviour<IFPSPlayerState>
 	public float lightDuration = 0.02f;
 
 	[Header("Audio Source")]
-	//Main audio source
 	public AudioSource mainAudioSource;
-	//Audio source used for shoot sound
 	public AudioSource shootAudioSource;
 
 	[Header("UI Components")]
-	public Text timescaleText;
 	public Text currentWeaponText;
 	public Text currentAmmoText;
 	public Text totalAmmoText;
@@ -127,7 +90,6 @@ public class AutomaticGunScriptLPFP : EntityBehaviour<IFPSPlayerState>
 		[Header("Prefabs")]
 		public Transform bulletPrefab;
 		public Transform casingPrefab;
-		public Transform grenadePrefab;
 	}
 	public prefabs Prefabs;
 
@@ -135,14 +97,8 @@ public class AutomaticGunScriptLPFP : EntityBehaviour<IFPSPlayerState>
 	public class spawnpoints
 	{
 		[Header("Spawnpoints")]
-		//Array holding casing spawn points 
-		//(some weapons use more than one casing spawn)
-		//Casing spawn point array
 		public Transform casingSpawnPoint;
-		//Bullet prefab spawn from this point
 		public Transform bulletSpawnPoint;
-
-		public Transform grenadeSpawnPoint;
 	}
 	public spawnpoints Spawnpoints;
 
@@ -150,8 +106,7 @@ public class AutomaticGunScriptLPFP : EntityBehaviour<IFPSPlayerState>
 	public class soundClips
 	{
 		public AudioClip shootSound;
-		public AudioClip takeOutSound;
-		public AudioClip holsterSound;
+		public AudioClip takeOtSound;
 		public AudioClip reloadSoundOutOfAmmo;
 		public AudioClip reloadSoundAmmoLeft;
 		public AudioClip aimSound;
@@ -162,65 +117,54 @@ public class AutomaticGunScriptLPFP : EntityBehaviour<IFPSPlayerState>
 
 	private void Awake()
 	{
-		//Set the animator component
 		anim = GetComponent<Animator>();
-		//Set current ammo to total ammo value
 		currentAmmo = ammo;
-
 		muzzleflashLight.enabled = false;
 	}
 
     private void Start()
 	{
-		//Save the weapon name
 		storedWeaponName = weaponName;
-		//Get weapon name from string to text
 		currentWeaponText.text = weaponName;
-		//Set total ammo text from total ammo int
 		totalAmmoText.text = ammo.ToString();
-
-		//Weapon sway
 		initialSwayPosition = transform.localPosition;
-
-		//Set the shoot sound to audio source
 		shootAudioSource.clip = SoundClips.shootSound;
 	}
 
 	private void LateUpdate()
 	{
 		if (!entity.IsOwner) return;
-		//Weapon sway
+
+		// 무기 흔들면서 드는 것
 		if (weaponSway == true)
 		{
+			// 마우스 현재 회전 반영
 			float movementX = -Input.GetAxis("Mouse X") * swayAmount;
 			float movementY = -Input.GetAxis("Mouse Y") * swayAmount;
-			//Clamp movement to min and max values
+			
 			movementX = Mathf.Clamp
 				(movementX, -maxSwayAmount, maxSwayAmount);
 			movementY = Mathf.Clamp
 				(movementY, -maxSwayAmount, maxSwayAmount);
-			//Lerp local pos
-			Vector3 finalSwayPosition = new Vector3
-				(movementX, movementY, 0);
-			transform.localPosition = Vector3.Lerp
-				(transform.localPosition, finalSwayPosition +
-					initialSwayPosition, Time.deltaTime * swaySmoothValue);
+			
+			Vector3 finalSwayPosition = new Vector3(movementX, movementY, 0);
+
+			// 흔들고 정상 위치로 포지션 복귀를 위한 Lerp
+			transform.localPosition = Vector3.Lerp(transform.localPosition,
+				finalSwayPosition + initialSwayPosition, Time.deltaTime * swaySmoothValue);
 		}
 	}
 
     private void Update()
 	{
 		if (!entity.IsOwner) return;
-		//Aiming
-		//Toggle camera FOV when right click is held down
-		if (Input.GetButton("Fire2") && !isReloading && !isRunning && !isInspecting)
-		{
 
+		// 우클릭 조준 시 카메라 셋팅
+		if (Input.GetButton("Fire2") && !isReloading && !isRunning)
+		{
 			isAiming = true;
-			//Start aiming
 			anim.SetBool("Aim", true);
 
-			//When right click is released
 			gunCamera.fieldOfView = Mathf.Lerp(gunCamera.fieldOfView,
 				aimFov, fovSpeed * Time.deltaTime);
 
@@ -232,367 +176,201 @@ public class AutomaticGunScriptLPFP : EntityBehaviour<IFPSPlayerState>
 				soundHasPlayed = true;
 			}
 		}
+		// 우클릭 해제
 		else
 		{
-			//When right click is released
 			gunCamera.fieldOfView = Mathf.Lerp(gunCamera.fieldOfView,
 				defaultFov, fovSpeed * Time.deltaTime);
 
 			isAiming = false;
-			//Stop aiming
 			anim.SetBool("Aim", false);
 
 			soundHasPlayed = false;
 		}
-		//Aiming end
+		
+		// 발사 이펙트 빈도 수 지정
+		randomMuzzleflashValue = Random.Range(1, 2);
 
-		//If randomize muzzleflash is true, genereate random int values
-		if (randomMuzzleflash == true)
-		{
-			randomMuzzleflashValue = Random.Range(minRandomValue, maxRandomValue);
-		}
-
-		//Timescale settings
-		//Change timescale to normal when 1 key is pressed
-		if (Input.GetKeyDown(KeyCode.Alpha1))
-		{
-			Time.timeScale = 1.0f;
-			timescaleText.text = "1.0";
-		}
-		//Change timesccale to 50% when 2 key is pressed
-		if (Input.GetKeyDown(KeyCode.Alpha2))
-		{
-			Time.timeScale = 0.5f;
-			timescaleText.text = "0.5";
-		}
-		//Change timescale to 25% when 3 key is pressed
-		if (Input.GetKeyDown(KeyCode.Alpha3))
-		{
-			Time.timeScale = 0.25f;
-			timescaleText.text = "0.25";
-		}
-		//Change timescale to 10% when 4 key is pressed
-		if (Input.GetKeyDown(KeyCode.Alpha4))
-		{
-			Time.timeScale = 0.1f;
-			timescaleText.text = "0.1";
-		}
-		//Pause game when 5 key is pressed
-		if (Input.GetKeyDown(KeyCode.Alpha5))
-		{
-			Time.timeScale = 0.0f;
-			timescaleText.text = "0.0";
-		}
-
-		//Set current ammo text from ammo int
+		// 현재 탄 수 동기화
 		currentAmmoText.text = currentAmmo.ToString();
 
-		//Continosuly check which animation 
-		//is currently playing
+		// 현재 재장전 애니메이션 진행 중인지 확인
 		AnimationCheck();
 
-		//Play knife attack 1 animation when Q key is pressed
-		if (Input.GetKeyDown(KeyCode.Q) && !isInspecting)
-		{
-			anim.Play("Knife Attack 1", 0, 0f);
-		}
-		//Play knife attack 2 animation when F key is pressed
-		if (Input.GetKeyDown(KeyCode.F) && !isInspecting)
-		{
-			anim.Play("Knife Attack 2", 0, 0f);
-		}
-
-		//Throw grenade when pressing G key
-		if (Input.GetKeyDown(KeyCode.G) && !isInspecting)
-		{
-			StartCoroutine(GrenadeSpawnDelay());
-			//Play grenade throw animation
-			anim.Play("GrenadeThrow", 0, 0.0f);
-		}
-
-		//If out of ammo
+		// 탄 다 썼을 때
 		if (currentAmmo == 0)
 		{
-			//Show out of ammo text
 			currentWeaponText.text = "OUT OF AMMO";
-			//Toggle bool
+
 			outOfAmmo = true;
-			//Auto reload if true
 			if (autoReload == true && !isReloading)
-			{
 				StartCoroutine(AutoReload());
-			}
 		}
 		else
 		{
-			//When ammo is full, show weapon name again
 			currentWeaponText.text = storedWeaponName.ToString();
-			//Toggle bool
+			
 			outOfAmmo = false;
 			//anim.SetBool ("Out Of Ammo", false);
 		}
 
-		//AUtomatic fire
-		//Left click hold 
-		if (Input.GetMouseButton(0) && !outOfAmmo && !isReloading && !isInspecting && !isRunning)
+		// 자동 발사(좌클릭 유지)
+		if (Input.GetMouseButton(0) && !outOfAmmo && !isReloading && !isRunning)
 		{
-			//Shoot automatic
 			if (Time.time - lastFired > 1 / fireRate)
 			{
 				lastFired = Time.time;
 
-				//Remove 1 bullet from ammo
+				// 탄 수 감소
 				currentAmmo -= 1;
 
 				shootAudioSource.clip = SoundClips.shootSound;
 				shootAudioSource.Play();
 
-				if (!isAiming) //if not aiming
+				// 일반 사격 모드
+				if (!isAiming)
 				{
 					anim.Play("Fire", 0, 0f);
-					//If random muzzle is false
-					if (!randomMuzzleflash &&
-						enableMuzzleflash == true)
+
+					if (randomMuzzleflashValue == 1)
 					{
+						sparkParticles.Emit(Random.Range(minSparkEmission, maxSparkEmission));
 						muzzleParticles.Emit(1);
-						//Light flash start
+						
 						StartCoroutine(MuzzleFlashLight());
 					}
-					else if (randomMuzzleflash == true)
-					{
-						//Only emit if random value is 1
-						if (randomMuzzleflashValue == 1)
-						{
-							if (enableSparks == true)
-							{
-								//Emit random amount of spark particles
-								sparkParticles.Emit(Random.Range(minSparkEmission, maxSparkEmission));
-							}
-							if (enableMuzzleflash == true)
-							{
-								muzzleParticles.Emit(1);
-								//Light flash start
-								StartCoroutine(MuzzleFlashLight());
-							}
-						}
-					}
 				}
-				else //if aiming
+				// 조준 사격 모드
+				else
 				{
-
 					anim.Play("Aim Fire", 0, 0f);
-
-					//If random muzzle is false
-					if (!randomMuzzleflash)
+					if (randomMuzzleflashValue == 1)
 					{
+						sparkParticles.Emit(Random.Range(minSparkEmission, maxSparkEmission));
 						muzzleParticles.Emit(1);
-						//If random muzzle is true
-					}
-					else if (randomMuzzleflash == true)
-					{
-						//Only emit if random value is 1
-						if (randomMuzzleflashValue == 1)
-						{
-							if (enableSparks == true)
-							{
-								//Emit random amount of spark particles
-								sparkParticles.Emit(Random.Range(minSparkEmission, maxSparkEmission));
-							}
-							if (enableMuzzleflash == true)
-							{
-								muzzleParticles.Emit(1);
-								//Light flash start
-								StartCoroutine(MuzzleFlashLight());
-							}
-						}
+
+						StartCoroutine(MuzzleFlashLight());
 					}
 				}
 
-				//Spawn bullet from bullet spawnpoint
+				// 총알 생성
 				var bullet = (Transform)Instantiate(
 					Prefabs.bulletPrefab,
 					Spawnpoints.bulletSpawnPoint.transform.position,
 					Spawnpoints.bulletSpawnPoint.transform.rotation);
 
-				//Add velocity to the bullet
+				// 총알에 힘 싣기
 				bullet.GetComponent<Rigidbody>().velocity =
 					bullet.transform.forward * bulletForce;
 
-				//Spawn casing prefab at spawnpoint
+				// 탄피 생성
 				Instantiate(Prefabs.casingPrefab,
 					Spawnpoints.casingSpawnPoint.transform.position,
 					Spawnpoints.casingSpawnPoint.transform.rotation);
 			}
 		}
 
-		//Inspect weapon when T key is pressed
-		if (Input.GetKeyDown(KeyCode.T))
-		{
-			anim.SetTrigger("Inspect");
-		}
-
-		//Toggle weapon holster when E key is pressed
-		if (Input.GetKeyDown(KeyCode.E) && !hasBeenHolstered)
-		{
-			holstered = true;
-
-			mainAudioSource.clip = SoundClips.holsterSound;
-			mainAudioSource.Play();
-
-			hasBeenHolstered = true;
-		}
-		else if (Input.GetKeyDown(KeyCode.E) && hasBeenHolstered)
-		{
-			holstered = false;
-
-			mainAudioSource.clip = SoundClips.takeOutSound;
-			mainAudioSource.Play();
-
-			hasBeenHolstered = false;
-		}
-		//Holster anim toggle
-		if (holstered == true)
-		{
-			anim.SetBool("Holster", true);
-		}
-		else
-		{
-			anim.SetBool("Holster", false);
-		}
-
-		//Reload 
-		if (Input.GetKeyDown(KeyCode.R) && !isReloading && !isInspecting)
-		{
-			//Reload
+		// 재장전
+		if (Input.GetKeyDown(KeyCode.R) && !isReloading)
 			Reload();
-		}
 
-		//Walking when pressing down WASD keys
+		// 걷기
 		if (Input.GetKey(KeyCode.W) && !isRunning ||
 			Input.GetKey(KeyCode.A) && !isRunning ||
 			Input.GetKey(KeyCode.S) && !isRunning ||
 			Input.GetKey(KeyCode.D) && !isRunning)
-		{
 			anim.SetBool("Walk", true);
-		}
 		else
-		{
 			anim.SetBool("Walk", false);
-		}
 
-		//Running when pressing down W and Left Shift key
+		// W와 Left Shift를 누르면 달리기
 		if ((Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.LeftShift)))
-		{
 			isRunning = true;
-		}
 		else
-		{
 			isRunning = false;
-		}
 
-		//Run anim toggle
+		// 달리기 애니메이션 설정
 		if (isRunning == true)
-		{
 			anim.SetBool("Run", true);
-		}
 		else
-		{
 			anim.SetBool("Run", false);
-		}
 	}
 
-	private IEnumerator GrenadeSpawnDelay()
-	{
-
-		//Wait for set amount of time before spawning grenade
-		yield return new WaitForSeconds(grenadeSpawnDelay);
-		//Spawn grenade prefab at spawnpoint
-		Instantiate(Prefabs.grenadePrefab,
-			Spawnpoints.grenadeSpawnPoint.transform.position,
-			Spawnpoints.grenadeSpawnPoint.transform.rotation);
-	}
-
+	// 자동 장전
 	private IEnumerator AutoReload()
 	{
-		//Wait set amount of time
 		yield return new WaitForSeconds(autoReloadDelay);
 
 		if (outOfAmmo == true)
 		{
-			//Play diff anim if out of ammo
 			anim.Play("Reload Out Of Ammo", 0, 0f);
 
 			mainAudioSource.clip = SoundClips.reloadSoundOutOfAmmo;
 			mainAudioSource.Play();
 
-			//If out of ammo, hide the bullet renderer in the mag
-			//Do not show if bullet renderer is not assigned in inspector
+			// 장전 중, 떨어진 탄피들을 일정 시간 뒤 인스펙터 창에서 삭제
 			if (bulletInMagRenderer != null)
 			{
 				bulletInMagRenderer.GetComponent
 				<SkinnedMeshRenderer>().enabled = false;
-				//Start show bullet delay
+
 				StartCoroutine(ShowBulletInMag());
 			}
 		}
-		//Restore ammo when reloading
+
+		// 재장전 완료
 		currentAmmo = ammo;
 		outOfAmmo = false;
 	}
 
-	//Reload
+	// 수동 장전
 	private void Reload()
 	{
 
 		if (outOfAmmo == true)
 		{
-			//Play diff anim if out of ammo
 			anim.Play("Reload Out Of Ammo", 0, 0f);
 
 			mainAudioSource.clip = SoundClips.reloadSoundOutOfAmmo;
 			mainAudioSource.Play();
 
-			//If out of ammo, hide the bullet renderer in the mag
-			//Do not show if bullet renderer is not assigned in inspector
+			// 장전 중, 떨어진 탄피들을 일정 시간 뒤 인스펙터 창에서 삭제
 			if (bulletInMagRenderer != null)
 			{
 				bulletInMagRenderer.GetComponent
 				<SkinnedMeshRenderer>().enabled = false;
-				//Start show bullet delay
+
 				StartCoroutine(ShowBulletInMag());
 			}
 		}
 		else
 		{
-			//Play diff anim if ammo left
 			anim.Play("Reload Ammo Left", 0, 0f);
 
 			mainAudioSource.clip = SoundClips.reloadSoundAmmoLeft;
 			mainAudioSource.Play();
 
-			//If reloading when ammo left, show bullet in mag
-			//Do not show if bullet renderer is not assigned in inspector
+			// 장전 중이 아닐 때, 떨어진 탄피들을 인스펙터 창에서 삭제
 			if (bulletInMagRenderer != null)
 			{
 				bulletInMagRenderer.GetComponent
 				<SkinnedMeshRenderer>().enabled = true;
 			}
 		}
-		//Restore ammo when reloading
+
+		// 재장전 완료
 		currentAmmo = ammo;
 		outOfAmmo = false;
 	}
 
-	//Enable bullet in mag renderer after set amount of time
+	// 탄피는 설정된 시간이 지나면 사라짐
 	private IEnumerator ShowBulletInMag()
 	{
-
-		//Wait set amount of time before showing bullet in mag
 		yield return new WaitForSeconds(showBulletInMagDelay);
 		bulletInMagRenderer.GetComponent<SkinnedMeshRenderer>().enabled = true;
 	}
 
-	//Show light when shooting, then disable after set amount of time
+	// 사격 시 총알의 불빛이 사라지는 시간 설정
 	private IEnumerator MuzzleFlashLight()
 	{
 
@@ -601,31 +379,13 @@ public class AutomaticGunScriptLPFP : EntityBehaviour<IFPSPlayerState>
 		muzzleflashLight.enabled = false;
 	}
 
-	//Check current animation playing
+	// 현재 재장전 애니메이션 진행 중인지 확인
 	private void AnimationCheck()
 	{
-
-		//Check if reloading
-		//Check both animations
 		if (anim.GetCurrentAnimatorStateInfo(0).IsName("Reload Out Of Ammo") ||
 			anim.GetCurrentAnimatorStateInfo(0).IsName("Reload Ammo Left"))
-		{
 			isReloading = true;
-		}
 		else
-		{
 			isReloading = false;
-		}
-
-		//Check if inspecting weapon
-		if (anim.GetCurrentAnimatorStateInfo(0).IsName("Inspect"))
-		{
-			isInspecting = true;
-		}
-		else
-		{
-			isInspecting = false;
-		}
 	}
 }
-// ----- Low Poly FPS Pack Free Version -----

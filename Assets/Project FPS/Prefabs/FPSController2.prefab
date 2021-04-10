@@ -5718,9 +5718,11 @@ MonoBehaviour:
     rotateX: Mouse X
     rotateY: Mouse Y
     move: Horizontal
-    strafe: Vertical
+    leftRight: Vertical
     run: Fire3
     jump: Jump
+  nicknameText: {fileID: 0}
+  nicknameCanvas: {fileID: 0}
 --- !u!114 &4205217894883638893
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6190,12 +6192,7 @@ MonoBehaviour:
   bulletForce: 400
   showBulletInMagDelay: 0.6
   bulletInMagRenderer: {fileID: 8324685369206390104}
-  grenadeSpawnDelay: 0.35
-  randomMuzzleflash: 1
-  maxRandomValue: 2
-  enableMuzzleflash: 1
   muzzleParticles: {fileID: 8119745751613396808}
-  enableSparks: 1
   sparkParticles: {fileID: 8118914309593369742}
   minSparkEmission: 1
   maxSparkEmission: 7
@@ -6203,22 +6200,18 @@ MonoBehaviour:
   lightDuration: 0.02
   mainAudioSource: {fileID: 8308529100052154206}
   shootAudioSource: {fileID: 8308508601368087440}
-  timescaleText: {fileID: 0}
   currentWeaponText: {fileID: 8357463421821475052}
   currentAmmoText: {fileID: 8356654903071474292}
   totalAmmoText: {fileID: 8357435607879245792}
   Prefabs:
     bulletPrefab: {fileID: 4879702113200764, guid: 5953171a59c27394e9ad5cbb564affa8, type: 3}
     casingPrefab: {fileID: 4420745226056240, guid: 7be59128a5ee3424faf33d7a408c0b2e, type: 3}
-    grenadePrefab: {fileID: 4191440083646698, guid: 7b04fe350ed10a741a1e245447860d9e, type: 3}
   Spawnpoints:
     casingSpawnPoint: {fileID: 8241890404498369656}
     bulletSpawnPoint: {fileID: 8250355708857008442}
-    grenadeSpawnPoint: {fileID: 8250245643647220672}
   SoundClips:
     shootSound: {fileID: 8300000, guid: 38b450e2adcb6f542acc8c1d423bd8dc, type: 3}
-    takeOutSound: {fileID: 8300000, guid: 2ae41e984ff1f3e4a840a1a46b6a8816, type: 3}
-    holsterSound: {fileID: 8300000, guid: 33a4a9bf1a1dbca4cb379a1118c6b20d, type: 3}
+    takeOtSound: {fileID: 0}
     reloadSoundOutOfAmmo: {fileID: 8300000, guid: 5b907074256e36d41b92e89fb0790633, type: 3}
     reloadSoundAmmoLeft: {fileID: 8300000, guid: f7ce534a0633b9847910ba117e2245d1, type: 3}
     aimSound: {fileID: 8300000, guid: acaebc89b98b82142bd2b24edb6081e4, type: 3}

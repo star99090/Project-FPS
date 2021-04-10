@@ -6,6 +6,7 @@ using static NetworkManager;
 public class PlayerScript : Bolt.EntityBehaviour<IFPSPlayerState>
 {
     public GameObject[] HideObjects;
+    public GameObject NicknameCanvas;
 
     void Start() => NM.players.Add(entity);
 
@@ -29,5 +30,10 @@ public class PlayerScript : Bolt.EntityBehaviour<IFPSPlayerState>
         {
             go.SetActive(false);
         }
+    }
+
+    public void NicknameSet(bool a)
+    {
+        NicknameCanvas.SetActive(a);
     }
 }

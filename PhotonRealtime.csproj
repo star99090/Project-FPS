@@ -69,8 +69,8 @@
     <Compile Include="Assets\Photon\PhotonRealtime\Code\LoadbalancingPeer.cs" />
     <Compile Include="Assets\Photon\PhotonRealtime\Code\ConnectionHandler.cs" />
     <Compile Include="Assets\Photon\PhotonRealtime\Code\Region.cs" />
-    <Compile Include="Assets\Photon\PhotonRealtime\Code\SupportLogger.cs" />
     <Compile Include="Assets\Photon\PhotonRealtime\Code\AppSettings.cs" />
+    <Compile Include="Assets\Photon\PhotonRealtime\Code\SupportLogger.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\Photon\PhotonRealtime\Code\changes-realtime.txt" />

@@ -1,5 +1,4 @@
-﻿using Bolt;
-using System;
+﻿using System;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
@@ -7,7 +6,6 @@ using static NetworkManager;
 
 namespace FPSControllerLPFP
 {
-    /// Manages a first person character
     [RequireComponent(typeof(Rigidbody))]
     [RequireComponent(typeof(CapsuleCollider))]
     [RequireComponent(typeof(AudioSource))]
@@ -15,54 +13,53 @@ namespace FPSControllerLPFP
     {
 #pragma warning disable 649
 		[Header("Arms")]
-        [Tooltip("The transform component that holds the gun camera."), SerializeField]
+        [Tooltip("카메라의 위치"), SerializeField]
         private Transform arms;
 
-        [Tooltip("The position of the arms and gun camera relative to the fps controller GameObject."), SerializeField]
+        [Tooltip("캐릭터에 상대적인 팔과 카메라의 위치"), SerializeField]
         private Vector3 armPosition;
 
 		[Header("Audio Clips")]
-        [Tooltip("The audio clip that is played while walking."), SerializeField]
+        [Tooltip("걷는 효과음"), SerializeField]
         private AudioClip walkingSound;
 
-        [Tooltip("The audio clip that is played while running."), SerializeField]
+        [Tooltip("달리는 효과음"), SerializeField]
         private AudioClip runningSound;
 
 		[Header("Movement Settings")]
-        [Tooltip("How fast the player moves while walking and strafing."), SerializeField]
+        [Tooltip("걷기 속도"), SerializeField]
         private float walkingSpeed = 5f;
 
-        [Tooltip("How fast the player moves while running."), SerializeField]
+        [Tooltip("달리기 속도"), SerializeField]
         private float runningSpeed = 9f;
 
-        [Tooltip("Approximately the amount of time it will take for the player to reach maximum running or walking speed."), SerializeField]
+        [Tooltip("최대 이동속도에 걸리는 시간"), SerializeField]
         private float movementSmoothness = 0.125f;
 
-        [Tooltip("Amount of force applied to the player when jumping."), SerializeField]
-        private float jumpForce = 35f;
+        [Tooltip("점프력"), SerializeField]
+        private float jumpForce = 70f;
 
 		[Header("Look Settings")]
-        [Tooltip("Rotation speed of the fps controller."), SerializeField]
+        [Tooltip("마우스 회전 감도"), SerializeField]
         private float mouseSensitivity = 7f;
 
-        [Tooltip("Approximately the amount of time it will take for the fps controller to reach maximum rotation speed."), SerializeField]
+        [Tooltip("최대 회전 속도에 걸리는 시간"), SerializeField]
         private float rotationSmoothness = 0.05f;
 
-        [Tooltip("Minimum rotation of the arms and camera on the x axis."),
+        [Tooltip("팔과 카메라의 최소 회전각"),
          SerializeField]
         private float minVerticalAngle = -90f;
 
-        [Tooltip("Maximum rotation of the arms and camera on the axis."),
+        [Tooltip("팔과 카메라의 최대 회전각"),
          SerializeField]
         private float maxVerticalAngle = 90f;
 
-        [Tooltip("The names of the axes and buttons for Unity's Input Manager."), SerializeField]
+        [Tooltip("조작법"), SerializeField]
         private FpsInput input;
 #pragma warning restore 649
 
-        //public GameObject GunCamera;
-        //[SerializeField] Text nicknameText;
-        //[SerializeField] Transform nicknameCanvas;
+        [SerializeField] Text nicknameText;
+        [SerializeField] Transform nicknameCanvas;
 
         private Rigidbody _rigidbody;
         private CapsuleCollider _collider;
@@ -76,10 +73,9 @@ namespace FPSControllerLPFP
         private readonly RaycastHit[] _groundCastResults = new RaycastHit[8];
         private readonly RaycastHit[] _wallCastResults = new RaycastHit[8];
 
-        //ublic void SetIsServer(bool isServer) => state.isServer = isServer;
-        //void NicknameCallback() => nicknameText.text = state.nickname;
+        //public void SetIsServer(bool isServer) => state.isServer = isServer;
+        void NicknameCallback() => nicknameText.text = state.nickname;
         
-        /// Initializes the FpsController on start.
         private void Start()
         {
             if (entity.IsOwner) NM.myPlayer = this.entity;
@@ -98,8 +94,14 @@ namespace FPSControllerLPFP
             Cursor.lockState = CursorLockMode.Locked;
             ValidateRotationRestriction();
         }
-		
 
+        public override void Attached()
+        {
+            state.nickname = TitleLobbyManager.TLM.myNickname;
+            state.AddCallback("nickname", NicknameCallback);
+        }
+
+        // 팔이 캐릭터의 회전과 위치를 따라가도록 구현
         private Transform AssignCharactersCamera()
         {
             var t = transform;
@@ -107,8 +109,7 @@ namespace FPSControllerLPFP
 			return arms;
         }
         
-        /// Clamps <see cref="minVerticalAngle"/> and <see cref="maxVerticalAngle"/> to valid values and
-        /// ensures that <see cref="minVerticalAngle"/> is less than <see cref="maxVerticalAngle"/>.
+        // 회전각 max의 값보다 min의 값이 큰 경우를 방지
         private void ValidateRotationRestriction()
         {
             minVerticalAngle = ClampRotationRestriction(minVerticalAngle, -90, 90);
@@ -120,6 +121,7 @@ namespace FPSControllerLPFP
             maxVerticalAngle = min;
         }
 
+        // 입력된 값이 min, max 값 내의 값인지 확인하여 그 사이의 값으로 반환
         private static float ClampRotationRestriction(float rotationRestriction, float min, float max)
         {
             if (rotationRestriction >= min && rotationRestriction <= max) return rotationRestriction;
@@ -128,36 +130,47 @@ namespace FPSControllerLPFP
             return Mathf.Clamp(rotationRestriction, min, max);
         }
 			
-        /// Checks if the character is on the ground.
+        // 캐릭터가 지면에 붙어 있는지 검사
         private void OnCollisionStay()
         {
+            // 콜라이더의 경계를 가져온다
             var bounds = _collider.bounds;
+
+            // 경계의 중심(콜라이더의 중심)
             var extents = bounds.extents;
+
+            // 반지름보다 0.01f 작은 값 저장
             var radius = extents.x - 0.01f;
+
+            // 캐릭터 내의 모든 콜라이더에 부딪히는 여러 물체에 대한 정보를 RaycastHit[] 배열에 저장
             Physics.SphereCastNonAlloc(bounds.center, radius, Vector3.down,
                 _groundCastResults, extents.y - radius * 0.5f, ~0, QueryTriggerInteraction.Ignore);
+
+            // 부딪힌 물체가 없거나 캐릭터의 콜라이더라면 무시
             if (!_groundCastResults.Any(hit => hit.collider != null && hit.collider != _collider)) return;
+
+            // 부딪힌 물체를 RaycastHit 배열에 저장
             for (var i = 0; i < _groundCastResults.Length; i++)
             {
                 _groundCastResults[i] = new RaycastHit();
             }
 
+            // 점프를 하고 착지하면 지면과 부딪히기때문에 _isGrounded를 true로 설정
             _isGrounded = true;
         }
 
 
-        /// Processes the character movement and the camera rotation every fixed framerate frame.
+        /// 캐릭터와 카메라의 이동과 회전을 처리
         private void FixedUpdate()
         {
             if (!entity.IsOwner) return;
 
-            // FixedUpdate is used instead of Update because this code is dealing with physics and smoothing.
             RotateCameraAndCharacter();
             MoveCharacter();
             _isGrounded = false;
         }
 			
-        /// Moves the camera to the character, processes jumping and plays sounds every frame.
+        /// 총을 캐릭터의 위치로 옮기고 점프와 발걸음 사운드를 재생
         private void Update()
         {
             if (!entity.IsOwner) return;
@@ -167,8 +180,9 @@ namespace FPSControllerLPFP
             PlayFootstepSounds();
         }
 
-        //void LateUpdate() => nicknameCanvas.rotation = transform.rotation;
+        void LateUpdate() => nicknameCanvas.rotation = transform.rotation;
 
+        // 카메라와 캐릭터가 보는 방향에 대한 회전
         private void RotateCameraAndCharacter()
         {
             var rotationX = _rotationX.Update(RotationXRaw, rotationSmoothness);
@@ -182,21 +196,20 @@ namespace FPSControllerLPFP
             transform.eulerAngles = new Vector3(0f, rotation.eulerAngles.y, 0f);
 			arms.rotation = rotation;
         }
-			
-        /// Returns the target rotation of the camera around the y axis with no smoothing.
+
+        // y축으로 보정이 없는 카메라 초점의 움직임을 보정하여 반환
         private float RotationXRaw
         {
             get { return input.RotateX * mouseSensitivity; }
         }
 			
-        /// Returns the target rotation of the camera around the x axis with no smoothing.
+        // x축으로 보정이 없는 카메라 초점의 움직임을 보정하여 반환
         private float RotationYRaw
         {
             get { return input.RotateY * mouseSensitivity; }
         }
 			
-        /// Clamps the rotation of the camera around the x axis
-        /// between the <see cref="minVerticalAngle"/> and <see cref="maxVerticalAngle"/> values.
+        // 카메라의 x축 각도를 최소~최대 회전각 사이로 고정
         private float RestrictVerticalRotation(float mouseY)
         {
 			var currentAngle = NormalizeAngle(arms.eulerAngles.x);
@@ -205,9 +218,7 @@ namespace FPSControllerLPFP
             return Mathf.Clamp(mouseY, minY + 0.01f, maxY - 0.01f);
         }
 			
-        /// Normalize an angle between -180 and 180 degrees.
-        /// <param name="angleDegrees">angle to normalize</param>
-        /// <returns>normalized angle</returns>
+        // 회전 각도가 -180 ~ 180도를 유지하도록 유도
         private static float NormalizeAngle(float angleDegrees)
         {
             while (angleDegrees > 180f)
@@ -223,12 +234,14 @@ namespace FPSControllerLPFP
             return angleDegrees;
         }
 
+        // 캐릭터 이동
         private void MoveCharacter()
         {
-            var direction = new Vector3(input.Move, 0f, input.Strafe).normalized;
+            var direction = new Vector3(input.Move, 0f, input.LeftRight).normalized;
             var worldDirection = transform.TransformDirection(direction);
             var velocity = worldDirection * (input.Run ? runningSpeed : walkingSpeed);
-            //Checks for collisions so that the character does not stuck when jumping against walls.
+
+            // 벽이나 오브젝트에 부딪힐 때 캐릭터가 버벅거리거나 멈추지 않도록 충돌을 미리 확인
             var intersectsWall = CheckCollisionsWithWalls(velocity);
             if (intersectsWall)
             {
@@ -243,9 +256,12 @@ namespace FPSControllerLPFP
             _rigidbody.AddForce(force, ForceMode.VelocityChange);
         }
 
+        // 벽과 붙어있는지 검사
         private bool CheckCollisionsWithWalls(Vector3 velocity)
         {
+            // 지면은 제외
             if (_isGrounded) return false;
+
             var bounds = _collider.bounds;
             var radius = _collider.radius;
             var halfHeight = _collider.height * 0.5f - radius * 1.0f;
@@ -253,6 +269,8 @@ namespace FPSControllerLPFP
             point1.y += halfHeight;
             var point2 = bounds.center;
             point2.y -= halfHeight;
+
+            // CapsuleCastNonAlloc() : Scene 안의 모든 캡슐 콜라이더에 대한 Raycast를 통해 무엇과 충돌했는지 정보를 반환
             Physics.CapsuleCastNonAlloc(point1, point2, radius, velocity.normalized, _wallCastResults,
                 radius * 0.04f, ~0, QueryTriggerInteraction.Ignore);
             var collides = _wallCastResults.Any(hit => hit.collider != null && hit.collider != _collider);
@@ -265,6 +283,7 @@ namespace FPSControllerLPFP
             return true;
         }
 
+        // 점프
         private void Jump()
         {
             if (!_isGrounded || !input.Jump) return;
@@ -272,8 +291,11 @@ namespace FPSControllerLPFP
             _rigidbody.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
         }
 
+        
+        // 발소리 재생
         private void PlayFootstepSounds()
         {
+            //Vector3.sqrMagnitude : 벡터의 길이의 제곱값을 반환하여 움직이기 시작할 때 사운드 재생을 유도
             if (_isGrounded && _rigidbody.velocity.sqrMagnitude > 0.1f)
             {
                 _audioSource.clip = input.Run ? runningSound : walkingSound;
@@ -291,7 +313,7 @@ namespace FPSControllerLPFP
             }
         }
 			
-        /// A helper for assistance with smoothing the camera rotation.
+        // 부드러운 회전
         private class SmoothRotation
         {
             private float _current;
@@ -302,7 +324,8 @@ namespace FPSControllerLPFP
                 _current = startAngle;
             }
 				
-            /// Returns the smoothed rotation.
+            // 부드러운 회전 반환
+            // SmoothDampAngle() : 시간이 지남에 따라 원하는 각도를 향해 점차적으로 각도를 변경
             public float Update(float target, float smoothTime)
             {
                 return _current = Mathf.SmoothDampAngle(_current, target, ref _currentVelocity, smoothTime);
@@ -314,13 +337,14 @@ namespace FPSControllerLPFP
             }
         }
 			
-        /// A helper for assistance with smoothing the movement.
+        // 부드러운 이동
         private class SmoothVelocity
         {
             private float _current;
             private float _currentVelocity;
 
-            /// Returns the smoothed velocity.
+            // 부드러운 이동속도 반환
+            // SmoothDamp() : 시간이 지남에 따라 원하는 목표를 향해 점차적으로 벡터를 변환
             public float Update(float target, float smoothTime)
             {
                 return _current = Mathf.SmoothDamp(_current, target, ref _currentVelocity, smoothTime);
@@ -332,65 +356,65 @@ namespace FPSControllerLPFP
             }
         }
 			
-        /// Input mappings
+        // 조작 매핑
         [Serializable]
         private class FpsInput
         {
-            [Tooltip("The name of the virtual axis mapped to rotate the camera around the y axis."),
+            [Tooltip("카메라를 y축을 중심으로 회전하도록 매핑된 가상 축의 이름"),
              SerializeField]
             private string rotateX = "Mouse X";
 
-            [Tooltip("The name of the virtual axis mapped to rotate the camera around the x axis."),
+            [Tooltip("카메라를 x축을 중심으로 회전하도록 매핑된 가상 축의 이름"),
              SerializeField]
             private string rotateY = "Mouse Y";
 
-            [Tooltip("The name of the virtual axis mapped to move the character back and forth."),
+            [Tooltip("캐릭터를 앞뒤로 이동하도록 매핑된 가상 축의 이름"),
              SerializeField]
             private string move = "Horizontal";
 
-            [Tooltip("The name of the virtual axis mapped to move the character left and right."),
+            [Tooltip("캐릭터를 좌우로 이동하도록 매핑된 가상 축의 이름"),
              SerializeField]
-            private string strafe = "Vertical";
+            private string leftRight = "Vertical";
 
-            [Tooltip("The name of the virtual button mapped to run."),
+            [Tooltip("달리기에 매핑된 가상 버튼 이름"),
              SerializeField]
-            private string run = "Fire3";
+            private string run = "Run";
 
-            [Tooltip("The name of the virtual button mapped to jump."),
+            [Tooltip("점프에 매핑된 가상 버튼 이름"),
              SerializeField]
             private string jump = "Jump";
 
-            /// Returns the value of the virtual axis mapped to rotate the camera around the y axis.
+            // 카메라를 y축을 중심으로 회전하도록 매핑된 가상 축의 값을 반환
             public float RotateX
             {
                 get { return Input.GetAxisRaw(rotateX); }
             }
-				         
-            /// Returns the value of the virtual axis mapped to rotate the camera around the x axis.        
+
+            // 카메라를 x축을 중심으로 회전하도록 매핑된 가상 축의 값을 반환       
             public float RotateY
             {
                 get { return Input.GetAxisRaw(rotateY); }
             }
-				        
-            /// Returns the value of the virtual axis mapped to move the character back and forth.        
+
+            // 캐릭터를 앞뒤로 이동하도록 매핑된 가상 축의 값을 반환       
             public float Move
             {
                 get { return Input.GetAxisRaw(move); }
             }
-				       
-            /// Returns the value of the virtual axis mapped to move the character left and right.         
-            public float Strafe
+
+            // 캐릭터를 좌우로 이동하도록 매핑된 가상 축의 값을 반환        
+            public float LeftRight
             {
-                get { return Input.GetAxisRaw(strafe); }
+                get { return Input.GetAxisRaw(leftRight); }
             }
 				    
-            /// Returns true while the virtual button mapped to run is held down.          
+            // Left Shift 버튼을 누르는 동안 매핑된 가상 버튼이 true를 반환         
             public bool Run
             {
                 get { return Input.GetButton(run); }
             }
 				     
-            /// Returns true during the frame the user pressed down the virtual button mapped to jump.          
+            /// Space bar를 누르면 매핑된 가상 버튼이 true를 반환
             public bool Jump
             {
                 get { return Input.GetButtonDown(jump); }

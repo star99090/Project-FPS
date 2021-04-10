@@ -2,26 +2,91 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Bolt;
+using Bolt.Matchmaking;
+using UdpKit;
+using static TitleLobbyManager;
+using System.Linq;
+#pragma warning disable CS0618
 
 public class NetworkManager : GlobalEventListener
 {
     public static NetworkManager NM;
-    private void Awake() => NM = this;
+    private void Awake()
+    {
+        currentSession = TLM.mySession;
+        NM = this;
+    }
 
     public List<BoltEntity> players = new List<BoltEntity>();
     public BoltEntity myPlayer;
 
     public GameObject SpawnPrefab;
+    private string currentSession;
+
+    [SerializeField] List<BoltEntity> entities = new List<BoltEntity>();
+    [SerializeField] BoltEntity myEntity;
+    [SerializeField] Vector3 myEntityPos;
+    [SerializeField] Vector3 myEntityRot;
+    bool isMyHost;
+    bool atFirst = true;
 
     public override void SceneLoadLocalDone(string scene, IProtocolToken token)
     {
         var spawnPos = new Vector3(Random.Range(-5, 5), 0, 0);
-        BoltNetwork.Instantiate(SpawnPrefab, spawnPos, Quaternion.identity);
+        
+        if (myEntityPos != Vector3.zero)
+            spawnPos = myEntityPos;
+
+        myEntity = BoltNetwork.Instantiate(SpawnPrefab, spawnPos,
+            Quaternion.EulerAngles(myEntityRot));
+        myEntity.TakeControl();
+
+        if (BoltNetwork.IsServer)
+            myEntity.GetState<IFPSPlayerState>().isServer = true;
+    }
+
+    public override void BoltStartDone()
+    {
+        if (BoltNetwork.IsServer)
+            BoltMatchmaking.CreateSession(sessionID: currentSession, sceneToLoad: "FPSGame");
+        else
+            BoltMatchmaking.JoinSession(currentSession);
+    }
+
+    void BoltShutdownCallback()
+    {
+        StartCoroutine(WaitForOpenServer());
+        if (isMyHost)
+            BoltLauncher.StartServer();
+        else
+            StartCoroutine(WaitForOpenServer());
+    }
+
+    public override void BoltShutdownBegin(AddCallback registerDoneCallback,
+        UdpConnectionDisconnectReason disconnectReason)
+    {
+
+        registerDoneCallback(BoltShutdownCallback);
     }
 
     public override void OnEvent(JoinedEvent evnt)
     {
-        Invoke("JoinedEventDelay", 0.5f);
+        Invoke("JoinedEventDelay", 0.1f);
+    }
+
+    public override void OnEvent(HostMigrationEvent evnt)
+    {
+        entities = BoltNetwork.Entities.ToList();
+        for (int i = 0; i < entities.Count; i++)
+        {
+            if (!entities[i].GetComponent<PlayerScript>().state.isServer)
+            {
+                isMyHost = entities[i].IsOwner;
+                return;
+            }
+        }
+        myEntityPos = evnt.position;
+        myEntityRot = evnt.rotation;
     }
 
     void JoinedEventDelay()
@@ -30,8 +95,46 @@ public class NetworkManager : GlobalEventListener
         {
             if (player != myPlayer)
                 player.GetComponent<PlayerScript>().HideObject();
+            else
+                player.GetComponent<PlayerScript>().NicknameSet(false);
         }
     }
+
+    private void FixedUpdate()
+    {
+        if (myEntity != null)
+        {
+            myEntityPos = myEntity.transform.position;
+            myEntityRot = myEntity.transform.rotation.eulerAngles;
+        }
+    }
+
+    public override void Connected(BoltConnection connection)
+    {
+        var evnt = HostMigrationEvent.Create();
+        evnt.isServer = false;
+        evnt.connectionId = (int)connection.ConnectionId;
+        currentSession = evnt.sessionName;
+        evnt.Send();
+    }
+
+    IEnumerator WaitForOpenServer()
+    {
+        yield return new WaitForSeconds(1f);
+        TLM.StartClient();
+    }
+
+    IEnumerator UpdateEntityAndSessionName()
+    {
+        yield return new WaitForSeconds(0.1f);
+        var myUpdate = HostMigrationEvent.Create();
+        myUpdate.position = transform.position;
+        myUpdate.rotation = transform.eulerAngles;
+        myUpdate.sessionName = currentSession;
+        myUpdate.Send();
+    }
+
+    public override void Disconnected(BoltConnection connection) => StartCoroutine(UpdateEntityAndSessionName());
 }
     /*
     public static NetworkManager Instance { get; private set; }
@@ -85,8 +188,8 @@ public class NetworkManager : GlobalEventListener
         myEntity = BoltNetwork.Instantiate(playerPrefab, spawnPos, Quaternion.identity);//Quaternion.EulerAngles(myEntityRot));
         myEntity.TakeControl();
 
-        //if (BoltNetwork.IsServer)
-          //  myEntity.GetComponent<FpsControllerLPFP>().SetIsServer(true);
+        if (BoltNetwork.IsServer)
+            myEntity.GetComponent<FpsControllerLPFP>().SetIsServer(true);
     }
 
 
@@ -120,32 +223,6 @@ public class NetworkManager : GlobalEventListener
         myEntityUpdate.Send();
     }
 
-    void RenewalPlayers()
-    {
-        players = new List<GameObject>();
-        foreach(var player in GameObject.FindGameObjectsWithTag("FPSPlayer"))
-        {
-            players.Add(player);
-            if (player.GetComponent<BoltEntity>().IsOwner)
-                myPlayer = player;
-        }
-    }
-
-    void MyCameraActive()
-    {
-        foreach (var player in players)
-        {
-            bool owner = player.GetComponent<BoltEntity>().IsOwner;
-            if (!owner)
-            {
-                player.GetComponent<MultiCameraSetting>().SetHideObjects();
-                player.GetComponent<MultiCameraSetting>().myNickName.SetActive(true);
-            }
-            else
-                player.GetComponent<MultiCameraSetting>().myNickName.SetActive(false);
-        }
-    }
-
     public override void OnEvent(HostMigrationEntityChangeEvent evnt)
     {
         entities = BoltNetwork.Entities.ToList();
@@ -157,10 +234,4 @@ public class NetworkManager : GlobalEventListener
                 return;
             }
         }
-    }
-    /*
-    public override void OnEvent(PlayerJoinedEvent evnt)
-    {
-        RenewalPlayers();
-        MyCameraActive();
     }*/
