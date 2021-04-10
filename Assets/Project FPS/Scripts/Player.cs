@@ -25,28 +25,28 @@ public class Player : EntityBehaviour<IPlayerState>
     // 서버나 클라이언트가 실행되면서 부착되는 함수로 Start()와 같은 개념
     public override void Attached()
     {
-        state.SetTransforms(state.transform, transform); // 위치 동기화
+        state.SetTransforms(state.PlayerTransform, transform); // 위치 동기화
         rigid = GetComponent<Rigidbody>();
-        state.nickname = NetworkManager.Instance.myNickName; 
-        state.AddCallback("nickname", NicknameCallback);
+        //state.nickname = NetworkManager.Instance.myNickName; 
+        //state.AddCallback("nickname", NicknameCallback);
     }
 
     // 미리 설정한 Bolt Asset의 Command에 받은 입력을 대입하여, 서버를 통해 입력받도록 하는 함수
     public override void SimulateController()
     {
-        IPlayerCommandInput input = PlayerCommand.Create();
+        /*IPlayerCommandInput input = PlayerCommand.Create();
         input.up = Input.GetKey(KeyCode.W);
         input.left = Input.GetKey(KeyCode.A);
         input.down = Input.GetKey(KeyCode.S);
         input.right = Input.GetKey(KeyCode.D);
         input.jump = Input.GetKey(KeyCode.Space);
-        entity.QueueInput(input);
+        entity.QueueInput(input);*/
     }
 
     // 입력받으면 부르는 콜백
     public override void ExecuteCommand(Command command, bool resetState)
     {
-        PlayerCommand cmd = (PlayerCommand)command;
+        /*PlayerCommand cmd = (PlayerCommand)command;
 
         if (resetState)
         {
@@ -59,7 +59,7 @@ public class Player : EntityBehaviour<IPlayerState>
         else
         {
             Vector3 dir = Vector3.zero;
-
+            
             if (cmd.Input.up || cmd.Input.down)
                 dir.z += cmd.Input.up ? 1 : -1;
 
@@ -81,7 +81,7 @@ public class Player : EntityBehaviour<IPlayerState>
             cmd.Result.rotation = transform.eulerAngles;
             cmd.Result.velocity = rigid.velocity;
             cmd.Result.angularVelocity = rigid.angularVelocity;
-        }
+        }*/
     }
 
     IEnumerator JumpCoolTimeDelay()
@@ -94,7 +94,7 @@ public class Player : EntityBehaviour<IPlayerState>
     {
         if (!entity.IsOwner)
         {
-            transform.position = Vector3.Lerp(transform.position, state.transform.Position, BoltNetwork.FrameDeltaTime);
+            transform.position = Vector3.Lerp(transform.position, state.PlayerTransform.Position, BoltNetwork.FrameDeltaTime);
             //transform.rotation = Quaternion.Lerp(transform.rotation, state.transform.Rotation, 1f);
         }
 

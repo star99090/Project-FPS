@@ -9,7 +9,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{85E9EEB6-B3AE-AD5E-9246-9CD6BA166BAE}</ProjectGuid>
+    <ProjectGuid>{EEA46792-D5D0-43F4-0F4B-8483D50BAEDA}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>PhotonRealtime</AssemblyName>
@@ -699,7 +699,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="PhotonWebSocket.csproj">
-      <Project>{A3B4DB7B-6DDC-7189-E534-B4F1DFA25F90}</Project>
+      <Project>{9DFA93A1-7AF1-CE20-8106-FA8BAB3A6870}</Project>
       <Name>PhotonWebSocket</Name>
     </ProjectReference>
   </ItemGroup>

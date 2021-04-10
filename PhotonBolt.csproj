@@ -9,7 +9,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{20EA16BA-FB7C-8447-015B-F1DB98441203}</ProjectGuid>
+    <ProjectGuid>{1D1F22AB-7E74-7167-2791-6943D7CF8D56}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>PhotonBolt</AssemblyName>
@@ -717,7 +717,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="PhotonRealtime.csproj">
-      <Project>{85E9EEB6-B3AE-AD5E-9246-9CD6BA166BAE}</Project>
+      <Project>{EEA46792-D5D0-43F4-0F4B-8483D50BAEDA}</Project>
       <Name>PhotonRealtime</Name>
     </ProjectReference>
   </ItemGroup>

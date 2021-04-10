@@ -8,4 +8,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Project FPS/Scenes/Title&Lobby.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
+  - enabled: 1
+    path: Assets/Project FPS/Scenes/FPSGame.unity
+    guid: 6a75e3cb0cec14f409639edfaf3b626b
   m_configObjects: {}

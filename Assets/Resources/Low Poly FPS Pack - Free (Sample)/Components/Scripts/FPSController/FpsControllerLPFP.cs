@@ -3,6 +3,7 @@ using System;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
+using static NetworkManager;
 
 namespace FPSControllerLPFP
 {
@@ -10,7 +11,7 @@ namespace FPSControllerLPFP
     [RequireComponent(typeof(Rigidbody))]
     [RequireComponent(typeof(CapsuleCollider))]
     [RequireComponent(typeof(AudioSource))]
-    public class FpsControllerLPFP : EntityBehaviour<IPlayerState>
+    public class FpsControllerLPFP : Bolt.EntityBehaviour<IFPSPlayerState>
     {
 #pragma warning disable 649
 		[Header("Arms")]
@@ -59,9 +60,9 @@ namespace FPSControllerLPFP
         private FpsInput input;
 #pragma warning restore 649
 
-        public GameObject GunCamera;
-        [SerializeField] Text nicknameText;
-        [SerializeField] Transform nicknameCanvas;
+        //public GameObject GunCamera;
+        //[SerializeField] Text nicknameText;
+        //[SerializeField] Transform nicknameCanvas;
 
         private Rigidbody _rigidbody;
         private CapsuleCollider _collider;
@@ -75,12 +76,14 @@ namespace FPSControllerLPFP
         private readonly RaycastHit[] _groundCastResults = new RaycastHit[8];
         private readonly RaycastHit[] _wallCastResults = new RaycastHit[8];
 
-        public void SetIsServer(bool isServer) => state.isServer = isServer;
-        void NicknameCallback() => nicknameText.text = state.nickname;
-        /*
+        //ublic void SetIsServer(bool isServer) => state.isServer = isServer;
+        //void NicknameCallback() => nicknameText.text = state.nickname;
+        
         /// Initializes the FpsController on start.
         private void Start()
         {
+            if (entity.IsOwner) NM.myPlayer = this.entity;
+
             _rigidbody = GetComponent<Rigidbody>();
             _rigidbody.constraints = RigidbodyConstraints.FreezeRotation;
             _collider = GetComponent<CapsuleCollider>();
@@ -95,7 +98,7 @@ namespace FPSControllerLPFP
             Cursor.lockState = CursorLockMode.Locked;
             ValidateRotationRestriction();
         }
-		*/
+		
 
         private Transform AssignCharactersCamera()
         {
@@ -142,43 +145,12 @@ namespace FPSControllerLPFP
             _isGrounded = true;
         }
 
-        public override void Attached()
-        {
-            state.SetTransforms(state.transform, transform);
-            state.nickname = NetworkManager.Instance.myNickName;
-            state.AddCallback("nickname", NicknameCallback);
 
-
-            //스타트
-            _rigidbody = GetComponent<Rigidbody>();
-            _rigidbody.constraints = RigidbodyConstraints.FreezeRotation;
-            _collider = GetComponent<CapsuleCollider>();
-            _audioSource = GetComponent<AudioSource>();
-            arms = AssignCharactersCamera();
-            _audioSource.clip = walkingSound;
-            _audioSource.loop = true;
-            _rotationX = new SmoothRotation(RotationXRaw);
-            _rotationY = new SmoothRotation(RotationYRaw);
-            _velocityX = new SmoothVelocity();
-            _velocityZ = new SmoothVelocity();
-            Cursor.lockState = CursorLockMode.Locked;
-            ValidateRotationRestriction();
-        }
-
-        public override void SimulateController()
-        {   // 업데이트
-            arms.position = transform.position + transform.TransformVector(armPosition);
-            Jump();
-            PlayFootstepSounds();
-
-            // 픽스드업데이트
-            RotateCameraAndCharacter();
-            MoveCharacter();
-            _isGrounded = false;
-        }
         /// Processes the character movement and the camera rotation every fixed framerate frame.
-        /*private void FixedUpdate()
+        private void FixedUpdate()
         {
+            if (!entity.IsOwner) return;
+
             // FixedUpdate is used instead of Update because this code is dealing with physics and smoothing.
             RotateCameraAndCharacter();
             MoveCharacter();
@@ -188,12 +160,14 @@ namespace FPSControllerLPFP
         /// Moves the camera to the character, processes jumping and plays sounds every frame.
         private void Update()
         {
+            if (!entity.IsOwner) return;
+                
 			arms.position = transform.position + transform.TransformVector(armPosition);
             Jump();
             PlayFootstepSounds();
-        }*/
+        }
 
-        void LateUpdate() => nicknameCanvas.rotation = transform.rotation;
+        //void LateUpdate() => nicknameCanvas.rotation = transform.rotation;
 
         private void RotateCameraAndCharacter()
         {

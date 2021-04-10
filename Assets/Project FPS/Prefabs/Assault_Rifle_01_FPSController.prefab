@@ -1204,9 +1204,6 @@ MonoBehaviour:
     strafe: Vertical
     run: Fire3
     jump: Jump
-  GunCamera: {fileID: 8722500850377175276}
-  nicknameText: {fileID: 7314626735013673397}
-  nicknameCanvas: {fileID: 1113849520986018267}
 --- !u!114 &5987741927851400622
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -9,7 +9,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{B4FB78EA-A73F-3AB2-53D0-CE1A822D329D}</ProjectGuid>
+    <ProjectGuid>{A1B9ACFF-3A08-19AB-D69A-462BB3EE76EB}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>PhotonBolt-Editor</AssemblyName>
@@ -697,7 +697,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="PhotonBolt.csproj">
-      <Project>{20EA16BA-FB7C-8447-015B-F1DB98441203}</Project>
+      <Project>{1D1F22AB-7E74-7167-2791-6943D7CF8D56}</Project>
       <Name>PhotonBolt</Name>
     </ProjectReference>
   </ItemGroup>

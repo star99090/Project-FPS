@@ -1,16 +1,39 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using Bolt;
-using Bolt.Matchmaking;
-using System.Linq;
-using UdpKit;
-using FPSControllerLPFP;
-#pragma warning disable CS0618
 
 public class NetworkManager : GlobalEventListener
 {
+    public static NetworkManager NM;
+    private void Awake() => NM = this;
+
+    public List<BoltEntity> players = new List<BoltEntity>();
+    public BoltEntity myPlayer;
+
+    public GameObject SpawnPrefab;
+
+    public override void SceneLoadLocalDone(string scene, IProtocolToken token)
+    {
+        var spawnPos = new Vector3(Random.Range(-5, 5), 0, 0);
+        BoltNetwork.Instantiate(SpawnPrefab, spawnPos, Quaternion.identity);
+    }
+
+    public override void OnEvent(JoinedEvent evnt)
+    {
+        Invoke("JoinedEventDelay", 0.5f);
+    }
+
+    void JoinedEventDelay()
+    {
+        foreach (var player in players)
+        {
+            if (player != myPlayer)
+                player.GetComponent<PlayerScript>().HideObject();
+        }
+    }
+}
+    /*
     public static NetworkManager Instance { get; private set; }
     void Awake() => Instance = this;
 
@@ -24,8 +47,8 @@ public class NetworkManager : GlobalEventListener
     [SerializeField] Vector3 myEntityRot;
     [SerializeField] InputField nickInput;
     public string myNickName => nickInput.text;
-    public List<GameObject> players;
-    public GameObject myPlayer;
+    [SerializeField] List<GameObject> players;
+    [SerializeField] GameObject myPlayer;
 
     bool isMyHost;
 
@@ -59,15 +82,13 @@ public class NetworkManager : GlobalEventListener
 
         if (myEntityPos != Vector3.zero) spawnPos = myEntityPos;
 
-        myEntity = BoltNetwork.Instantiate(playerPrefab, spawnPos, Quaternion.EulerAngles(myEntityRot));
+        myEntity = BoltNetwork.Instantiate(playerPrefab, spawnPos, Quaternion.identity);//Quaternion.EulerAngles(myEntityRot));
         myEntity.TakeControl();
 
-        if (BoltNetwork.IsServer)
-            myEntity.GetComponent<FpsControllerLPFP>().SetIsServer(true);
-
-        RenewalPlayers();
-        MyCameraActive();
+        //if (BoltNetwork.IsServer)
+          //  myEntity.GetComponent<FpsControllerLPFP>().SetIsServer(true);
     }
+
 
     void FixedUpdate()
     {
@@ -112,10 +133,16 @@ public class NetworkManager : GlobalEventListener
 
     void MyCameraActive()
     {
-        foreach(var player in players)
+        foreach (var player in players)
         {
             bool owner = player.GetComponent<BoltEntity>().IsOwner;
-            player.GetComponent<FpsControllerLPFP>().GunCamera.SetActive(owner);
+            if (!owner)
+            {
+                player.GetComponent<MultiCameraSetting>().SetHideObjects();
+                player.GetComponent<MultiCameraSetting>().myNickName.SetActive(true);
+            }
+            else
+                player.GetComponent<MultiCameraSetting>().myNickName.SetActive(false);
         }
     }
 
@@ -131,4 +158,9 @@ public class NetworkManager : GlobalEventListener
             }
         }
     }
-}
+    /*
+    public override void OnEvent(PlayerJoinedEvent evnt)
+    {
+        RenewalPlayers();
+        MyCameraActive();
+    }*/

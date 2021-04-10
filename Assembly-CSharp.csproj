@@ -9,7 +9,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{6D599446-7A51-2018-B7C4-B45CD142B422}</ProjectGuid>
+    <ProjectGuid>{0339C13E-9DD6-678D-C320-270F0934748E}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -61,15 +61,22 @@
     <Compile Include="Assets\Resources\Low Poly FPS Pack - Free (Sample)\Components\Demo_Scene_Components\Scripts\DebrisScript.cs" />
     <Compile Include="Assets\Project FPS\Scripts\Player.cs" />
     <Compile Include="Assets\Resources\Low Poly FPS Pack - Free (Sample)\Components\Scripts\Casings_&amp;_Projectiles\GrenadeScript.cs" />
+    <Compile Include="Assets\Project FPS\Scripts\PlayerJoined.cs" />
+    <Compile Include="Assets\Project FPS\Scripts\NetworkCallbacks.cs" />
+    <Compile Include="Assets\Project FPS\Scripts\MultiCameraSetting.cs" />
+    <Compile Include="Assets\Project FPS\Scripts\NetworkList.cs" />
     <Compile Include="Assets\Resources\Low Poly FPS Pack - Free (Sample)\Components\Demo_Scene_Components\Scripts\ExplosiveBarrelScript.cs" />
     <Compile Include="Assets\Resources\Low Poly FPS Pack - Free (Sample)\Components\Demo_Scene_Components\Scripts\TargetScript.cs" />
     <Compile Include="Assets\Resources\Low Poly FPS Pack - Free (Sample)\Components\Scripts\Casings_&amp;_Projectiles\CasingScript.cs" />
     <Compile Include="Assets\Resources\Low Poly FPS Pack - Free (Sample)\Components\Scripts\Misc\LookAtCamera.cs" />
+    <Compile Include="Assets\Project FPS\Scripts\PlayerEvent.cs" />
     <Compile Include="Assets\Resources\Low Poly FPS Pack - Free (Sample)\Components\Scripts\Weapon_Scripts\HandgunScriptLPFP.cs" />
     <Compile Include="Assets\Resources\Low Poly FPS Pack - Free (Sample)\Components\Scripts\Explosions_&amp;_Impacts\ExplosionScript.cs" />
+    <Compile Include="Assets\Project FPS\Scripts\TitleLobbyManager.cs" />
     <Compile Include="Assets\Resources\Low Poly FPS Pack - Free (Sample)\Components\Scripts\Explosions_&amp;_Impacts\ImpactScript.cs" />
     <Compile Include="Assets\Resources\Low Poly FPS Pack - Free (Sample)\Components\Scripts\Weapon_Scripts\AutomaticGunScriptLPFP.cs" />
     <Compile Include="Assets\Resources\Low Poly FPS Pack - Free (Sample)\Components\Scripts\Bullet\BulletScript.cs" />
+    <Compile Include="Assets\Project FPS\Scripts\PlayerScript.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\Photon\PhotonLibs\netstandard2.0\Photon3Unity3D.xml" />
@@ -705,19 +712,19 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="PhotonBolt.csproj">
-      <Project>{20EA16BA-FB7C-8447-015B-F1DB98441203}</Project>
+      <Project>{1D1F22AB-7E74-7167-2791-6943D7CF8D56}</Project>
       <Name>PhotonBolt</Name>
     </ProjectReference>
     <ProjectReference Include="PhotonWebSocket.csproj">
-      <Project>{A3B4DB7B-6DDC-7189-E534-B4F1DFA25F90}</Project>
+      <Project>{9DFA93A1-7AF1-CE20-8106-FA8BAB3A6870}</Project>
       <Name>PhotonWebSocket</Name>
     </ProjectReference>
     <ProjectReference Include="PhotonBolt-Editor.csproj">
-      <Project>{B4FB78EA-A73F-3AB2-53D0-CE1A822D329D}</Project>
+      <Project>{A1B9ACFF-3A08-19AB-D69A-462BB3EE76EB}</Project>
       <Name>PhotonBolt-Editor</Name>
     </ProjectReference>
     <ProjectReference Include="PhotonRealtime.csproj">
-      <Project>{85E9EEB6-B3AE-AD5E-9246-9CD6BA166BAE}</Project>
+      <Project>{EEA46792-D5D0-43F4-0F4B-8483D50BAEDA}</Project>
       <Name>PhotonRealtime</Name>
     </ProjectReference>
   </ItemGroup>
