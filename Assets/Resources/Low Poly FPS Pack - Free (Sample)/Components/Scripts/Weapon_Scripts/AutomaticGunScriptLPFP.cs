@@ -133,7 +133,7 @@ public class AutomaticGunScriptLPFP : EntityBehaviour<IFPSPlayerState>
 
 	private void LateUpdate()
 	{
-		if (!entity.IsOwner) return;
+		//if (!entity.IsOwner) return;
 
 		// 무기 흔들면서 드는 것
 		if (weaponSway == true)
@@ -157,7 +157,7 @@ public class AutomaticGunScriptLPFP : EntityBehaviour<IFPSPlayerState>
 
     private void Update()
 	{
-		if (!entity.IsOwner) return;
+		//if (!entity.IsOwner) return;
 
 		// 우클릭 조준 시 카메라 셋팅
 		if (Input.GetButton("Fire2") && !isReloading && !isRunning)

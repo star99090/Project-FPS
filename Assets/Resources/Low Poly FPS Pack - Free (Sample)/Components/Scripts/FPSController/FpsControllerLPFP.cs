@@ -78,7 +78,7 @@ namespace FPSControllerLPFP
         
         private void Start()
         {
-            if (entity.IsOwner) NM.myPlayer = this.entity;
+            //if (entity.IsOwner) NM.myPlayer = this.entity;
 
             _rigidbody = GetComponent<Rigidbody>();
             _rigidbody.constraints = RigidbodyConstraints.FreezeRotation;
@@ -163,7 +163,7 @@ namespace FPSControllerLPFP
         /// 캐릭터와 카메라의 이동과 회전을 처리
         private void FixedUpdate()
         {
-            if (!entity.IsOwner) return;
+            //if (!entity.IsOwner) return;
 
             RotateCameraAndCharacter();
             MoveCharacter();
@@ -173,7 +173,7 @@ namespace FPSControllerLPFP
         /// 총을 캐릭터의 위치로 옮기고 점프와 발걸음 사운드를 재생
         private void Update()
         {
-            if (!entity.IsOwner) return;
+            //if (!entity.IsOwner) return;
                 
 			arms.position = transform.position + transform.TransformVector(armPosition);
             Jump();
