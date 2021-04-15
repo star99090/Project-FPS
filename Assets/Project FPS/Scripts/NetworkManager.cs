@@ -79,11 +79,11 @@ public class NetworkManager : GlobalEventListener
         entities = BoltNetwork.Entities.ToList();
         for (int i = 0; i < entities.Count; i++)
         {
-            if (!entities[i].GetComponent<PlayerScript>().state.isServer)
+            /*if (!entities[i].GetComponent<PlayerScript>().state.isServer)
             {
                 isMyHost = entities[i].IsOwner;
                 return;
-            }
+            }*/
         }
         myEntityPos = evnt.position;
         myEntityRot = evnt.rotation;
@@ -92,11 +92,12 @@ public class NetworkManager : GlobalEventListener
     void JoinedEventDelay()
     {
         foreach (var player in players)
-        {
+        {/*
             if (player != myPlayer)
                 player.GetComponent<PlayerScript>().HideObject();
             else
                 player.GetComponent<PlayerScript>().NicknameSet(false);
+            */
         }
     }
 
