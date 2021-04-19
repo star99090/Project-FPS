@@ -28,7 +28,6 @@ public class NetworkManager : GlobalEventListener
     [SerializeField] Vector3 myEntityPos;
     [SerializeField] Vector3 myEntityRot;
     bool isMyHost;
-    bool atFirst = true;
 
     public override void SceneLoadLocalDone(string scene, IProtocolToken token)
     {
@@ -55,23 +54,21 @@ public class NetworkManager : GlobalEventListener
 
     void BoltShutdownCallback()
     {
-        StartCoroutine(WaitForOpenServer());
         if (isMyHost)
             BoltLauncher.StartServer();
         else
-            StartCoroutine(WaitForOpenServer());
+            StartCoroutine(WaitForJoinClient());
     }
 
     public override void BoltShutdownBegin(AddCallback registerDoneCallback,
         UdpConnectionDisconnectReason disconnectReason)
     {
-
         registerDoneCallback(BoltShutdownCallback);
     }
 
     public override void OnEvent(JoinedEvent evnt)
     {
-        Invoke("JoinedEventDelay", 0.1f);
+        Invoke("JoinedEventDelay", 0.3f);
     }
 
     public override void OnEvent(HostMigrationEvent evnt)
@@ -79,11 +76,11 @@ public class NetworkManager : GlobalEventListener
         entities = BoltNetwork.Entities.ToList();
         for (int i = 0; i < entities.Count; i++)
         {
-            /*if (!entities[i].GetComponent<PlayerScript>().state.isServer)
+            if (!entities[i].GetComponent<PlayerScript>().state.isServer)
             {
                 isMyHost = entities[i].IsOwner;
                 return;
-            }*/
+            }
         }
         myEntityPos = evnt.position;
         myEntityRot = evnt.rotation;
@@ -92,12 +89,11 @@ public class NetworkManager : GlobalEventListener
     void JoinedEventDelay()
     {
         foreach (var player in players)
-        {/*
+        {
             if (player != myPlayer)
                 player.GetComponent<PlayerScript>().HideObject();
             else
                 player.GetComponent<PlayerScript>().NicknameSet(false);
-            */
         }
     }
 
@@ -119,10 +115,10 @@ public class NetworkManager : GlobalEventListener
         evnt.Send();
     }
 
-    IEnumerator WaitForOpenServer()
+    IEnumerator WaitForJoinClient()
     {
-        yield return new WaitForSeconds(1f);
-        TLM.StartClient();
+        yield return new WaitForSeconds(0.2f);
+        BoltLauncher.StartClient();
     }
 
     IEnumerator UpdateEntityAndSessionName()

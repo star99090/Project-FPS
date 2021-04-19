@@ -39,6 +39,7 @@ namespace Player
         [Tooltip("점프력"), SerializeField]
         private float jumpForce = 70f;
 
+
 		[Header("Look Settings")]
         [Tooltip("마우스 회전 감도"), SerializeField]
         private float mouseSensitivity = 7f;
@@ -46,12 +47,10 @@ namespace Player
         [Tooltip("최대 회전 속도에 걸리는 시간"), SerializeField]
         private float rotationSmoothness = 0.05f;
 
-        [Tooltip("팔과 카메라의 최소 회전각"),
-         SerializeField]
+        [Tooltip("팔과 카메라의 최소 회전각"), SerializeField]
         private float minVerticalAngle = -90f;
 
-        [Tooltip("팔과 카메라의 최대 회전각"),
-         SerializeField]
+        [Tooltip("팔과 카메라의 최대 회전각"), SerializeField]
         private float maxVerticalAngle = 90f;
 
         [Tooltip("조작법"), SerializeField]
@@ -73,13 +72,13 @@ namespace Player
         private readonly RaycastHit[] _groundCastResults = new RaycastHit[8];
         private readonly RaycastHit[] _wallCastResults = new RaycastHit[8];
 
-        //public void SetIsServer(bool isServer) => state.isServer = isServer;
         void NicknameCallback() => nicknameText.text = state.nickname;
         
         private void Start()
         {
             if (entity.IsOwner) NM.myPlayer = this.entity;
 
+            state.nickname = TitleLobbyManager.TLM.myNickname;
             _rigidbody = GetComponent<Rigidbody>();
             _rigidbody.constraints = RigidbodyConstraints.FreezeRotation;
             _collider = GetComponent<CapsuleCollider>();
@@ -97,7 +96,6 @@ namespace Player
 
         public override void Attached()
         {
-            state.nickname = TitleLobbyManager.TLM.myNickname;
             state.AddCallback("nickname", NicknameCallback);
         }
 
@@ -151,9 +149,7 @@ namespace Player
 
             // 부딪힌 물체를 RaycastHit 배열에 저장
             for (var i = 0; i < _groundCastResults.Length; i++)
-            {
                 _groundCastResults[i] = new RaycastHit();
-            }
 
             // 점프를 하고 착지하면 지면과 부딪히기때문에 _isGrounded를 true로 설정
             _isGrounded = true;
@@ -163,7 +159,7 @@ namespace Player
         // 캐릭터와 카메라의 이동과 회전을 처리
         private void FixedUpdate()
         {
-            //if (!entity.IsOwner) return;
+            if (!entity.IsOwner) return;
 
             RotateCameraAndCharacter();
             MoveCharacter();
@@ -173,11 +169,11 @@ namespace Player
         // 총을 캐릭터의 위치로 옮기고 점프와 발걸음 사운드를 재생
         private void Update()
         {
-            //if (!entity.IsOwner) return;
+            PlayFootstepSounds();
+            if (!entity.IsOwner) return;
                 
 			arms.position = transform.position + transform.TransformVector(armPosition);
             Jump();
-            PlayFootstepSounds();
         }
 
         void LateUpdate() => nicknameCanvas.rotation = transform.rotation;

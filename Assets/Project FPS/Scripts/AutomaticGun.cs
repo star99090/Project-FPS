@@ -114,7 +114,7 @@ public class AutomaticGun : EntityBehaviour<IFPSPlayerState>
 
 	private bool soundHasPlayed = false;
 
-	private void Awake()
+    private void Awake()
 	{
 		anim = GetComponent<Animator>();
 		currentAmmo = ammo;

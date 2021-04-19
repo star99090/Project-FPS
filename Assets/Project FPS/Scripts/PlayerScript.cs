@@ -14,26 +14,16 @@ public class PlayerScript : Bolt.EntityBehaviour<IFPSPlayerState>
 
     public override void Attached()
     {
-        CreateJoinedEvent();
-        state.SetTransforms(state.playerTransform, transform);
-    }
-
-    void CreateJoinedEvent()
-    {
         var evnt = JoinedEvent.Create();
         evnt.Send();
+        state.SetTransforms(state.playerTransform, transform);
     }
 
     public void HideObject()
     {
         foreach(var go in HideObjects)
-        {
             go.SetActive(false);
-        }
     }
 
-    public void NicknameSet(bool a)
-    {
-        NicknameCanvas.SetActive(a);
-    }
+    public void NicknameSet(bool a) => NicknameCanvas.SetActive(a);
 }
