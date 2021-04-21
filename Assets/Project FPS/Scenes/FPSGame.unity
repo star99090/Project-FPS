@@ -343,6 +343,10 @@ MonoBehaviour:
   players: []
   myPlayer: {fileID: 0}
   SpawnPrefab: {fileID: 6835624471752019026, guid: c64be1bcee7c4d145b8e9a58351fd6e6, type: 3}
+  entities: []
+  myEntity: {fileID: 0}
+  myEntityPos: {x: 0, y: 0, z: 0}
+  myEntityRot: {x: 0, y: 0, z: 0}
 --- !u!4 &1568947403
 Transform:
   m_ObjectHideFlags: 0

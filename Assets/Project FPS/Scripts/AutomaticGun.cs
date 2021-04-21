@@ -130,6 +130,46 @@ public class AutomaticGun : EntityBehaviour<IFPSPlayerState>
 		shootAudioSource.clip = SoundClips.shootSound;
 	}
 
+    public override void Attached()
+    {
+		state.SetAnimator(anim);
+		state.AddCallback("AnimPlay", AnimPlayCallback);
+		state.AddCallback("MuzzleParticleTrigger", MuzzleParticleCallback);
+		state.OnMuzzleParticleTrigger += MuzzleParticleCallback;
+		state.OnSparkParticleTrigger += SparkParticleCallback;
+	}
+
+	void AnimPlayCallback()
+    {
+		if(state.AnimPlay != "o")
+        {
+			state.Animator.Play(state.AnimPlay);
+			Invoke("AnimPlayDelay", 0.05f);
+        }
+    }
+
+	void AnimPlayDelay() => state.AnimPlay = "o";
+
+	void MuzzleParticleCallback()
+    {
+		muzzleParticles.Emit(1);
+		StartCoroutine(MuzzleFlashLight());
+	}
+
+	void SparkParticleCallback() => sparkParticles.Emit(Random.Range(minSparkEmission, maxSparkEmission));
+
+	void PlayerHitCheck()
+    {
+		Physics.Raycast(Spawnpoints.bulletSpawnPoint.position, Spawnpoints.bulletSpawnPoint.forward, out RaycastHit hit);
+		if(hit.collider != null && hit.collider.CompareTag("FPSPlayer"))
+        {
+			var evnt = PlayerHitEvent.Create();
+			evnt.targetEntity = hit.collider.gameObject.GetComponent<BoltEntity>();
+			evnt.damage = Random.Range(30, 35);
+			evnt.Send();
+		}
+    }
+
 	private void LateUpdate()
 	{
 		if (!entity.IsOwner) return;
@@ -162,7 +202,9 @@ public class AutomaticGun : EntityBehaviour<IFPSPlayerState>
 		if (Input.GetButton("Fire2") && !isReloading && !isRunning)
 		{
 			isAiming = true;
-			anim.SetBool("Aim", true);
+
+			state.Aim = true;
+			anim.SetBool("Aim", state.Aim);
 
 			gunCamera.fieldOfView = Mathf.Lerp(gunCamera.fieldOfView,
 				aimFov, fovSpeed * Time.deltaTime);
@@ -182,7 +224,9 @@ public class AutomaticGun : EntityBehaviour<IFPSPlayerState>
 				defaultFov, fovSpeed * Time.deltaTime);
 
 			isAiming = false;
-			anim.SetBool("Aim", false);
+
+			state.Aim = false;
+			anim.SetBool("Aim", state.Aim);
 
 			soundHasPlayed = false;
 		}
@@ -210,7 +254,6 @@ public class AutomaticGun : EntityBehaviour<IFPSPlayerState>
 			currentWeaponText.text = storedWeaponName.ToString();
 			
 			outOfAmmo = false;
-			//anim.SetBool ("Out Of Ammo", false);
 		}
 
 		// 자동 발사(좌클릭 유지)
@@ -229,43 +272,41 @@ public class AutomaticGun : EntityBehaviour<IFPSPlayerState>
 				// 일반 사격 모드
 				if (!isAiming)
 				{
-					anim.Play("Fire", 0, 0f);
+					state.AnimPlay = "Fire";
 
 					if (randomMuzzleflashValue == 1)
 					{
-						sparkParticles.Emit(Random.Range(minSparkEmission, maxSparkEmission));
-						muzzleParticles.Emit(1);
-						
-						StartCoroutine(MuzzleFlashLight());
+						state.SparkParticleTrigger();
+						state.MuzzleParticleTrigger();
 					}
 				}
 				// 조준 사격 모드
 				else
 				{
-					anim.Play("Aim Fire", 0, 0f);
+					state.AnimPlay = "Aim Fire";
 					if (randomMuzzleflashValue == 1)
 					{
-						sparkParticles.Emit(Random.Range(minSparkEmission, maxSparkEmission));
-						muzzleParticles.Emit(1);
-
-						StartCoroutine(MuzzleFlashLight());
+						state.SparkParticleTrigger();
+						state.MuzzleParticleTrigger();
 					}
 				}
 
 				// 총알 생성
-				var bullet = (Transform)Instantiate(
-					Prefabs.bulletPrefab,
+				Transform bullet = BoltNetwork.Instantiate(
+					Prefabs.bulletPrefab.gameObject,
 					Spawnpoints.bulletSpawnPoint.transform.position,
-					Spawnpoints.bulletSpawnPoint.transform.rotation);
+					Spawnpoints.bulletSpawnPoint.transform.rotation).transform;
 
 				// 총알에 힘 싣기
 				bullet.GetComponent<Rigidbody>().velocity =
 					bullet.transform.forward * bulletForce;
 
 				// 탄피 생성
-				Instantiate(Prefabs.casingPrefab,
+				BoltNetwork.Instantiate(Prefabs.casingPrefab.gameObject,
 					Spawnpoints.casingSpawnPoint.transform.position,
 					Spawnpoints.casingSpawnPoint.transform.rotation);
+
+				PlayerHitCheck();
 			}
 		}
 
@@ -278,9 +319,15 @@ public class AutomaticGun : EntityBehaviour<IFPSPlayerState>
 			Input.GetKey(KeyCode.A) && !isRunning ||
 			Input.GetKey(KeyCode.S) && !isRunning ||
 			Input.GetKey(KeyCode.D) && !isRunning)
-			anim.SetBool("Walk", true);
+		{
+			state.Walk = true;
+			anim.SetBool("Walk", state.Walk);
+		}
 		else
-			anim.SetBool("Walk", false);
+		{
+			state.Walk = false;
+			anim.SetBool("Walk", state.Walk);
+		}
 
 		// W와 Left Shift를 누르면 달리기
 		if ((Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.LeftShift)))
@@ -290,9 +337,15 @@ public class AutomaticGun : EntityBehaviour<IFPSPlayerState>
 
 		// 달리기 애니메이션 설정
 		if (isRunning == true)
-			anim.SetBool("Run", true);
+		{
+			state.Run = true;
+			anim.SetBool("Run", state.Run);
+		}
 		else
-			anim.SetBool("Run", false);
+		{
+			state.Run = false;
+			anim.SetBool("Run", state.Run);
+		}
 	}
 
 	// 자동 장전
@@ -302,7 +355,7 @@ public class AutomaticGun : EntityBehaviour<IFPSPlayerState>
 
 		if (outOfAmmo == true)
 		{
-			anim.Play("Reload Out Of Ammo", 0, 0f);
+			state.AnimPlay = "Reload Out Of Ammo";
 
 			mainAudioSource.clip = SoundClips.reloadSoundOutOfAmmo;
 			mainAudioSource.Play();
@@ -328,7 +381,7 @@ public class AutomaticGun : EntityBehaviour<IFPSPlayerState>
 
 		if (outOfAmmo == true)
 		{
-			anim.Play("Reload Out Of Ammo", 0, 0f);
+			state.AnimPlay = "Reload Out Of Ammo";
 
 			mainAudioSource.clip = SoundClips.reloadSoundOutOfAmmo;
 			mainAudioSource.Play();
@@ -344,7 +397,7 @@ public class AutomaticGun : EntityBehaviour<IFPSPlayerState>
 		}
 		else
 		{
-			anim.Play("Reload Ammo Left", 0, 0f);
+			state.AnimPlay = "Reload Ammo Left";
 
 			mainAudioSource.clip = SoundClips.reloadSoundAmmoLeft;
 			mainAudioSource.Play();

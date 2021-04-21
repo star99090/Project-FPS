@@ -86,6 +86,14 @@ public class NetworkManager : GlobalEventListener
         myEntityRot = evnt.rotation;
     }
 
+    public override void OnEvent(PlayerHitEvent evnt)
+    {
+        if (myPlayer = evnt.targetEntity)
+        {
+            myPlayer.GetComponent<PlayerScript>().HealthChange(evnt.damage);
+        }
+    }
+
     void JoinedEventDelay()
     {
         foreach (var player in players)
