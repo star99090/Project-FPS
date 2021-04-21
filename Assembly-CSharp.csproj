@@ -67,7 +67,7 @@
     <Compile Include="Assets\Resources\Low Poly FPS Pack - Free (Sample)\Components\Scripts\Weapon_Scripts\HandgunScriptLPFP.cs" />
     <Compile Include="Assets\Resources\Low Poly FPS Pack - Free (Sample)\Components\Scripts\Explosions_&amp;_Impacts\ExplosionScript.cs" />
     <Compile Include="Assets\Project FPS\Scripts\TitleLobbyManager.cs" />
-    <Compile Include="Assets\Project FPS\Scripts\PlayerScript.cs" />
+    <Compile Include="Assets\Project FPS\Scripts\PlayerSubScript.cs" />
     <Compile Include="Assets\Resources\Low Poly FPS Pack - Free (Sample)\Components\Scripts\Explosions_&amp;_Impacts\ImpactScript.cs" />
     <Compile Include="Assets\Project FPS\Scripts\AutomaticGun.cs" />
     <Compile Include="Assets\Resources\Low Poly FPS Pack - Free (Sample)\Components\Scripts\Bullet\BulletScript.cs" />

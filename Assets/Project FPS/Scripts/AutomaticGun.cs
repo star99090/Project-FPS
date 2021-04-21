@@ -45,7 +45,8 @@ public class AutomaticGun : EntityBehaviour<IFPSPlayerState>
 	public float autoReloadDelay;
 	private float lastFired;
 
-	private bool isReloading;
+	private bool isReloadingAnim;
+	private bool isReloading = false;
 	private bool isRunning;
 	private bool isAiming;
 
@@ -199,7 +200,7 @@ public class AutomaticGun : EntityBehaviour<IFPSPlayerState>
 		if (!entity.IsOwner) return;
 
 		// 우클릭 조준 시 카메라 셋팅
-		if (Input.GetButton("Fire2") && !isReloading && !isRunning)
+		if (Input.GetButton("Fire2") && !isReloadingAnim && !isRunning & !isReloading)
 		{
 			isAiming = true;
 
@@ -246,7 +247,7 @@ public class AutomaticGun : EntityBehaviour<IFPSPlayerState>
 			currentWeaponText.text = "OUT OF AMMO";
 
 			outOfAmmo = true;
-			if (autoReload == true && !isReloading)
+			if (autoReload == true && !isReloadingAnim)
 				StartCoroutine(AutoReload());
 		}
 		else
@@ -257,7 +258,7 @@ public class AutomaticGun : EntityBehaviour<IFPSPlayerState>
 		}
 
 		// 자동 발사(좌클릭 유지)
-		if (Input.GetMouseButton(0) && !outOfAmmo && !isReloading && !isRunning)
+		if (Input.GetMouseButton(0) && !outOfAmmo && !isReloadingAnim && !isRunning && !isReloading)
 		{
 			if (Time.time - lastFired > 1 / fireRate)
 			{
@@ -311,7 +312,7 @@ public class AutomaticGun : EntityBehaviour<IFPSPlayerState>
 		}
 
 		// 재장전
-		if (Input.GetKeyDown(KeyCode.R) && !isReloading)
+		if (Input.GetKeyDown(KeyCode.R) && !isReloadingAnim)
 			Reload();
 
 		// 걷기
@@ -351,6 +352,7 @@ public class AutomaticGun : EntityBehaviour<IFPSPlayerState>
 	// 자동 장전
 	private IEnumerator AutoReload()
 	{
+		isReloading = true;
 		yield return new WaitForSeconds(autoReloadDelay);
 
 		if (outOfAmmo == true)
@@ -371,14 +373,13 @@ public class AutomaticGun : EntityBehaviour<IFPSPlayerState>
 		}
 
 		// 재장전 완료
-		currentAmmo = ammo;
-		outOfAmmo = false;
+		Invoke("SuccessReload", 1.5f);
 	}
 
 	// 수동 장전
 	private void Reload()
 	{
-
+		isReloading = true;
 		if (outOfAmmo == true)
 		{
 			state.AnimPlay = "Reload Out Of Ammo";
@@ -411,8 +412,14 @@ public class AutomaticGun : EntityBehaviour<IFPSPlayerState>
 		}
 
 		// 재장전 완료
+		Invoke("SuccessReload", 1.5f);
+	}
+
+	void SuccessReload()
+    {
 		currentAmmo = ammo;
 		outOfAmmo = false;
+		isReloading = false;
 	}
 
 	// 탄피는 설정된 시간이 지나면 사라짐
@@ -436,8 +443,8 @@ public class AutomaticGun : EntityBehaviour<IFPSPlayerState>
 	{
 		if (anim.GetCurrentAnimatorStateInfo(0).IsName("Reload Out Of Ammo") ||
 			anim.GetCurrentAnimatorStateInfo(0).IsName("Reload Ammo Left"))
-			isReloading = true;
+			isReloadingAnim = true;
 		else
-			isReloading = false;
+			isReloadingAnim = false;
 	}
 }

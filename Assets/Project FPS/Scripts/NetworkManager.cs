@@ -76,7 +76,7 @@ public class NetworkManager : GlobalEventListener
         entities = BoltNetwork.Entities.ToList();
         for (int i = 0; i < entities.Count; i++)
         {
-            if (!entities[i].GetComponent<PlayerScript>().state.isServer)
+            if (!entities[i].GetComponent<PlayerSubScript>().state.isServer)
             {
                 isMyHost = entities[i].IsOwner;
                 return;
@@ -90,7 +90,7 @@ public class NetworkManager : GlobalEventListener
     {
         if (myPlayer = evnt.targetEntity)
         {
-            myPlayer.GetComponent<PlayerScript>().HealthChange(evnt.damage);
+            myPlayer.GetComponent<PlayerSubScript>().HealthChange(evnt.damage);
         }
     }
 
@@ -99,9 +99,9 @@ public class NetworkManager : GlobalEventListener
         foreach (var player in players)
         {
             if (player != myPlayer)
-                player.GetComponent<PlayerScript>().HideObject();
+                player.GetComponent<PlayerSubScript>().HideObject();
             else
-                player.GetComponent<PlayerScript>().NicknameSet(false);
+                player.GetComponent<PlayerSubScript>().NicknameSet(false);
         }
     }
 
