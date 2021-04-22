@@ -8,9 +8,10 @@ public class PlayerSubScript : Bolt.EntityBehaviour<IFPSPlayerState>
 {
     public GameObject[] HideObjects;
     public GameObject NicknameCanvas;
+    
     public Transform arm;
     public Text HealthText;
-
+    
     public int hp = 100;
 
     void Start() => NM.players.Add(entity);
@@ -35,7 +36,7 @@ public class PlayerSubScript : Bolt.EntityBehaviour<IFPSPlayerState>
     public void NicknameSet(bool a) => NicknameCanvas.SetActive(a);
 
     public void HealthChange(int damage) => state.health -= damage;
-
+    
     void HealthCallback()
     {
         hp = state.health;
