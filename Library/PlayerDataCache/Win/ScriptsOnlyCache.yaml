@@ -38,7 +38,6 @@ ScriptsOnlyBuild:
     - BoltEntity
     - BoltRuntimeSettings
     bolt.editor.dll:
-    - Bolt.Editor.CustomInspector.BoltEntityEditor
     - Bolt.Editor.Windows.BoltProjectWindow
   sceneClasses:
     Assets/Project FPS/Scenes/FPSGame.unity:
@@ -814,7 +813,7 @@ ScriptsOnlyBuild:
     className: TMP_SpriteAnimator
   - hash:
       serializedVersion: 2
-      Hash: 7285bd946e0e64ba9b96e6d07f2b4944
+      Hash: c43476eeba6f16c6843e83121fb80d1e
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: PlayerSubScript
