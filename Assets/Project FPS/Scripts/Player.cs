@@ -71,8 +71,6 @@ namespace Player
 
         private readonly RaycastHit[] _groundCastResults = new RaycastHit[8];
         private readonly RaycastHit[] _wallCastResults = new RaycastHit[8];
-
-        void NicknameCallback() => nicknameText.text = state.nickname;
         
         private void Start()
         {
@@ -98,6 +96,8 @@ namespace Player
         {
             state.AddCallback("nickname", NicknameCallback);
         }
+
+        void NicknameCallback() => nicknameText.text = state.nickname;
 
         // 팔이 캐릭터의 회전과 위치를 따라가도록 구현
         private Transform AssignCharactersCamera()
@@ -176,7 +176,7 @@ namespace Player
             Jump();
         }
 
-        void LateUpdate() => nicknameCanvas.rotation = transform.rotation;
+        void LateUpdate() => nicknameCanvas.LookAt(Camera.main.transform);
 
         // 카메라와 캐릭터가 보는 방향에 대한 회전
         private void RotateCameraAndCharacter()

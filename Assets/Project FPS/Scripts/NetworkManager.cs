@@ -4,16 +4,16 @@ using UnityEngine;
 using Bolt;
 using Bolt.Matchmaking;
 using UdpKit;
-using static TitleLobbyManager;
 using System.Linq;
+using static TitleLobbyManager;
 #pragma warning disable CS0618
 
 public class NetworkManager : GlobalEventListener
 {
-    public static NetworkManager NM;
+    public static NetworkManager NM { get; set; }
     private void Awake()
     {
-        currentSession = TLM.mySession;
+        //currentSession = TLM.mySession;
         NM = this;
     }
 
@@ -47,7 +47,10 @@ public class NetworkManager : GlobalEventListener
     public override void BoltStartDone()
     {
         if (BoltNetwork.IsServer)
+        {
+            currentSession = PlayerPrefs.GetString("currentSession");
             BoltMatchmaking.CreateSession(sessionID: currentSession, sceneToLoad: "FPSGame");
+        }
         else
             BoltMatchmaking.JoinSession(currentSession);
     }
@@ -57,7 +60,7 @@ public class NetworkManager : GlobalEventListener
         if (isMyHost)
             BoltLauncher.StartServer();
         else
-            StartCoroutine(WaitForJoinClient());
+            BoltLauncher.StartClient();
     }
 
     public override void BoltShutdownBegin(AddCallback registerDoneCallback,
@@ -68,7 +71,7 @@ public class NetworkManager : GlobalEventListener
 
     public override void OnEvent(JoinedEvent evnt)
     {
-        Invoke("JoinedEventDelay", 0.3f);
+        Invoke("JoinedEventDelay", 0.2f);
     }
 
     public override void OnEvent(HostMigrationEvent evnt)
@@ -111,7 +114,7 @@ public class NetworkManager : GlobalEventListener
         {
             myEntityPos = myEntity.transform.position;
             myEntityRot = myEntity.transform.rotation.eulerAngles;
-        }
+        }        
     }
 
     public override void Connected(BoltConnection connection)
@@ -123,22 +126,16 @@ public class NetworkManager : GlobalEventListener
         evnt.Send();
     }
 
-    IEnumerator WaitForJoinClient()
-    {
-        yield return new WaitForSeconds(0.2f);
-        BoltLauncher.StartClient();
-    }
-
     IEnumerator UpdateEntityAndSessionName()
     {
         yield return new WaitForSeconds(0.1f);
         var myUpdate = HostMigrationEvent.Create();
-        myUpdate.position = transform.position;
-        myUpdate.rotation = transform.eulerAngles;
+        myUpdate.position = myEntity.transform.position;
+        myUpdate.rotation = myEntity.transform.rotation.eulerAngles;
         myUpdate.sessionName = currentSession;
         myUpdate.Send();
     }
-
+    
     public override void Disconnected(BoltConnection connection) => StartCoroutine(UpdateEntityAndSessionName());
 }
     /*

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using static NetworkManager;
+#pragma warning disable CS0618
 
 public class PlayerSubScript : Bolt.EntityBehaviour<IFPSPlayerState>
 {
@@ -11,8 +12,6 @@ public class PlayerSubScript : Bolt.EntityBehaviour<IFPSPlayerState>
     
     public Transform arm;
     public Text HealthText;
-    
-    public int hp = 100;
 
     void Start() => NM.players.Add(entity);
     void OnDestroy() => NM.players.Remove(entity);
@@ -39,7 +38,16 @@ public class PlayerSubScript : Bolt.EntityBehaviour<IFPSPlayerState>
     
     void HealthCallback()
     {
-        hp = state.health;
-        HealthText.text = hp.ToString();
+        HealthText.text = state.health.ToString();
+
+        if (state.health <= 0)
+            Respawn();
+    }
+
+    void Respawn()
+    {
+        state.health = 100;
+        transform.position = new Vector3(Random.Range(-5, 5), 0, 0);
+        transform.rotation = Quaternion.EulerAngles(Vector3.zero);
     }
 }

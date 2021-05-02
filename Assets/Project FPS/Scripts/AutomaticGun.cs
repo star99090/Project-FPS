@@ -57,10 +57,11 @@ public class AutomaticGun : EntityBehaviour<IFPSPlayerState>
 
 	[Header("Bullet Settings")]
 	[Tooltip("총탄 발사 힘")]
-	public float bulletForce = 500.0f;
+	public float bulletForce = 300.0f;
 
 	[Tooltip("탄피 자동 삭제에 걸리는 딜레이")]
 	public float showBulletInMagDelay = 0.6f;
+
 	[Tooltip("탄피 안의 총알 모델")]
 	public SkinnedMeshRenderer bulletInMagRenderer;
 
@@ -101,6 +102,7 @@ public class AutomaticGun : EntityBehaviour<IFPSPlayerState>
 		public Transform bulletSpawnPoint;
 	}
 	public spawnpoints Spawnpoints;
+	public Transform aimSpawnpoint;
 
 	[System.Serializable]
 	public class soundClips
@@ -136,6 +138,7 @@ public class AutomaticGun : EntityBehaviour<IFPSPlayerState>
 		state.SetAnimator(anim);
 		state.AddCallback("AnimPlay", AnimPlayCallback);
 		state.AddCallback("MuzzleParticleTrigger", MuzzleParticleCallback);
+		state.AddCallback("SparkParticleTrigger", SparkParticleCallback);
 		state.OnMuzzleParticleTrigger += MuzzleParticleCallback;
 		state.OnSparkParticleTrigger += SparkParticleCallback;
 	}
@@ -270,40 +273,46 @@ public class AutomaticGun : EntityBehaviour<IFPSPlayerState>
 				shootAudioSource.clip = SoundClips.shootSound;
 				shootAudioSource.Play();
 
+				if (randomMuzzleflashValue == 1)
+				{
+					state.SparkParticleTrigger();
+					state.MuzzleParticleTrigger();
+				}
+
+
 				// 일반 사격 모드
 				if (!isAiming)
 				{
 					state.AnimPlay = "Fire";
 
-					if (randomMuzzleflashValue == 1)
-					{
-						state.SparkParticleTrigger();
-						state.MuzzleParticleTrigger();
-					}
+					// 총알 생성
+					Transform bullet = BoltNetwork.Instantiate(
+						Prefabs.bulletPrefab.gameObject,
+						Spawnpoints.bulletSpawnPoint.transform.position,
+						Spawnpoints.bulletSpawnPoint.transform.rotation).transform;
+
+					// 총알에 힘 싣기
+					bullet.GetComponent<Rigidbody>().velocity =
+						bullet.transform.forward * bulletForce;
 				}
 				// 조준 사격 모드
 				else
 				{
 					state.AnimPlay = "Aim Fire";
-					if (randomMuzzleflashValue == 1)
-					{
-						state.SparkParticleTrigger();
-						state.MuzzleParticleTrigger();
-					}
+
+					// 총알 생성
+					Transform bullet = BoltNetwork.Instantiate(
+						Prefabs.bulletPrefab.gameObject,
+						aimSpawnpoint.position,
+						Spawnpoints.bulletSpawnPoint.transform.rotation).transform;
+
+					// 총알에 힘 싣기
+					bullet.GetComponent<Rigidbody>().velocity =
+						bullet.transform.forward * bulletForce;
 				}
 
-				// 총알 생성
-				Transform bullet = BoltNetwork.Instantiate(
-					Prefabs.bulletPrefab.gameObject,
-					Spawnpoints.bulletSpawnPoint.transform.position,
-					Spawnpoints.bulletSpawnPoint.transform.rotation).transform;
-
-				// 총알에 힘 싣기
-				bullet.GetComponent<Rigidbody>().velocity =
-					bullet.transform.forward * bulletForce;
-
 				// 탄피 생성
-				BoltNetwork.Instantiate(Prefabs.casingPrefab.gameObject,
+				Instantiate(Prefabs.casingPrefab,
 					Spawnpoints.casingSpawnPoint.transform.position,
 					Spawnpoints.casingSpawnPoint.transform.rotation);
 
@@ -432,7 +441,6 @@ public class AutomaticGun : EntityBehaviour<IFPSPlayerState>
 	// 사격 시 총알의 불빛이 사라지는 시간 설정
 	private IEnumerator MuzzleFlashLight()
 	{
-
 		muzzleflashLight.enabled = true;
 		yield return new WaitForSeconds(lightDuration);
 		muzzleflashLight.enabled = false;

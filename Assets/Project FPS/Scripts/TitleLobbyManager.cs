@@ -34,8 +34,11 @@ public class TitleLobbyManager : Bolt.GlobalEventListener
 
     public override void BoltStartDone()
     {
-        if(BoltNetwork.IsServer)
+        if (BoltNetwork.IsServer)
+        {
+            PlayerPrefs.SetString("currentSession", SessionInput.text);
             BoltMatchmaking.CreateSession(sessionID: SessionInput.text, sceneToLoad: "FPSGame");
+        }
     }
 
     public override void SessionListUpdated(Map<System.Guid, UdpSession> sessionList)

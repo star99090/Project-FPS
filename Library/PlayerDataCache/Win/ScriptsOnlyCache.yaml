@@ -813,7 +813,7 @@ ScriptsOnlyBuild:
     className: TMP_SpriteAnimator
   - hash:
       serializedVersion: 2
-      Hash: c43476eeba6f16c6843e83121fb80d1e
+      Hash: 3c3d47afdaabba6653c30bab6fdfaa67
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: PlayerSubScript
@@ -861,7 +861,7 @@ ScriptsOnlyBuild:
     className: SignalEmitter
   - hash:
       serializedVersion: 2
-      Hash: d89ef1172c99d5690fccf6a930890f20
+      Hash: 24e112a71c4e84cb1ba0d6929dfd7b67
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: AutomaticGun

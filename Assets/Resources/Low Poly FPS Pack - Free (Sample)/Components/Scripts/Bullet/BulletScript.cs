@@ -2,9 +2,10 @@
 using System.Collections;
 
 // ----- Low Poly FPS Pack Free Version -----
-public class BulletScript : MonoBehaviour {
+public class BulletScript : Bolt.EntityBehaviour<IBulletState>
+{
 
-	[Range(5, 100)]
+	[Range(0.1f, 10f)]
 	[Tooltip("After how long time should the bullet prefab be destroyed?")]
 	public float destroyAfter;
 	[Tooltip("If enabled the bullet destroys on impact")]
@@ -17,10 +18,10 @@ public class BulletScript : MonoBehaviour {
 	[Header("Impact Effect Prefabs")]
 	public Transform [] metalImpactPrefabs;
 
-	private void Start () 
+	private void Start()
 	{
 		//Start destroy timer
-		StartCoroutine (DestroyAfter ());
+		StartCoroutine(DestroyAfter());
 	}
 
 	//If the bullet collides with anything
@@ -35,18 +36,19 @@ public class BulletScript : MonoBehaviour {
 		//Otherwise, destroy bullet on impact
 		else 
 		{
-			Destroy (gameObject);
+			BoltNetwork.Destroy(gameObject);
+			//DestroyRequest();
 		}
 
 		//If bullet collides with "Metal" tag
 		if (collision.transform.tag == "Metal") 
 		{
 			//Instantiate random impact prefab from array
-			Instantiate (metalImpactPrefabs [Random.Range 
-				(0, metalImpactPrefabs.Length)], transform.position, 
+			BoltNetwork.Instantiate (metalImpactPrefabs[0].gameObject, transform.position, 
 				Quaternion.LookRotation (collision.contacts [0].normal));
 			//Destroy bullet object
 			Destroy(gameObject);
+			//DestroyRequest();
 		}
 
 		//If bullet collides with "Target" tag
@@ -57,8 +59,9 @@ public class BulletScript : MonoBehaviour {
 				<TargetScript>().isHit = true;
 			//Destroy bullet object
 			Destroy(gameObject);
+			//DestroyRequest();
 		}
-			
+
 		//If bullet collides with "ExplosiveBarrel" tag
 		if (collision.transform.tag == "ExplosiveBarrel") 
 		{
@@ -67,6 +70,7 @@ public class BulletScript : MonoBehaviour {
 				<ExplosiveBarrelScript>().explode = true;
 			//Destroy bullet object
 			Destroy(gameObject);
+			//DestroyRequest();
 		}
 	}
 
@@ -77,14 +81,17 @@ public class BulletScript : MonoBehaviour {
 			(Random.Range(minDestroyTime, maxDestroyTime));
 		//Destroy bullet object
 		Destroy(gameObject);
+		//DestroyRequest();
 	}
 
 	private IEnumerator DestroyAfter () 
 	{
+		//bulletParticle
 		//Wait for set amount of time
 		yield return new WaitForSeconds (destroyAfter);
 		//Destroy bullet object
-		Destroy (gameObject);
+		BoltNetwork.Destroy(gameObject);
+		//DestroyRequest();
 	}
 }
 // ----- Low Poly FPS Pack Free Version -----

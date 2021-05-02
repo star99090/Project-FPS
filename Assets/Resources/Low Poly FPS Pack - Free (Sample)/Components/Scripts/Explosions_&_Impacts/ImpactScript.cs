@@ -2,7 +2,7 @@
 using System.Collections;
 
 // ----- Low Poly FPS Pack Free Version -----
-public class ImpactScript : MonoBehaviour {
+public class ImpactScript : Bolt.EntityBehaviour<IMetalImpactState> {
 
 	[Header("Impact Despawn Timer")]
 	//How long before the impact is destroyed
@@ -27,7 +27,8 @@ public class ImpactScript : MonoBehaviour {
 		//Wait for set amount of time
 		yield return new WaitForSeconds (despawnTimer);
 		//Destroy the impact gameobject
-		Destroy (gameObject);
+		//Destroy(gameObject);
+		BoltNetwork.Destroy(gameObject);
 	}
 }
 // ----- Low Poly FPS Pack Free Version -----

@@ -87,7 +87,7 @@ public class CasingScript : MonoBehaviour {
 		//Destroy the casing after set amount of seconds
 		yield return new WaitForSeconds (despawnTime);
 		//Destroy casing object
-		Destroy (gameObject);
+		Destroy(gameObject);
 	}
 }
 // ----- Low Poly FPS Pack Free Version -----
