@@ -1215,6 +1215,7 @@ MonoBehaviour:
   - {fileID: 6835831661923016934}
   - {fileID: 6834407298566764068}
   NicknameCanvas: {fileID: 5647591900458404797}
+  nickname: {fileID: 1800653564920912798}
   arm: {fileID: 6833306688752091026}
   HealthText: {fileID: 494478619407877413}
 --- !u!114 &6835624471752019027
@@ -12737,6 +12738,7 @@ MonoBehaviour:
     reloadSoundOutOfAmmo: {fileID: 8300000, guid: 5b907074256e36d41b92e89fb0790633, type: 3}
     reloadSoundAmmoLeft: {fileID: 8300000, guid: f7ce534a0633b9847910ba117e2245d1, type: 3}
     aimSound: {fileID: 8300000, guid: acaebc89b98b82142bd2b24edb6081e4, type: 3}
+  attacker: {fileID: 1800653564920912798}
 --- !u!82 &6915316314603975544
 AudioSource:
   m_ObjectHideFlags: 0

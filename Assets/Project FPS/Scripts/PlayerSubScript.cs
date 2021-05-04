@@ -9,9 +9,12 @@ public class PlayerSubScript : Bolt.EntityBehaviour<IFPSPlayerState>
 {
     public GameObject[] HideObjects;
     public GameObject NicknameCanvas;
+    public Text nickname;
     
     public Transform arm;
     public Text HealthText;
+
+    string attacker;
 
     void Start() => NM.players.Add(entity);
     void OnDestroy() => NM.players.Remove(entity);
@@ -34,8 +37,12 @@ public class PlayerSubScript : Bolt.EntityBehaviour<IFPSPlayerState>
 
     public void NicknameSet(bool a) => NicknameCanvas.SetActive(a);
 
-    public void HealthChange(int damage) => state.health -= damage;
-    
+    public void HealthChange(int damage, string attackers)
+    {
+        state.health -= damage;
+        attacker = attackers;
+    }
+
     void HealthCallback()
     {
         HealthText.text = state.health.ToString();
@@ -46,6 +53,7 @@ public class PlayerSubScript : Bolt.EntityBehaviour<IFPSPlayerState>
 
     void Respawn()
     {
+        Debug.Log(attacker + " Kill " + nickname.text);
         state.health = 100;
         transform.position = new Vector3(Random.Range(-5, 5), 0, 0);
         transform.rotation = Quaternion.EulerAngles(Vector3.zero);

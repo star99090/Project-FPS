@@ -57,7 +57,7 @@ namespace Player
         private FpsInput input;
 #pragma warning restore 649
 
-        [SerializeField] Text nicknameText;
+        public Text nicknameText;
         [SerializeField] Transform nicknameCanvas;
 
         private Rigidbody _rigidbody;

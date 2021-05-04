@@ -5,7 +5,7 @@ using Bolt;
 using Bolt.Matchmaking;
 using UdpKit;
 using System.Linq;
-using static TitleLobbyManager;
+//using static TitleLobbyManager;
 #pragma warning disable CS0618
 
 public class NetworkManager : GlobalEventListener
@@ -93,7 +93,7 @@ public class NetworkManager : GlobalEventListener
     {
         if (myPlayer = evnt.targetEntity)
         {
-            myPlayer.GetComponent<PlayerSubScript>().HealthChange(evnt.damage);
+            myPlayer.GetComponent<PlayerSubScript>().HealthChange(evnt.damage, evnt.attacker);
         }
     }
 
