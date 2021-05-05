@@ -6,7 +6,7 @@ public class ImpactScript : Bolt.EntityBehaviour<IMetalImpactState> {
 
 	[Header("Impact Despawn Timer")]
 	//How long before the impact is destroyed
-	public float despawnTimer = 10.0f;
+	public float despawnTimer = 3.0f;
 
 	[Header("Audio")]
 	public AudioClip[] impactSounds;
@@ -14,7 +14,7 @@ public class ImpactScript : Bolt.EntityBehaviour<IMetalImpactState> {
 
 	private void Start () {
 		// Start the despawn timer
-		StartCoroutine (DespawnTimer ());
+		StartCoroutine(DespawnTimer());
 
 		//Get a random impact sound from the array
 		audioSource.clip = impactSounds
@@ -27,8 +27,15 @@ public class ImpactScript : Bolt.EntityBehaviour<IMetalImpactState> {
 		//Wait for set amount of time
 		yield return new WaitForSeconds (despawnTimer);
 		//Destroy the impact gameobject
-		//Destroy(gameObject);
-		BoltNetwork.Destroy(gameObject);
+		Destroy(gameObject);
 	}
+	/*
+	IEnumerator DestroyRequest()
+    {
+		yield return new WaitForSeconds(despawnTimer);
+		var evnt = DestroyRequestEvent.Create();
+		evnt.Entity = GetComponent<BoltEntity>();
+		evnt.Send();
+    }*/
 }
 // ----- Low Poly FPS Pack Free Version -----

@@ -71,7 +71,6 @@
     <Compile Include="Assets\Resources\Low Poly FPS Pack - Free (Sample)\Components\Scripts\Explosions_&amp;_Impacts\ImpactScript.cs" />
     <Compile Include="Assets\Project FPS\Scripts\AutomaticGun.cs" />
     <Compile Include="Assets\Resources\Low Poly FPS Pack - Free (Sample)\Components\Scripts\Bullet\BulletScript.cs" />
-    <Compile Include="Assets\Project FPS\Scripts\PlayerDestroyEvent.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\Photon\PhotonLibs\netstandard2.0\Photon3Unity3D.xml" />

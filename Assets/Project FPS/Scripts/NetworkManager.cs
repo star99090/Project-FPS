@@ -163,7 +163,7 @@ public class NetworkManager : GlobalEventListener
             if (killLogTimer >= 3.0f)
             {
                 killLogTimer = 0;
-                killLogCount--;
+                killLogCount--; // 이 부분과 KillLogEvent 발생시 ++부분 사이에서 문제 발생
 
                 switch (killLogCount)
                 {

@@ -57,7 +57,7 @@ public class AutomaticGun : EntityBehaviour<IFPSPlayerState>
 
 	[Header("Bullet Settings")]
 	[Tooltip("총탄 발사 힘")]
-	public float bulletForce = 300.0f;
+	public float bulletForce = 0.5f;
 
 	[Tooltip("탄피 자동 삭제에 걸리는 딜레이")]
 	public float showBulletInMagDelay = 0.6f;
@@ -289,10 +289,10 @@ public class AutomaticGun : EntityBehaviour<IFPSPlayerState>
 					state.AnimPlay = "Fire";
 
 					// 총알 생성
-					Transform bullet = BoltNetwork.Instantiate(
-						Prefabs.bulletPrefab.gameObject,
+					var bullet = Instantiate(
+						Prefabs.bulletPrefab,
 						Spawnpoints.bulletSpawnPoint.transform.position,
-						Spawnpoints.bulletSpawnPoint.transform.rotation).transform;
+						Spawnpoints.bulletSpawnPoint.transform.rotation);
 
 					// 총알에 힘 싣기
 					bullet.GetComponent<Rigidbody>().velocity =
@@ -302,12 +302,12 @@ public class AutomaticGun : EntityBehaviour<IFPSPlayerState>
 				else
 				{
 					state.AnimPlay = "Aim Fire";
-
+					//var를 Transform으로, BoltNetwork.Instantiate, Prefab.gameObject, 괄호 닫고 .transform
 					// 총알 생성
-					Transform bullet = BoltNetwork.Instantiate(
-						Prefabs.bulletPrefab.gameObject,
+					var bullet = Instantiate(
+						Prefabs.bulletPrefab,
 						aimSpawnpoint.position,
-						Spawnpoints.bulletSpawnPoint.transform.rotation).transform;
+						Spawnpoints.bulletSpawnPoint.transform.rotation);
 
 					// 총알에 힘 싣기
 					bullet.GetComponent<Rigidbody>().velocity =

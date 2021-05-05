@@ -620,80 +620,6 @@
           "BitsRequired": 8
         }
       },
-      "Name": "BulletState",
-      "Guid": "99c3eb8f-f228-474c-adcf-171e5d76f890",
-      "Groups": []
-    },
-    {
-      "$type": "Bolt.Compiler.StateDefinition, bolt.compiler",
-      "Properties": [],
-      "PacketMaxBits": 512,
-      "PacketMaxProperties": 16,
-      "InitialPositionCompression": {
-        "Compression": [
-          {
-            "MinValue": -1024,
-            "MaxValue": 1024,
-            "Accuracy": 0.01,
-            "Pack": 100.0,
-            "Read": 0.01,
-            "Shift": 1024.0,
-            "BitsRequired": 18
-          },
-          {
-            "MinValue": -1024,
-            "MaxValue": 1024,
-            "Accuracy": 0.01,
-            "Pack": 100.0,
-            "Read": 0.01,
-            "Shift": 1024.0,
-            "BitsRequired": 18
-          },
-          {
-            "MinValue": -1024,
-            "MaxValue": 1024,
-            "Accuracy": 0.01,
-            "Pack": 100.0,
-            "Read": 0.01,
-            "Shift": 1024.0,
-            "BitsRequired": 18
-          }
-        ]
-      },
-      "InitialRotationCompression": {
-        "EulerCompression": [
-          {
-            "MaxValue": 360,
-            "Accuracy": 1.0,
-            "Pack": 1.0,
-            "Read": 1.0,
-            "BitsRequired": 9
-          },
-          {
-            "MaxValue": 360,
-            "Accuracy": 1.0,
-            "Pack": 1.0,
-            "Read": 1.0,
-            "BitsRequired": 9
-          },
-          {
-            "MaxValue": 360,
-            "Accuracy": 1.0,
-            "Pack": 1.0,
-            "Read": 1.0,
-            "BitsRequired": 9
-          }
-        ],
-        "QuaternionCompression": {
-          "MinValue": -1,
-          "MaxValue": 1,
-          "Accuracy": 0.01,
-          "Pack": 100.0,
-          "Read": 0.01,
-          "Shift": 1.0,
-          "BitsRequired": 8
-        }
-      },
       "Name": "MetalImpactState",
       "Guid": "1964c96d-59b7-4e41-b65c-a1d757a181ff",
       "Groups": []
@@ -704,7 +630,6 @@
         {
           "Name": "targetEntity",
           "Enabled": true,
-          "Expanded": true,
           "ReplicationMode": 1,
           "Priority": 1,
           "PropertyType": {
@@ -717,7 +642,6 @@
         {
           "Name": "damage",
           "Enabled": true,
-          "Expanded": true,
           "ReplicationMode": 1,
           "Priority": 1,
           "PropertyType": {
@@ -731,7 +655,6 @@
         {
           "Name": "attacker",
           "Enabled": true,
-          "Expanded": true,
           "ReplicationMode": 1,
           "Priority": 1,
           "PropertyType": {
@@ -753,7 +676,6 @@
         {
           "Name": "killer",
           "Enabled": true,
-          "Expanded": true,
           "ReplicationMode": 1,
           "Priority": 1,
           "PropertyType": {
@@ -767,7 +689,6 @@
         {
           "Name": "victim",
           "Enabled": true,
-          "Expanded": true,
           "ReplicationMode": 1,
           "Priority": 1,
           "PropertyType": {
@@ -781,26 +702,6 @@
       ],
       "Name": "KillLogEvent",
       "Guid": "1214aba3-f81f-479a-9d02-0ad68998865c",
-      "Groups": []
-    },
-    {
-      "$type": "Bolt.Compiler.EventDefinition, bolt.compiler",
-      "Properties": [
-        {
-          "Name": "Entity",
-          "Enabled": true,
-          "ReplicationMode": 1,
-          "Priority": 1,
-          "PropertyType": {
-            "$type": "Bolt.Compiler.PropertyTypeEntity, bolt.compiler"
-          },
-          "AssetSettings": {
-            "$type": "Bolt.Compiler.PropertyEventSettings, bolt.compiler"
-          }
-        }
-      ],
-      "Name": "DestroyRequestEvent",
-      "Guid": "d79e66da-3f00-4715-8538-57b60c1ab3d3",
       "Groups": []
     }
   ],

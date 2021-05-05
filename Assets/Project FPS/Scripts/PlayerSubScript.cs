@@ -52,14 +52,15 @@ public class PlayerSubScript : Bolt.EntityBehaviour<IFPSPlayerState>
             Respawn();
     }
 
-    void Respawn()
-    {
-        Debug.Log(attacker + " Kill " + nickname.text);
+    /*  이거 원래 Respawn() 앞에 들어감
         var evnt = KillLogEvent.Create();
         evnt.killer = attacker;
         evnt.victim = nickname.text;
         evnt.Send();
+        */
 
+    private void Respawn()
+    {
         state.health = 100;
         transform.position = new Vector3(Random.Range(-5, 5), 0, 0);
         transform.rotation = Quaternion.EulerAngles(Vector3.zero);
