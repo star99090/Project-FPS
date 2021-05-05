@@ -5,15 +5,16 @@ using Bolt;
 using Bolt.Matchmaking;
 using UdpKit;
 using System.Linq;
+using UnityEngine.UI;
 //using static TitleLobbyManager;
 #pragma warning disable CS0618
 
 public class NetworkManager : GlobalEventListener
 {
+    private IEnumerator coroutine;
     public static NetworkManager NM { get; set; }
-    private void Awake()
-    {
-        //currentSession = TLM.mySession;
+    private void Awake() {
+        coroutine = KillLogReset();
         NM = this;
     }
 
@@ -22,12 +23,22 @@ public class NetworkManager : GlobalEventListener
 
     public GameObject SpawnPrefab;
     private string currentSession;
+    public int killLogCount = 1;
+    float killLogTimer;
+    bool isMyHost;
+    bool isReset;
+    private string preKiller = "";
+    private string preKiller2 = "";
+    private string preKiller3 = "";
+    private string preVictim = "";
+    private string preVictim2 = "";
+    private string preVictim3 = "";
 
+    [SerializeField] Text killLogText;
     [SerializeField] List<BoltEntity> entities = new List<BoltEntity>();
     [SerializeField] BoltEntity myEntity;
     [SerializeField] Vector3 myEntityPos;
     [SerializeField] Vector3 myEntityRot;
-    bool isMyHost;
 
     public override void SceneLoadLocalDone(string scene, IProtocolToken token)
     {
@@ -71,7 +82,7 @@ public class NetworkManager : GlobalEventListener
 
     public override void OnEvent(JoinedEvent evnt)
     {
-        Invoke("JoinedEventDelay", 0.2f);
+        Invoke("JoinedEventDelay", 0.25f);
     }
 
     public override void OnEvent(HostMigrationEvent evnt)
@@ -97,6 +108,42 @@ public class NetworkManager : GlobalEventListener
         }
     }
 
+    public override void OnEvent(KillLogEvent evnt)
+    {
+        killLogTimer = 0f;
+        switch (killLogCount)
+        {
+            case 1:
+                preKiller = evnt.killer;
+                preVictim = evnt.victim;
+                killLogText.text = preKiller + " Kills " + preVictim;
+                killLogCount++;
+                if(isReset)
+                    StopCoroutine(coroutine);
+                break;
+            case 2:
+                preKiller2 = preKiller;
+                preVictim2 = preVictim;
+                preKiller = evnt.killer;
+                preVictim = evnt.victim;
+                killLogText.text = preKiller2 + " Kills " + preVictim2 + "\n"
+                    + preKiller + " Kills " + preVictim;
+                killLogCount++;
+                break;
+            case 3:
+                preKiller3 = preKiller2;
+                preVictim3 = preVictim2;
+                preKiller2 = preKiller;
+                preVictim2 = preVictim;
+                preKiller = evnt.killer;
+                preVictim = evnt.victim;
+                killLogText.text = preKiller3 + " Kills " + preVictim3 + "\n"
+                    + preKiller2 + " Kills " + preVictim2 + "\n"
+                    + preKiller + " Kills " + preVictim;
+                break;
+        }
+    }
+
     void JoinedEventDelay()
     {
         foreach (var player in players)
@@ -106,6 +153,39 @@ public class NetworkManager : GlobalEventListener
             else
                 player.GetComponent<PlayerSubScript>().NicknameSet(false);
         }
+    }
+
+    private void Update()
+    {
+        if (killLogCount > 1)
+        {
+            killLogTimer += Time.deltaTime;
+            if (killLogTimer >= 3.0f)
+            {
+                killLogTimer = 0;
+                killLogCount--;
+
+                switch (killLogCount)
+                {
+                    case 1:
+                        killLogText.text = preKiller + " Kills " + preVictim;
+                        isReset = true;
+                        StartCoroutine(KillLogReset());
+                        break;
+                    case 2:
+                        killLogText.text = preKiller2 + " Kills " + preVictim2 + "\n"
+                            + preKiller + " Kills " + preVictim;
+                        break;
+                }
+            }
+        }
+    }
+
+    IEnumerator KillLogReset()
+    {
+        yield return new WaitForSeconds(3.0f);
+        killLogText.text = "";
+        isReset = false;
     }
 
     private void FixedUpdate()

@@ -10,6 +10,7 @@ public class PlayerSubScript : Bolt.EntityBehaviour<IFPSPlayerState>
     public GameObject[] HideObjects;
     public GameObject NicknameCanvas;
     public Text nickname;
+    public int killLogCount;
     
     public Transform arm;
     public Text HealthText;
@@ -54,6 +55,11 @@ public class PlayerSubScript : Bolt.EntityBehaviour<IFPSPlayerState>
     void Respawn()
     {
         Debug.Log(attacker + " Kill " + nickname.text);
+        var evnt = KillLogEvent.Create();
+        evnt.killer = attacker;
+        evnt.victim = nickname.text;
+        evnt.Send();
+
         state.health = 100;
         transform.position = new Vector3(Random.Range(-5, 5), 0, 0);
         transform.rotation = Quaternion.EulerAngles(Vector3.zero);

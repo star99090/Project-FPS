@@ -36,7 +36,9 @@ public class BulletScript : Bolt.EntityBehaviour<IBulletState>
 		//Otherwise, destroy bullet on impact
 		else 
 		{
-			BoltNetwork.Destroy(gameObject);
+			var evnt = DestroyRequestEvent.Create();
+			evnt.Send();
+			//Destroy(gameObject);
 			//DestroyRequest();
 		}
 

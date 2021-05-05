@@ -90,29 +90,33 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 1458}
     - Class: 114
-      Script: {instanceID: 1530}
+      Script: {instanceID: 1460}
     - Class: 114
-      Script: {instanceID: 1596}
+      Script: {instanceID: 1532}
     - Class: 114
-      Script: {instanceID: 1616}
+      Script: {instanceID: 1598}
     - Class: 114
-      Script: {instanceID: 1636}
+      Script: {instanceID: 1618}
     - Class: 114
-      Script: {instanceID: 2236}
+      Script: {instanceID: 1638}
     - Class: 114
-      Script: {instanceID: 2806}
+      Script: {instanceID: 2238}
     - Class: 114
-      Script: {instanceID: 2844}
+      Script: {instanceID: 2808}
     - Class: 114
-      Script: {instanceID: 3240}
+      Script: {instanceID: 2846}
     - Class: 114
-      Script: {instanceID: 3338}
+      Script: {instanceID: 3006}
     - Class: 114
-      Script: {instanceID: 3346}
+      Script: {instanceID: 3242}
     - Class: 114
-      Script: {instanceID: 3656}
+      Script: {instanceID: 3340}
     - Class: 114
-      Script: {instanceID: 3744}
+      Script: {instanceID: 3348}
+    - Class: 114
+      Script: {instanceID: 3658}
+    - Class: 114
+      Script: {instanceID: 3746}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -195,55 +199,55 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 1460}
     - Class: 114
-      Script: {instanceID: 1530}
+      Script: {instanceID: 1532}
     - Class: 114
-      Script: {instanceID: 1616}
+      Script: {instanceID: 1618}
     - Class: 114
-      Script: {instanceID: 1622}
+      Script: {instanceID: 1624}
     - Class: 114
-      Script: {instanceID: 1636}
+      Script: {instanceID: 1638}
     - Class: 114
-      Script: {instanceID: 1978}
+      Script: {instanceID: 1980}
     - Class: 114
-      Script: {instanceID: 2124}
+      Script: {instanceID: 2126}
     - Class: 114
-      Script: {instanceID: 2236}
+      Script: {instanceID: 2238}
     - Class: 114
-      Script: {instanceID: 2248}
+      Script: {instanceID: 2250}
     - Class: 114
-      Script: {instanceID: 2272}
+      Script: {instanceID: 2274}
     - Class: 114
-      Script: {instanceID: 2378}
+      Script: {instanceID: 2380}
     - Class: 114
-      Script: {instanceID: 2412}
+      Script: {instanceID: 2414}
     - Class: 114
-      Script: {instanceID: 2806}
+      Script: {instanceID: 2808}
     - Class: 114
-      Script: {instanceID: 2844}
+      Script: {instanceID: 2846}
     - Class: 114
-      Script: {instanceID: 2904}
+      Script: {instanceID: 2906}
     - Class: 114
-      Script: {instanceID: 3004}
+      Script: {instanceID: 3006}
     - Class: 114
-      Script: {instanceID: 3022}
+      Script: {instanceID: 3024}
     - Class: 114
-      Script: {instanceID: 3086}
+      Script: {instanceID: 3088}
     - Class: 114
-      Script: {instanceID: 3152}
+      Script: {instanceID: 3154}
     - Class: 114
-      Script: {instanceID: 3240}
+      Script: {instanceID: 3242}
     - Class: 114
-      Script: {instanceID: 3310}
+      Script: {instanceID: 3312}
     - Class: 114
-      Script: {instanceID: 3338}
+      Script: {instanceID: 3340}
     - Class: 114
-      Script: {instanceID: 3346}
+      Script: {instanceID: 3348}
     - Class: 114
-      Script: {instanceID: 3656}
+      Script: {instanceID: 3658}
     - Class: 114
-      Script: {instanceID: 3716}
+      Script: {instanceID: 3718}
     - Class: 114
-      Script: {instanceID: 3744}
+      Script: {instanceID: 3746}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -315,7 +319,7 @@ ScriptsOnlyBuild:
     className: TMP_InputField
   - hash:
       serializedVersion: 2
-      Hash: 08998775017b69118b9d7f035e9f13c4
+      Hash: 7838fb4c14ff4a2c647c9104d5aaef80
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: NetworkManager
@@ -813,7 +817,7 @@ ScriptsOnlyBuild:
     className: TMP_SpriteAnimator
   - hash:
       serializedVersion: 2
-      Hash: caadb2e4a491977c16fd6c533b33350a
+      Hash: 208fdc49202c22390b46c11483f8444c
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: PlayerSubScript
