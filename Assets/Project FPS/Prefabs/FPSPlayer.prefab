@@ -1479,36 +1479,6 @@ Transform:
   m_Father: {fileID: 6833394213366496728}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &6835816844193336878
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 6833577165129704590}
-  m_Layer: 8
-  m_Name: knife
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &6833577165129704590
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6835816844193336878}
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.24399997, y: 0.28099996, z: 0.7239999}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 6830607969839521956}
-  m_RootOrder: 7
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6835831661923016934
 GameObject:
   m_ObjectHideFlags: 0
@@ -6857,7 +6827,7 @@ SkinnedMeshRenderer:
   - {fileID: 6833104169775296072}
   - {fileID: 6830609390616281238}
   - {fileID: 6833202929185319132}
-  - {fileID: 6833577165129704590}
+  - {fileID: 0}
   m_BlendShapeWeights: []
   m_RootBone: {fileID: 6833607146288686388}
   m_AABB:
@@ -6992,7 +6962,6 @@ Transform:
   - {fileID: 6833202929185319132}
   - {fileID: 6833104169775296072}
   - {fileID: 6830609390616281238}
-  - {fileID: 6833577165129704590}
   - {fileID: 6833542693104631388}
   - {fileID: 6830782411205831524}
   m_Father: {fileID: 6833133930512817392}
@@ -7284,7 +7253,7 @@ SkinnedMeshRenderer:
   - {fileID: 6833104169775296072}
   - {fileID: 6830609390616281238}
   - {fileID: 6833202929185319132}
-  - {fileID: 6833577165129704590}
+  - {fileID: 0}
   m_BlendShapeWeights: []
   m_RootBone: {fileID: 6833607146288686388}
   m_AABB:
@@ -7551,7 +7520,7 @@ SkinnedMeshRenderer:
   - {fileID: 6833104169775296072}
   - {fileID: 6830609390616281238}
   - {fileID: 6833202929185319132}
-  - {fileID: 6833577165129704590}
+  - {fileID: 0}
   m_BlendShapeWeights: []
   m_RootBone: {fileID: 6833607146288686388}
   m_AABB:
@@ -7669,7 +7638,7 @@ SkinnedMeshRenderer:
   - {fileID: 6833104169775296072}
   - {fileID: 6830609390616281238}
   - {fileID: 6833202929185319132}
-  - {fileID: 6833577165129704590}
+  - {fileID: 0}
   m_BlendShapeWeights: []
   m_RootBone: {fileID: 6833607146288686388}
   m_AABB:
@@ -12630,7 +12599,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6830607969839521956}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6836374181693738762
 GameObject:
@@ -12993,7 +12962,7 @@ Transform:
   - {fileID: 6833146691385897188}
   - {fileID: 6830360407316693760}
   m_Father: {fileID: 6830607969839521956}
-  m_RootOrder: 9
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6842705666702131116
 GameObject:
