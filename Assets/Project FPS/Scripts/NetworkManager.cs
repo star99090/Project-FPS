@@ -10,8 +10,11 @@ using UnityEngine.UI;
 
 public class NetworkManager : GlobalEventListener
 {
+    private IEnumerator coroutine;
     public static NetworkManager NM { get; set; }
-    private void Awake() {
+    private void Awake()
+    {
+        coroutine = KillLogReset();
         NM = this;
     }
 
@@ -20,7 +23,16 @@ public class NetworkManager : GlobalEventListener
 
     public GameObject SpawnPrefab;
     private string currentSession;
+    public int killLogCount = 1;
+    float killLogTimer;
     bool isMyHost;
+    bool isReset;
+    private string preKiller = "";
+    private string preKiller2 = "";
+    private string preKiller3 = "";
+    private string preVictim = "";
+    private string preVictim2 = "";
+    private string preVictim3 = "";
 
     [SerializeField] Text killLogText;
     [SerializeField] List<BoltEntity> entities = new List<BoltEntity>();
@@ -31,7 +43,7 @@ public class NetworkManager : GlobalEventListener
     public override void SceneLoadLocalDone(string scene, IProtocolToken token)
     {
         var spawnPos = new Vector3(Random.Range(-5, 5), 0, 0);
-        
+
         if (myEntityPos != Vector3.zero)
             spawnPos = myEntityPos;
 
@@ -96,6 +108,42 @@ public class NetworkManager : GlobalEventListener
         }
     }
 
+    public override void OnEvent(KillLogEvent evnt)
+    {
+        killLogTimer = 0f;
+        switch (killLogCount)
+        {
+            case 1:
+                preKiller = evnt.killer;
+                preVictim = evnt.victim;
+                killLogText.text = preKiller + " Kills " + preVictim;
+                killLogCount++;
+                if (isReset)
+                    StopCoroutine(coroutine);
+                break;
+            case 2:
+                preKiller2 = preKiller;
+                preVictim2 = preVictim;
+                preKiller = evnt.killer;
+                preVictim = evnt.victim;
+                killLogText.text = preKiller2 + " Kills " + preVictim2 + "\n"
+                    + preKiller + " Kills " + preVictim;
+                killLogCount++;
+                break;
+            case 3:
+                preKiller3 = preKiller2;
+                preVictim3 = preVictim2;
+                preKiller2 = preKiller;
+                preVictim2 = preVictim;
+                preKiller = evnt.killer;
+                preVictim = evnt.victim;
+                killLogText.text = preKiller3 + " Kills " + preVictim3 + "\n"
+                    + preKiller2 + " Kills " + preVictim2 + "\n"
+                    + preKiller + " Kills " + preVictim;
+                break;
+        }
+    }
+
     void JoinedEventDelay()
     {
         foreach (var player in players)
@@ -107,13 +155,46 @@ public class NetworkManager : GlobalEventListener
         }
     }
 
+    private void Update()
+    {
+        if (killLogCount > 1)
+        {
+            killLogTimer += Time.deltaTime;
+            if (killLogTimer >= 3.0f)
+            {
+                killLogTimer = 0;
+                killLogCount--; // 이 부분과 KillLogEvent 발생시 ++부분 사이에서 문제 발생
+
+                switch (killLogCount)
+                {
+                    case 1:
+                        killLogText.text = preKiller + " Kills " + preVictim;
+                        isReset = true;
+                        StartCoroutine(KillLogReset());
+                        break;
+                    case 2:
+                        killLogText.text = preKiller2 + " Kills " + preVictim2 + "\n"
+                            + preKiller + " Kills " + preVictim;
+                        break;
+                }
+            }
+        }
+    }
+
+    IEnumerator KillLogReset()
+    {
+        yield return new WaitForSeconds(3.0f);
+        killLogText.text = "";
+        isReset = false;
+    }
+
     private void FixedUpdate()
     {
         if (myEntity != null)
         {
             myEntityPos = myEntity.transform.position;
             myEntityRot = myEntity.transform.rotation.eulerAngles;
-        }        
+        }
     }
 
     public override void Connected(BoltConnection connection)
@@ -134,6 +215,6 @@ public class NetworkManager : GlobalEventListener
         myUpdate.sessionName = currentSession;
         myUpdate.Send();
     }
-    
+
     public override void Disconnected(BoltConnection connection) => StartCoroutine(UpdateEntityAndSessionName());
 }
