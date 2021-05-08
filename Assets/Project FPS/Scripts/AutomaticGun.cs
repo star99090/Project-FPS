@@ -118,8 +118,9 @@ public class AutomaticGun : EntityBehaviour<IFPSPlayerState>
 	private bool soundHasPlayed = false;
 
 	[SerializeField] Text attacker;
+	public BoltEntity myEntity;
 
-    private void Awake()
+	private void Awake()
 	{
 		anim = GetComponent<Animator>();
 		currentAmmo = ammo;
@@ -173,6 +174,7 @@ public class AutomaticGun : EntityBehaviour<IFPSPlayerState>
 			evnt.attacker = attacker.text;
 			evnt.targetEntity = hit.collider.gameObject.GetComponent<BoltEntity>();
 			evnt.damage = Random.Range(30, 35);
+			evnt.attackerEntity = myEntity;
 			evnt.Send();
 		}
     }

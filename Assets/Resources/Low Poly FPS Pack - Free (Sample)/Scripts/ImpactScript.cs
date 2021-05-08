@@ -23,6 +23,6 @@ public class ImpactScript : Bolt.EntityBehaviour<IMetalImpactState> {
 	private IEnumerator DespawnTimer() {
 		yield return new WaitForSeconds (despawnTimer);
 
-		Destroy(gameObject);
+		BoltNetwork.Destroy(gameObject);
 	}
 }

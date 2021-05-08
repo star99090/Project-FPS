@@ -10,29 +10,27 @@ using UnityEngine.UI;
 
 public class NetworkManager : GlobalEventListener
 {
-    private IEnumerator coroutine;
+    private Coroutine coroutine;
     public static NetworkManager NM { get; set; }
-    private void Awake()
-    {
-        coroutine = KillLogReset();
-        NM = this;
-    }
+    private void Awake() => NM = this;
 
     public List<BoltEntity> players = new List<BoltEntity>();
     public BoltEntity myPlayer;
 
     public GameObject SpawnPrefab;
     private string currentSession;
-    public int killLogCount = 1;
+    public int killLogCount = 0;
     float killLogTimer;
     bool isMyHost;
-    bool isReset;
+    bool isReset = false;
     private string preKiller = "";
     private string preKiller2 = "";
     private string preKiller3 = "";
     private string preVictim = "";
     private string preVictim2 = "";
     private string preVictim3 = "";
+    private string firstPlayer = "Nobody";
+    private int firstPlayerScore = 0;
 
     [SerializeField] Text killLogText;
     [SerializeField] List<BoltEntity> entities = new List<BoltEntity>();
@@ -80,6 +78,17 @@ public class NetworkManager : GlobalEventListener
         registerDoneCallback(BoltShutdownCallback);
     }
 
+    void JoinedEventDelay()
+    {
+        foreach (var player in players)
+        {
+            if (player != myPlayer)
+                player.GetComponent<PlayerSubScript>().HideObject();
+            else
+                player.GetComponent<PlayerSubScript>().NicknameSet(false);
+        }
+    }
+
     public override void OnEvent(JoinedEvent evnt)
     {
         Invoke("JoinedEventDelay", 0.25f);
@@ -104,39 +113,54 @@ public class NetworkManager : GlobalEventListener
     {
         if (myPlayer = evnt.targetEntity)
         {
-            myPlayer.GetComponent<PlayerSubScript>().HealthChange(evnt.damage, evnt.attacker);
+            myPlayer.GetComponent<PlayerSubScript>().HealthChange(evnt.damage, evnt.attacker, evnt.attackerEntity);
         }
     }
 
-    public override void OnEvent(KillLogEvent evnt)
+    public override void OnEvent(KillEvent evnt)
     {
+        evnt.attackerEntity.GetComponent<PlayerSubScript>().myKillScore += 1;
+        evnt.attackerEntity.GetComponent<PlayerSubScript>().UpdateMyScore();
+
+        foreach (var player in players)
+        {
+            if (player.GetComponent<PlayerSubScript>().myKillScore > firstPlayerScore)
+            {
+                firstPlayerScore = player.GetComponent<PlayerSubScript>().myKillScore;
+                firstPlayer = player.GetComponent<PlayerSubScript>().nickname.text;
+
+            }
+        }
+
+        foreach(var player in players)
+        {
+            player.GetComponent<PlayerSubScript>().firstPlayerText.text = firstPlayer;
+            player.GetComponent<PlayerSubScript>().firstScoreText.text = firstPlayerScore.ToString();
+        }
+
         killLogTimer = 0f;
         switch (killLogCount)
         {
-            case 1:
-                preKiller = evnt.killer;
-                preVictim = evnt.victim;
-                killLogText.text = preKiller + " Kills " + preVictim;
+            case 0:
                 killLogCount++;
-                if (isReset)
-                    StopCoroutine(coroutine);
+                SaveKillLogState(evnt.killer, evnt.victim);
+                killLogText.text = preKiller + " Kills " + preVictim;
                 break;
-            case 2:
-                preKiller2 = preKiller;
-                preVictim2 = preVictim;
-                preKiller = evnt.killer;
-                preVictim = evnt.victim;
+            case 1:
+                killLogCount++;
+                SaveKillLogState(evnt.killer, evnt.victim);
                 killLogText.text = preKiller2 + " Kills " + preVictim2 + "\n"
                     + preKiller + " Kills " + preVictim;
+                break;
+            case 2:
                 killLogCount++;
+                SaveKillLogState(evnt.killer, evnt.victim);
+                killLogText.text = preKiller3 + " Kills " + preVictim3 + "\n"
+                    + preKiller2 + " Kills " + preVictim2 + "\n"
+                    + preKiller + " Kills " + preVictim;
                 break;
             case 3:
-                preKiller3 = preKiller2;
-                preVictim3 = preVictim2;
-                preKiller2 = preKiller;
-                preVictim2 = preVictim;
-                preKiller = evnt.killer;
-                preVictim = evnt.victim;
+                SaveKillLogState(evnt.killer, evnt.victim);
                 killLogText.text = preKiller3 + " Kills " + preVictim3 + "\n"
                     + preKiller2 + " Kills " + preVictim2 + "\n"
                     + preKiller + " Kills " + preVictim;
@@ -144,33 +168,33 @@ public class NetworkManager : GlobalEventListener
         }
     }
 
-    void JoinedEventDelay()
+    private void SaveKillLogState(string killer, string victim)
     {
-        foreach (var player in players)
-        {
-            if (player != myPlayer)
-                player.GetComponent<PlayerSubScript>().HideObject();
-            else
-                player.GetComponent<PlayerSubScript>().NicknameSet(false);
-        }
+        preKiller3 = preKiller2;
+        preVictim3 = preVictim2;
+        preKiller2 = preKiller;
+        preVictim2 = preVictim;
+        preKiller = killer;
+        preVictim = victim;
     }
 
     private void Update()
     {
-        if (killLogCount > 1)
+        if (killLogCount > 0)
         {
             killLogTimer += Time.deltaTime;
             if (killLogTimer >= 3.0f)
             {
                 killLogTimer = 0;
-                killLogCount--; // 이 부분과 KillLogEvent 발생시 ++부분 사이에서 문제 발생
+                killLogCount--;
 
                 switch (killLogCount)
                 {
+                    case 0:
+                        killLogText.text = "";
+                        break;
                     case 1:
                         killLogText.text = preKiller + " Kills " + preVictim;
-                        isReset = true;
-                        StartCoroutine(KillLogReset());
                         break;
                     case 2:
                         killLogText.text = preKiller2 + " Kills " + preVictim2 + "\n"
@@ -179,13 +203,6 @@ public class NetworkManager : GlobalEventListener
                 }
             }
         }
-    }
-
-    IEnumerator KillLogReset()
-    {
-        yield return new WaitForSeconds(3.0f);
-        killLogText.text = "";
-        isReset = false;
     }
 
     private void FixedUpdate()
@@ -208,7 +225,7 @@ public class NetworkManager : GlobalEventListener
 
     IEnumerator UpdateEntityAndSessionName()
     {
-        yield return new WaitForSeconds(0.1f);
+        yield return null;
         var myUpdate = HostMigrationEvent.Create();
         myUpdate.position = myEntity.transform.position;
         myUpdate.rotation = myEntity.transform.rotation.eulerAngles;

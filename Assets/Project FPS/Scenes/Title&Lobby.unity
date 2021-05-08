@@ -582,7 +582,7 @@ MonoBehaviour:
   m_LineType: 0
   m_HideMobileInput: 0
   m_CharacterValidation: 0
-  m_CharacterLimit: 0
+  m_CharacterLimit: 6
   m_OnEndEdit:
     m_PersistentCalls:
       m_Calls: []
@@ -610,6 +610,7 @@ GameObject:
   - component: {fileID: 5344542969242696970}
   - component: {fileID: 5344542969242696971}
   - component: {fileID: 5344542969242696973}
+  - component: {fileID: 5344542969242696974}
   m_Layer: 5
   m_Name: NicknameInput
   m_TagString: Untagged
@@ -662,6 +663,18 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+--- !u!114 &5344542969242696974
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5344542969242696972}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e05e1257c3e77794395a17d00b60bbf3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &5344542969374795200
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1579,7 +1592,7 @@ MonoBehaviour:
   m_LineType: 0
   m_HideMobileInput: 0
   m_CharacterValidation: 0
-  m_CharacterLimit: 0
+  m_CharacterLimit: 6
   m_OnEndEdit:
     m_PersistentCalls:
       m_Calls: []
@@ -1607,6 +1620,7 @@ GameObject:
   - component: {fileID: 5344542970638100272}
   - component: {fileID: 5344542970638100273}
   - component: {fileID: 5344542970638100275}
+  - component: {fileID: 5344542970638100276}
   m_Layer: 5
   m_Name: SessionInput
   m_TagString: Untagged
@@ -1659,6 +1673,18 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+--- !u!114 &5344542970638100276
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5344542970638100274}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e05e1257c3e77794395a17d00b60bbf3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &5344542970638100286
 RectTransform:
   m_ObjectHideFlags: 0
