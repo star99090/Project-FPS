@@ -8,6 +8,14 @@ TagManager:
   - ExplosiveBarrel
   - Target
   - FPSPlayer
+  - GasTank
+  - Blood
+  - Dirt
+  - Concrete
+  - Wood (Static)
+  - Dirt (Static)
+  - Wood
+  - Metal (Static)
   layers:
   - Default
   - TransparentFX
@@ -17,7 +25,7 @@ TagManager:
   - UI
   - Bullet
   - FPSPlayer
-  - 
+  - MyBody
   - 
   - 
   - 

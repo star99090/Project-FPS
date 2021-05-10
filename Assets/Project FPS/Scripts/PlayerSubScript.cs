@@ -7,6 +7,7 @@ public class PlayerSubScript : Bolt.EntityBehaviour<IFPSPlayerState>
 {
     public GameObject[] HideObjects;
     public GameObject NicknameCanvas;
+    public GameObject MyBody;
     public Text nickname;
     public Text firstPlayerText;
     public Text firstScoreText;
@@ -38,7 +39,8 @@ public class PlayerSubScript : Bolt.EntityBehaviour<IFPSPlayerState>
             go.SetActive(false);
     }
 
-    public void NicknameSet(bool a) => NicknameCanvas.SetActive(a);
+    public void NicknameSet() => NicknameCanvas.SetActive(false);
+    public void MyBodySet() => MyBody.SetActive(true);
 
     public void HealthChange(int damage, string attackers, BoltEntity aEntity)
     {

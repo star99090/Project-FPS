@@ -83,9 +83,12 @@ public class NetworkManager : GlobalEventListener
         foreach (var player in players)
         {
             if (player != myPlayer)
+            {
                 player.GetComponent<PlayerSubScript>().HideObject();
+                player.GetComponent<PlayerSubScript>().MyBodySet();
+            }
             else
-                player.GetComponent<PlayerSubScript>().NicknameSet(false);
+                player.GetComponent<PlayerSubScript>().NicknameSet();
         }
     }
 

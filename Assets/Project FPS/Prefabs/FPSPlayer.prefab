@@ -1376,6 +1376,7 @@ MonoBehaviour:
   - {fileID: 6835831661923016934}
   - {fileID: 6834407298566764068}
   NicknameCanvas: {fileID: 5647591900458404797}
+  MyBody: {fileID: 0}
   nickname: {fileID: 1800653564920912798}
   firstPlayerText: {fileID: 7165300342430154844}
   firstScoreText: {fileID: 5508252700467381397}

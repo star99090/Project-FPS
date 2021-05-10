@@ -5,7 +5,7 @@ m_ProjectFiles:
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 637535833141237925
+      ticks: 637562635273501973
     m_Hash: 1857255145
   m_LockFileStatus:
     m_FilePath: C:/Users/user/Desktop/UnityWork/Project-FPS/Packages/packages-lock.json
@@ -13,7 +13,7 @@ m_ProjectFiles:
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 637535833671572386
+      ticks: 637562635748218073
     m_Hash: 38571225
 m_EmbeddedPackageManifests:
   m_ManifestsStatus: {}
@@ -59,6 +59,7 @@ m_PackageAssets:
         - 1.3.7
         - 1.3.8
         - 1.3.9
+        - 1.5.7
         - 2.0.0-preview.6
         - 2.0.0-preview.8
         - 2.0.0-preview.15
@@ -71,6 +72,7 @@ m_PackageAssets:
         - 2.1.0-preview.6
         compatible:
         - 1.3.9
+        - 1.5.7
         - 2.0.0-preview.6
         - 2.0.0-preview.8
         - 2.0.0-preview.15
@@ -160,6 +162,7 @@ m_PackageAssets:
         - 3.0.3
         - 3.0.4
         - 3.0.5
+        - 3.0.6
         compatible:
         - 1.0.2
         - 1.0.6
@@ -184,6 +187,7 @@ m_PackageAssets:
         - 3.0.3
         - 3.0.4
         - 3.0.5
+        - 3.0.6
         verified: 2.0.7
       dependencies:
       - name: com.unity.test-framework
@@ -533,6 +537,8 @@ m_PackageAssets:
         - 1.5.1
         - 1.5.3
         - 1.5.4
+        - 1.5.5
+        - 1.5.6
         - 2.0.0
         - 2.0.1-preview.1
         - 2.0.1
@@ -552,6 +558,8 @@ m_PackageAssets:
         - 2.1.1
         - 2.1.3
         - 2.1.4
+        - 2.1.5
+        - 2.1.6
         - 3.0.0-preview.1
         - 3.0.0-preview.3
         - 3.0.0-preview.4
@@ -567,11 +575,15 @@ m_PackageAssets:
         - 3.0.1
         - 3.0.3
         - 3.0.4
+        - 3.0.5
+        - 3.0.6
         compatible:
         - 3.0.1
         - 3.0.3
         - 3.0.4
-        verified: 3.0.4
+        - 3.0.5
+        - 3.0.6
+        verified: 3.0.6
       dependencies:
       - name: com.unity.ugui
         version: 1.0.0
@@ -674,6 +686,7 @@ m_PackageAssets:
         - 1.4.5
         - 1.4.6
         - 1.4.7
+        - 1.4.8
         - 1.5.0-pre.2
         - 1.5.0-preview.1
         - 1.5.0-preview.2
@@ -685,11 +698,14 @@ m_PackageAssets:
         - 1.5.1-pre.3
         - 1.5.2
         - 1.5.4
+        - 1.5.5
         - 1.6.0-pre.1
         - 1.6.0-pre.3
+        - 1.6.0-pre.4
         compatible:
         - 1.4.6
         - 1.4.7
+        - 1.4.8
         - 1.5.0-pre.2
         - 1.5.0-preview.1
         - 1.5.0-preview.2
@@ -701,9 +717,11 @@ m_PackageAssets:
         - 1.5.1-pre.3
         - 1.5.2
         - 1.5.4
+        - 1.5.5
         - 1.6.0-pre.1
         - 1.6.0-pre.3
-        verified: 1.4.7
+        - 1.6.0-pre.4
+        verified: 1.4.8
       dependencies:
       - name: com.unity.modules.director
         version: 1.0.0
