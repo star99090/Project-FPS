@@ -9,6 +9,7 @@ public class TitleLobbyManager : Bolt.GlobalEventListener
     public static TitleLobbyManager TLM { get; private set; }
     private void Awake() => TLM = this;
 
+    public GameObject LogPanel;
     public Text LogText;
     public InputField SessionInput;
     public InputField NicknameInput;
@@ -51,6 +52,15 @@ public class TitleLobbyManager : Bolt.GlobalEventListener
         LogText.text = log;
     }
 
+    public void OnclickSearchingServer()
+    {
+        if (LogPanel.activeSelf)
+        {
+            LogPanel.SetActive(false);
+        }
+        else
+            LogPanel.SetActive(true);
+    }
     public void OnMouseOver() => cameraAudio.GetComponent<AudioSource>().PlayOneShot(mouseOnOver);
     public void OnMouseDown() => cameraAudio.GetComponent<AudioSource>().PlayOneShot(mouseClick);
 }
