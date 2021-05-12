@@ -422,7 +422,7 @@ MonoBehaviour:
   players: []
   myPlayer: {fileID: 0}
   SpawnPrefab: {fileID: 2691810577174281090, guid: aa57be92e262de94d94fdd58b3b8e522, type: 3}
-  killLogCount: 1
+  killLogCount: 0
   killLogText: {fileID: 1093916617}
   entities: []
   myEntity: {fileID: 0}
