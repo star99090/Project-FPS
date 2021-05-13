@@ -18,6 +18,7 @@ namespace Player
 
         [Tooltip("캐릭터에 상대적인 팔과 카메라의 위치"), SerializeField]
         private Vector3 armPosition;
+        private Vector3 armSubPos = new Vector3(0f, 0.2f, 0f);
 
 		[Header("Audio Clips")]
         [Tooltip("걷는 효과음"), SerializeField]
@@ -172,7 +173,7 @@ namespace Player
             PlayFootstepSounds();
             if (!entity.IsOwner) return;
                 
-			arms.position = transform.position + transform.TransformVector(armPosition);
+			arms.position = transform.position + transform.TransformVector(armPosition) + armSubPos;
             Jump();
         }
 
