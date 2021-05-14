@@ -12836,8 +12836,42 @@ MonoBehaviour:
   gunCamera: {fileID: 6817600049644779942}
   fovSpeed: 15
   defaultFov: 40
-  aimFov: 15
   weaponName: Assault_Rifle_01
+  scope1: 0
+  scope1Texture: {fileID: 0}
+  scope1TextureSize: 0.0045
+  scope1AimFOV: 10
+  scope2: 0
+  scope2Texture: {fileID: 0}
+  scope2TextureSize: 0.01
+  scope2AimFOV: 25
+  scope3: 0
+  scope3Texture: {fileID: 0}
+  scope3TextureSize: 0.006
+  scope3AimFOV: 20
+  scope4: 0
+  scope4Texture: {fileID: 0}
+  scope4TextureSize: 0.0025
+  scope4AimFOV: 12
+  ironSights: 0
+  alwaysShowIronSights: 0
+  ironSightsAimFOV: 16
+  silencer: 0
+  WeaponAttachmentRenderers:
+    scope1Renderer: {fileID: 0}
+    scope2Renderer: {fileID: 0}
+    scope3Renderer: {fileID: 0}
+    scope4Renderer: {fileID: 0}
+    ironSightsRenderer: {fileID: 0}
+    silencerRenderer: {fileID: 0}
+    scope1RenderMesh: {fileID: 0}
+    scope2RenderMesh: {fileID: 0}
+    scope3RenderMesh: {fileID: 0}
+    scope4RenderMesh: {fileID: 0}
+    scope1SpriteRenderer: {fileID: 0}
+    scope2SpriteRenderer: {fileID: 0}
+    scope3SpriteRenderer: {fileID: 0}
+    scope4SpriteRenderer: {fileID: 0}
   weaponSway: 1
   swayAmount: 0.02
   maxSwayAmount: 0.06
@@ -12869,6 +12903,7 @@ MonoBehaviour:
   aimSpawnpoint: {fileID: 2536511585528510577}
   SoundClips:
     shootSound: {fileID: 8300000, guid: 38b450e2adcb6f542acc8c1d423bd8dc, type: 3}
+    silencerShootSound: {fileID: 0}
     takeOtSound: {fileID: 0}
     reloadSoundOutOfAmmo: {fileID: 8300000, guid: 5b907074256e36d41b92e89fb0790633, type: 3}
     reloadSoundAmmoLeft: {fileID: 8300000, guid: f7ce534a0633b9847910ba117e2245d1, type: 3}

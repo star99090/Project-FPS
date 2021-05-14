@@ -14316,6 +14316,7 @@ GameObject:
   - component: {fileID: 114090783443918852}
   - component: {fileID: 82936729272205366}
   - component: {fileID: 82570297122578922}
+  - component: {fileID: 589923830222460044}
   m_Layer: 8
   m_Name: arms_assault_rifle_01
   m_TagString: Untagged
@@ -14366,7 +14367,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1973744589517680}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dd38df9a0796d9842adfbe580ed6042e, type: 3}
   m_Name: 
@@ -14374,8 +14375,42 @@ MonoBehaviour:
   gunCamera: {fileID: 20607603889952386}
   fovSpeed: 15
   defaultFov: 40
-  aimFov: 25
   weaponName: Assault_Rifle_01
+  scope1: 0
+  scope1Texture: {fileID: 0}
+  scope1TextureSize: 0.0045
+  scope1AimFOV: 10
+  scope2: 0
+  scope2Texture: {fileID: 0}
+  scope2TextureSize: 0.01
+  scope2AimFOV: 25
+  scope3: 0
+  scope3Texture: {fileID: 0}
+  scope3TextureSize: 0.006
+  scope3AimFOV: 20
+  scope4: 0
+  scope4Texture: {fileID: 0}
+  scope4TextureSize: 0.0025
+  scope4AimFOV: 12
+  ironSights: 0
+  alwaysShowIronSights: 0
+  ironSightsAimFOV: 16
+  silencer: 0
+  WeaponAttachmentRenderers:
+    scope1Renderer: {fileID: 0}
+    scope2Renderer: {fileID: 0}
+    scope3Renderer: {fileID: 0}
+    scope4Renderer: {fileID: 0}
+    ironSightsRenderer: {fileID: 0}
+    silencerRenderer: {fileID: 0}
+    scope1RenderMesh: {fileID: 0}
+    scope2RenderMesh: {fileID: 0}
+    scope3RenderMesh: {fileID: 0}
+    scope4RenderMesh: {fileID: 0}
+    scope1SpriteRenderer: {fileID: 0}
+    scope2SpriteRenderer: {fileID: 0}
+    scope3SpriteRenderer: {fileID: 0}
+    scope4SpriteRenderer: {fileID: 0}
   weaponSway: 1
   swayAmount: 0.02
   maxSwayAmount: 0.06
@@ -14407,6 +14442,7 @@ MonoBehaviour:
   aimSpawnpoint: {fileID: 0}
   SoundClips:
     shootSound: {fileID: 8300000, guid: 38b450e2adcb6f542acc8c1d423bd8dc, type: 3}
+    silencerShootSound: {fileID: 0}
     takeOtSound: {fileID: 0}
     reloadSoundOutOfAmmo: {fileID: 8300000, guid: 5b907074256e36d41b92e89fb0790633, type: 3}
     reloadSoundAmmoLeft: {fileID: 8300000, guid: f7ce534a0633b9847910ba117e2245d1, type: 3}
@@ -14605,6 +14641,101 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
+--- !u!114 &589923830222460044
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1973744589517680}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58622fdd3af553243ac38ee83a66dd8e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gunCamera: {fileID: 0}
+  fovSpeed: 15
+  defaultFov: 40
+  weaponName: 
+  scope1: 0
+  scope1Texture: {fileID: 21300000, guid: 2282acb7ec2bb22459ebc6527dd957ea, type: 3}
+  scope1TextureSize: 0.0045
+  scope1AimFOV: 10
+  scope2: 0
+  scope2Texture: {fileID: 0}
+  scope2TextureSize: 0.01
+  scope2AimFOV: 25
+  scope3: 0
+  scope3Texture: {fileID: 0}
+  scope3TextureSize: 0.006
+  scope3AimFOV: 20
+  scope4: 0
+  scope4Texture: {fileID: 0}
+  scope4TextureSize: 0.0025
+  scope4AimFOV: 12
+  ironSights: 0
+  alwaysShowIronSights: 0
+  ironSightsAimFOV: 16
+  silencer: 0
+  WeaponAttachmentRenderers:
+    scope1Renderer: {fileID: 0}
+    scope2Renderer: {fileID: 0}
+    scope3Renderer: {fileID: 0}
+    scope4Renderer: {fileID: 0}
+    ironSightsRenderer: {fileID: 0}
+    silencerRenderer: {fileID: 0}
+    scope1RenderMesh: {fileID: 0}
+    scope2RenderMesh: {fileID: 0}
+    scope3RenderMesh: {fileID: 0}
+    scope4RenderMesh: {fileID: 0}
+    scope1SpriteRenderer: {fileID: 0}
+    scope2SpriteRenderer: {fileID: 0}
+    scope3SpriteRenderer: {fileID: 0}
+    scope4SpriteRenderer: {fileID: 0}
+  weaponSway: 0
+  swayAmount: 0.02
+  maxSwayAmount: 0.06
+  swaySmoothValue: 4
+  fireRate: 0
+  autoReload: 0
+  autoReloadDelay: 0
+  ammo: 0
+  bulletForce: 400
+  showBulletInMagDelay: 0.6
+  bulletInMagRenderer: {fileID: 0}
+  grenadeSpawnDelay: 0.35
+  randomMuzzleflash: 0
+  maxRandomValue: 5
+  enableMuzzleflash: 1
+  muzzleParticles: {fileID: 0}
+  enableSparks: 1
+  sparkParticles: {fileID: 0}
+  minSparkEmission: 1
+  maxSparkEmission: 7
+  muzzleflashLight: {fileID: 0}
+  lightDuration: 0.02
+  mainAudioSource: {fileID: 0}
+  shootAudioSource: {fileID: 0}
+  timescaleText: {fileID: 0}
+  currentWeaponText: {fileID: 0}
+  currentAmmoText: {fileID: 0}
+  totalAmmoText: {fileID: 0}
+  Prefabs:
+    bulletPrefab: {fileID: 0}
+    casingPrefab: {fileID: 0}
+    grenadePrefab: {fileID: 0}
+  Spawnpoints:
+    casingSpawnPoint: {fileID: 0}
+    bulletSpawnPoint: {fileID: 0}
+    grenadeSpawnPoint: {fileID: 0}
+  SoundClips:
+    shootSound: {fileID: 0}
+    silencerShootSound: {fileID: 0}
+    takeOutSound: {fileID: 0}
+    holsterSound: {fileID: 0}
+    reloadSoundOutOfAmmo: {fileID: 0}
+    reloadSoundAmmoLeft: {fileID: 0}
+    aimSound: {fileID: 0}
 --- !u!1 &1984876082917120
 GameObject:
   m_ObjectHideFlags: 0

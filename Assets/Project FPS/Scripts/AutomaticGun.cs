@@ -17,12 +17,88 @@ public class AutomaticGun : EntityBehaviour<IFPSPlayerState>
 	[Tooltip("카메라 시야 기본 값")]
 	public float defaultFov = 40.0f;
 
-	public float aimFov = 25.0f;
+	float aimFov;
 
 	[Header("Weapon Name UI")]
 	[Tooltip("총기 이름")]
 	public string weaponName;
 	private string storedWeaponName;
+
+	[Header("Weapon Attachments (Only use one scope attachment)")]
+	[Space(10)]
+	// 첫 번째 스코프 토글
+	public bool scope1;
+	public Sprite scope1Texture;
+	public float scope1TextureSize = 0.0045f;
+	[Range(5, 40)]
+	public float scope1AimFOV = 10;
+	[Space(10)]
+
+	// 두 번째 스코프 토글
+	public bool scope2;
+	public Sprite scope2Texture;
+	public float scope2TextureSize = 0.01f;
+	[Range(5, 40)]
+	public float scope2AimFOV = 25;
+	[Space(10)]
+
+	// 세 번째 스코프 토글
+	public bool scope3;
+	public Sprite scope3Texture;
+	public float scope3TextureSize = 0.006f;
+	[Range(5, 40)]
+	public float scope3AimFOV = 20;
+	[Space(10)]
+
+	// 네 번째 스코프 토글
+	public bool scope4;
+	public Sprite scope4Texture;
+	public float scope4TextureSize = 0.0025f;
+	[Range(5, 40)]
+	public float scope4AimFOV = 12;
+	[Space(10)]
+
+	// 총기 자체 가늠쇠
+	public bool ironSights;
+	public bool alwaysShowIronSights;
+	[Range(5, 40)]
+	public float ironSightsAimFOV = 16;
+	[Space(10)]
+
+	// 소음기 부착
+	public bool silencer;
+
+	[System.Serializable]
+	public class weaponAttachmentRenderers
+	{
+		[Header("Scope Model Renderers")]
+		[Space(10)]
+
+		// Renderer
+		public SkinnedMeshRenderer scope1Renderer;
+		public SkinnedMeshRenderer scope2Renderer;
+		public SkinnedMeshRenderer scope3Renderer;
+		public SkinnedMeshRenderer scope4Renderer;
+		public SkinnedMeshRenderer ironSightsRenderer;
+		public SkinnedMeshRenderer silencerRenderer;
+		[Header("Scope Sight Mesh Renderers")]
+		[Space(10)]
+
+		// Mesh
+		public GameObject scope1RenderMesh;
+		public GameObject scope2RenderMesh;
+		public GameObject scope3RenderMesh;
+		public GameObject scope4RenderMesh;
+		[Header("Scope Sight Sprite Renderers")]
+		[Space(10)]
+
+		// Textures
+		public SpriteRenderer scope1SpriteRenderer;
+		public SpriteRenderer scope2SpriteRenderer;
+		public SpriteRenderer scope3SpriteRenderer;
+		public SpriteRenderer scope4SpriteRenderer;
+	}
+	public weaponAttachmentRenderers WeaponAttachmentRenderers;
 
 	[Header("Weapon Sway")]
 	[Tooltip("총기 흔듦")]
@@ -108,6 +184,7 @@ public class AutomaticGun : EntityBehaviour<IFPSPlayerState>
 	public class soundClips
 	{
 		public AudioClip shootSound;
+		public AudioClip silencerShootSound;
 		public AudioClip takeOtSound;
 		public AudioClip reloadSoundOutOfAmmo;
 		public AudioClip reloadSoundAmmoLeft;
@@ -125,6 +202,135 @@ public class AutomaticGun : EntityBehaviour<IFPSPlayerState>
 		anim = GetComponent<Animator>();
 		currentAmmo = ammo;
 		muzzleflashLight.enabled = false;
+
+		// 무기 부착물
+		// Scope1 활성화
+		if (scope1 == true && WeaponAttachmentRenderers.scope1Renderer != null)
+		{
+			WeaponAttachmentRenderers.scope1Renderer.GetComponent
+			<SkinnedMeshRenderer>().enabled = true;
+
+			WeaponAttachmentRenderers.scope1RenderMesh.SetActive(true);
+
+			WeaponAttachmentRenderers.scope1SpriteRenderer.GetComponent
+				<SpriteRenderer>().sprite = scope1Texture;
+
+			WeaponAttachmentRenderers.scope1SpriteRenderer.transform.localScale = new Vector3
+				(scope1TextureSize, scope1TextureSize, scope1TextureSize);
+		}
+		// Scope1 비활성화
+		else if (WeaponAttachmentRenderers.scope1Renderer != null)
+		{
+			WeaponAttachmentRenderers.scope1Renderer.GetComponent<
+			SkinnedMeshRenderer>().enabled = false;
+
+			WeaponAttachmentRenderers.scope1RenderMesh.SetActive(false);
+		}
+
+		// Scope2 활성화
+		if (scope2 == true && WeaponAttachmentRenderers.scope2Renderer != null)
+		{
+			WeaponAttachmentRenderers.scope2Renderer.GetComponent
+			<SkinnedMeshRenderer>().enabled = true;
+
+			WeaponAttachmentRenderers.scope2RenderMesh.SetActive(true);
+
+			WeaponAttachmentRenderers.scope2SpriteRenderer.GetComponent
+			<SpriteRenderer>().sprite = scope2Texture;
+
+			WeaponAttachmentRenderers.scope2SpriteRenderer.transform.localScale = new Vector3
+				(scope2TextureSize, scope2TextureSize, scope2TextureSize);
+		}
+		// Scope2 비활성화
+		else if (WeaponAttachmentRenderers.scope2Renderer != null)
+		{
+			WeaponAttachmentRenderers.scope2Renderer.GetComponent
+			<SkinnedMeshRenderer>().enabled = false;
+
+			WeaponAttachmentRenderers.scope2RenderMesh.SetActive(false);
+		}
+
+		// Scope3 활성화
+		if (scope3 == true && WeaponAttachmentRenderers.scope3Renderer != null)
+		{
+			WeaponAttachmentRenderers.scope3Renderer.GetComponent
+			<SkinnedMeshRenderer>().enabled = true;
+
+			WeaponAttachmentRenderers.scope3RenderMesh.SetActive(true);
+
+			WeaponAttachmentRenderers.scope3SpriteRenderer.GetComponent
+			<SpriteRenderer>().sprite = scope3Texture;
+
+			WeaponAttachmentRenderers.scope3SpriteRenderer.transform.localScale = new Vector3
+				(scope3TextureSize, scope3TextureSize, scope3TextureSize);
+		}
+		// Scope3 비활성화
+		else if (WeaponAttachmentRenderers.scope3Renderer != null)
+		{
+			//If scope3 is false, disable scope renderer
+			WeaponAttachmentRenderers.scope3Renderer.GetComponent
+			<SkinnedMeshRenderer>().enabled = false;
+			//Also disable the scope sight render mesh
+			WeaponAttachmentRenderers.scope3RenderMesh.SetActive(false);
+		}
+
+		// Scope4 활성화
+		if (scope4 == true && WeaponAttachmentRenderers.scope4Renderer != null)
+		{
+			WeaponAttachmentRenderers.scope4Renderer.GetComponent
+			<SkinnedMeshRenderer>().enabled = true;
+
+			WeaponAttachmentRenderers.scope4RenderMesh.SetActive(true);
+
+			WeaponAttachmentRenderers.scope4SpriteRenderer.GetComponent
+			<SpriteRenderer>().sprite = scope4Texture;
+
+			WeaponAttachmentRenderers.scope4SpriteRenderer.transform.localScale = new Vector3
+				(scope4TextureSize, scope4TextureSize, scope4TextureSize);
+		}
+		// Scope4 비활성화
+		else if (WeaponAttachmentRenderers.scope4Renderer != null)
+		{
+			WeaponAttachmentRenderers.scope4Renderer.GetComponent
+			<SkinnedMeshRenderer>().enabled = false;
+
+			WeaponAttachmentRenderers.scope4RenderMesh.SetActive(false);
+		}
+
+		// 항상 가늠쇠가 있다면
+		if (alwaysShowIronSights == true && WeaponAttachmentRenderers.ironSightsRenderer != null)
+		{
+			WeaponAttachmentRenderers.ironSightsRenderer.GetComponent
+			<SkinnedMeshRenderer>().enabled = true;
+		}
+
+		// 가늠쇠가 있다면
+		if (ironSights == true && WeaponAttachmentRenderers.ironSightsRenderer != null)
+		{
+			WeaponAttachmentRenderers.ironSightsRenderer.GetComponent
+			<SkinnedMeshRenderer>().enabled = true;
+		}
+		// 항상 가늠쇠 보이기를 끄고 가늠쇠 자체를 꺼뒀다면
+		else if (!alwaysShowIronSights &&
+		  WeaponAttachmentRenderers.ironSightsRenderer != null)
+		{
+			WeaponAttachmentRenderers.ironSightsRenderer.GetComponent
+			<SkinnedMeshRenderer>().enabled = false;
+		}
+
+		// 소음기 장착
+		if (silencer == true &&
+			WeaponAttachmentRenderers.silencerRenderer != null)
+		{
+			WeaponAttachmentRenderers.silencerRenderer.GetComponent
+			<SkinnedMeshRenderer>().enabled = true;
+		}
+		// 소음기 미장착
+		else if (WeaponAttachmentRenderers.silencerRenderer != null)
+		{
+			WeaponAttachmentRenderers.silencerRenderer.GetComponent
+			<SkinnedMeshRenderer>().enabled = false;
+		}
 	}
 
     private void Start()
@@ -210,10 +416,56 @@ public class AutomaticGun : EntityBehaviour<IFPSPlayerState>
 		// 우클릭 조준 시 카메라 셋팅
 		if (Input.GetButton("Fire2") && !isReloadingAnim && !isRunning & !isReloading)
 		{
-			isAiming = true;
+			if (ironSights == true)
+			{
+				state.Aim = true;
+				aimFov = ironSightsAimFOV;
+				anim.SetBool("Aim", state.Aim);
+				//gunCamera.fieldOfView = Mathf.Lerp(gunCamera.fieldOfView,
+				//ironSightsAimFOV, fovSpeed * Time.deltaTime);
+			}
+			if (scope1 == true)
+			{
+				state.AimScope1 = true;
+				aimFov = scope1AimFOV;
+				anim.SetBool("AimScope1", state.AimScope1);
+				WeaponAttachmentRenderers.scope1SpriteRenderer.GetComponent
+					<SpriteRenderer>().enabled = true;
+				//gunCamera.fieldOfView = Mathf.Lerp(gunCamera.fieldOfView,
+				//scope1AimFOV, fovSpeed * Time.deltaTime);
+			}
+			if (scope2 == true)
+			{
+				state.AimScope2 = true;
+				aimFov = scope2AimFOV;
+				anim.SetBool("AimScope2", state.AimScope2);
+				WeaponAttachmentRenderers.scope2SpriteRenderer.GetComponent
+				 <SpriteRenderer>().enabled = true;
+				//gunCamera.fieldOfView = Mathf.Lerp(gunCamera.fieldOfView,
+				//scope2AimFOV, fovSpeed * Time.deltaTime);
+			}
+			if (scope3 == true)
+			{
+				state.AimScope3 = true;
+				aimFov = scope3AimFOV;
+				anim.SetBool("AimScope3", state.AimScope3);
+				WeaponAttachmentRenderers.scope3SpriteRenderer.GetComponent
+				<SpriteRenderer>().enabled = true;
+				//gunCamera.fieldOfView = Mathf.Lerp(gunCamera.fieldOfView,
+				//scope3AimFOV, fovSpeed * Time.deltaTime);
+			}
+			if (scope4 == true)
+			{
+				state.AimScope4 = true;
+				aimFov = scope4AimFOV;
+				anim.SetBool("AimScope4", state.AimScope4);
+				WeaponAttachmentRenderers.scope4SpriteRenderer.GetComponent
+				<SpriteRenderer>().enabled = true;
+				//gunCamera.fieldOfView = Mathf.Lerp(gunCamera.fieldOfView,
+				//scope4AimFOV, fovSpeed * Time.deltaTime);
+			}
 
-			state.Aim = true;
-			anim.SetBool("Aim", state.Aim);
+			isAiming = true;
 
 			gunCamera.fieldOfView = Mathf.Lerp(gunCamera.fieldOfView,
 				aimFov, fovSpeed * Time.deltaTime);
@@ -234,8 +486,45 @@ public class AutomaticGun : EntityBehaviour<IFPSPlayerState>
 
 			isAiming = false;
 
-			state.Aim = false;
-			anim.SetBool("Aim", state.Aim);
+			//If iron sights are enabled, use normal aim out
+			if (ironSights == true)
+			{
+				state.Aim = false;
+				anim.SetBool("Aim", state.Aim);
+			}
+			//If scope 1 is enabled, use scope 1 aim out animation
+			if (scope1 == true)
+			{
+				state.AimScope1 = false;
+				anim.SetBool("AimScope1", state.AimScope1);
+				WeaponAttachmentRenderers.scope1SpriteRenderer.GetComponent
+					<SpriteRenderer>().enabled = false;
+			}
+			//If scope 2 is enabled, use scope 2 aim out animation
+			if (scope2 == true)
+			{
+				state.AimScope2 = false;
+				anim.SetBool("AimScope2", state.AimScope2);
+				WeaponAttachmentRenderers.scope2SpriteRenderer.GetComponent
+				<SpriteRenderer>().enabled = false;
+			}
+			//If scope 3 is enabled, use scope 3 aim out animation
+			if (scope3 == true)
+			{
+				state.AimScope3 = false;
+				anim.SetBool("AimScope3", state.AimScope3);
+				WeaponAttachmentRenderers.scope3SpriteRenderer.GetComponent
+				<SpriteRenderer>().enabled = false;
+			}
+			//If scope 4 is enabled, use scope 4 aim out animation
+			if (scope4 == true)
+			{
+				state.AimScope4 = false;
+				anim.SetBool("AimScope4", state.AimScope4);
+				WeaponAttachmentRenderers.scope4SpriteRenderer.GetComponent
+				<SpriteRenderer>().enabled = false;
+			}
+			//anim.SetBool("Aim", state.Aim);
 
 			soundHasPlayed = false;
 		}
@@ -275,15 +564,24 @@ public class AutomaticGun : EntityBehaviour<IFPSPlayerState>
 				// 탄 수 감소
 				currentAmmo -= 1;
 
-				shootAudioSource.clip = SoundClips.shootSound;
-				shootAudioSource.Play();
+				// 소음기 장착시 사격 효과음
+				if (silencer == true && WeaponAttachmentRenderers.silencerRenderer != null)
+				{
+					shootAudioSource.clip = SoundClips.silencerShootSound;
+					shootAudioSource.Play();
+				}
+				// 소음기 미장착시 사격 효과음
+				else
+				{
+					shootAudioSource.clip = SoundClips.shootSound;
+					shootAudioSource.Play();
+				}
 
-				if (randomMuzzleflashValue == 1)
+				if (randomMuzzleflashValue == 1 && !silencer)
 				{
 					state.SparkParticleTrigger();
 					state.MuzzleParticleTrigger();
 				}
-
 
 				// 일반 사격 모드
 				if (!isAiming)
@@ -303,8 +601,17 @@ public class AutomaticGun : EntityBehaviour<IFPSPlayerState>
 				// 조준 사격 모드
 				else
 				{
-					state.AnimPlay = "Aim Fire";
-					//var를 Transform으로, BoltNetwork.Instantiate, Prefab.gameObject, 괄호 닫고 .transform
+					if (ironSights == true)
+						state.AnimPlay = "Aim Fire";
+					else if (scope1 == true)
+						state.AnimPlay = "Aim Fire Scope 1";
+					else if (scope2 == true)
+						state.AnimPlay = "Aim Fire Scope 2";
+					else if (scope3 == true)
+						state.AnimPlay = "Aim Fire Scope 3";
+					else if (scope4 == true)
+						state.AnimPlay = "Aim Fire Scope 4";
+
 					// 총알 생성
 					var bullet = Instantiate(
 						Prefabs.bulletPrefab,

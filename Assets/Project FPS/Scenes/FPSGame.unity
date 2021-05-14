@@ -421,7 +421,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   players: []
   myPlayer: {fileID: 0}
-  SpawnPrefab: {fileID: 2691810577174281090, guid: aa57be92e262de94d94fdd58b3b8e522, type: 3}
+  SpawnPrefab: {fileID: 1890160382369165482, guid: 49b2c43efe19ab747b237fa487bf19e3, type: 3}
   killLogCount: 0
   killLogText: {fileID: 1093916617}
   entities: []
