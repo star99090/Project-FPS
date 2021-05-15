@@ -123,6 +123,8 @@ public class NetworkManager : GlobalEventListener
     public override void OnEvent(KillEvent evnt)
     {
         evnt.attackerEntity.GetComponent<PlayerSubScript>().myKillScore += 1;
+        evnt.attackerEntity.GetComponent<Player>().killScore++;
+        evnt.attackerEntity.GetComponent<Player>().isWeaponChange = true;
         evnt.attackerEntity.GetComponent<PlayerSubScript>().UpdateMyScore();
 
         foreach (var player in players)
@@ -131,7 +133,6 @@ public class NetworkManager : GlobalEventListener
             {
                 firstPlayerScore = player.GetComponent<PlayerSubScript>().myKillScore;
                 firstPlayer = player.GetComponent<PlayerSubScript>().nickname.text;
-
             }
         }
 

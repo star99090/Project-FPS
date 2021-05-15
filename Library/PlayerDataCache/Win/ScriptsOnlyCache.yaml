@@ -11,7 +11,7 @@ ScriptsOnlyBuild:
     - InputFieldChange
     - LookAtCamera
     - NetworkManager
-    - Player.Player
+    - Player
     - PlayerSubScript
     - PropellerRotateLPFP
     - ThirdPersonDemoLPFP
@@ -21,8 +21,10 @@ ScriptsOnlyBuild:
     UnityEditor.Graphs.dll:
     - UnityEditor.Graphs.AnimationBlendTree.Graph
     - UnityEditor.Graphs.AnimationBlendTree.GraphGUI
+    - UnityEditor.Graphs.AnimationStateMachine.AnyStateNode
     - UnityEditor.Graphs.AnimationStateMachine.Graph
     - UnityEditor.Graphs.AnimationStateMachine.GraphGUI
+    - UnityEditor.Graphs.AnimationStateMachine.StateNode
     - UnityEditor.Graphs.AnimatorControllerTool
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.Api.CallbacksHolder
@@ -150,6 +152,8 @@ ScriptsOnlyBuild:
     - Class: 198
       Script: {instanceID: 0}
     - Class: 199
+      Script: {instanceID: 0}
+    - Class: 212
       Script: {instanceID: 0}
     - Class: 213
       Script: {instanceID: 0}
@@ -286,6 +290,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 199
       Script: {instanceID: 0}
+    - Class: 212
+      Script: {instanceID: 0}
     - Class: 213
       Script: {instanceID: 0}
     - Class: 222
@@ -337,9 +343,9 @@ ScriptsOnlyBuild:
     className: NetworkManager
   - hash:
       serializedVersion: 2
-      Hash: 0b3720758ffc7d898b03981275c6aea8
+      Hash: 55a971b5af87e9d818d56b40faaad258
     assemblyName: Assembly-CSharp.dll
-    namespaceName: Player
+    namespaceName: 
     className: Player
   - hash:
       serializedVersion: 2
@@ -1009,7 +1015,7 @@ ScriptsOnlyBuild:
     className: SignalEmitter
   - hash:
       serializedVersion: 2
-      Hash: 9b93b3608e352a4345b9ae565b292907
+      Hash: 074f37409328cc66ce7642f91fb6beac
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: AutomaticGun

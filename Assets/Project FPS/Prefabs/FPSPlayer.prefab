@@ -1358,6 +1358,9 @@ MonoBehaviour:
     leftRight: Vertical
     run: Run
     jump: Jump
+  myWeapon: []
+  killScore: 0
+  isWeaponChange: 0
   nicknameText: {fileID: 1800653564920912798}
   nicknameCanvas: {fileID: 290881912919417019}
 --- !u!114 &6835624471752019052
@@ -12833,6 +12836,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd38df9a0796d9842adfbe580ed6042e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  anim: {fileID: 0}
   gunCamera: {fileID: 6817600049644779942}
   fovSpeed: 15
   defaultFov: 40
@@ -12910,6 +12914,7 @@ MonoBehaviour:
     aimSound: {fileID: 8300000, guid: acaebc89b98b82142bd2b24edb6081e4, type: 3}
   attacker: {fileID: 1800653564920912798}
   myEntity: {fileID: 6835624471752019027}
+  isCurrentWeapon: 0
 --- !u!82 &6915316314603975544
 AudioSource:
   m_ObjectHideFlags: 0
