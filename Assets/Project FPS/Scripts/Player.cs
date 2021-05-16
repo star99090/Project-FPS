@@ -236,14 +236,10 @@ public class Player : Bolt.EntityBehaviour<IFPSPlayerState>
     private static float NormalizeAngle(float angleDegrees)
     {
         while (angleDegrees > 180f)
-        {
             angleDegrees -= 360f;
-        }
 
         while (angleDegrees <= -180f)
-        {
             angleDegrees += 360f;
-        }
 
         return angleDegrees;
     }
@@ -287,12 +283,13 @@ public class Player : Bolt.EntityBehaviour<IFPSPlayerState>
         // CapsuleCastNonAlloc() : Scene 안의 모든 캡슐 콜라이더에 대한 Raycast를 통해 무엇과 충돌했는지 정보를 반환
         Physics.CapsuleCastNonAlloc(point1, point2, radius, velocity.normalized, _wallCastResults,
             radius * 0.04f, ~0, QueryTriggerInteraction.Ignore);
+
         var collides = _wallCastResults.Any(hit => hit.collider != null && hit.collider != _collider);
+
         if (!collides) return false;
-        for (var i = 0; i < _wallCastResults.Length; i++)
-        {
+
+        for (int i = 0; i < _wallCastResults.Length; i++)
             _wallCastResults[i] = new RaycastHit();
-        }
 
         return true;
     }
@@ -301,6 +298,7 @@ public class Player : Bolt.EntityBehaviour<IFPSPlayerState>
     private void Jump()
     {
         if (!_isGrounded || !input.Jump) return;
+
         _isGrounded = false;
         _rigidbody.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
     }
@@ -313,17 +311,14 @@ public class Player : Bolt.EntityBehaviour<IFPSPlayerState>
         if (_isGrounded && _rigidbody.velocity.sqrMagnitude > 0.1f)
         {
             _audioSource.clip = input.Run ? runningSound : walkingSound;
+
             if (!_audioSource.isPlaying)
-            {
                 _audioSource.Play();
-            }
         }
         else
         {
             if (_audioSource.isPlaying)
-            {
                 _audioSource.Pause();
-            }
         }
     }
 

@@ -52,15 +52,8 @@ public class TitleLobbyManager : Bolt.GlobalEventListener
         LogText.text = log;
     }
 
-    public void OnclickSearchingServer()
-    {
-        if (LogPanel.activeSelf)
-        {
-            LogPanel.SetActive(false);
-        }
-        else
-            LogPanel.SetActive(true);
-    }
+    public void OnclickSearchingServer() => LogPanel.SetActive(!LogPanel.activeSelf);
+
     public void OnMouseOver() => cameraAudio.GetComponent<AudioSource>().PlayOneShot(mouseOnOver);
     public void OnMouseDown() => cameraAudio.GetComponent<AudioSource>().PlayOneShot(mouseClick);
 }

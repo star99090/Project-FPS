@@ -14,43 +14,43 @@ AnimatorController:
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: Aim
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: Walk
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: AimScope1
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: AimScope2
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: AimScope3
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: AimScope4
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base Layer
@@ -1956,7 +1956,7 @@ AnimatorStateMachine:
     m_Position: {x: -240, y: 372, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 110212644}
-    m_Position: {x: 288, y: 420, z: 0}
+    m_Position: {x: 290, y: 420, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 110242876}
     m_Position: {x: 264, y: 504, z: 0}
@@ -1968,7 +1968,7 @@ AnimatorStateMachine:
     m_Position: {x: 516, y: 360, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102342054954858776}
-    m_Position: {x: 288, y: 360, z: 0}
+    m_Position: {x: 290, y: 360, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102187578278670184}
     m_Position: {x: 156, y: 624, z: 0}
@@ -1983,16 +1983,16 @@ AnimatorStateMachine:
     m_Position: {x: 516, y: 204, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102278101875426464}
-    m_Position: {x: 288, y: 264, z: 0}
+    m_Position: {x: 290, y: 260, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102610716445450502}
     m_Position: {x: 290, y: 190, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102297614390523346}
-    m_Position: {x: 288, y: 120, z: 0}
+    m_Position: {x: 290, y: 120, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102798429910526564}
-    m_Position: {x: 288, y: 60, z: 0}
+    m_Position: {x: 290, y: 60, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102333878884158072}
     m_Position: {x: 516, y: 60, z: 0}
@@ -2001,7 +2001,7 @@ AnimatorStateMachine:
     m_Position: {x: 516, y: 120, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102035979111044882}
-    m_Position: {x: 288, y: -24, z: 0}
+    m_Position: {x: 290, y: -20, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102192105639157016}
     m_Position: {x: 288, y: -84, z: 0}
@@ -2019,7 +2019,7 @@ AnimatorStateMachine:
     m_Position: {x: 516, y: -180, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102575561076746150}
-    m_Position: {x: 288, y: -180, z: 0}
+    m_Position: {x: 290, y: -180, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102190255453983418}
     m_Position: {x: 288, y: -240, z: 0}
@@ -2096,20 +2096,8 @@ AnimatorStateTransition:
   m_PrefabAsset: {fileID: 0}
   m_Name: 
   m_Conditions:
-  - m_ConditionMode: 2
-    m_ConditionEvent: Aim
-    m_EventTreshold: 0
   - m_ConditionMode: 1
     m_ConditionEvent: AimScope1
-    m_EventTreshold: 0
-  - m_ConditionMode: 2
-    m_ConditionEvent: AimScope2
-    m_EventTreshold: 0
-  - m_ConditionMode: 2
-    m_ConditionEvent: AimScope3
-    m_EventTreshold: 0
-  - m_ConditionMode: 2
-    m_ConditionEvent: AimScope4
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 1102278101875426464}
@@ -2133,20 +2121,8 @@ AnimatorStateTransition:
   m_PrefabAsset: {fileID: 0}
   m_Name: 
   m_Conditions:
-  - m_ConditionMode: 2
-    m_ConditionEvent: Aim
-    m_EventTreshold: 0
   - m_ConditionMode: 1
     m_ConditionEvent: AimScope1
-    m_EventTreshold: 0
-  - m_ConditionMode: 2
-    m_ConditionEvent: AimScope2
-    m_EventTreshold: 0
-  - m_ConditionMode: 2
-    m_ConditionEvent: AimScope3
-    m_EventTreshold: 0
-  - m_ConditionMode: 2
-    m_ConditionEvent: AimScope4
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 1102278101875426464}
@@ -2317,20 +2293,8 @@ AnimatorStateTransition:
   m_PrefabAsset: {fileID: 0}
   m_Name: 
   m_Conditions:
-  - m_ConditionMode: 2
-    m_ConditionEvent: Aim
-    m_EventTreshold: 0
-  - m_ConditionMode: 2
-    m_ConditionEvent: AimScope1
-    m_EventTreshold: 0
   - m_ConditionMode: 1
     m_ConditionEvent: AimScope2
-    m_EventTreshold: 0
-  - m_ConditionMode: 2
-    m_ConditionEvent: AimScope3
-    m_EventTreshold: 0
-  - m_ConditionMode: 2
-    m_ConditionEvent: AimScope4
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 1102297614390523346}
@@ -2357,18 +2321,6 @@ AnimatorStateTransition:
   - m_ConditionMode: 1
     m_ConditionEvent: Aim
     m_EventTreshold: 0
-  - m_ConditionMode: 2
-    m_ConditionEvent: AimScope1
-    m_EventTreshold: 0
-  - m_ConditionMode: 2
-    m_ConditionEvent: AimScope2
-    m_EventTreshold: 0
-  - m_ConditionMode: 2
-    m_ConditionEvent: AimScope3
-    m_EventTreshold: 0
-  - m_ConditionMode: 2
-    m_ConditionEvent: AimScope4
-    m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 110212644}
   m_Solo: 0
@@ -2391,18 +2343,6 @@ AnimatorStateTransition:
   m_PrefabAsset: {fileID: 0}
   m_Name: 
   m_Conditions:
-  - m_ConditionMode: 2
-    m_ConditionEvent: Aim
-    m_EventTreshold: 0
-  - m_ConditionMode: 2
-    m_ConditionEvent: AimScope1
-    m_EventTreshold: 0
-  - m_ConditionMode: 2
-    m_ConditionEvent: AimScope2
-    m_EventTreshold: 0
-  - m_ConditionMode: 2
-    m_ConditionEvent: AimScope3
-    m_EventTreshold: 0
   - m_ConditionMode: 1
     m_ConditionEvent: AimScope4
     m_EventTreshold: 0
@@ -2478,18 +2418,6 @@ AnimatorStateTransition:
   - m_ConditionMode: 1
     m_ConditionEvent: Aim
     m_EventTreshold: 0
-  - m_ConditionMode: 2
-    m_ConditionEvent: AimScope1
-    m_EventTreshold: 0
-  - m_ConditionMode: 2
-    m_ConditionEvent: AimScope2
-    m_EventTreshold: 0
-  - m_ConditionMode: 2
-    m_ConditionEvent: AimScope3
-    m_EventTreshold: 0
-  - m_ConditionMode: 2
-    m_ConditionEvent: AimScope4
-    m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 110212644}
   m_Solo: 0
@@ -2512,18 +2440,6 @@ AnimatorStateTransition:
   m_PrefabAsset: {fileID: 0}
   m_Name: 
   m_Conditions:
-  - m_ConditionMode: 2
-    m_ConditionEvent: Aim
-    m_EventTreshold: 0
-  - m_ConditionMode: 2
-    m_ConditionEvent: AimScope1
-    m_EventTreshold: 0
-  - m_ConditionMode: 2
-    m_ConditionEvent: AimScope2
-    m_EventTreshold: 0
-  - m_ConditionMode: 2
-    m_ConditionEvent: AimScope3
-    m_EventTreshold: 0
   - m_ConditionMode: 1
     m_ConditionEvent: AimScope4
     m_EventTreshold: 0
@@ -2712,20 +2628,8 @@ AnimatorStateTransition:
   m_PrefabAsset: {fileID: 0}
   m_Name: 
   m_Conditions:
-  - m_ConditionMode: 2
-    m_ConditionEvent: Aim
-    m_EventTreshold: 0
   - m_ConditionMode: 1
     m_ConditionEvent: AimScope1
-    m_EventTreshold: 0
-  - m_ConditionMode: 2
-    m_ConditionEvent: AimScope2
-    m_EventTreshold: 0
-  - m_ConditionMode: 2
-    m_ConditionEvent: AimScope3
-    m_EventTreshold: 0
-  - m_ConditionMode: 2
-    m_ConditionEvent: AimScope4
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 1102278101875426464}
@@ -2802,18 +2706,6 @@ AnimatorStateTransition:
   m_PrefabAsset: {fileID: 0}
   m_Name: 
   m_Conditions:
-  - m_ConditionMode: 2
-    m_ConditionEvent: Aim
-    m_EventTreshold: 0
-  - m_ConditionMode: 2
-    m_ConditionEvent: AimScope1
-    m_EventTreshold: 0
-  - m_ConditionMode: 2
-    m_ConditionEvent: AimScope2
-    m_EventTreshold: 0
-  - m_ConditionMode: 2
-    m_ConditionEvent: AimScope3
-    m_EventTreshold: 0
   - m_ConditionMode: 1
     m_ConditionEvent: AimScope4
     m_EventTreshold: 0
@@ -2961,20 +2853,8 @@ AnimatorStateTransition:
   m_PrefabAsset: {fileID: 0}
   m_Name: 
   m_Conditions:
-  - m_ConditionMode: 2
-    m_ConditionEvent: Aim
-    m_EventTreshold: 0
-  - m_ConditionMode: 2
-    m_ConditionEvent: AimScope1
-    m_EventTreshold: 0
-  - m_ConditionMode: 2
-    m_ConditionEvent: AimScope2
-    m_EventTreshold: 0
   - m_ConditionMode: 1
     m_ConditionEvent: AimScope3
-    m_EventTreshold: 0
-  - m_ConditionMode: 2
-    m_ConditionEvent: AimScope4
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 1102035979111044882}
@@ -2998,20 +2878,8 @@ AnimatorStateTransition:
   m_PrefabAsset: {fileID: 0}
   m_Name: 
   m_Conditions:
-  - m_ConditionMode: 2
-    m_ConditionEvent: Aim
-    m_EventTreshold: 0
-  - m_ConditionMode: 2
-    m_ConditionEvent: AimScope1
-    m_EventTreshold: 0
   - m_ConditionMode: 1
     m_ConditionEvent: AimScope2
-    m_EventTreshold: 0
-  - m_ConditionMode: 2
-    m_ConditionEvent: AimScope3
-    m_EventTreshold: 0
-  - m_ConditionMode: 2
-    m_ConditionEvent: AimScope4
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 1102297614390523346}
@@ -3035,20 +2903,8 @@ AnimatorStateTransition:
   m_PrefabAsset: {fileID: 0}
   m_Name: 
   m_Conditions:
-  - m_ConditionMode: 2
-    m_ConditionEvent: Aim
-    m_EventTreshold: 0
-  - m_ConditionMode: 2
-    m_ConditionEvent: AimScope1
-    m_EventTreshold: 0
-  - m_ConditionMode: 2
-    m_ConditionEvent: AimScope2
-    m_EventTreshold: 0
   - m_ConditionMode: 1
     m_ConditionEvent: AimScope3
-    m_EventTreshold: 0
-  - m_ConditionMode: 2
-    m_ConditionEvent: AimScope4
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 1102035979111044882}
@@ -3074,18 +2930,6 @@ AnimatorStateTransition:
   m_Conditions:
   - m_ConditionMode: 1
     m_ConditionEvent: Aim
-    m_EventTreshold: 0
-  - m_ConditionMode: 2
-    m_ConditionEvent: AimScope1
-    m_EventTreshold: 0
-  - m_ConditionMode: 2
-    m_ConditionEvent: AimScope2
-    m_EventTreshold: 0
-  - m_ConditionMode: 2
-    m_ConditionEvent: AimScope3
-    m_EventTreshold: 0
-  - m_ConditionMode: 2
-    m_ConditionEvent: AimScope4
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 110212644}
@@ -3228,20 +3072,8 @@ AnimatorStateTransition:
   m_PrefabAsset: {fileID: 0}
   m_Name: 
   m_Conditions:
-  - m_ConditionMode: 2
-    m_ConditionEvent: Aim
-    m_EventTreshold: 0
-  - m_ConditionMode: 2
-    m_ConditionEvent: AimScope1
-    m_EventTreshold: 0
-  - m_ConditionMode: 2
-    m_ConditionEvent: AimScope2
-    m_EventTreshold: 0
   - m_ConditionMode: 1
     m_ConditionEvent: AimScope3
-    m_EventTreshold: 0
-  - m_ConditionMode: 2
-    m_ConditionEvent: AimScope4
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 1102035979111044882}
@@ -3525,7 +3357,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Aim In Scope 2
+  m_Name: AimScope2
   m_Speed: 1.5
   m_CycleOffset: 0
   m_Transitions:

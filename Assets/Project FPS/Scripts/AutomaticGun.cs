@@ -73,7 +73,6 @@ public class AutomaticGun : EntityBehaviour<IFPSPlayerState>
 	{
 		[Header("Scope Model Renderers")]
 		[Space(10)]
-
 		// Renderer
 		public SkinnedMeshRenderer scope1Renderer;
 		public SkinnedMeshRenderer scope2Renderer;
@@ -81,17 +80,17 @@ public class AutomaticGun : EntityBehaviour<IFPSPlayerState>
 		public SkinnedMeshRenderer scope4Renderer;
 		public SkinnedMeshRenderer ironSightsRenderer;
 		public SkinnedMeshRenderer silencerRenderer;
+
 		[Header("Scope Sight Mesh Renderers")]
 		[Space(10)]
-
 		// Mesh
 		public GameObject scope1RenderMesh;
 		public GameObject scope2RenderMesh;
 		public GameObject scope3RenderMesh;
 		public GameObject scope4RenderMesh;
+
 		[Header("Scope Sight Sprite Renderers")]
 		[Space(10)]
-
 		// Textures
 		public SpriteRenderer scope1SpriteRenderer;
 		public SpriteRenderer scope2SpriteRenderer;
@@ -100,40 +99,26 @@ public class AutomaticGun : EntityBehaviour<IFPSPlayerState>
 	}
 	public weaponAttachmentRenderers WeaponAttachmentRenderers;
 
-	[Header("Weapon Sway")]
-	[Tooltip("총기 흔듦")]
-	public bool weaponSway;
-
-	public float swayAmount = 0.02f;
-	public float maxSwayAmount = 0.06f;
-	public float swaySmoothValue = 4.0f;
-
-	private Vector3 initialSwayPosition;
-
 	[Header("Weapon Settings")]
-	[Tooltip("발사 속도")]
+	[Tooltip("발사 딜레이 조절")]
 	public float fireRate;
+	private float lastFired;
 
 	[Tooltip("자동 장전")]
 	public bool autoReload;
 
-	[Tooltip("발사 딜레이")]
-	public float autoReloadDelay;
-	private float lastFired;
-
-	private bool isReloadingAnim;
-	public bool isReloading = false;
-	private bool isRunning;
-	private bool isAiming;
-
 	[Tooltip("최대 탄 수")]
 	public int ammo;
 	private int currentAmmo;
-	private bool outOfAmmo;	// 탄을 다 썼는지 확인
+	private bool outOfAmmo;
+	private bool fullAmmo;
 
 	[Header("Bullet Settings")]
 	[Tooltip("총탄 발사 힘")]
-	public float bulletForce = 0.5f;
+	public float bulletForce = 400f;
+
+	[Tooltip("데미지 중간 값")]
+	public int damage = 20;
 
 	[Tooltip("탄피 자동 삭제에 걸리는 딜레이")]
 	public float showBulletInMagDelay = 0.6f;
@@ -141,12 +126,12 @@ public class AutomaticGun : EntityBehaviour<IFPSPlayerState>
 	[Tooltip("탄피 안의 총알 모델")]
 	public SkinnedMeshRenderer bulletInMagRenderer;
 
-	private int randomMuzzleflashValue;
-
+	[Header("Muzzleflash Settings")]
 	public ParticleSystem muzzleParticles;
 	public ParticleSystem sparkParticles;
 	public int minSparkEmission = 1;
 	public int maxSparkEmission = 7;
+	private int randomMuzzleflashValue;
 
 	[Header("Muzzleflash Light Settings")]
 	public Light muzzleflashLight;
@@ -160,6 +145,7 @@ public class AutomaticGun : EntityBehaviour<IFPSPlayerState>
 	public Text currentWeaponText;
 	public Text currentAmmoText;
 	public Text totalAmmoText;
+	[SerializeField] private Text attacker;
 
 	[System.Serializable]
 	public class prefabs
@@ -194,12 +180,14 @@ public class AutomaticGun : EntityBehaviour<IFPSPlayerState>
 
 	private bool soundHasPlayed = false;
 
-	[SerializeField] Text attacker;
-	public BoltEntity myEntity;
-	public GameObject myBody;
-
+	[SerializeField] private BoltEntity myEntity;
 	[SerializeField] private GameObject myCharacterModel;
 	public bool isCurrentWeapon;
+	private bool isDraw = true;
+	private bool isReloadingAnim;
+	private bool isReloading = false;
+	private bool isRunning;
+	private bool isAiming;
 
 	private void Awake()
 	{
@@ -271,10 +259,9 @@ public class AutomaticGun : EntityBehaviour<IFPSPlayerState>
 		// Scope3 비활성화
 		else if (WeaponAttachmentRenderers.scope3Renderer != null)
 		{
-			//If scope3 is false, disable scope renderer
 			WeaponAttachmentRenderers.scope3Renderer.GetComponent
 			<SkinnedMeshRenderer>().enabled = false;
-			//Also disable the scope sight render mesh
+
 			WeaponAttachmentRenderers.scope3RenderMesh.SetActive(false);
 		}
 
@@ -342,30 +329,16 @@ public class AutomaticGun : EntityBehaviour<IFPSPlayerState>
 		storedWeaponName = weaponName;
 		currentWeaponText.text = weaponName;
 		totalAmmoText.text = ammo.ToString();
-		initialSwayPosition = transform.localPosition;
 		shootAudioSource.clip = SoundClips.shootSound;
 	}
 
     public override void Attached()
     {
-		//state.SetAnimator(anim);
-		//state.AddCallback("AnimPlay", AnimPlayCallback);
 		state.AddCallback("MuzzleParticleTrigger", MuzzleParticleCallback);
 		state.AddCallback("SparkParticleTrigger", SparkParticleCallback);
 		state.OnMuzzleParticleTrigger += MuzzleParticleCallback;
 		state.OnSparkParticleTrigger += SparkParticleCallback;
 	}
-
-	void AnimPlayCallback()
-    {
-		if(state.AnimPlay != "o")
-        {
-			state.Animator.Play(state.AnimPlay);
-			Invoke("AnimPlayDelay", 0.05f);
-        }
-    }
-
-	void AnimPlayDelay() => state.AnimPlay = "o";
 
 	void MuzzleParticleCallback()
     {
@@ -386,90 +359,55 @@ public class AutomaticGun : EntityBehaviour<IFPSPlayerState>
 			var evnt = PlayerHitEvent.Create();
 			evnt.attacker = attacker.text;
 			evnt.targetEntity = hit.collider.gameObject.GetComponent<BoltEntity>();
-			evnt.damage = Random.Range(30, 35);
+			evnt.damage = Random.Range(damage-2, damage+2);
 			evnt.attackerEntity = myEntity;
 			evnt.Send();
 		}
     }
 
-	private void LateUpdate()
-	{
-		if (!entity.IsOwner) return;
-
-		// 무기 흔들면서 드는 것
-		if (weaponSway == true)
-		{
-			// 마우스 현재 회전 반영
-			float movementX = -Input.GetAxis("Mouse X") * swayAmount;
-			float movementY = -Input.GetAxis("Mouse Y") * swayAmount;
-			
-			movementX = Mathf.Clamp
-				(movementX, -maxSwayAmount, maxSwayAmount);
-			movementY = Mathf.Clamp
-				(movementY, -maxSwayAmount, maxSwayAmount);
-			
-			Vector3 finalSwayPosition = new Vector3(movementX, movementY, 0);
-
-			// 흔들고 정상 위치로 포지션 복귀를 위한 Lerp
-			transform.localPosition = Vector3.Lerp(transform.localPosition,
-				finalSwayPosition + initialSwayPosition, Time.deltaTime * swaySmoothValue);
-		}
-	}
-
     private void Update()
 	{
 		if (!entity.IsOwner) return;
+
+		if (anim.GetCurrentAnimatorStateInfo(0).IsName("Draw")
+			&& anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1f)
+			isDraw = false;
 
 		// 우클릭 조준 시 카메라 셋팅
 		if (Input.GetButton("Fire2") && !isReloadingAnim && !isRunning & !isReloading)
 		{
 			if (ironSights == true)
 			{
-				//state.Aim = true;
 				aimFov = ironSightsAimFOV;
-				anim.SetBool("Aim", true);//state.Aim);
-				//gunCamera.fieldOfView = Mathf.Lerp(gunCamera.fieldOfView,
-				//ironSightsAimFOV, fovSpeed * Time.deltaTime);
+				anim.SetBool("Aim", true);
 			}
 			if (scope1 == true)
 			{
-				//state.AimScope1 = true;
 				aimFov = scope1AimFOV;
-				anim.SetBool("AimScope1", true);// state.AimScope1);
+				anim.SetBool("AimScope1", true);
 				WeaponAttachmentRenderers.scope1SpriteRenderer.GetComponent
 					<SpriteRenderer>().enabled = true;
-				//gunCamera.fieldOfView = Mathf.Lerp(gunCamera.fieldOfView,
-				//scope1AimFOV, fovSpeed * Time.deltaTime);
 			}
 			if (scope2 == true)
 			{
-				//state.AimScope2 = true;
 				aimFov = scope2AimFOV;
-				anim.SetBool("AimScope2", true);//state.AimScope2);
+				anim.SetBool("AimScope2", true);
 				WeaponAttachmentRenderers.scope2SpriteRenderer.GetComponent
 				 <SpriteRenderer>().enabled = true;
-				//gunCamera.fieldOfView = Mathf.Lerp(gunCamera.fieldOfView,
-				//scope2AimFOV, fovSpeed * Time.deltaTime);
 			}
 			if (scope3 == true)
 			{
-				//state.AimScope3 = true;
 				aimFov = scope3AimFOV;
-				anim.SetBool("AimScope3", true); //state.AimScope3);
+				anim.SetBool("AimScope3", true);
 				WeaponAttachmentRenderers.scope3SpriteRenderer.GetComponent
 				<SpriteRenderer>().enabled = true;
-				//gunCamera.fieldOfView = Mathf.Lerp(gunCamera.fieldOfView,
-				//scope3AimFOV, fovSpeed * Time.deltaTime);
 			}
 			if (scope4 == true)
 			{
-				//state.AimScope4 = true;
 				aimFov = scope4AimFOV;
-				anim.SetBool("AimScope4", true); //state.AimScope4);
+				anim.SetBool("AimScope4", true);
 				WeaponAttachmentRenderers.scope4SpriteRenderer.GetComponent
 				<SpriteRenderer>().enabled = true;
-				//gunCamera.fieldOfView = Mathf.Lerp(gunCamera.fieldOfView,
-				//scope4AimFOV, fovSpeed * Time.deltaTime);
 			}
 
 			isAiming = true;
@@ -495,43 +433,31 @@ public class AutomaticGun : EntityBehaviour<IFPSPlayerState>
 
 			//If iron sights are enabled, use normal aim out
 			if (ironSights == true)
-			{
-				//state.Aim = false;
-				anim.SetBool("Aim", false); //state.Aim);
-			}
-			//If scope 1 is enabled, use scope 1 aim out animation
+				anim.SetBool("Aim", false);
 			if (scope1 == true)
 			{
-				//state.AimScope1 = false;
-				anim.SetBool("AimScope1", false); //state.AimScope1);
+				anim.SetBool("AimScope1", false);
 				WeaponAttachmentRenderers.scope1SpriteRenderer.GetComponent
 					<SpriteRenderer>().enabled = false;
 			}
-			//If scope 2 is enabled, use scope 2 aim out animation
 			if (scope2 == true)
 			{
-				//state.AimScope2 = false;
-				anim.SetBool("AimScope2", false); //state.AimScope2);
+				anim.SetBool("AimScope2", false);
 				WeaponAttachmentRenderers.scope2SpriteRenderer.GetComponent
 				<SpriteRenderer>().enabled = false;
 			}
-			//If scope 3 is enabled, use scope 3 aim out animation
 			if (scope3 == true)
 			{
-				//state.AimScope3 = false;
-				anim.SetBool("AimScope3", false); //state.AimScope3);
+				anim.SetBool("AimScope3", false);
 				WeaponAttachmentRenderers.scope3SpriteRenderer.GetComponent
 				<SpriteRenderer>().enabled = false;
 			}
-			//If scope 4 is enabled, use scope 4 aim out animation
 			if (scope4 == true)
 			{
-				//state.AimScope4 = false;
-				anim.SetBool("AimScope4", false); //state.AimScope4);
+				anim.SetBool("AimScope4", false);
 				WeaponAttachmentRenderers.scope4SpriteRenderer.GetComponent
 				<SpriteRenderer>().enabled = false;
 			}
-
 			soundHasPlayed = false;
 		}
 		
@@ -540,6 +466,11 @@ public class AutomaticGun : EntityBehaviour<IFPSPlayerState>
 
 		// 현재 탄 수 동기화
 		currentAmmoText.text = currentAmmo.ToString();
+
+		if (currentAmmo == ammo)
+			fullAmmo = true;
+		else
+			fullAmmo = false;
 
 		// 현재 재장전 애니메이션 진행 중인지 확인
 		AnimationCheck();
@@ -561,7 +492,8 @@ public class AutomaticGun : EntityBehaviour<IFPSPlayerState>
 		}
 
 		// 자동 발사(좌클릭 유지)
-		if (Input.GetMouseButton(0) && !outOfAmmo && !isReloadingAnim && !isRunning && !isReloading && isCurrentWeapon)
+		if (Input.GetMouseButton(0) && !outOfAmmo && !isReloadingAnim
+			&& !isRunning && !isReloading && isCurrentWeapon && !isDraw)
 		{
 			if (Time.time - lastFired > 1 / fireRate)
 			{
@@ -590,11 +522,9 @@ public class AutomaticGun : EntityBehaviour<IFPSPlayerState>
 					state.MuzzleParticleTrigger();
 				}
 
-				myBody.GetComponent<CharacterAnimation>().FireAnim();
 				// 일반 사격 모드
 				if (!isAiming)
 				{
-					//state.AnimPlay = "Fire";
 					anim.Play("Fire", 0, 0f);
 
 					// 총알 생성
@@ -611,22 +541,15 @@ public class AutomaticGun : EntityBehaviour<IFPSPlayerState>
 				else
 				{
 					if (ironSights == true)
-					{
 						anim.Play("Aim Fire", 0, 0f);
-						//state.AnimPlay = "Aim Fire";
-					}
 					if (scope1 == true)
 						anim.Play("Aim Fire Scope 1", 0, 0f);
-						//state.AnimPlay = "Aim Fire Scope 1";
 					if (scope2 == true)
 						anim.Play("Aim Fire Scope 2", 0, 0f);
-						//state.AnimPlay = "Aim Fire Scope 2";
 					if (scope3 == true)
 						anim.Play("Aim Fire Scope 3", 0, 0f);
-					//state.AnimPlay = "Aim Fire Scope 3";
 					if (scope4 == true)
 						anim.Play("Aim Fire Scope 4", 0, 0f);
-					//state.AnimPlay = "Aim Fire Scope 4";
 
 					// 총알 생성
 					var bullet = Instantiate(
@@ -649,7 +572,7 @@ public class AutomaticGun : EntityBehaviour<IFPSPlayerState>
 		}
 
 		// 재장전
-		if (Input.GetKeyDown(KeyCode.R) && !isReloadingAnim && isCurrentWeapon)
+		if (Input.GetKeyDown(KeyCode.R) && !isReloadingAnim && isCurrentWeapon && !isDraw && !fullAmmo)
 			Reload();
 
 		// 걷기
@@ -657,15 +580,9 @@ public class AutomaticGun : EntityBehaviour<IFPSPlayerState>
 			Input.GetKey(KeyCode.A) && !isRunning ||
 			Input.GetKey(KeyCode.S) && !isRunning ||
 			Input.GetKey(KeyCode.D) && !isRunning)
-		{
-			//myBody.GetComponent<CharacterAnimation>().move = true;
-			anim.SetBool("Walk", true); //state.Walk);
-		}
+			anim.SetBool("Walk", true);
 		else
-		{
-			//myBody.GetComponent<CharacterAnimation>().move = false;
-			anim.SetBool("Walk", false); //state.Walk);
-		}
+			anim.SetBool("Walk", false);
 
 		// W와 Left Shift를 누르면 달리기
 		if ((Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.LeftShift)))
@@ -675,28 +592,21 @@ public class AutomaticGun : EntityBehaviour<IFPSPlayerState>
 
 		// 달리기 애니메이션 설정
 		if (isRunning == true)
-		{
-			//state.Run = true;
-			anim.SetBool("Run", true); //state.Run);
-		}
+			anim.SetBool("Run", true);
 		else
-		{
-			//state.Run = false;
-			anim.SetBool("Run", false); //state.Run);
-		}
+			anim.SetBool("Run", false);
 	}
 
 	// 자동 장전
 	private IEnumerator AutoReload()
 	{
+		yield return null;
 		isReloading = true;
-		myBody.GetComponent<CharacterAnimation>().ReloadAnim();
-		yield return new WaitForSeconds(autoReloadDelay);
+		myCharacterModel.GetComponent<CharacterAnimation>().ReloadAnim();
 
 		if (outOfAmmo == true && isCurrentWeapon)
 		{
 			anim.Play("Reload Out Of Ammo", 0, 0f);
-			//state.AnimPlay = "Reload Out Of Ammo";
 
 			mainAudioSource.clip = SoundClips.reloadSoundOutOfAmmo;
 			mainAudioSource.Play();
@@ -711,8 +621,6 @@ public class AutomaticGun : EntityBehaviour<IFPSPlayerState>
 			}
 		}
 
-		myCharacterModel.GetComponent<CharacterAnimation>().ReloadAnim();
-
 		// 재장전 완료
 		Invoke("SuccessReload", 1.5f);
 	}
@@ -721,11 +629,10 @@ public class AutomaticGun : EntityBehaviour<IFPSPlayerState>
 	private void Reload()
 	{
 		isReloading = true;
-		myBody.GetComponent<CharacterAnimation>().ReloadAnim();
+		myCharacterModel.GetComponent<CharacterAnimation>().ReloadAnim();
 		if (outOfAmmo == true)
 		{
 			anim.Play("Reload Out Of Ammo", 0, 0f);
-			//state.AnimPlay = "Reload Out Of Ammo";
 
 			mainAudioSource.clip = SoundClips.reloadSoundOutOfAmmo;
 			mainAudioSource.Play();
@@ -742,7 +649,6 @@ public class AutomaticGun : EntityBehaviour<IFPSPlayerState>
 		else
 		{
 			anim.Play("Reload Ammo Left", 0, 0f);
-			//state.AnimPlay = "Reload Ammo Left";
 
 			mainAudioSource.clip = SoundClips.reloadSoundAmmoLeft;
 			mainAudioSource.Play();
@@ -754,8 +660,6 @@ public class AutomaticGun : EntityBehaviour<IFPSPlayerState>
 				<SkinnedMeshRenderer>().enabled = true;
 			}
 		}
-
-		myCharacterModel.GetComponent<CharacterAnimation>().ReloadAnim();
 
 		// 재장전 완료
 		Invoke("SuccessReload", 1.5f);

@@ -10,7 +10,6 @@ using UnityEngine.UI;
 
 public class NetworkManager : GlobalEventListener
 {
-    private Coroutine coroutine;
     public static NetworkManager NM { get; set; }
     private void Awake() => NM = this;
 
@@ -77,23 +76,18 @@ public class NetworkManager : GlobalEventListener
         registerDoneCallback(BoltShutdownCallback);
     }
 
-    void JoinedEventDelay()
-    {
-        foreach (var player in players)
-        {
-            if (player != myPlayer)
-            {
-                player.GetComponent<PlayerSubScript>().HideObject();
-                player.GetComponent<PlayerSubScript>().MyBodySet();
-            }
-            else
-                player.GetComponent<PlayerSubScript>().NicknameSet();
-        }
-    }
-
     public override void OnEvent(JoinedEvent evnt)
     {
-        Invoke("JoinedEventDelay", 0.25f);
+        for (int i = 0; i < players.Count; i++)
+        {
+            if (players[i] != myPlayer)
+            {
+                players[i].GetComponent<PlayerSubScript>().HideObject();
+                players[i].GetComponent<PlayerSubScript>().MyBodySet();
+            }
+            else
+                players[i].GetComponent<PlayerSubScript>().MySet();
+        }
     }
 
     public override void OnEvent(HostMigrationEvent evnt)
@@ -125,19 +119,19 @@ public class NetworkManager : GlobalEventListener
         evnt.attackerEntity.GetComponent<Player>().isWeaponChange = true;
         evnt.attackerEntity.GetComponent<PlayerSubScript>().UpdateMyScore();
 
-        foreach (var player in players)
+        for(int i = 0; i < players.Count; i++)
         {
-            if (player.GetComponent<PlayerSubScript>().myKillScore > firstPlayerScore)
+            if (players[i].GetComponent<PlayerSubScript>().myKillScore > firstPlayerScore)
             {
-                firstPlayerScore = player.GetComponent<PlayerSubScript>().myKillScore;
-                firstPlayer = player.GetComponent<PlayerSubScript>().nickname.text;
+                firstPlayerScore = players[i].GetComponent<PlayerSubScript>().myKillScore;
+                firstPlayer = players[i].GetComponent<PlayerSubScript>().nickname.text;
             }
         }
 
-        foreach(var player in players)
+        for (int i = 0; i < players.Count; i++)
         {
-            player.GetComponent<PlayerSubScript>().firstPlayerText.text = firstPlayer;
-            player.GetComponent<PlayerSubScript>().firstScoreText.text = firstPlayerScore.ToString();
+            players[i].GetComponent<PlayerSubScript>().firstPlayerText.text = firstPlayer;
+            players[i].GetComponent<PlayerSubScript>().firstScoreText.text = firstPlayerScore.ToString();
         }
 
         killLogTimer = 0f;

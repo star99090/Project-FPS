@@ -895,7 +895,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8800511726066085470}
   m_Layer: 0
-  m_Name: Assault_Rifle_01_Arms
+  m_Name: Arms Parent
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1826,7 +1826,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HideObjects:
-  - {fileID: 5833686702663296343}
   - {fileID: 1980292627225605045}
   - {fileID: 3525986894792530872}
   MyBody:
@@ -1841,11 +1840,12 @@ MonoBehaviour:
   - {fileID: 1293247611806061814}
   - {fileID: 7854328377622994620}
   NicknameCanvas: {fileID: 3522925402917323157}
+  GunCamera: {fileID: 5833686702663296343}
   nickname: {fileID: 3555824272965139322}
   firstPlayerText: {fileID: 1159843248502958963}
   firstScoreText: {fileID: 6663570193402563941}
   myScoreText: {fileID: 2084773314574733722}
-  arm: {fileID: 8800511726066085470}
+  armsParent: {fileID: 8800511726066085470}
   HealthText: {fileID: 8495196728023194861}
   myKillScore: 0
 --- !u!114 &3156894983195200979
@@ -3331,7 +3331,7 @@ MonoBehaviour:
   scope1: 1
   scope1Texture: {fileID: 21300000, guid: 2282acb7ec2bb22459ebc6527dd957ea, type: 3}
   scope1TextureSize: 0.0045
-  scope1AimFOV: 10
+  scope1AimFOV: 15
   scope2: 0
   scope2Texture: {fileID: 0}
   scope2TextureSize: 0.01
@@ -3363,16 +3363,11 @@ MonoBehaviour:
     scope2SpriteRenderer: {fileID: 6592179024432889208}
     scope3SpriteRenderer: {fileID: 6592179024432889208}
     scope4SpriteRenderer: {fileID: 6592179024432889208}
-  weaponSway: 1
-  swayAmount: 0.02
-  maxSwayAmount: 0.06
-  swaySmoothValue: 15
   fireRate: 11.5
-  autoReload: 0
-  autoReloadDelay: 0.25
-  isReloading: 0
+  autoReload: 1
   ammo: 30
   bulletForce: 400
+  damage: 26
   showBulletInMagDelay: 0.6
   bulletInMagRenderer: {fileID: 3647063480366958311}
   muzzleParticles: {fileID: 3581741968540057563}
@@ -3386,6 +3381,7 @@ MonoBehaviour:
   currentWeaponText: {fileID: 5626006816958580219}
   currentAmmoText: {fileID: 8702471923574282067}
   totalAmmoText: {fileID: 8487317028172050473}
+  attacker: {fileID: 3555824272965139322}
   Prefabs:
     bulletPrefab: {fileID: 4879702113200764, guid: 5953171a59c27394e9ad5cbb564affa8, type: 3}
     casingPrefab: {fileID: 4420745226056240, guid: 7be59128a5ee3424faf33d7a408c0b2e, type: 3}
@@ -3400,9 +3396,7 @@ MonoBehaviour:
     reloadSoundOutOfAmmo: {fileID: 8300000, guid: 59af78333683ceb4aacc3cb5a676eab9, type: 3}
     reloadSoundAmmoLeft: {fileID: 8300000, guid: 377d359bccbade04d8928f95a0426a76, type: 3}
     aimSound: {fileID: 8300000, guid: acaebc89b98b82142bd2b24edb6081e4, type: 3}
-  attacker: {fileID: 3555824272965139322}
   myEntity: {fileID: 3156894983195200979}
-  myBody: {fileID: 6506684721234249169}
   myCharacterModel: {fileID: 6506684721234249169}
   isCurrentWeapon: 0
 --- !u!82 &3625471034755186049
@@ -8947,7 +8941,6 @@ ParticleSystemRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: b0ea9aa64da8c76498ef3b008d0cca1b, type: 2}
-  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -14126,7 +14119,6 @@ ParticleSystemRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 294f8fd558aa0d1488d4997453398cf0, type: 2}
-  - {fileID: 2100000, guid: 294f8fd558aa0d1488d4997453398cf0, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -14514,7 +14506,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3709461651529831535}
   m_Layer: 0
-  m_Name: Aim Spawn Point
+  m_Name: Bullet Aim Spawn Point
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -16358,7 +16350,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3708656286399972565}
   m_LocalRotation: {x: 0.00000011920929, y: 7.536443e-14, z: -4.5218674e-14, w: 1}
-  m_LocalPosition: {x: -0.168, y: -0.925, z: 0.925}
+  m_LocalPosition: {x: 0, y: -0.965, z: 0.54}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 3709793109690849163}
@@ -22284,7 +22276,7 @@ MonoBehaviour:
   scope4AimFOV: 12
   ironSights: 1
   alwaysShowIronSights: 1
-  ironSightsAimFOV: 16
+  ironSightsAimFOV: 30
   silencer: 0
   WeaponAttachmentRenderers:
     scope1Renderer: {fileID: 2197482357362734845}
@@ -22301,16 +22293,11 @@ MonoBehaviour:
     scope2SpriteRenderer: {fileID: 6592179024432889208}
     scope3SpriteRenderer: {fileID: 6592179024432889208}
     scope4SpriteRenderer: {fileID: 6592179024432889208}
-  weaponSway: 1
-  swayAmount: 0.02
-  maxSwayAmount: 0.06
-  swaySmoothValue: 10
   fireRate: 11.5
   autoReload: 1
-  autoReloadDelay: 0.25
-  isReloading: 0
   ammo: 31
   bulletForce: 400
+  damage: 34
   showBulletInMagDelay: 0.6
   bulletInMagRenderer: {fileID: 3613145526997811631}
   muzzleParticles: {fileID: 4316968782144533499}
@@ -22324,6 +22311,7 @@ MonoBehaviour:
   currentWeaponText: {fileID: 5626006816958580219}
   currentAmmoText: {fileID: 8702471923574282067}
   totalAmmoText: {fileID: 8487317028172050473}
+  attacker: {fileID: 3555824272965139322}
   Prefabs:
     bulletPrefab: {fileID: 4879702113200764, guid: 5953171a59c27394e9ad5cbb564affa8, type: 3}
     casingPrefab: {fileID: 4420745226056240, guid: 7be59128a5ee3424faf33d7a408c0b2e, type: 3}
@@ -22338,9 +22326,7 @@ MonoBehaviour:
     reloadSoundOutOfAmmo: {fileID: 8300000, guid: 5b907074256e36d41b92e89fb0790633, type: 3}
     reloadSoundAmmoLeft: {fileID: 8300000, guid: f7ce534a0633b9847910ba117e2245d1, type: 3}
     aimSound: {fileID: 8300000, guid: acaebc89b98b82142bd2b24edb6081e4, type: 3}
-  attacker: {fileID: 3555824272965139322}
   myEntity: {fileID: 3156894983195200979}
-  myBody: {fileID: 6506684721234249169}
   myCharacterModel: {fileID: 6506684721234249169}
   isCurrentWeapon: 0
 --- !u!82 &8748169395517763482
@@ -22674,7 +22660,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8845554491630958524
 Transform:
   m_ObjectHideFlags: 0
@@ -28175,7 +28161,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6966405233899146625}
   m_LocalRotation: {x: 0.00000011920929, y: 7.536443e-14, z: -4.5218674e-14, w: 1}
-  m_LocalPosition: {x: -0.168, y: -0.925, z: 0.925}
+  m_LocalPosition: {x: 0, y: -0.95, z: 0.66}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1742463256135858458}
@@ -29369,7 +29355,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8731430336363434318}
   m_LocalRotation: {x: -0, y: 1.1368684e-13, z: 2.842171e-14, w: 1}
-  m_LocalPosition: {x: -0, y: -0.947, z: 0.6864}
+  m_LocalPosition: {x: -0, y: -0.95, z: 0.66}
   m_LocalScale: {x: 1, y: 1.0000001, z: 1.0000001}
   m_Children: []
   m_Father: {fileID: 1742463256135858458}

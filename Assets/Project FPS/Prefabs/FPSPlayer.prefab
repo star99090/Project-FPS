@@ -1381,11 +1381,12 @@ MonoBehaviour:
   - {fileID: 0}
   MyCharacterModelWeapon: []
   NicknameCanvas: {fileID: 5647591900458404797}
+  GunCamera: {fileID: 0}
   nickname: {fileID: 1800653564920912798}
   firstPlayerText: {fileID: 7165300342430154844}
   firstScoreText: {fileID: 5508252700467381397}
   myScoreText: {fileID: 2467826905952497752}
-  arm: {fileID: 6833306688752091026}
+  armsParent: {fileID: 0}
   HealthText: {fileID: 494478619407877413}
   myKillScore: 0
 --- !u!114 &6835624471752019027
@@ -12877,16 +12878,11 @@ MonoBehaviour:
     scope2SpriteRenderer: {fileID: 0}
     scope3SpriteRenderer: {fileID: 0}
     scope4SpriteRenderer: {fileID: 0}
-  weaponSway: 1
-  swayAmount: 0.02
-  maxSwayAmount: 0.06
-  swaySmoothValue: 10
   fireRate: 11.5
   autoReload: 1
-  autoReloadDelay: 0.25
-  isReloading: 0
   ammo: 31
   bulletForce: 400
+  damage: 20
   showBulletInMagDelay: 0.6
   bulletInMagRenderer: {fileID: 6859785139422774704}
   muzzleParticles: {fileID: 6636831114866143136}
@@ -12900,6 +12896,7 @@ MonoBehaviour:
   currentWeaponText: {fileID: 6867514108720259076}
   currentAmmoText: {fileID: 6867195971104045724}
   totalAmmoText: {fileID: 6867550065383941896}
+  attacker: {fileID: 1800653564920912798}
   Prefabs:
     bulletPrefab: {fileID: 4879702113200764, guid: 5953171a59c27394e9ad5cbb564affa8, type: 3}
     casingPrefab: {fileID: 4420745226056240, guid: 7be59128a5ee3424faf33d7a408c0b2e, type: 3}
@@ -12914,9 +12911,8 @@ MonoBehaviour:
     reloadSoundOutOfAmmo: {fileID: 8300000, guid: 5b907074256e36d41b92e89fb0790633, type: 3}
     reloadSoundAmmoLeft: {fileID: 8300000, guid: f7ce534a0633b9847910ba117e2245d1, type: 3}
     aimSound: {fileID: 8300000, guid: acaebc89b98b82142bd2b24edb6081e4, type: 3}
-  attacker: {fileID: 1800653564920912798}
   myEntity: {fileID: 6835624471752019027}
-  myBody: {fileID: 0}
+  myCharacterModel: {fileID: 0}
   isCurrentWeapon: 0
 --- !u!82 &6915316314603975544
 AudioSource:

@@ -10,51 +10,54 @@ public class PlayerSubScript : Bolt.EntityBehaviour<IFPSPlayerState>
     public GameObject[] MyCharacterModelWeapon;
 
     public GameObject NicknameCanvas;
+    public GameObject GunCamera;
     public Text nickname;
     public Text firstPlayerText;
     public Text firstScoreText;
     public Text myScoreText;
-    
-    public Transform arm;
+
+    public Transform armsParent;
     public Text HealthText;
     public int myKillScore = 0;
 
     string attacker;
     BoltEntity attackerEntity;
 
-    private void Start() => NM.players.Add(entity);
     private void OnDestroy() => NM.players.Remove(entity);
+    public void UpdateMyScore() => myScoreText.text = "MY SCORE " + myKillScore;
 
     public override void Attached()
     {
+        NM.players.Add(entity);
+
         var evnt = JoinedEvent.Create();
         evnt.Send();
 
         state.health = 100;
-        state.SetTransforms(state.armTransform, arm);
+        state.SetTransforms(state.armTransform, armsParent);
         state.SetTransforms(state.playerTransform, transform);
         state.AddCallback("health", HealthCallback);
     }
 
     public void HideObject()
     {
-        foreach (var go in HideObjects)
-            go.SetActive(false);
+        for (int i = 0; i < HideObjects.Length; i++)
+            HideObjects[i].SetActive(false);
     }
 
-    public void NicknameSet() => NicknameCanvas.SetActive(false);
+    public void MySet()
+    {
+        NicknameCanvas.SetActive(false);
+        GunCamera.SetActive(true);
+    }
+
     public void MyBodySet()
     {
-        foreach (var body in MyBody)
-        {
-            body.layer = 0;
-            //body.GetComponent<SkinnedMeshRenderer>().enabled = true;
-        }
-        foreach (var weapon in MyCharacterModelWeapon)
-        {
-            weapon.layer = 0;
-            //weapon.GetComponent<MeshRenderer>().enabled = true;
-        }
+        for (int i = 0; i < MyBody.Length; i++)
+            MyBody[i].layer = 0;
+
+        for (int i = 0; i < MyCharacterModelWeapon.Length; i++)
+            MyCharacterModelWeapon[i].layer = 0;
     }
 
     public void HealthChange(int damage, string attackers, BoltEntity aEntity)
@@ -83,10 +86,5 @@ public class PlayerSubScript : Bolt.EntityBehaviour<IFPSPlayerState>
         state.health = 100;
         transform.position = new Vector3(Random.Range(-5, 5), 0, 0);
         transform.rotation = Quaternion.EulerAngles(Vector3.zero);
-    }
-
-    public void UpdateMyScore()
-    {
-        myScoreText.text = "MY SCORE " + myKillScore;
     }
 }
