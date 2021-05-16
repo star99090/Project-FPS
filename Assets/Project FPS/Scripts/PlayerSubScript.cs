@@ -6,8 +6,10 @@ using static NetworkManager;
 public class PlayerSubScript : Bolt.EntityBehaviour<IFPSPlayerState>
 {
     public GameObject[] HideObjects;
+    public GameObject[] MyBody;
+    public GameObject[] MyCharacterModelWeapon;
+
     public GameObject NicknameCanvas;
-    public GameObject MyBody;
     public Text nickname;
     public Text firstPlayerText;
     public Text firstScoreText;
@@ -20,13 +22,14 @@ public class PlayerSubScript : Bolt.EntityBehaviour<IFPSPlayerState>
     string attacker;
     BoltEntity attackerEntity;
 
-    void Start() => NM.players.Add(entity);
-    void OnDestroy() => NM.players.Remove(entity);
+    private void Start() => NM.players.Add(entity);
+    private void OnDestroy() => NM.players.Remove(entity);
 
     public override void Attached()
     {
         var evnt = JoinedEvent.Create();
         evnt.Send();
+
         state.health = 100;
         state.SetTransforms(state.armTransform, arm);
         state.SetTransforms(state.playerTransform, transform);
@@ -40,7 +43,19 @@ public class PlayerSubScript : Bolt.EntityBehaviour<IFPSPlayerState>
     }
 
     public void NicknameSet() => NicknameCanvas.SetActive(false);
-    public void MyBodySet() => MyBody.SetActive(true);
+    public void MyBodySet()
+    {
+        foreach (var body in MyBody)
+        {
+            body.layer = 0;
+            //body.GetComponent<SkinnedMeshRenderer>().enabled = true;
+        }
+        foreach (var weapon in MyCharacterModelWeapon)
+        {
+            weapon.layer = 0;
+            //weapon.GetComponent<MeshRenderer>().enabled = true;
+        }
+    }
 
     public void HealthChange(int damage, string attackers, BoltEntity aEntity)
     {

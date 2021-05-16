@@ -22,7 +22,6 @@ public class NetworkManager : GlobalEventListener
     public int killLogCount = 0;
     float killLogTimer;
     bool isMyHost;
-    bool isReset = false;
     private string preKiller = "";
     private string preKiller2 = "";
     private string preKiller3 = "";
@@ -123,7 +122,6 @@ public class NetworkManager : GlobalEventListener
     public override void OnEvent(KillEvent evnt)
     {
         evnt.attackerEntity.GetComponent<PlayerSubScript>().myKillScore += 1;
-        evnt.attackerEntity.GetComponent<Player>().killScore++;
         evnt.attackerEntity.GetComponent<Player>().isWeaponChange = true;
         evnt.attackerEntity.GetComponent<PlayerSubScript>().UpdateMyScore();
 

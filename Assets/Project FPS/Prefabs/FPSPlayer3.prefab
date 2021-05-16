@@ -174,6 +174,7 @@ MonoBehaviour:
   fireRate: 11.5
   autoReload: 1
   autoReloadDelay: 0.25
+  isReloading: 0
   ammo: 31
   bulletForce: 400
   showBulletInMagDelay: 0.6
@@ -205,6 +206,7 @@ MonoBehaviour:
     aimSound: {fileID: 8300000, guid: acaebc89b98b82142bd2b24edb6081e4, type: 3}
   attacker: {fileID: 9159265010330079002}
   myEntity: {fileID: 7317055179419810227}
+  myBody: {fileID: 0}
   isCurrentWeapon: 0
 --- !u!82 &3973107389664091130
 AudioSource:
@@ -13874,7 +13876,6 @@ MonoBehaviour:
     run: Run
     jump: Jump
   myWeapon: []
-  killScore: 0
   isWeaponChange: 0
   nicknameText: {fileID: 9159265010330079002}
   nicknameCanvas: {fileID: 1754556214559850171}
@@ -13894,8 +13895,10 @@ MonoBehaviour:
   - {fileID: 2211696828582564151}
   - {fileID: 6142773616526526421}
   - {fileID: 9127177756522934232}
+  MyBody:
+  - {fileID: 0}
+  MyCharacterModelWeapon: []
   NicknameCanvas: {fileID: 9126294320930469365}
-  MyBody: {fileID: 1443560834550657457}
   nickname: {fileID: 9159265010330079002}
   firstPlayerText: {fileID: 6799444656683261715}
   firstScoreText: {fileID: 1314255460715198725}

@@ -55,9 +55,8 @@ public class Player : Bolt.EntityBehaviour<IFPSPlayerState>
     private FpsInput input;
 
     [Header("Weapon Settings")]
-    [Tooltip("사용할 무기"), SerializeField]
-    private GameObject[] myWeapon;
-    public int killScore = 0;
+    [Tooltip("사용할 무기")]
+    public GameObject[] myWeapon;
     public bool isWeaponChange = false;
 #pragma warning restore 649
 
@@ -174,20 +173,22 @@ public class Player : Bolt.EntityBehaviour<IFPSPlayerState>
     // 총을 캐릭터의 위치로 옮기고 점프와 발걸음 사운드를 재생
     private void Update()
     {
-        if (isWeaponChange)
-        {
-            if (killScore < myWeapon.Length - 1)
-            {
-                isWeaponChange = false;
-                myWeapon[killScore - 1].GetComponent<AutomaticGun>().isCurrentWeapon = false;
-                myWeapon[killScore - 1].SetActive(false);
-                myWeapon[killScore].SetActive(true);
-                myWeapon[killScore].GetComponent<AutomaticGun>().isCurrentWeapon = true;
-            }
-        }
-
         PlayFootstepSounds();
         if (!entity.IsOwner) return;
+
+        if (isWeaponChange)
+        {
+            int mKS = GetComponent<PlayerSubScript>().myKillScore;
+
+            if (mKS < myWeapon.Length)
+            {
+                myWeapon[mKS - 1].GetComponent<AutomaticGun>().isCurrentWeapon = false;
+                myWeapon[mKS - 1].SetActive(false);
+                myWeapon[mKS].SetActive(true);
+                myWeapon[mKS].GetComponent<AutomaticGun>().isCurrentWeapon = true;
+            }
+            isWeaponChange = false;
+        }
 
         arms.position = transform.position + transform.TransformVector(armPosition) + armSubPos;
         Jump();

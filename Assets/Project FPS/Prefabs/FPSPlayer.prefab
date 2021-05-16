@@ -1359,7 +1359,6 @@ MonoBehaviour:
     run: Run
     jump: Jump
   myWeapon: []
-  killScore: 0
   isWeaponChange: 0
   nicknameText: {fileID: 1800653564920912798}
   nicknameCanvas: {fileID: 290881912919417019}
@@ -1378,8 +1377,10 @@ MonoBehaviour:
   HideObjects:
   - {fileID: 6835831661923016934}
   - {fileID: 6834407298566764068}
+  MyBody:
+  - {fileID: 0}
+  MyCharacterModelWeapon: []
   NicknameCanvas: {fileID: 5647591900458404797}
-  MyBody: {fileID: 0}
   nickname: {fileID: 1800653564920912798}
   firstPlayerText: {fileID: 7165300342430154844}
   firstScoreText: {fileID: 5508252700467381397}
@@ -12883,6 +12884,7 @@ MonoBehaviour:
   fireRate: 11.5
   autoReload: 1
   autoReloadDelay: 0.25
+  isReloading: 0
   ammo: 31
   bulletForce: 400
   showBulletInMagDelay: 0.6
@@ -12914,6 +12916,7 @@ MonoBehaviour:
     aimSound: {fileID: 8300000, guid: acaebc89b98b82142bd2b24edb6081e4, type: 3}
   attacker: {fileID: 1800653564920912798}
   myEntity: {fileID: 6835624471752019027}
+  myBody: {fileID: 0}
   isCurrentWeapon: 0
 --- !u!82 &6915316314603975544
 AudioSource:

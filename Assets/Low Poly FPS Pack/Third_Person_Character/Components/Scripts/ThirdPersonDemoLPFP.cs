@@ -72,6 +72,11 @@ public class ThirdPersonDemoLPFP : MonoBehaviour {
 
 		//---------- The movement code is used to preview the different animations in the demo scene, should not actually be used for your games :) ---------//
 		//Idle
+		float h = Input.GetAxis("Horizontal");
+		float v = Input.GetAxis("Vertical");
+		anim.SetFloat("Vertical", v);
+		anim.SetFloat("Horizontal", h);
+		/*
 		if (Input.GetKeyDown (KeyCode.T)) 
 		{
 			anim.SetFloat ("Vertical", 0.0f, 0, Time.deltaTime);
@@ -125,6 +130,7 @@ public class ThirdPersonDemoLPFP : MonoBehaviour {
 			anim.SetFloat ("Vertical", 1.0f, 0, Time.deltaTime);
 			anim.SetFloat ("Horizontal", -1.0f, 0, Time.deltaTime);
 		}
+		*/
 		//---------- The movement code is used to preview the different animations in the demo scene, should not actually be used for your games :) ---------//
 
 		//Single fire with left click

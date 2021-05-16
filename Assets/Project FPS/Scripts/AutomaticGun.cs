@@ -5,7 +5,7 @@ using Bolt;
 
 public class AutomaticGun : EntityBehaviour<IFPSPlayerState>
 {
-	[SerializeField]Animator anim;
+	public Animator anim;
 
 	[Header("Gun Camera")]
 	public Camera gunCamera;
@@ -122,7 +122,7 @@ public class AutomaticGun : EntityBehaviour<IFPSPlayerState>
 	private float lastFired;
 
 	private bool isReloadingAnim;
-	private bool isReloading = false;
+	public bool isReloading = false;
 	private bool isRunning;
 	private bool isAiming;
 
@@ -196,6 +196,9 @@ public class AutomaticGun : EntityBehaviour<IFPSPlayerState>
 
 	[SerializeField] Text attacker;
 	public BoltEntity myEntity;
+	public GameObject myBody;
+
+	[SerializeField] private GameObject myCharacterModel;
 	public bool isCurrentWeapon;
 
 	private void Awake()
@@ -564,6 +567,7 @@ public class AutomaticGun : EntityBehaviour<IFPSPlayerState>
 			{
 				lastFired = Time.time;
 
+				myCharacterModel.GetComponent<CharacterAnimation>().FireAnim();
 				// 탄 수 감소
 				currentAmmo -= 1;
 
@@ -586,10 +590,12 @@ public class AutomaticGun : EntityBehaviour<IFPSPlayerState>
 					state.MuzzleParticleTrigger();
 				}
 
+				myBody.GetComponent<CharacterAnimation>().FireAnim();
 				// 일반 사격 모드
 				if (!isAiming)
 				{
 					//state.AnimPlay = "Fire";
+					anim.Play("Fire", 0, 0f);
 
 					// 총알 생성
 					var bullet = Instantiate(
@@ -652,12 +658,12 @@ public class AutomaticGun : EntityBehaviour<IFPSPlayerState>
 			Input.GetKey(KeyCode.S) && !isRunning ||
 			Input.GetKey(KeyCode.D) && !isRunning)
 		{
-			//state.Walk = true;
+			//myBody.GetComponent<CharacterAnimation>().move = true;
 			anim.SetBool("Walk", true); //state.Walk);
 		}
 		else
 		{
-			//state.Walk = false;
+			//myBody.GetComponent<CharacterAnimation>().move = false;
 			anim.SetBool("Walk", false); //state.Walk);
 		}
 
@@ -684,6 +690,7 @@ public class AutomaticGun : EntityBehaviour<IFPSPlayerState>
 	private IEnumerator AutoReload()
 	{
 		isReloading = true;
+		myBody.GetComponent<CharacterAnimation>().ReloadAnim();
 		yield return new WaitForSeconds(autoReloadDelay);
 
 		if (outOfAmmo == true && isCurrentWeapon)
@@ -704,6 +711,8 @@ public class AutomaticGun : EntityBehaviour<IFPSPlayerState>
 			}
 		}
 
+		myCharacterModel.GetComponent<CharacterAnimation>().ReloadAnim();
+
 		// 재장전 완료
 		Invoke("SuccessReload", 1.5f);
 	}
@@ -712,6 +721,7 @@ public class AutomaticGun : EntityBehaviour<IFPSPlayerState>
 	private void Reload()
 	{
 		isReloading = true;
+		myBody.GetComponent<CharacterAnimation>().ReloadAnim();
 		if (outOfAmmo == true)
 		{
 			anim.Play("Reload Out Of Ammo", 0, 0f);
@@ -744,6 +754,8 @@ public class AutomaticGun : EntityBehaviour<IFPSPlayerState>
 				<SkinnedMeshRenderer>().enabled = true;
 			}
 		}
+
+		myCharacterModel.GetComponent<CharacterAnimation>().ReloadAnim();
 
 		// 재장전 완료
 		Invoke("SuccessReload", 1.5f);

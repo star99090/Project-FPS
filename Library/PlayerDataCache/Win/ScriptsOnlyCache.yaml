@@ -5,6 +5,7 @@ ScriptsOnlyBuild:
     - BlinkingLightLPFP
     - BulletScriptBefore
     - CasingScriptBefore
+    - CharacterAnimation
     - ExplosionScript
     - GrenadeScript
     - ImpactScriptBefore
@@ -13,7 +14,6 @@ ScriptsOnlyBuild:
     - NetworkManager
     - Player
     - PlayerSubScript
-    - PropellerRotateLPFP
     - ThirdPersonDemoLPFP
     - TitleLobbyManager
     Unity.Rider.Editor.dll:
@@ -21,6 +21,7 @@ ScriptsOnlyBuild:
     UnityEditor.Graphs.dll:
     - UnityEditor.Graphs.AnimationBlendTree.Graph
     - UnityEditor.Graphs.AnimationBlendTree.GraphGUI
+    - UnityEditor.Graphs.AnimationBlendTree.Node
     - UnityEditor.Graphs.AnimationStateMachine.AnyStateNode
     - UnityEditor.Graphs.AnimationStateMachine.Graph
     - UnityEditor.Graphs.AnimationStateMachine.GraphGUI
@@ -96,48 +97,40 @@ ScriptsOnlyBuild:
     - Class: 108
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 1458}
+      Script: {instanceID: 16264}
     - Class: 114
-      Script: {instanceID: 1528}
+      Script: {instanceID: 16328}
     - Class: 114
-      Script: {instanceID: 1594}
+      Script: {instanceID: 16348}
     - Class: 114
-      Script: {instanceID: 1616}
+      Script: {instanceID: 16370}
     - Class: 114
-      Script: {instanceID: 1638}
+      Script: {instanceID: 16636}
     - Class: 114
-      Script: {instanceID: 1988}
+      Script: {instanceID: 16970}
     - Class: 114
-      Script: {instanceID: 2252}
+      Script: {instanceID: 17090}
     - Class: 114
-      Script: {instanceID: 2830}
+      Script: {instanceID: 17532}
     - Class: 114
-      Script: {instanceID: 2868}
+      Script: {instanceID: 17570}
     - Class: 114
-      Script: {instanceID: 2928}
+      Script: {instanceID: 17726}
     - Class: 114
-      Script: {instanceID: 3028}
+      Script: {instanceID: 17960}
     - Class: 114
-      Script: {instanceID: 3110}
+      Script: {instanceID: 18078}
     - Class: 114
-      Script: {instanceID: 3252}
+      Script: {instanceID: 18086}
     - Class: 114
-      Script: {instanceID: 3270}
+      Script: {instanceID: 18296}
     - Class: 114
-      Script: {instanceID: 3388}
+      Script: {instanceID: 18384}
     - Class: 114
-      Script: {instanceID: 3396}
-    - Class: 114
-      Script: {instanceID: 3612}
-    - Class: 114
-      Script: {instanceID: 3700}
-    - Class: 114
-      Script: {instanceID: 3788}
+      Script: {instanceID: 18468}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
-      Script: {instanceID: 0}
-    - Class: 134
       Script: {instanceID: 0}
     - Class: 136
       Script: {instanceID: 0}
@@ -213,59 +206,59 @@ ScriptsOnlyBuild:
     - Class: 108
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 1458}
+      Script: {instanceID: 16264}
     - Class: 114
-      Script: {instanceID: 1528}
+      Script: {instanceID: 16348}
     - Class: 114
-      Script: {instanceID: 1616}
+      Script: {instanceID: 16370}
     - Class: 114
-      Script: {instanceID: 1638}
+      Script: {instanceID: 16636}
     - Class: 114
-      Script: {instanceID: 1898}
+      Script: {instanceID: 16716}
     - Class: 114
-      Script: {instanceID: 1988}
+      Script: {instanceID: 16862}
     - Class: 114
-      Script: {instanceID: 2136}
+      Script: {instanceID: 16970}
     - Class: 114
-      Script: {instanceID: 2252}
+      Script: {instanceID: 16982}
     - Class: 114
-      Script: {instanceID: 2264}
+      Script: {instanceID: 17006}
     - Class: 114
-      Script: {instanceID: 2288}
+      Script: {instanceID: 17090}
     - Class: 114
-      Script: {instanceID: 2434}
+      Script: {instanceID: 17148}
     - Class: 114
-      Script: {instanceID: 2830}
+      Script: {instanceID: 17532}
     - Class: 114
-      Script: {instanceID: 2868}
+      Script: {instanceID: 17570}
     - Class: 114
-      Script: {instanceID: 2928}
+      Script: {instanceID: 17626}
     - Class: 114
-      Script: {instanceID: 3028}
+      Script: {instanceID: 17726}
     - Class: 114
-      Script: {instanceID: 3110}
+      Script: {instanceID: 17804}
     - Class: 114
-      Script: {instanceID: 3178}
+      Script: {instanceID: 17870}
     - Class: 114
-      Script: {instanceID: 3252}
+      Script: {instanceID: 17942}
     - Class: 114
-      Script: {instanceID: 3270}
+      Script: {instanceID: 17960}
     - Class: 114
-      Script: {instanceID: 3340}
+      Script: {instanceID: 18030}
     - Class: 114
-      Script: {instanceID: 3388}
+      Script: {instanceID: 18078}
     - Class: 114
-      Script: {instanceID: 3396}
+      Script: {instanceID: 18086}
     - Class: 114
-      Script: {instanceID: 3528}
+      Script: {instanceID: 18214}
     - Class: 114
-      Script: {instanceID: 3612}
+      Script: {instanceID: 18296}
     - Class: 114
-      Script: {instanceID: 3700}
+      Script: {instanceID: 18384}
     - Class: 114
-      Script: {instanceID: 3760}
+      Script: {instanceID: 18440}
     - Class: 114
-      Script: {instanceID: 3788}
+      Script: {instanceID: 18468}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 124
@@ -307,12 +300,6 @@ ScriptsOnlyBuild:
   scriptHashData:
   - hash:
       serializedVersion: 2
-      Hash: 699619b86d9359741a4f58540298c80b
-    assemblyName: UnityEngine.UI.dll
-    namespaceName: UnityEngine.UI
-    className: Text
-  - hash:
-      serializedVersion: 2
       Hash: 5ab533713adae59372fb3e10a585c186
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
@@ -343,7 +330,7 @@ ScriptsOnlyBuild:
     className: NetworkManager
   - hash:
       serializedVersion: 2
-      Hash: 55a971b5af87e9d818d56b40faaad258
+      Hash: 390c2fb29ae5aed0efbac0932a0462a2
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Player
@@ -461,6 +448,12 @@ ScriptsOnlyBuild:
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: PropellerRotateLPFP
+  - hash:
+      serializedVersion: 2
+      Hash: ab62ffddcba3861688a1ecc152cec1f7
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: CharacterAnimation
   - hash:
       serializedVersion: 2
       Hash: 18c222bef9ae745ce69ddde9b74337ca
@@ -641,6 +634,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.TextMeshPro.dll
     namespaceName: TMPro
     className: TMP_StyleSheet
+  - hash:
+      serializedVersion: 2
+      Hash: 699619b86d9359741a4f58540298c80b
+    assemblyName: UnityEngine.UI.dll
+    namespaceName: UnityEngine.UI
+    className: Text
   - hash:
       serializedVersion: 2
       Hash: c3d3430df9e3ea95e3e3d587961390fb
@@ -943,7 +942,7 @@ ScriptsOnlyBuild:
     className: ImpactScriptBefore
   - hash:
       serializedVersion: 2
-      Hash: 08b4a033482c0e786a5da5f2bda14ab4
+      Hash: d649d88a834c8e61493a94ef60efceff
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: PlayerSubScript
@@ -1015,7 +1014,7 @@ ScriptsOnlyBuild:
     className: SignalEmitter
   - hash:
       serializedVersion: 2
-      Hash: 074f37409328cc66ce7642f91fb6beac
+      Hash: fd120da20b7e2df398e2adc7be855b74
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: AutomaticGun
