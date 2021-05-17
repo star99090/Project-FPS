@@ -973,123 +973,6 @@ Transform:
   m_Father: {fileID: 4589992319284572}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1184374812681838
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 4210527854762406}
-  - component: {fileID: 137558333348930588}
-  m_Layer: 8
-  m_Name: knife 1
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &4210527854762406
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1184374812681838}
-  m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
-  m_LocalPosition: {x: -0, y: -0.9999999, z: 0}
-  m_LocalScale: {x: 0.99999994, y: 0.99999994, z: 0.99999994}
-  m_Children: []
-  m_Father: {fileID: 4522268139494250}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!137 &137558333348930588
-SkinnedMeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1184374812681838}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 3
-  m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 2100000, guid: e11c4f3ee458bf446918382a2f5f9451, type: 2}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  serializedVersion: 2
-  m_Quality: 0
-  m_UpdateWhenOffscreen: 1
-  m_SkinnedMotionVectors: 1
-  m_Mesh: {fileID: 4300002, guid: 0077f046c5d9e1547a67749ce5870c1e, type: 3}
-  m_Bones:
-  - {fileID: 4690373758278372}
-  - {fileID: 4914995271368028}
-  - {fileID: 4097971650749918}
-  - {fileID: 4705061034869528}
-  - {fileID: 4468602185296070}
-  - {fileID: 4165460642266314}
-  - {fileID: 4573375320925112}
-  - {fileID: 4124880997688772}
-  - {fileID: 4369586488471522}
-  - {fileID: 4274902868106156}
-  - {fileID: 4625497070765680}
-  - {fileID: 4050011614046414}
-  - {fileID: 4751269367979232}
-  - {fileID: 4637828341283388}
-  - {fileID: 4066599760760098}
-  - {fileID: 4482792204949018}
-  - {fileID: 4486433106449174}
-  - {fileID: 4654790650605486}
-  - {fileID: 4972665042883246}
-  - {fileID: 4826006434311934}
-  - {fileID: 4443404883039982}
-  - {fileID: 4454183213661842}
-  - {fileID: 4173308541767254}
-  - {fileID: 4556595521026234}
-  - {fileID: 4328028765855186}
-  - {fileID: 4365393188824412}
-  - {fileID: 4856445524781026}
-  - {fileID: 4071431752843040}
-  - {fileID: 4793059249298694}
-  - {fileID: 4721588240874496}
-  - {fileID: 4395442264208400}
-  - {fileID: 4634208427534178}
-  - {fileID: 4625002119791546}
-  - {fileID: 4032448680156512}
-  m_BlendShapeWeights: []
-  m_RootBone: {fileID: 4751269367979232}
-  m_AABB:
-    m_Center: {x: 0.45692417, y: 0.16260742, z: 0.09670812}
-    m_Extent: {x: 0.10210547, y: 0.09019773, z: 0.10964006}
-  m_DirtyAABB: 0
 --- !u!1 &1188366581573652
 GameObject:
   m_ObjectHideFlags: 0
@@ -1235,36 +1118,6 @@ MonoBehaviour:
     Press E key to holster, and E again to take out \n\nMelee:\n\n- F key to use
     knife attack 1\n- Q key to use knife attack 2\n\nGrenade:\n\n- Press G to throw
     a grenade\n\n\n\n\n\n\n\n\n\n"
---- !u!1 &1259090751795304
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 4611135125474520}
-  m_Layer: 8
-  m_Name: Grenade_Spawn_Point
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &4611135125474520
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1259090751795304}
-  m_LocalRotation: {x: -0.02868566, y: 0.019282559, z: 0.0005534543, w: 0.99940234}
-  m_LocalPosition: {x: -0.174, y: 0.24000001, z: 0.15199983}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 4736177867934306}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 86.038, y: 33.877003, z: 33.941}
 --- !u!1 &1264596913934032
 GameObject:
   m_ObjectHideFlags: 0
@@ -2423,7 +2276,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4327017696065912}
-  - {fileID: 4210527854762406}
   m_Father: {fileID: 4736177867934306}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3055,7 +2907,6 @@ Transform:
   m_Children:
   - {fileID: 4589992319284572}
   - {fileID: 4522268139494250}
-  - {fileID: 4611135125474520}
   m_Father: {fileID: 4180208614585566}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3346,7 +3197,7 @@ MonoBehaviour:
     grenadePrefab: {fileID: 4191440083646698, guid: 7b04fe350ed10a741a1e245447860d9e, type: 3}
   Spawnpoints:
     bulletSpawnPoint: {fileID: 4912267012020026}
-    grenadeSpawnPoint: {fileID: 4611135125474520}
+    grenadeSpawnPoint: {fileID: 0}
   SoundClips:
     shootSound: {fileID: 8300000, guid: 38b450e2adcb6f542acc8c1d423bd8dc, type: 3}
     takeOutSound: {fileID: 8300000, guid: 2ae41e984ff1f3e4a840a1a46b6a8816, type: 3}

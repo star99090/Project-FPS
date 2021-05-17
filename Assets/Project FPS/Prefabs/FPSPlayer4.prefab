@@ -12521,7 +12521,6 @@ MonoBehaviour:
     scope3SpriteRenderer: {fileID: 0}
     scope4SpriteRenderer: {fileID: 0}
   fireRate: 11.5
-  autoReload: 1
   ammo: 31
   bulletForce: 400
   damage: 20
@@ -12549,7 +12548,7 @@ MonoBehaviour:
   SoundClips:
     shootSound: {fileID: 8300000, guid: 38b450e2adcb6f542acc8c1d423bd8dc, type: 3}
     silencerShootSound: {fileID: 0}
-    takeOtSound: {fileID: 0}
+    takeOutSound: {fileID: 0}
     reloadSoundOutOfAmmo: {fileID: 8300000, guid: 5b907074256e36d41b92e89fb0790633, type: 3}
     reloadSoundAmmoLeft: {fileID: 8300000, guid: f7ce534a0633b9847910ba117e2245d1, type: 3}
     aimSound: {fileID: 8300000, guid: acaebc89b98b82142bd2b24edb6081e4, type: 3}

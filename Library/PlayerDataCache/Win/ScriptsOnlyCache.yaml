@@ -7,6 +7,7 @@ ScriptsOnlyBuild:
     - CasingScriptBefore
     - CharacterAnimation
     - ExplosionScript
+    - GrenadeLauncherScriptLPFP
     - GrenadeScript
     - ImpactScriptBefore
     - InputFieldChange
@@ -14,6 +15,7 @@ ScriptsOnlyBuild:
     - NetworkManager
     - Player
     - PlayerSubScript
+    - ProjectileScript
     - ThirdPersonDemoLPFP
     - TitleLobbyManager
     Unity.Rider.Editor.dll:
@@ -21,10 +23,8 @@ ScriptsOnlyBuild:
     UnityEditor.Graphs.dll:
     - UnityEditor.Graphs.AnimationBlendTree.Graph
     - UnityEditor.Graphs.AnimationBlendTree.GraphGUI
-    - UnityEditor.Graphs.AnimationStateMachine.AnyStateNode
     - UnityEditor.Graphs.AnimationStateMachine.Graph
     - UnityEditor.Graphs.AnimationStateMachine.GraphGUI
-    - UnityEditor.Graphs.AnimationStateMachine.StateNode
     - UnityEditor.Graphs.AnimatorControllerTool
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.Api.CallbacksHolder
@@ -98,25 +98,33 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 1458}
     - Class: 114
-      Script: {instanceID: 1528}
+      Script: {instanceID: 1462}
     - Class: 114
-      Script: {instanceID: 1594}
+      Script: {instanceID: 1530}
     - Class: 114
-      Script: {instanceID: 1616}
+      Script: {instanceID: 1596}
     - Class: 114
-      Script: {instanceID: 1638}
+      Script: {instanceID: 1618}
     - Class: 114
-      Script: {instanceID: 1908}
+      Script: {instanceID: 1640}
     - Class: 114
-      Script: {instanceID: 2254}
+      Script: {instanceID: 1666}
     - Class: 114
-      Script: {instanceID: 2832}
+      Script: {instanceID: 1910}
     - Class: 114
-      Script: {instanceID: 2870}
+      Script: {instanceID: 2190}
     - Class: 114
-      Script: {instanceID: 3030}
+      Script: {instanceID: 2256}
     - Class: 114
-      Script: {instanceID: 3272}
+      Script: {instanceID: 2834}
+    - Class: 114
+      Script: {instanceID: 2872}
+    - Class: 114
+      Script: {instanceID: 2932}
+    - Class: 114
+      Script: {instanceID: 3032}
+    - Class: 114
+      Script: {instanceID: 3114}
     - Class: 114
       Script: {instanceID: 3390}
     - Class: 114
@@ -207,41 +215,45 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 1458}
     - Class: 114
-      Script: {instanceID: 1528}
+      Script: {instanceID: 1462}
     - Class: 114
-      Script: {instanceID: 1616}
+      Script: {instanceID: 1530}
     - Class: 114
-      Script: {instanceID: 1638}
+      Script: {instanceID: 1618}
     - Class: 114
-      Script: {instanceID: 1908}
+      Script: {instanceID: 1640}
     - Class: 114
-      Script: {instanceID: 1990}
+      Script: {instanceID: 1666}
     - Class: 114
-      Script: {instanceID: 2138}
+      Script: {instanceID: 1910}
     - Class: 114
-      Script: {instanceID: 2254}
+      Script: {instanceID: 1992}
     - Class: 114
-      Script: {instanceID: 2266}
+      Script: {instanceID: 2140}
     - Class: 114
-      Script: {instanceID: 2290}
+      Script: {instanceID: 2190}
     - Class: 114
-      Script: {instanceID: 2436}
+      Script: {instanceID: 2256}
     - Class: 114
-      Script: {instanceID: 2832}
+      Script: {instanceID: 2268}
     - Class: 114
-      Script: {instanceID: 2870}
+      Script: {instanceID: 2292}
     - Class: 114
-      Script: {instanceID: 2930}
+      Script: {instanceID: 2438}
     - Class: 114
-      Script: {instanceID: 3030}
+      Script: {instanceID: 2834}
     - Class: 114
-      Script: {instanceID: 3112}
+      Script: {instanceID: 2872}
     - Class: 114
-      Script: {instanceID: 3180}
+      Script: {instanceID: 2932}
     - Class: 114
-      Script: {instanceID: 3254}
+      Script: {instanceID: 3032}
     - Class: 114
-      Script: {instanceID: 3272}
+      Script: {instanceID: 3114}
+    - Class: 114
+      Script: {instanceID: 3182}
+    - Class: 114
+      Script: {instanceID: 3256}
     - Class: 114
       Script: {instanceID: 3342}
     - Class: 114
@@ -305,6 +317,12 @@ ScriptsOnlyBuild:
     className: Text
   - hash:
       serializedVersion: 2
+      Hash: ae83e830e7a90c0aff918c4c2e520825
+    assemblyName: UnityEngine.UI.dll
+    namespaceName: UnityEngine.UI
+    className: GraphicRaycaster
+  - hash:
+      serializedVersion: 2
       Hash: 5ab533713adae59372fb3e10a585c186
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
@@ -359,7 +377,7 @@ ScriptsOnlyBuild:
     className: Outline
   - hash:
       serializedVersion: 2
-      Hash: a1a7018e43ddc95e898a833cba27f9d5
+      Hash: 45480720c38ec8c82c20d83f28a50aa9
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: GrenadeLauncherScriptLPFP
@@ -893,12 +911,6 @@ ScriptsOnlyBuild:
     className: TestRunCallbackListener
   - hash:
       serializedVersion: 2
-      Hash: ae83e830e7a90c0aff918c4c2e520825
-    assemblyName: UnityEngine.UI.dll
-    namespaceName: UnityEngine.UI
-    className: GraphicRaycaster
-  - hash:
-      serializedVersion: 2
       Hash: e7a73f5f78ba6445195ec23b74a1ce2d
     assemblyName: Unity.TextMeshPro.dll
     namespaceName: TMPro
@@ -1013,7 +1025,7 @@ ScriptsOnlyBuild:
     className: SignalEmitter
   - hash:
       serializedVersion: 2
-      Hash: fd63a746395074ec1612f11cacd01ffe
+      Hash: 1b6bc5b377ada79b3e6b33715836bffb
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: AutomaticGun

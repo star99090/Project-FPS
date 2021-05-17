@@ -3364,7 +3364,6 @@ MonoBehaviour:
     scope3SpriteRenderer: {fileID: 6592179024432889208}
     scope4SpriteRenderer: {fileID: 6592179024432889208}
   fireRate: 11.5
-  autoReload: 1
   ammo: 30
   bulletForce: 400
   damage: 26
@@ -3392,7 +3391,7 @@ MonoBehaviour:
   SoundClips:
     shootSound: {fileID: 8300000, guid: 38b450e2adcb6f542acc8c1d423bd8dc, type: 3}
     silencerShootSound: {fileID: 8300000, guid: f9ce3352943c16244a2e1504722c93c6, type: 3}
-    takeOtSound: {fileID: 0}
+    takeOutSound: {fileID: 0}
     reloadSoundOutOfAmmo: {fileID: 8300000, guid: 59af78333683ceb4aacc3cb5a676eab9, type: 3}
     reloadSoundAmmoLeft: {fileID: 8300000, guid: 377d359bccbade04d8928f95a0426a76, type: 3}
     aimSound: {fileID: 8300000, guid: acaebc89b98b82142bd2b24edb6081e4, type: 3}
@@ -22027,8 +22026,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5026073949106114828}
   m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
-  m_LocalPosition: {x: -0, y: -0.9999999, z: 0}
-  m_LocalScale: {x: 0.99999994, y: 0.99999994, z: 0.99999994}
+  m_LocalPosition: {x: 0, y: -1, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 8913107787631437306}
   - {fileID: 323263607642992447}
@@ -22294,7 +22293,6 @@ MonoBehaviour:
     scope3SpriteRenderer: {fileID: 6592179024432889208}
     scope4SpriteRenderer: {fileID: 6592179024432889208}
   fireRate: 11.5
-  autoReload: 1
   ammo: 31
   bulletForce: 400
   damage: 34
@@ -22322,7 +22320,7 @@ MonoBehaviour:
   SoundClips:
     shootSound: {fileID: 8300000, guid: 38b450e2adcb6f542acc8c1d423bd8dc, type: 3}
     silencerShootSound: {fileID: 0}
-    takeOtSound: {fileID: 0}
+    takeOutSound: {fileID: 0}
     reloadSoundOutOfAmmo: {fileID: 8300000, guid: 5b907074256e36d41b92e89fb0790633, type: 3}
     reloadSoundAmmoLeft: {fileID: 8300000, guid: f7ce534a0633b9847910ba117e2245d1, type: 3}
     aimSound: {fileID: 8300000, guid: acaebc89b98b82142bd2b24edb6081e4, type: 3}

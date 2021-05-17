@@ -185,6 +185,25 @@ public class Player : Bolt.EntityBehaviour<IFPSPlayerState>
                 myWeapon[mKS - 1].GetComponent<AutomaticGun>().isCurrentWeapon = false;
                 myWeapon[mKS - 1].SetActive(false);
                 myWeapon[mKS].SetActive(true);
+                switch (myWeapon[mKS].tag)
+                {
+                    case "AutomaticGun":
+                        myWeapon[mKS].GetComponent<AutomaticGun>().isCurrentWeapon = true; break;
+                    case "GrenadeLauncher":
+                        myWeapon[mKS].GetComponent<GrenadeLauncherScriptLPFP>().isCurrentWeapon = true; break;
+                    /*
+                    case "Shotgun":
+                        myWeapon[mKS].GetComponent<PumpShotgunScriptLPFP>().isCurrentWeapon = true; break;
+                    case "Handgun":
+                        myWeapon[mKS].GetComponent<HandgunScriptLPFP>().isCurrentWeapon = true; break;
+                    case "Sniper":
+                        myWeapon[mKS].GetComponent<SniperScriptLPFP>().isCurrentWeapon = true; break;
+                    case "BoltActionSniper":
+                        myWeapon[mKS].GetComponent<BoltActionSniperScriptLPFP>().isCurrentWeapon = true; break;
+                    case "RocketLauncher":
+                        myWeapon[mKS].GetComponent<RocketLauncherScriptLPFP>().isCurrentWeapon = true; break;
+                    */
+                }
                 myWeapon[mKS].GetComponent<AutomaticGun>().isCurrentWeapon = true;
             }
             isWeaponChange = false;

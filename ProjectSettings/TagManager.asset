@@ -16,6 +16,13 @@ TagManager:
   - Dirt (Static)
   - Wood
   - Metal (Static)
+  - AutomaticGun
+  - GrenadeLauncher
+  - Shotgun
+  - Handgun
+  - Sniper
+  - BoltActionSniper
+  - RocketLauncher
   layers:
   - Default
   - TransparentFX

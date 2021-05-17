@@ -22,7 +22,6 @@ public class AutomaticGun : EntityBehaviour<IFPSPlayerState>
 	[Header("Weapon Name UI")]
 	[Tooltip("총기 이름")]
 	public string weaponName;
-	private string storedWeaponName;
 
 	[Header("Weapon Attachments (Only use one scope attachment)")]
 	[Space(10)]
@@ -104,9 +103,6 @@ public class AutomaticGun : EntityBehaviour<IFPSPlayerState>
 	public float fireRate;
 	private float lastFired;
 
-	[Tooltip("자동 장전")]
-	public bool autoReload;
-
 	[Tooltip("최대 탄 수")]
 	public int ammo;
 	private int currentAmmo;
@@ -171,7 +167,7 @@ public class AutomaticGun : EntityBehaviour<IFPSPlayerState>
 	{
 		public AudioClip shootSound;
 		public AudioClip silencerShootSound;
-		public AudioClip takeOtSound;
+		public AudioClip takeOutSound;
 		public AudioClip reloadSoundOutOfAmmo;
 		public AudioClip reloadSoundAmmoLeft;
 		public AudioClip aimSound;
@@ -326,7 +322,6 @@ public class AutomaticGun : EntityBehaviour<IFPSPlayerState>
 
     private void Start()
 	{
-		storedWeaponName = weaponName;
 		currentWeaponText.text = weaponName;
 		totalAmmoText.text = ammo.ToString();
 		shootAudioSource.clip = SoundClips.shootSound;
@@ -431,7 +426,6 @@ public class AutomaticGun : EntityBehaviour<IFPSPlayerState>
 
 			isAiming = false;
 
-			//If iron sights are enabled, use normal aim out
 			if (ironSights == true)
 				anim.SetBool("Aim", false);
 			if (scope1 == true)
@@ -458,6 +452,7 @@ public class AutomaticGun : EntityBehaviour<IFPSPlayerState>
 				WeaponAttachmentRenderers.scope4SpriteRenderer.GetComponent
 				<SpriteRenderer>().enabled = false;
 			}
+
 			soundHasPlayed = false;
 		}
 		
@@ -467,6 +462,7 @@ public class AutomaticGun : EntityBehaviour<IFPSPlayerState>
 		// 현재 탄 수 동기화
 		currentAmmoText.text = currentAmmo.ToString();
 
+		// 탄이 꽉 차있는 상태인지
 		if (currentAmmo == ammo)
 			fullAmmo = true;
 		else
@@ -481,12 +477,12 @@ public class AutomaticGun : EntityBehaviour<IFPSPlayerState>
 			currentWeaponText.text = "OUT OF AMMO";
 
 			outOfAmmo = true;
-			if (autoReload == true && !isReloadingAnim)
+			if (!isReloadingAnim)
 				StartCoroutine(AutoReload());
 		}
 		else
 		{
-			currentWeaponText.text = storedWeaponName.ToString();
+			currentWeaponText.text = weaponName;
 			
 			outOfAmmo = false;
 		}
