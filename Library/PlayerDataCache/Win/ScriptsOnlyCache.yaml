@@ -3,6 +3,7 @@ ScriptsOnlyBuild:
     Assembly-CSharp.dll:
     - AutomaticGun
     - BlinkingLightLPFP
+    - BulletScript
     - BulletScriptBefore
     - CasingScriptBefore
     - CharacterAnimation
@@ -23,8 +24,10 @@ ScriptsOnlyBuild:
     UnityEditor.Graphs.dll:
     - UnityEditor.Graphs.AnimationBlendTree.Graph
     - UnityEditor.Graphs.AnimationBlendTree.GraphGUI
+    - UnityEditor.Graphs.AnimationStateMachine.AnyStateNode
     - UnityEditor.Graphs.AnimationStateMachine.Graph
     - UnityEditor.Graphs.AnimationStateMachine.GraphGUI
+    - UnityEditor.Graphs.AnimationStateMachine.StateNode
     - UnityEditor.Graphs.AnimatorControllerTool
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.Api.CallbacksHolder
@@ -126,6 +129,8 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 3114}
     - Class: 114
+      Script: {instanceID: 3222}
+    - Class: 114
       Script: {instanceID: 3390}
     - Class: 114
       Script: {instanceID: 3398}
@@ -138,6 +143,8 @@ ScriptsOnlyBuild:
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
+      Script: {instanceID: 0}
+    - Class: 135
       Script: {instanceID: 0}
     - Class: 136
       Script: {instanceID: 0}
@@ -253,6 +260,8 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 3182}
     - Class: 114
+      Script: {instanceID: 3222}
+    - Class: 114
       Script: {instanceID: 3256}
     - Class: 114
       Script: {instanceID: 3342}
@@ -277,6 +286,8 @@ ScriptsOnlyBuild:
     - Class: 128
       Script: {instanceID: 0}
     - Class: 134
+      Script: {instanceID: 0}
+    - Class: 135
       Script: {instanceID: 0}
     - Class: 136
       Script: {instanceID: 0}
@@ -1025,7 +1036,7 @@ ScriptsOnlyBuild:
     className: SignalEmitter
   - hash:
       serializedVersion: 2
-      Hash: 1b6bc5b377ada79b3e6b33715836bffb
+      Hash: 81aa356ff6bbbe25df46c5a2c74c4d0e
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: AutomaticGun
@@ -1055,7 +1066,7 @@ ScriptsOnlyBuild:
     className: Button
   - hash:
       serializedVersion: 2
-      Hash: 089f9969a55b2a520f76a4b855147fb4
+      Hash: 6f928bafa402712b333b2f535d3047a8
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: BulletScriptBefore

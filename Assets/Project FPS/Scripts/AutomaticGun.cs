@@ -176,9 +176,12 @@ public class AutomaticGun : EntityBehaviour<IFPSPlayerState>
 
 	private bool soundHasPlayed = false;
 
+	[Header("Other Settings")]
 	[SerializeField] private BoltEntity myEntity;
 	[SerializeField] private GameObject myCharacterModel;
+	public Transform bloodImpactPrefabs;
 	public bool isCurrentWeapon;
+
 	private bool isDraw = true;
 	private bool isReloadingAnim;
 	private bool isReloading = false;
@@ -349,14 +352,18 @@ public class AutomaticGun : EntityBehaviour<IFPSPlayerState>
 	void PlayerHitCheck()
     {
 		Physics.Raycast(Spawnpoints.bulletSpawnPoint.position, Spawnpoints.bulletSpawnPoint.forward, out RaycastHit hit);
-		if(hit.collider != null && hit.collider.CompareTag("FPSPlayer"))
-        {
+		if (hit.collider != null && hit.collider.gameObject.CompareTag("FPSPlayer"))
+		{
+			Instantiate(bloodImpactPrefabs.gameObject, hit.point,
+			   Quaternion.LookRotation(transform.position));
+
 			var evnt = PlayerHitEvent.Create();
 			evnt.attacker = attacker.text;
 			evnt.targetEntity = hit.collider.gameObject.GetComponent<BoltEntity>();
-			evnt.damage = Random.Range(damage-2, damage+2);
+			evnt.damage = Random.Range(damage - 2, damage + 2);
 			evnt.attackerEntity = myEntity;
 			evnt.Send();
+
 		}
     }
 

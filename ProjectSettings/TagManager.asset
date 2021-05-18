@@ -12,10 +12,7 @@ TagManager:
   - Blood
   - Dirt
   - Concrete
-  - Wood (Static)
-  - Dirt (Static)
   - Wood
-  - Metal (Static)
   - AutomaticGun
   - GrenadeLauncher
   - Shotgun
@@ -23,6 +20,8 @@ TagManager:
   - Sniper
   - BoltActionSniper
   - RocketLauncher
+  - Bullet
+  - High
   layers:
   - Default
   - TransparentFX
@@ -33,9 +32,9 @@ TagManager:
   - Bullet
   - FPSPlayer
   - MyBody
-  - 
-  - 
-  - 
+  - High
+  - Normal
+  - Low
   - 
   - 
   - 

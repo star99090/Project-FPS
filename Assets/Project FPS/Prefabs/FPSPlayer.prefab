@@ -1403,7 +1403,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _sceneGuid: 
   _serializerGuid: 0d571f8f-8396-4497-aff8-4335b83be108
-  _prefabId: 2
+  _prefabId: 4
   _updateRate: 1
   _autoFreezeProxyFrames: 0
   _clientPredicted: 1
@@ -12912,6 +12912,7 @@ MonoBehaviour:
     aimSound: {fileID: 8300000, guid: acaebc89b98b82142bd2b24edb6081e4, type: 3}
   myEntity: {fileID: 6835624471752019027}
   myCharacterModel: {fileID: 0}
+  bloodImpactPrefabs: {fileID: 0}
   isCurrentWeapon: 0
 --- !u!82 &6915316314603975544
 AudioSource:

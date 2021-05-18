@@ -100,7 +100,6 @@ public class GrenadeLauncherScriptLPFP : EntityBehaviour<IFPSPlayerState>
 	private int currentAmmo;
 	private int ammo = 1;
 	private bool outOfAmmo;
-	private bool fullAmmo;
 
 	[Header("Muzzleflash Settings")]
 	public ParticleSystem muzzleParticles;
@@ -425,10 +424,10 @@ public class GrenadeLauncherScriptLPFP : EntityBehaviour<IFPSPlayerState>
 		currentAmmoText.text = currentAmmo.ToString();
 
 		// 탄이 장전 된 상태인지
-		if (currentAmmo == ammo)
+		/*if (currentAmmo == ammo)
 			fullAmmo = true;
 		else
-			fullAmmo = false;
+			fullAmmo = false;*/
 
 		// 현재 재장전 애니메이션 진행 중인지 확인
 		AnimationCheck();
@@ -463,7 +462,7 @@ public class GrenadeLauncherScriptLPFP : EntityBehaviour<IFPSPlayerState>
 			// 탄 수 감소
 			currentAmmo -= 1;
 
-			fullAmmo = false;
+			//fullAmmo = false;
 
 			shootAudioSource.clip = SoundClips.shootSound;
 			shootAudioSource.Play ();
@@ -545,7 +544,7 @@ public class GrenadeLauncherScriptLPFP : EntityBehaviour<IFPSPlayerState>
 		currentAmmo = ammo;
 		outOfAmmo = false;
 		isReloading = false;
-		fullAmmo = true;
+		//fullAmmo = true;
 	}
 
 	// 사격 시 총알의 불빛이 사라지는 시간 설정

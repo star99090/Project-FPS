@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class ImpactScriptBefore : Bolt.EntityBehaviour<IMetalImpactState> {
+public class ImpactScriptBefore : Bolt.EntityBehaviour<IImpactState> {
 
 	[Tooltip("임팩트 파괴 예정 시간")]
 	public float despawnTimer = 3.0f;
@@ -10,7 +10,8 @@ public class ImpactScriptBefore : Bolt.EntityBehaviour<IMetalImpactState> {
 	public AudioClip[] impactSounds;
 	public AudioSource audioSource;
 
-	private void Start () {
+	private void Start ()
+	{
 		StartCoroutine(DespawnTimer());
 
 		// 임팩트 사운드 랜덤 대입
@@ -20,9 +21,10 @@ public class ImpactScriptBefore : Bolt.EntityBehaviour<IMetalImpactState> {
 		audioSource.Play();
 	}
 	
-	private IEnumerator DespawnTimer() {
+	private IEnumerator DespawnTimer()
+	{
 		yield return new WaitForSeconds (despawnTimer);
 
-		BoltNetwork.Destroy(gameObject);
+		Destroy(gameObject);
 	}
 }

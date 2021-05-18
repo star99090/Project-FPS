@@ -605,7 +605,7 @@
           "BitsRequired": 8
         }
       },
-      "Name": "MetalImpactState",
+      "Name": "ImpactState",
       "Guid": "1964c96d-59b7-4e41-b65c-a1d757a181ff",
       "Groups": []
     },
