@@ -170,7 +170,6 @@ public class Player : Bolt.EntityBehaviour<IFPSPlayerState>
         _isGrounded = false;
     }
 
-    // 총을 캐릭터의 위치로 옮기고 점프와 발걸음 사운드를 재생
     private void Update()
     {
         PlayFootstepSounds();
@@ -204,7 +203,6 @@ public class Player : Bolt.EntityBehaviour<IFPSPlayerState>
                         myWeapon[mKS].GetComponent<RocketLauncherScriptLPFP>().isCurrentWeapon = true; break;
                     */
                 }
-                myWeapon[mKS].GetComponent<AutomaticGun>().isCurrentWeapon = true;
             }
             isWeaponChange = false;
         }

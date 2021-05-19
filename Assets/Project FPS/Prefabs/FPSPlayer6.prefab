@@ -27947,7 +27947,7 @@ Transform:
   m_GameObject: {fileID: 4580124521075086596}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: -0.48, z: 0}
-  m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 6887515588001385456}
   - {fileID: 3020387858300309452}
@@ -27981,10 +27981,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.25
+  m_Radius: 0.3
   m_Height: 1.8
   m_Direction: 1
-  m_Center: {x: 0, y: -0.11, z: 0}
+  m_Center: {x: 0, y: -0.12, z: 0}
 --- !u!82 &5578539180760737190
 AudioSource:
   m_ObjectHideFlags: 0
@@ -28100,7 +28100,7 @@ MonoBehaviour:
   walkingSpeed: 3
   runningSpeed: 5
   movementSmoothness: 0.125
-  jumpForce: 40
+  jumpForce: 30
   mouseSensitivity: 5
   rotationSmoothness: 0.05
   minVerticalAngle: -90
