@@ -24,10 +24,8 @@ ScriptsOnlyBuild:
     UnityEditor.Graphs.dll:
     - UnityEditor.Graphs.AnimationBlendTree.Graph
     - UnityEditor.Graphs.AnimationBlendTree.GraphGUI
-    - UnityEditor.Graphs.AnimationStateMachine.AnyStateNode
     - UnityEditor.Graphs.AnimationStateMachine.Graph
     - UnityEditor.Graphs.AnimationStateMachine.GraphGUI
-    - UnityEditor.Graphs.AnimationStateMachine.StateNode
     - UnityEditor.Graphs.AnimatorControllerTool
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.Api.CallbacksHolder
@@ -1066,7 +1064,7 @@ ScriptsOnlyBuild:
     className: Button
   - hash:
       serializedVersion: 2
-      Hash: 6f928bafa402712b333b2f535d3047a8
+      Hash: 2da8be7714758b1fea7e258d92a8020c
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: BulletScriptBefore
