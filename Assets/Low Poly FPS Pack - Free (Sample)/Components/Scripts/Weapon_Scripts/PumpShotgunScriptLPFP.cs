@@ -1,68 +1,65 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using Bolt;
 
-public class PumpShotgunScriptLPFP : MonoBehaviour {
-
-	//Animator component attached to weapon
-	Animator anim;
+public class PumpShotgunScriptLPFP : EntityBehaviour<IFPSPlayerState>
+{
+	public Animator anim;
 
 	[Header("Gun Camera")]
-	//Main gun camera
 	public Camera gunCamera;
 
 	[Header("Gun Camera Options")]
-	//How fast the camera field of view changes when aiming 
-	[Tooltip("How fast the camera field of view changes when aiming.")]
+	[Tooltip("조준 시 카메라 변경 속도")]
 	public float fovSpeed = 15.0f;
-	//Default camera field of view
-	[Tooltip("Default value for camera field of view (40 is recommended).")]
+
+	[Tooltip("카메라 시야 기본 값")]
 	public float defaultFov = 40.0f;
 
-	[Header("UI Weapon Name")]
-	[Tooltip("Name of the current weapon, shown in the game UI.")]
+	private float aimFov;
+
+	[Header("Weapon Name UI")]
+	[Tooltip("총기 이름")]
 	public string weaponName;
-	private string storedWeaponName;
 
 	[Header("Weapon Attachments (Only use one scope attachment)")]
 	[Space(10)]
-	//Toggle weapon attachments (loads at start)
-	//Toggle scope 01
+	// 첫 번째 스코프 토글
 	public bool scope1;
 	public Sprite scope1Texture;
 	public float scope1TextureSize = 0.0045f;
-	//Scope 01 camera fov
 	[Range(5, 40)]
 	public float scope1AimFOV = 10;
 	[Space(10)]
-	//Toggle scope 02
+
+	// 두 번째 스코프 토글
 	public bool scope2;
 	public Sprite scope2Texture;
 	public float scope2TextureSize = 0.01f;
-	//Scope 02 camera fov
 	[Range(5, 40)]
 	public float scope2AimFOV = 25;
 	[Space(10)]
-	//Toggle scope 03
+
+	// 세 번째 스코프 토글
 	public bool scope3;
 	public Sprite scope3Texture;
 	public float scope3TextureSize = 0.006f;
-	//Scope 03 camera fov
 	[Range(5, 40)]
 	public float scope3AimFOV = 20;
 	[Space(10)]
-	//Toggle scope 04
+
+	// 네 번째 스코프 토글
 	public bool scope4;
 	public Sprite scope4Texture;
 	public float scope4TextureSize = 0.0025f;
-	//Scope 04 camera fov
 	[Range(5, 40)]
 	public float scope4AimFOV = 12;
 	[Space(10)]
-	//Toggle iron sights
+
+	// 총기 자체 가늠쇠
 	public bool ironSights;
 	public bool alwaysShowIronSights;
-	//Iron sights camera fov
 	[Range(5, 40)]
 	public float ironSightsAimFOV = 16;
 
@@ -95,95 +92,47 @@ public class PumpShotgunScriptLPFP : MonoBehaviour {
 	}
 	public weaponAttachmentRenderers WeaponAttachmentRenderers;
 
-	[Header("Weapon Sway")]
-	//Enables weapon sway
-	[Tooltip("Toggle weapon sway.")]
-	public bool weaponSway;
-
-	public float swayAmount = 0.02f;
-	public float maxSwayAmount = 0.06f;
-	public float swaySmoothValue = 4.0f;
-
-	private Vector3 initialSwayPosition;
-
 	//Used for fire rate
-	private float lastFired;
 
 	//How fast the weapon fires, higher value means faster rate of fire
 	[Header("Weapon Settings")]
-	[Tooltip("How fast the weapon fires, higher value means faster rate of fire.")]
+	[Tooltip("발사 딜레이 조절")]
 	public float fireRate;
-	//Eanbles auto reloading when out of ammo
-	[Tooltip("Enables auto reloading when out of ammo.")]
-	public bool autoReload;
-	//Delay between shooting last bullet and reloading
-	public float autoReloadDelay;
-	//Check if reloading
-	private bool isReloading;
-	//Chek if shooting
-	private bool isShooting;
+	private float lastFired;
 
-	//Holstering weapon
-	private bool hasBeenHolstered = false;
-	//If weapon is holstered
-	private bool holstered;
-	//Check if running
-	private bool isRunning;
-	//Check if aiming
-	private bool isAiming;
-	//Check if walking
-	private bool isWalking;
-	//Check if inspecting weapon
-	private bool isInspecting;
-
-	//How much ammo is currently left
-	private int currentAmmo;
-	//Totalt amount of ammo
-	[Tooltip("How much ammo the weapon should have.")]
+	[Tooltip("최대 탄 수")]
 	public int ammo;
-	//Check if out of ammo
+	private int currentAmmo;
 	private bool outOfAmmo;
+	private bool fullAmmo;
 
 	[Header("Bullet Settings")]
-	//Bullet
-	[Tooltip("How much force is applied to the bullet when shooting.")]
-	public float bulletForce = 400;
+	[Tooltip("총탄 발사 힘")]
+	public float bulletForce = 400f;
 
-	[Header("Grenade Settings")]
-	public float grenadeSpawnDelay = 0.35f;
+	[Tooltip("데미지 중간 값")]
+	public int damage = 20;
 
 	[Header("Muzzleflash Settings")]
-	public bool randomMuzzleflash = false;
-	//min should always bee 1
-	private int minRandomValue = 1;
-
-	[Range(2, 25)]
-	public int maxRandomValue = 5;
-
-	private int randomMuzzleflashValue;
-
-	public bool enableMuzzleFlash;
 	public ParticleSystem muzzleParticles;
-	public bool enableSparks;
 	public ParticleSystem sparkParticles;
 	public int minSparkEmission = 1;
 	public int maxSparkEmission = 7;
+	private int randomMuzzleflashValue;
 
 	[Header("Muzzleflash Light Settings")]
 	public Light muzzleFlashLight;
 	public float lightDuration = 0.02f;
 
 	[Header("Audio Source")]
-	//Main audio source
 	public AudioSource mainAudioSource;
-	//Audio source used for shoot sound
 	public AudioSource shootAudioSource;
 
 	[Header("UI Components")]
-	public Text timescaleText;
 	public Text currentWeaponText;
 	public Text currentAmmoText;
 	public Text totalAmmoText;
+	[SerializeField] private Text attacker;
 
 	[System.Serializable]
 	public class prefabs
@@ -191,7 +140,6 @@ public class PumpShotgunScriptLPFP : MonoBehaviour {
 		[Header("Prefabs")]
 		public Transform bulletPrefab;
 		public Transform casingPrefab;
-		public Transform grenadePrefab;
 	}
 	public prefabs Prefabs;
 	
@@ -199,20 +147,13 @@ public class PumpShotgunScriptLPFP : MonoBehaviour {
 	public class spawnpoints
 	{  
 		[Header("Spawnpoints")]
-		//Array holding casing spawn points 
-		//(some weapons use more than one casing spawn)
 		public float casingDelayTimer;
-		//Casing spawn point array
 		public Transform casingSpawnPoint;
-		//Bullet prefab spawn from this point
-		public Transform [] bulletSpawnPoint;
-		public bool useRandomBulletSpawnRotation;
+		public Transform[] bulletSpawnPoint;
 		[Range(-10, 10)]
 		public float bulletSpawnPointMinRotation = -5.0f;
 		[Range(-10, 10)]
 		public float bulletSpawnPointMaxRotation = 5.0f;
-
-		public Transform grenadeSpawnPoint;
 	}
 	public spawnpoints Spawnpoints;
 
@@ -221,244 +162,240 @@ public class PumpShotgunScriptLPFP : MonoBehaviour {
 	{
 		public AudioClip shootSound;
 		public AudioClip takeOutSound;
-		public AudioClip holsterSound;
 		public AudioClip aimSound;
 	}
 	public soundClips SoundClips;
 
 	private bool soundHasPlayed = false;
 
+	[Header("Other Settings")]
+	[SerializeField] private BoltEntity myEntity;
+	[SerializeField] private GameObject myCharacterModel;
+	public Transform bloodImpactPrefabs;
+	public bool isCurrentWeapon;
+
+	private bool isDraw = true;
+	private bool isReloadingAnim;
+	private bool isReloading = false;
+	private bool isRunning;
+	private bool isAiming;
+	//private bool isShooting;
+	//private bool isWalking;
+
 	private void Awake () 
 	{
-		//Set the animator component
 		anim = GetComponent<Animator>();
-		//Set current ammo to total ammo value
 		currentAmmo = ammo;
-
 		muzzleFlashLight.enabled = false;
 
-		//Show in log if another scope is being used with iron sights
-		if (ironSights && scope1 == true || 
-			ironSights && scope2 == true || 
-			ironSights && scope3 == true || 
-			ironSights && scope4) 
+		// 무기 부착물
+		// Scope1 활성화
+		if (scope1 == true && WeaponAttachmentRenderers.scope1Renderer != null)
 		{
-			Debug.Log 
-			("Only use one scope attachment, animations won't work " +
-				"properly if several scope attachments are being used");
-		}
-
-		//Weapon attachments
-		//If scope1 is true
-		if (scope1 == true && WeaponAttachmentRenderers.scope1Renderer != null) 
-		{
-			//If scope1 is true, enable scope renderer
 			WeaponAttachmentRenderers.scope1Renderer.GetComponent
-			<SkinnedMeshRenderer> ().enabled = true;
-			//Also enable the scope sight render mesh
+			<SkinnedMeshRenderer>().enabled = true;
+
 			WeaponAttachmentRenderers.scope1RenderMesh.SetActive(true);
-			//Set the scope sight texture
+
 			WeaponAttachmentRenderers.scope1SpriteRenderer.GetComponent
 				<SpriteRenderer>().sprite = scope1Texture;
-			//Set the scope texture size
-			WeaponAttachmentRenderers.scope1SpriteRenderer.transform.localScale = new Vector3 
+
+			WeaponAttachmentRenderers.scope1SpriteRenderer.transform.localScale = new Vector3
 				(scope1TextureSize, scope1TextureSize, scope1TextureSize);
-		} 
+		}
+		// Scope1 비활성화
 		else if (WeaponAttachmentRenderers.scope1Renderer != null)
 		{
-			//If scope1 is false, disable scope renderer
 			WeaponAttachmentRenderers.scope1Renderer.GetComponent<
-			SkinnedMeshRenderer> ().enabled = false;
-			//Also disable the scope sight render mesh
+			SkinnedMeshRenderer>().enabled = false;
+
 			WeaponAttachmentRenderers.scope1RenderMesh.SetActive(false);
 		}
-		//If scope 2 is true
-		if (scope2 == true && WeaponAttachmentRenderers.scope2Renderer != null) 
+
+		// Scope2 활성화
+		if (scope2 == true && WeaponAttachmentRenderers.scope2Renderer != null)
 		{
-			//If scope2 is true, enable scope renderer
 			WeaponAttachmentRenderers.scope2Renderer.GetComponent
-			<SkinnedMeshRenderer> ().enabled = true;
-			//Also enable the scope sight render mesh
+			<SkinnedMeshRenderer>().enabled = true;
+
 			WeaponAttachmentRenderers.scope2RenderMesh.SetActive(true);
-			//Set the scope sight texture
+
 			WeaponAttachmentRenderers.scope2SpriteRenderer.GetComponent
 			<SpriteRenderer>().sprite = scope2Texture;
-			//Set the scope texture size
-			WeaponAttachmentRenderers.scope2SpriteRenderer.transform.localScale = new Vector3 
+
+			WeaponAttachmentRenderers.scope2SpriteRenderer.transform.localScale = new Vector3
 				(scope2TextureSize, scope2TextureSize, scope2TextureSize);
-		} 
+		}
+		// Scope2 비활성화
 		else if (WeaponAttachmentRenderers.scope2Renderer != null)
 		{
-			//If scope2 is false, disable scope renderer
 			WeaponAttachmentRenderers.scope2Renderer.GetComponent
-			<SkinnedMeshRenderer> ().enabled = false;
-			//Also disable the scope sight render mesh
+			<SkinnedMeshRenderer>().enabled = false;
+
 			WeaponAttachmentRenderers.scope2RenderMesh.SetActive(false);
 		}
-		//If scope 3 is true
-		if (scope3 == true && WeaponAttachmentRenderers.scope3Renderer != null) 
+
+		// Scope3 활성화
+		if (scope3 == true && WeaponAttachmentRenderers.scope3Renderer != null)
 		{
-			//If scope3 is true, enable scope renderer
 			WeaponAttachmentRenderers.scope3Renderer.GetComponent
-			<SkinnedMeshRenderer> ().enabled = true;
-			//Also enable the scope sight render mesh
+			<SkinnedMeshRenderer>().enabled = true;
+
 			WeaponAttachmentRenderers.scope3RenderMesh.SetActive(true);
-			//Set the scope sight texture
+
 			WeaponAttachmentRenderers.scope3SpriteRenderer.GetComponent
 			<SpriteRenderer>().sprite = scope3Texture;
-			//Set the scope texture size
-			WeaponAttachmentRenderers.scope3SpriteRenderer.transform.localScale = new Vector3 
+
+			WeaponAttachmentRenderers.scope3SpriteRenderer.transform.localScale = new Vector3
 				(scope3TextureSize, scope3TextureSize, scope3TextureSize);
-		} 
+		}
+		// Scope3 비활성화
 		else if (WeaponAttachmentRenderers.scope3Renderer != null)
 		{
-			//If scope3 is false, disable scope renderer
 			WeaponAttachmentRenderers.scope3Renderer.GetComponent
-			<SkinnedMeshRenderer> ().enabled = false;
-			//Also disable the scope sight render mesh
+			<SkinnedMeshRenderer>().enabled = false;
+
 			WeaponAttachmentRenderers.scope3RenderMesh.SetActive(false);
 		}
-		//If scope 4 is true
-		if (scope4 == true && WeaponAttachmentRenderers.scope4Renderer != null) 
+
+		// Scope4 활성화
+		if (scope4 == true && WeaponAttachmentRenderers.scope4Renderer != null)
 		{
-			//If scope4 is true, enable scope renderer
 			WeaponAttachmentRenderers.scope4Renderer.GetComponent
-			<SkinnedMeshRenderer> ().enabled = true;
-			//Also enable the scope sight render mesh
+			<SkinnedMeshRenderer>().enabled = true;
+
 			WeaponAttachmentRenderers.scope4RenderMesh.SetActive(true);
-			//Set the scope sight texture
+
 			WeaponAttachmentRenderers.scope4SpriteRenderer.GetComponent
 			<SpriteRenderer>().sprite = scope4Texture;
-			//Set the scope texture size
-			WeaponAttachmentRenderers.scope4SpriteRenderer.transform.localScale = new Vector3 
+
+			WeaponAttachmentRenderers.scope4SpriteRenderer.transform.localScale = new Vector3
 				(scope4TextureSize, scope4TextureSize, scope4TextureSize);
-		} 
+		}
+		// Scope4 비활성화
 		else if (WeaponAttachmentRenderers.scope4Renderer != null)
 		{
-			//If scope4 is false, disable scope renderer
 			WeaponAttachmentRenderers.scope4Renderer.GetComponent
-			<SkinnedMeshRenderer> ().enabled = false;
-			//Also enable the scope sight render mesh
+			<SkinnedMeshRenderer>().enabled = false;
+
 			WeaponAttachmentRenderers.scope4RenderMesh.SetActive(false);
 		}
 
-		//If alwaysShowIronSights is true
-		if (alwaysShowIronSights == true && WeaponAttachmentRenderers.ironSightsRenderer != null) {
+		// 항상 가늠쇠가 있다면
+		if (alwaysShowIronSights == true && WeaponAttachmentRenderers.ironSightsRenderer != null)
+		{
 			WeaponAttachmentRenderers.ironSightsRenderer.GetComponent
-			<SkinnedMeshRenderer> ().enabled = true;
+			<SkinnedMeshRenderer>().enabled = true;
 		}
 
-		//If ironSights is true
-		if (ironSights == true && WeaponAttachmentRenderers.ironSightsRenderer != null) 
+		// 가늠쇠가 있다면
+		if (ironSights == true && WeaponAttachmentRenderers.ironSightsRenderer != null)
 		{
-			//If scope1 is true, enable scope renderer
 			WeaponAttachmentRenderers.ironSightsRenderer.GetComponent
-			<SkinnedMeshRenderer> ().enabled = true;
-		//If always show iron sights is enabled, don't disable 
-		//Do not use if iron sight renderer is not assigned in inspector
-		} else if (!alwaysShowIronSights && 
-			WeaponAttachmentRenderers.ironSightsRenderer != null) {
-			//If scope1 is false, disable scope renderer
+			<SkinnedMeshRenderer>().enabled = true;
+		}
+		// 항상 가늠쇠 보이기를 끄고 가늠쇠 자체를 꺼뒀다면
+		else if (!alwaysShowIronSights &&
+		  WeaponAttachmentRenderers.ironSightsRenderer != null)
+		{
 			WeaponAttachmentRenderers.ironSightsRenderer.GetComponent
-			<SkinnedMeshRenderer> ().enabled = false;
+			<SkinnedMeshRenderer>().enabled = false;
 		}
 	}
 
 	private void Start () 
 	{
-		//Save the weapon name
-		storedWeaponName = weaponName;
-		//Get weapon name from string to text
 		currentWeaponText.text = weaponName;
-		//Set total ammo text from total ammo int
 		totalAmmoText.text = ammo.ToString();
-
-		//Weapon sway
-		initialSwayPosition = transform.localPosition;
-
-		//Set the shoot sound to audio source
 		shootAudioSource.clip = SoundClips.shootSound;
 	}
 
-	private void LateUpdate () 
+	public override void Attached()
 	{
-		//Weapon sway
-		if (weaponSway == true) {
-			float movementX = -Input.GetAxis ("Mouse X") * swayAmount;
-			float movementY = -Input.GetAxis ("Mouse Y") * swayAmount;
-			//Clamp movement to min and max amount
-			movementX = Mathf.Clamp 
-				(movementX, -maxSwayAmount, maxSwayAmount);
-			movementY = Mathf.Clamp 
-				(movementY, -maxSwayAmount, maxSwayAmount);
-			//Lerp local pos
-			Vector3 finalSwayPosition = new Vector3 
-				(movementX, movementY, 0);
-			transform.localPosition = Vector3.Lerp 
-				(transform.localPosition, finalSwayPosition + 
-					initialSwayPosition, Time.deltaTime * swaySmoothValue);
+		state.AddCallback("MuzzleParticleTrigger", MuzzleParticleCallback);
+		state.AddCallback("SparkParticleTrigger", SparkParticleCallback);
+		state.OnMuzzleParticleTrigger += MuzzleParticleCallback;
+		state.OnSparkParticleTrigger += SparkParticleCallback;
+	}
+
+	void MuzzleParticleCallback()
+	{
+		if (isCurrentWeapon)
+		{
+			muzzleParticles.Emit(1);
+			StartCoroutine(MuzzleFlashLight());
+		}
+	}
+
+	void SparkParticleCallback() => sparkParticles.Emit(Random.Range(minSparkEmission, maxSparkEmission));
+
+	void PlayerHitCheck(Transform bulletSpawnPos)
+	{
+		Physics.Raycast(bulletSpawnPos.position, bulletSpawnPos.forward, out RaycastHit hit);
+		if (hit.collider != null && hit.collider.gameObject.CompareTag("FPSPlayer"))
+		{
+			Instantiate(bloodImpactPrefabs.gameObject, hit.point,
+			   Quaternion.LookRotation(transform.position));
+
+			var evnt = PlayerHitEvent.Create();
+			evnt.attacker = attacker.text;
+			evnt.targetEntity = hit.collider.gameObject.GetComponent<BoltEntity>();
+			evnt.damage = Random.Range(damage - 2, damage + 2);
+			evnt.attackerEntity = myEntity;
+			evnt.Send();
+
 		}
 	}
 	
 	private void Update () 
 	{
-		//Aiming
-		//Toggle camera FOV when right click is held down
-		if(Input.GetButton("Fire2") && !isReloading && !isRunning && !isInspecting) 
+		if (!entity.IsOwner) return;
+
+		if (anim.GetCurrentAnimatorStateInfo(0).IsName("Draw")
+			&& anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1f)
+			isDraw = false;
+
+		// 우클릭 조준 시 카메라 셋팅
+		if (Input.GetButton("Fire2") && !isReloadingAnim && !isRunning & !isReloading) 
 		{
-			if (ironSights == true) 
+			if (ironSights == true)
 			{
-				gunCamera.fieldOfView = Mathf.Lerp (gunCamera.fieldOfView,
-					ironSightsAimFOV, fovSpeed * Time.deltaTime);
+				aimFov = ironSightsAimFOV;
+				anim.SetBool("Aim", true);
 			}
-			if (scope1 == true) 
+			if (scope1 == true)
 			{
-				gunCamera.fieldOfView = Mathf.Lerp (gunCamera.fieldOfView,
-					scope1AimFOV, fovSpeed * Time.deltaTime);
+				aimFov = scope1AimFOV;
+				anim.SetBool("AimScope1", true);
+				WeaponAttachmentRenderers.scope1SpriteRenderer.GetComponent
+					<SpriteRenderer>().enabled = true;
 			}
-			if (scope2 == true) 
+			if (scope2 == true)
 			{
-				gunCamera.fieldOfView = Mathf.Lerp (gunCamera.fieldOfView,
-					scope2AimFOV, fovSpeed * Time.deltaTime);
+				aimFov = scope2AimFOV;
+				anim.SetBool("AimScope2", true);
+				WeaponAttachmentRenderers.scope2SpriteRenderer.GetComponent
+				 <SpriteRenderer>().enabled = true;
 			}
-			if (scope3 == true) 
+			if (scope3 == true)
 			{
-				gunCamera.fieldOfView = Mathf.Lerp (gunCamera.fieldOfView,
-					scope3AimFOV, fovSpeed * Time.deltaTime);
+				aimFov = scope3AimFOV;
+				anim.SetBool("AimScope3", true);
+				WeaponAttachmentRenderers.scope3SpriteRenderer.GetComponent
+				<SpriteRenderer>().enabled = true;
 			}
-			if (scope4 == true) 
+			if (scope4 == true)
 			{
-				gunCamera.fieldOfView = Mathf.Lerp (gunCamera.fieldOfView,
-					scope4AimFOV, fovSpeed * Time.deltaTime);
+				aimFov = scope4AimFOV;
+				anim.SetBool("AimScope4", true);
+				WeaponAttachmentRenderers.scope4SpriteRenderer.GetComponent
+				<SpriteRenderer>().enabled = true;
 			}
 
 			isAiming = true;
 
-			//If iron sights are enabled, use normal aim
-			if (ironSights == true) 
-			{
-				anim.SetBool ("Aim", true);
-			}
-			//If scope 1 is enabled, use scope 1 aim in animation
-			if (scope1 == true) 
-			{
-				anim.SetBool ("Aim Scope 1", true);
-			}
-			//If scope 2 is enabled, use scope 2 aim in animation
-			if (scope2 == true) 
-			{
-				anim.SetBool ("Aim Scope 2", true);
-			}
-			//If scope 3 is enabled, use scope 3 aim in animation
-			if (scope3 == true) 
-			{
-				anim.SetBool ("Aim Scope 3", true);
-			}
-			//If scope 4 is enabled, use scope 4 aim in animation
-			if (scope4 == true) 
-			{
-				anim.SetBool ("Aim Scope 4", true);
-			}
+			gunCamera.fieldOfView = Mathf.Lerp(gunCamera.fieldOfView,
+				aimFov, fovSpeed * Time.deltaTime);
 
 			if (!soundHasPlayed) 
 			{
@@ -467,428 +404,220 @@ public class PumpShotgunScriptLPFP : MonoBehaviour {
 	
 				soundHasPlayed = true;
 			}
-
-			//If scope 1 is true, show scope sight texture when aiming
-			if (scope1 == true) 
-			{
-				WeaponAttachmentRenderers.scope1SpriteRenderer.GetComponent
-					<SpriteRenderer> ().enabled = true;
-			}
-			//If scope 2 is true, show scope sight texture when aiming
-			if (scope2 == true) 
-			{
-				WeaponAttachmentRenderers.scope2SpriteRenderer.GetComponent
-				<SpriteRenderer> ().enabled = true;
-			}
-			//If scope 3 is true, show scope sight texture when aiming
-			if (scope3 == true) 
-			{
-				WeaponAttachmentRenderers.scope3SpriteRenderer.GetComponent
-				<SpriteRenderer> ().enabled = true;
-			}
-			//If scope 4 is true, show scope sight texture when aiming
-			if (scope4 == true) 
-			{
-				WeaponAttachmentRenderers.scope4SpriteRenderer.GetComponent
-				<SpriteRenderer> ().enabled = true;
-			}
-		} 
-		else 
+		}
+		// 우클릭 해제
+		else
 		{
-			//When right click is released
 			gunCamera.fieldOfView = Mathf.Lerp(gunCamera.fieldOfView,
 				defaultFov,fovSpeed * Time.deltaTime);
 
 			isAiming = false;
 
-			//If iron sights are enabled, use normal aim out
-			if (ironSights == true) 
+			if (ironSights == true)
+				anim.SetBool("Aim", false);
+			if (scope1 == true)
 			{
-				anim.SetBool ("Aim", false);
+				anim.SetBool("AimScope1", false);
+				WeaponAttachmentRenderers.scope1SpriteRenderer.GetComponent
+					<SpriteRenderer>().enabled = false;
 			}
-			//If scope 1 is enabled, use scope 1 aim out animation
-			if (scope1 == true) 
+			if (scope2 == true)
 			{
-				anim.SetBool ("Aim Scope 1", false) ;
+				anim.SetBool("AimScope2", false);
+				WeaponAttachmentRenderers.scope2SpriteRenderer.GetComponent
+				<SpriteRenderer>().enabled = false;
 			}
-			//If scope 2 is enabled, use scope 2 aim out animation
-			if (scope2 == true) 
+			if (scope3 == true)
 			{
-				anim.SetBool ("Aim Scope 2", false);
+				anim.SetBool("AimScope3", false);
+				WeaponAttachmentRenderers.scope3SpriteRenderer.GetComponent
+				<SpriteRenderer>().enabled = false;
 			}
-			//If scope 3 is enabled, use scope 3 aim out animation
-			if (scope3 == true) 
+			if (scope4 == true)
 			{
-				anim.SetBool ("Aim Scope 3", false) ;
-			}
-
-			//If scope 4 is enabled, use scope 4 aim out animation
-			if (scope4 == true) 
-			{
-				anim.SetBool ("Aim Scope 4", false) ;
+				anim.SetBool("AimScope4", false);
+				WeaponAttachmentRenderers.scope4SpriteRenderer.GetComponent
+				<SpriteRenderer>().enabled = false;
 			}
 
 			soundHasPlayed = false;
-
-			//If scope 1 is true, disable scope sight texture when not aiming
-			if (scope1 == true) 
-			{
-				WeaponAttachmentRenderers.scope1SpriteRenderer.GetComponent
-					<SpriteRenderer> ().enabled = false;
-			}
-			//If scope 2 is true, disable scope sight texture when not aiming
-			if (scope2 == true) 
-			{
-				WeaponAttachmentRenderers.scope2SpriteRenderer.GetComponent
-				<SpriteRenderer> ().enabled = false;
-			}
-			//If scope 3 is true, disable scope sight texture when not aiming
-			if (scope3 == true) 
-			{
-				WeaponAttachmentRenderers.scope3SpriteRenderer.GetComponent
-				<SpriteRenderer> ().enabled = false;
-			}
-			//If scope 4 is true, disable scope sight texture when not aiming
-			if (scope4 == true) 
-			{
-				WeaponAttachmentRenderers.scope4SpriteRenderer.GetComponent
-				<SpriteRenderer> ().enabled = false;
-			}
-		}
-		//Aiming end
-
-		//If randomize muzzleflash is true, genereate random int values
-		if (randomMuzzleflash == true) 
-		{
-			randomMuzzleflashValue = Random.Range (minRandomValue, maxRandomValue);
 		}
 
-		//Timescale settings
-		//Change timescale to normal when 1 key is pressed
-		if (Input.GetKeyDown (KeyCode.Alpha1)) 
-		{
-			Time.timeScale = 1.0f;
-			timescaleText.text = "1.0";
-		}
-		//Change timescale to 50% when 2 key is pressed
-		if (Input.GetKeyDown (KeyCode.Alpha2)) 
-		{
-			Time.timeScale = 0.5f;
-			timescaleText.text = "0.5";
-		}
-		//Change timescale to 25% when 3 key is pressed
-		if (Input.GetKeyDown (KeyCode.Alpha3)) 
-		{
-			Time.timeScale = 0.25f;
-			timescaleText.text = "0.25";
-		}
-		//Change timecscale to 10% when 4 key is pressed
-		if (Input.GetKeyDown (KeyCode.Alpha4)) 
-		{
-			Time.timeScale = 0.1f;
-			timescaleText.text = "0.1";
-		}
-		//Pause game when 5 key is pressed
-		if (Input.GetKeyDown (KeyCode.Alpha5)) 
-		{
-			Time.timeScale = 0.0f;
-			timescaleText.text = "0.0";
-		}
+		// 발사 이펙트 빈도 수 지정
+		randomMuzzleflashValue = Random.Range(1, 2);
 
-		//Set current ammo text from ammo int
+		// 현재 탄 수 동기화
 		currentAmmoText.text = currentAmmo.ToString ();
 
-		//Continosuly check which animation 
-		//is currently playing
-		AnimationCheck ();
+		// 탄이 꽉 차있는 상태인지
+		if (currentAmmo == ammo)
+			fullAmmo = true;
+		else
+			fullAmmo = false;
 
-		//Play knife attack 1 animation when Q key is pressed
-		if (Input.GetKeyDown (KeyCode.Q) && !isInspecting) 
-		{
-			anim.Play ("Knife Attack 1", 0, 0f);
-		}
-		//Play knife attack 2 animation when F key is pressed
-		if (Input.GetKeyDown (KeyCode.F) && !isInspecting) 
-		{
-			anim.Play ("Knife Attack 2", 0, 0f);
-		}
-			
-		//Throw grenade when pressing G key
-		if (Input.GetKeyDown (KeyCode.G) && !isInspecting) 
-		{
-			StartCoroutine (GrenadeSpawnDelay ());
-			//Play grenade throw animation
-			anim.Play("GrenadeThrow", 0, 0.0f);
-		}
+		// 현재 재장전 애니메이션 진행 중인지 확인
+		AnimationCheck();
 
-		//If out of ammo
+		// 탄 다 썼을 때
 		if (currentAmmo == 0) 
 		{
-			//Show out of ammo text
 			currentWeaponText.text = "OUT OF AMMO";
-			//Toggle bool
 			outOfAmmo = true;
-			//Auto reload if true
-			if (autoReload == true && !isReloading) 
-			{
-				StartCoroutine (AutoReload ());
-			}
+
+			if (!isReloadingAnim) 
+				StartCoroutine(AutoReload());
 		} 
 		else 
 		{
-			//When ammo is full, show weapon name again
-			currentWeaponText.text = storedWeaponName.ToString ();
-			//Toggle bool
+			currentWeaponText.text = weaponName;
+
 			outOfAmmo = false;
-			//anim.SetBool ("Out Of Ammo", false);
 		}
 			
 		//Fire
-		if (Input.GetMouseButton (0) && !outOfAmmo && !isReloading && !isInspecting && !isRunning) 
+		if (Input.GetMouseButton (0) && !outOfAmmo && !isReloadingAnim
+			&& !isRunning && !isReloading && isCurrentWeapon && !isDraw) 
 		{
 			if (Time.time - lastFired > 1 / fireRate) 
 			{
 				lastFired = Time.time;
 
-				//Remove 1 bullet from ammo
+				myCharacterModel.GetComponent<CharacterAnimation>().FireAnim();
+
+				// 탄 수 감소
 				currentAmmo -= 1;
 
 				shootAudioSource.clip = SoundClips.shootSound;
 				shootAudioSource.Play ();
 
-				if (!isAiming) //if not aiming
+				if (randomMuzzleflashValue == 1)
 				{
-					anim.Play ("Fire", 0, 0f);
-					//If random muzzle is false
-					if (!randomMuzzleflash && 
-						enableMuzzleFlash == true) 
-					{
-						muzzleParticles.Emit (1);
-						//Light flash start
-						StartCoroutine(MuzzleFlashLight());
-					} 
-					else if (randomMuzzleflash == true)
-					{
-						//Only emit if random value is 1
-						if (randomMuzzleflashValue == 1) 
-						{
-							if (enableSparks == true) 
-							{
-								//Emit random amount of spark particles
-								sparkParticles.Emit (Random.Range (minSparkEmission, maxSparkEmission));
-							}
-							if (enableMuzzleFlash == true) 
-							{
-								muzzleParticles.Emit (1);
-								//Light flash start
-								StartCoroutine (MuzzleFlashLight ());
-							}
-						}
-					}
-				} 
-				else //if aiming
-				{
-					if (ironSights == true) 
-					{
-						anim.Play ("Aim Fire", 0, 0f);
-					}
-					if (scope1 == true) 
-					{
-						anim.Play ("Aim Fire Scope 1", 0, 0f);
-					}
-					if (scope2 == true) 
-					{
-						anim.Play ("Aim Fire Scope 2", 0, 0f);
-					}
-					if (scope3 == true) 
-					{
-						anim.Play ("Aim Fire Scope 3", 0, 0f);
-					}
-					if (scope4 == true) 
-					{
-						anim.Play ("Aim Fire Scope 4", 0, 0f);
-					}
-
-					//If random muzzle is false
-					if (!randomMuzzleflash) {
-						muzzleParticles.Emit (1);
-					//If random muzzle is true
-					} 
-					else if (randomMuzzleflash == true) 
-					{
-						//Only emit if random value is 1
-						if (randomMuzzleflashValue == 1) 
-						{
-							if (enableSparks == true) 
-							{
-								//Emit random amount of spark particles
-								sparkParticles.Emit (Random.Range (minSparkEmission, maxSparkEmission));
-							}
-							if (enableMuzzleFlash == true) 
-							{
-								muzzleParticles.Emit (1);
-								//Light flash start
-								StartCoroutine (MuzzleFlashLight ());
-							}
-						}
-					}
+					state.SparkParticleTrigger();
+					state.MuzzleParticleTrigger();
 				}
 
-				//Bullet spawnpoints array
-				for (int i = 0; i < Spawnpoints.bulletSpawnPoint.Length; i++) 
-				{
-					//If random bullet spawn point is enabled
-					// (Used for shotgun bullet spread)
-					if (Spawnpoints.useRandomBulletSpawnRotation == true) 
-					{
-						//Rotate all bullet spawnpoints in array randomly based on min and max values
-						Spawnpoints.bulletSpawnPoint [i].transform.localRotation = Quaternion.Euler (
-							//Rotate random X
-							Random.Range (Spawnpoints.bulletSpawnPointMinRotation, 
-								Spawnpoints.bulletSpawnPointMaxRotation), 
-							//Rotate random Y
-							Random.Range (Spawnpoints.bulletSpawnPointMinRotation, 
-								Spawnpoints.bulletSpawnPointMaxRotation),
-							//Don't rotate z
-							0); 
-					}
+				// 일반 사격 모드
+				if (!isAiming)
+					anim.Play ("Fire", 0, 0f);
 
-					//Spawn bullets from bullet spawnpoint positions using array
+				// 조준 사격 모드
+				else
+				{
+					if (ironSights == true)
+						anim.Play("Aim Fire", 0, 0f);
+					if (scope1 == true)
+						anim.Play("Aim Fire Scope 1", 0, 0f);
+					if (scope2 == true)
+						anim.Play("Aim Fire Scope 2", 0, 0f);
+					if (scope3 == true)
+						anim.Play("Aim Fire Scope 3", 0, 0f);
+					if (scope4 == true)
+						anim.Play("Aim Fire Scope 4", 0, 0f);
+				}
+
+				// 총알 생성 배열
+				for (int i = 0; i < Spawnpoints.bulletSpawnPoint.Length; i++)
+				{
+					// 모든 총알의 Rotation을 min 부터 max 값까지 랜덤하게 부여
+					Spawnpoints.bulletSpawnPoint[i].transform.localRotation = Quaternion.Euler(
+						Random.Range(Spawnpoints.bulletSpawnPointMinRotation, Spawnpoints.bulletSpawnPointMaxRotation),
+						Random.Range(Spawnpoints.bulletSpawnPointMinRotation, Spawnpoints.bulletSpawnPointMaxRotation),
+						0);
+					
+					// 총알 생성
 					var bullet = (Transform)Instantiate (
 						Prefabs.bulletPrefab,
 						Spawnpoints.bulletSpawnPoint [i].transform.position,
 						Spawnpoints.bulletSpawnPoint [i].transform.rotation);
 
-					//Add velocity to the bullets
+					// 총알에 힘 싣기
 					bullet.GetComponent<Rigidbody>().velocity = 
 						bullet.transform.forward * bulletForce;
+
+					PlayerHitCheck(Spawnpoints.bulletSpawnPoint[i].transform);
 				}
 
 				StartCoroutine (CasingDelay ());
 			}
 		}
 			
-		//Inspect weapon when pressing T key
-		if (Input.GetKeyDown (KeyCode.T)) 
-		{
-			anim.SetTrigger ("Inspect");
-		}
-
-		//Toggle holster weapon when pressing E key
-		if (Input.GetKeyDown (KeyCode.E) && !hasBeenHolstered) 
-		{
-			holstered = true;
-
-			mainAudioSource.clip = SoundClips.holsterSound;
-			mainAudioSource.Play();
-
-			hasBeenHolstered = true;
-		} 
-		else if (Input.GetKeyDown (KeyCode.E) && hasBeenHolstered) 
-		{
-			holstered = false;
-
-			mainAudioSource.clip = SoundClips.takeOutSound;
-			mainAudioSource.Play ();
-
-			hasBeenHolstered = false;
-		}
-		//Holster anim toggle
-		if (holstered == true) 
-		{
-			anim.SetBool ("Holster", true);
-		} 
-		else 
-		{
-			anim.SetBool ("Holster", false);
-		}
-
-		//Reload 
-		if (Input.GetKeyDown (KeyCode.R) && !isReloading && !isInspecting) 
-		{
-			//Reload
+		// 재장전
+		if (Input.GetKeyDown (KeyCode.R) && !isReloadingAnim
+			&& isCurrentWeapon&& !isDraw && !fullAmmo) 
 			Reload ();
-		}
 
-		//Walking when pressing down WASD keys
-		if (Input.GetKey (KeyCode.W) && !isRunning && !isShooting || 
-			Input.GetKey (KeyCode.A) && !isRunning && !isShooting || 
-			Input.GetKey (KeyCode.S) && !isRunning && !isShooting || 
-			Input.GetKey (KeyCode.D) && !isRunning && !isShooting) 
-		{
+		// 걷기
+		if (Input.GetKey (KeyCode.W) && !isRunning || 
+			Input.GetKey (KeyCode.A) && !isRunning || 
+			Input.GetKey (KeyCode.S) && !isRunning || 
+			Input.GetKey (KeyCode.D) && !isRunning) 
 			anim.SetBool ("Walk", true);
-		} else {
-			anim.SetBool ("Walk", false);
-		}
-
-		//Running when pressing down W and Left Shift key
-		if ((Input.GetKey (KeyCode.W) && Input.GetKey (KeyCode.LeftShift))) 
-		{
-			isRunning = true;
-		} 
 		else 
-		{
+			anim.SetBool ("Walk", false);
+
+		// W와 Left Shift를 누르면 달리기
+		if ((Input.GetKey (KeyCode.W) && Input.GetKey (KeyCode.LeftShift))) 
+			isRunning = true;
+		else 
 			isRunning = false;
-		}
-		
-		//Run anim toggle
-		if (isRunning == true) {
+
+		// 달리기 애니메이션 설정
+		if (isRunning == true)
 			anim.SetBool ("Run", true);
-		} else {
+		else
 			anim.SetBool ("Run", false);
-		}
 	}
 
-	private IEnumerator GrenadeSpawnDelay () {
-		//Wait for set amount of time before spawning grenade
-		yield return new WaitForSeconds (grenadeSpawnDelay);
-		//Spawn grenade prefab at spawnpoint
-		Instantiate(Prefabs.grenadePrefab, 
-			Spawnpoints.grenadeSpawnPoint.transform.position, 
-			Spawnpoints.grenadeSpawnPoint.transform.rotation);
-	}
-
-	private IEnumerator CasingDelay () {
-		//Wait before spawning casing
+	private IEnumerator CasingDelay()
+	{
 		yield return new WaitForSeconds (Spawnpoints.casingDelayTimer);
-		//Instantiate casing prefab at spawnpoint
+
 		Instantiate (Prefabs.casingPrefab, 
 			Spawnpoints.casingSpawnPoint.transform.position, 
 			Spawnpoints.casingSpawnPoint.transform.rotation);
 	}
 
-	private IEnumerator AutoReload () {
-		//Wait for set amount of time
-		yield return new WaitForSeconds (autoReloadDelay);
+	// 자동 장전
+	private IEnumerator AutoReload()
+	{
+		yield return null;
+		isReloading = true;
+		myCharacterModel.GetComponent<CharacterAnimation>().ReloadAnim();
 
-		if (outOfAmmo == true) 
-		{
-			//Play diff anim if out of ammo
+		if (outOfAmmo == true && isCurrentWeapon) 
 			anim.Play ("Reload Open", 0, 0f);
-		} 
-		//Restore ammo when reloading
-		currentAmmo = ammo;
-		outOfAmmo = false;
+
+
+		// 재장전 완료
+		Invoke("SuccessReload", 5.1f);
 	}
 
-	//Reload
-	private void Reload () {
-		if (outOfAmmo == true) 
+	// 수동 장전
+	private void Reload()
+	{
+		isReloading = true;
+		myCharacterModel.GetComponent<CharacterAnimation>().ReloadAnim();
+
+		if (isCurrentWeapon)
 		{
-			//Play diff anim if out of ammo
-			anim.Play ("Reload Open", 0, 0f);
-		} 
-		else 
-		{
-			//Play diff anim if ammo left
-			anim.Play ("Reload Open", 0, 0f);
+			if (outOfAmmo == true)
+				anim.Play("Reload Open", 0, 0f);
+			else
+				anim.Play("Reload Open", 0, 0f);
 		}
-		//Restore ammo when reloading
-		currentAmmo = ammo;
-		outOfAmmo = false;
+
+		// 재장전 완료
+		Invoke("SuccessReload", 5.1f);
 	}
 
-	//Show light when shooting, then disable after set amount of time
+	void SuccessReload()
+	{
+		currentAmmo = ammo;
+		outOfAmmo = false;
+		isReloading = false;
+	}
+
+	// 사격 시 총알의 불빛이 사라지는 시간 설정
 	private IEnumerator MuzzleFlashLight () 
 	{
 		muzzleFlashLight.enabled = true;
@@ -896,41 +625,15 @@ public class PumpShotgunScriptLPFP : MonoBehaviour {
 		muzzleFlashLight.enabled = false;
 	}
 
-	//Check current animation playing
+	// 현재 재장전 애니메이션 진행 중인지 확인
 	private void AnimationCheck () 
 	{
-		//Check if reloading
-		//Check both animations
-		if (anim.GetCurrentAnimatorStateInfo (0).IsName ("Reload Open") || 
-			anim.GetCurrentAnimatorStateInfo (0).IsName ("Reload Open") ||
-			anim.GetCurrentAnimatorStateInfo (0).IsName ("Inser Shell") ||
-			anim.GetCurrentAnimatorStateInfo (0).IsName ("Reload Close"))
-		{
-			isReloading = true;
-		} 
-		else 
-		{
-			isReloading = false;
-		}
-
-		//Check if inspecting weapon
-		if (anim.GetCurrentAnimatorStateInfo (0).IsName ("Inspect")) 
-		{
-			isInspecting = true;
-		} 
-		else 
-		{
-			isInspecting = false;
-		}
-
-		//Check is shooting
-		if (anim.GetCurrentAnimatorStateInfo (0).IsName ("Fire")) 
-		{
-			isShooting = true;
-		} 
-		else 
-		{
-			isShooting = false;
-		}
+		if (anim.GetCurrentAnimatorStateInfo(0).IsName ("Reload Open") || 
+			anim.GetCurrentAnimatorStateInfo(0).IsName ("Reload Open") ||
+			anim.GetCurrentAnimatorStateInfo(0).IsName ("Inser Shell") ||
+			anim.GetCurrentAnimatorStateInfo(0).IsName ("Reload Close"))
+			isReloadingAnim = true;
+		else
+			isReloadingAnim = false;
 	}
 }

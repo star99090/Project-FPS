@@ -484,6 +484,7 @@ public class AutomaticGun : EntityBehaviour<IFPSPlayerState>
 			currentWeaponText.text = "OUT OF AMMO";
 
 			outOfAmmo = true;
+
 			if (!isReloadingAnim)
 				StartCoroutine(AutoReload());
 		}
@@ -503,6 +504,7 @@ public class AutomaticGun : EntityBehaviour<IFPSPlayerState>
 				lastFired = Time.time;
 
 				myCharacterModel.GetComponent<CharacterAnimation>().FireAnim();
+
 				// 탄 수 감소
 				currentAmmo -= 1;
 
@@ -633,6 +635,7 @@ public class AutomaticGun : EntityBehaviour<IFPSPlayerState>
 	{
 		isReloading = true;
 		myCharacterModel.GetComponent<CharacterAnimation>().ReloadAnim();
+
 		if (outOfAmmo == true)
 		{
 			anim.Play("Reload Out Of Ammo", 0, 0f);

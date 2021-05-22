@@ -190,9 +190,9 @@ public class Player : Bolt.EntityBehaviour<IFPSPlayerState>
                         myWeapon[mKS].GetComponent<AutomaticGun>().isCurrentWeapon = true; break;
                     case "GrenadeLauncher":
                         myWeapon[mKS].GetComponent<GrenadeLauncherScriptLPFP>().isCurrentWeapon = true; break;
-                    /*
                     case "Shotgun":
                         myWeapon[mKS].GetComponent<PumpShotgunScriptLPFP>().isCurrentWeapon = true; break;
+                        /*
                     case "Handgun":
                         myWeapon[mKS].GetComponent<HandgunScriptLPFP>().isCurrentWeapon = true; break;
                     case "Sniper":

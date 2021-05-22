@@ -14,9 +14,11 @@ ScriptsOnlyBuild:
     - InputFieldChange
     - LookAtCamera
     - NetworkManager
+    - PlaySoundScript
     - Player
     - PlayerSubScript
     - ProjectileScript
+    - PumpShotgunScriptLPFP
     - ThirdPersonDemoLPFP
     - TitleLobbyManager
     Unity.Rider.Editor.dll:
@@ -24,8 +26,10 @@ ScriptsOnlyBuild:
     UnityEditor.Graphs.dll:
     - UnityEditor.Graphs.AnimationBlendTree.Graph
     - UnityEditor.Graphs.AnimationBlendTree.GraphGUI
+    - UnityEditor.Graphs.AnimationStateMachine.AnyStateNode
     - UnityEditor.Graphs.AnimationStateMachine.Graph
     - UnityEditor.Graphs.AnimationStateMachine.GraphGUI
+    - UnityEditor.Graphs.AnimationStateMachine.StateNode
     - UnityEditor.Graphs.AnimatorControllerTool
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.Api.CallbacksHolder
@@ -111,11 +115,15 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 1666}
     - Class: 114
+      Script: {instanceID: 1872}
+    - Class: 114
       Script: {instanceID: 1910}
     - Class: 114
       Script: {instanceID: 2190}
     - Class: 114
       Script: {instanceID: 2256}
+    - Class: 114
+      Script: {instanceID: 2584}
     - Class: 114
       Script: {instanceID: 2834}
     - Class: 114
@@ -230,6 +238,8 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 1666}
     - Class: 114
+      Script: {instanceID: 1872}
+    - Class: 114
       Script: {instanceID: 1910}
     - Class: 114
       Script: {instanceID: 1992}
@@ -245,6 +255,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 2292}
     - Class: 114
       Script: {instanceID: 2438}
+    - Class: 114
+      Script: {instanceID: 2584}
     - Class: 114
       Script: {instanceID: 2834}
     - Class: 114
@@ -716,7 +728,7 @@ ScriptsOnlyBuild:
     className: BoltActionSniperScriptLPFP
   - hash:
       serializedVersion: 2
-      Hash: 41655884f5ee7657e051af79fbc7d506
+      Hash: 7201ad6427baf2ffe5ae4574e2280f74
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: PumpShotgunScriptLPFP
