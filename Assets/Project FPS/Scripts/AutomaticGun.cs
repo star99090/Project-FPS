@@ -636,42 +636,23 @@ public class AutomaticGun : EntityBehaviour<IFPSPlayerState>
 		isReloading = true;
 		myCharacterModel.GetComponent<CharacterAnimation>().ReloadAnim();
 
-		if (outOfAmmo == true)
+		anim.Play("Reload Ammo Left", 0, 0f);
+
+		mainAudioSource.clip = SoundClips.reloadSoundAmmoLeft;
+		mainAudioSource.Play();
+
+		// 떨어진 탄피들을 인스펙터 창에서 삭제
+		if (bulletInMagRenderer != null)
 		{
-			anim.Play("Reload Out Of Ammo", 0, 0f);
-
-			mainAudioSource.clip = SoundClips.reloadSoundOutOfAmmo;
-			mainAudioSource.Play();
-
-			// 장전 중, 떨어진 탄피들을 일정 시간 뒤 인스펙터 창에서 삭제
-			if (bulletInMagRenderer != null)
-			{
-				bulletInMagRenderer.GetComponent
-				<SkinnedMeshRenderer>().enabled = false;
-
-				StartCoroutine(ShowBulletInMag());
-			}
-		}
-		else
-		{
-			anim.Play("Reload Ammo Left", 0, 0f);
-
-			mainAudioSource.clip = SoundClips.reloadSoundAmmoLeft;
-			mainAudioSource.Play();
-
-			// 장전 중이 아닐 때, 떨어진 탄피들을 인스펙터 창에서 삭제
-			if (bulletInMagRenderer != null)
-			{
-				bulletInMagRenderer.GetComponent
-				<SkinnedMeshRenderer>().enabled = true;
-			}
+			bulletInMagRenderer.GetComponent
+			<SkinnedMeshRenderer>().enabled = true;
 		}
 
 		// 재장전 완료
 		Invoke("SuccessReload", 1.5f);
 	}
 
-	void SuccessReload()
+	private void SuccessReload()
     {
 		currentAmmo = ammo;
 		outOfAmmo = false;

@@ -175,12 +175,11 @@ public class PumpShotgunScriptLPFP : EntityBehaviour<IFPSPlayerState>
 	public bool isCurrentWeapon;
 
 	private bool isDraw = true;
+	private bool isAutoReloading;
 	private bool isReloadingAnim;
 	private bool isReloading = false;
 	private bool isRunning;
 	private bool isAiming;
-	//private bool isShooting;
-	//private bool isWalking;
 
 	private void Awake () 
 	{
@@ -459,19 +458,12 @@ public class PumpShotgunScriptLPFP : EntityBehaviour<IFPSPlayerState>
 		AnimationCheck();
 
 		// 탄 다 썼을 때
-		if (currentAmmo == 0) 
+		if (currentAmmo == 0 && !isReloadingAnim && !isAutoReloading) 
 		{
+			isAutoReloading = true;
 			currentWeaponText.text = "OUT OF AMMO";
-			outOfAmmo = true;
-
-			if (!isReloadingAnim) 
-				StartCoroutine(AutoReload());
-		} 
-		else 
-		{
-			currentWeaponText.text = weaponName;
-
-			outOfAmmo = false;
+			
+			Reload();
 		}
 			
 		//Fire
@@ -540,11 +532,11 @@ public class PumpShotgunScriptLPFP : EntityBehaviour<IFPSPlayerState>
 				StartCoroutine (CasingDelay ());
 			}
 		}
-			
+
 		// 재장전
-		if (Input.GetKeyDown (KeyCode.R) && !isReloadingAnim
-			&& isCurrentWeapon&& !isDraw && !fullAmmo) 
-			Reload ();
+		if (Input.GetKeyDown(KeyCode.R) && !isReloadingAnim
+			&& isCurrentWeapon && !isDraw && !fullAmmo)
+			Reload();
 
 		// 걷기
 		if (Input.GetKey (KeyCode.W) && !isRunning || 
@@ -577,44 +569,65 @@ public class PumpShotgunScriptLPFP : EntityBehaviour<IFPSPlayerState>
 			Spawnpoints.casingSpawnPoint.transform.rotation);
 	}
 
-	// 자동 장전
-	private IEnumerator AutoReload()
-	{
-		yield return null;
-		isReloading = true;
-		myCharacterModel.GetComponent<CharacterAnimation>().ReloadAnim();
-
-		if (outOfAmmo == true && isCurrentWeapon) 
-			anim.Play ("Reload Open", 0, 0f);
-
-
-		// 재장전 완료
-		Invoke("SuccessReload", 5.1f);
-	}
-
-	// 수동 장전
+	// 장전
 	private void Reload()
 	{
 		isReloading = true;
 		myCharacterModel.GetComponent<CharacterAnimation>().ReloadAnim();
-
+		
 		if (isCurrentWeapon)
 		{
-			if (outOfAmmo == true)
-				anim.Play("Reload Open", 0, 0f);
-			else
-				anim.Play("Reload Open", 0, 0f);
+			switch (currentAmmo)
+			{
+				case 5:
+					anim.Play("Reload Open 5", 0, 0f);
+					break;
+				case 4:
+					anim.Play("Reload Open 4", 0, 0f);
+					break;
+				case 3:
+					anim.Play("Reload Open 3", 0, 0f);
+					break;
+				case 2:
+					anim.Play("Reload Open 2", 0, 0f);
+					break;
+				case 1:
+					anim.Play("Reload Open 1", 0, 0f);
+					break;
+				case 0:
+					anim.Play("Reload Open", 0, 0f);
+					break;
+			}
+			//anim.Play("Reload Open", 0, 0f);
 		}
-
-		// 재장전 완료
-		Invoke("SuccessReload", 5.1f);
+		
+		// 장전 과정
+		Invoke("ReloadSub", 1.47f);
 	}
 
-	void SuccessReload()
+	void ReloadSub()
 	{
+		StartCoroutine(AmmoPlus());
+	}
+
+	IEnumerator AmmoPlus()
+	{
+		currentWeaponText.text = weaponName;
+
+		currentAmmo++;
+
+        for (; currentAmmo < ammo; currentAmmo++)
+        {
+			yield return new WaitForSeconds(0.7f);
+		}
+
+		yield return new WaitForSeconds(0.867f);
+		
+		// 재장전 완료
 		currentAmmo = ammo;
 		outOfAmmo = false;
 		isReloading = false;
+		isAutoReloading = false;
 	}
 
 	// 사격 시 총알의 불빛이 사라지는 시간 설정

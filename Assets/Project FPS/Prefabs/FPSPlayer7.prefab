@@ -18095,7 +18095,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.2
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -22787,7 +22787,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &3051802646346590830
 Transform:
   m_ObjectHideFlags: 0
@@ -22914,7 +22914,7 @@ MonoBehaviour:
   myEntity: {fileID: 389053966414847755}
   myCharacterModel: {fileID: 8423378922341406473}
   bloodImpactPrefabs: {fileID: 4418440862474872, guid: a845e59c374ae0240812749e46f13033, type: 3}
-  isCurrentWeapon: 0
+  isCurrentWeapon: 1
 --- !u!82 &3130452176737018276
 AudioSource:
   m_ObjectHideFlags: 0
@@ -22927,7 +22927,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.2
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -48282,7 +48282,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.2
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -54031,7 +54031,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5962570081949473740
 Transform:
   m_ObjectHideFlags: 0

@@ -71233,7 +71233,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   players: []
   myPlayer: {fileID: 0}
-  SpawnPrefab: {fileID: 3788243197129155186, guid: 0995f348d04dd3a44b08edeb3e199307, type: 3}
+  SpawnPrefab: {fileID: 938171020722944254, guid: 0fd12f50aca2d8340861a5db9caa1506, type: 3}
   killLogCount: 0
   killLogText: {fileID: 1093916617}
   entities: []
