@@ -9,72 +9,54 @@ AnimatorController:
   m_Name: handgun_04
   serializedVersion: 5
   m_AnimatorParameters:
-  - m_Name: Shoot
-    m_Type: 9
-    m_DefaultFloat: 0
-    m_DefaultInt: 0
-    m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
-  - m_Name: Inspect
-    m_Type: 9
-    m_DefaultFloat: 0
-    m_DefaultInt: 0
-    m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
-  - m_Name: Holster
-    m_Type: 4
-    m_DefaultFloat: 0
-    m_DefaultInt: 0
-    m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
   - m_Name: Run
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
   - m_Name: Aim
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
   - m_Name: Walk
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
-  - m_Name: Aim Scope 1
+    m_Controller: {fileID: 0}
+  - m_Name: AimScope1
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
-  - m_Name: Aim Scope 2
+    m_Controller: {fileID: 0}
+  - m_Name: AimScope2
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
-  - m_Name: Aim Scope 3
+    m_Controller: {fileID: 0}
+  - m_Name: AimScope3
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
-  - m_Name: Aim Scope 4
+    m_Controller: {fileID: 0}
+  - m_Name: AimScope4
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
   - m_Name: Out Of Ammo Slider
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base Layer
@@ -2376,7 +2358,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: Aim Scope 3
+    m_ConditionEvent: AimScope3
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 1102035979111044882}
@@ -2404,16 +2386,16 @@ AnimatorStateTransition:
     m_ConditionEvent: Aim
     m_EventTreshold: 0
   - m_ConditionMode: 2
-    m_ConditionEvent: Aim Scope 1
+    m_ConditionEvent: AimScope1
     m_EventTreshold: 0
   - m_ConditionMode: 1
-    m_ConditionEvent: Aim Scope 2
+    m_ConditionEvent: AimScope2
     m_EventTreshold: 0
   - m_ConditionMode: 2
-    m_ConditionEvent: Aim Scope 3
+    m_ConditionEvent: AimScope3
     m_EventTreshold: 0
   - m_ConditionMode: 2
-    m_ConditionEvent: Aim Scope 4
+    m_ConditionEvent: AimScope4
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 1102297614390523346}
@@ -2441,16 +2423,16 @@ AnimatorStateTransition:
     m_ConditionEvent: Aim
     m_EventTreshold: 0
   - m_ConditionMode: 2
-    m_ConditionEvent: Aim Scope 1
+    m_ConditionEvent: AimScope1
     m_EventTreshold: 0
   - m_ConditionMode: 2
-    m_ConditionEvent: Aim Scope 2
+    m_ConditionEvent: AimScope2
     m_EventTreshold: 0
   - m_ConditionMode: 2
-    m_ConditionEvent: Aim Scope 3
+    m_ConditionEvent: AimScope3
     m_EventTreshold: 0
   - m_ConditionMode: 2
-    m_ConditionEvent: Aim Scope 4
+    m_ConditionEvent: AimScope4
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 110212644}
@@ -2503,16 +2485,16 @@ AnimatorStateTransition:
     m_ConditionEvent: Aim
     m_EventTreshold: 0
   - m_ConditionMode: 2
-    m_ConditionEvent: Aim Scope 1
+    m_ConditionEvent: AimScope1
     m_EventTreshold: 0
   - m_ConditionMode: 2
-    m_ConditionEvent: Aim Scope 2
+    m_ConditionEvent: AimScope2
     m_EventTreshold: 0
   - m_ConditionMode: 2
-    m_ConditionEvent: Aim Scope 3
+    m_ConditionEvent: AimScope3
     m_EventTreshold: 0
   - m_ConditionMode: 2
-    m_ConditionEvent: Aim Scope 4
+    m_ConditionEvent: AimScope4
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 110212644}
@@ -2537,7 +2519,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 2
-    m_ConditionEvent: Aim Scope 3
+    m_ConditionEvent: AimScope3
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 1102192105639157016}
@@ -2628,7 +2610,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 2
-    m_ConditionEvent: Aim Scope 2
+    m_ConditionEvent: AimScope2
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 1102798429910526564}
@@ -2681,7 +2663,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: Aim Scope 2
+    m_ConditionEvent: AimScope2
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 1102297614390523346}
@@ -2706,7 +2688,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 2
-    m_ConditionEvent: Aim Scope 3
+    m_ConditionEvent: AimScope3
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 1102192105639157016}
@@ -2781,16 +2763,16 @@ AnimatorStateTransition:
     m_ConditionEvent: Aim
     m_EventTreshold: 0
   - m_ConditionMode: 2
-    m_ConditionEvent: Aim Scope 1
+    m_ConditionEvent: AimScope1
     m_EventTreshold: 0
   - m_ConditionMode: 2
-    m_ConditionEvent: Aim Scope 2
+    m_ConditionEvent: AimScope2
     m_EventTreshold: 0
   - m_ConditionMode: 1
-    m_ConditionEvent: Aim Scope 3
+    m_ConditionEvent: AimScope3
     m_EventTreshold: 0
   - m_ConditionMode: 2
-    m_ConditionEvent: Aim Scope 4
+    m_ConditionEvent: AimScope4
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 1102035979111044882}
@@ -2818,16 +2800,16 @@ AnimatorStateTransition:
     m_ConditionEvent: Aim
     m_EventTreshold: 0
   - m_ConditionMode: 2
-    m_ConditionEvent: Aim Scope 1
+    m_ConditionEvent: AimScope1
     m_EventTreshold: 0
   - m_ConditionMode: 1
-    m_ConditionEvent: Aim Scope 2
+    m_ConditionEvent: AimScope2
     m_EventTreshold: 0
   - m_ConditionMode: 2
-    m_ConditionEvent: Aim Scope 3
+    m_ConditionEvent: AimScope3
     m_EventTreshold: 0
   - m_ConditionMode: 2
-    m_ConditionEvent: Aim Scope 4
+    m_ConditionEvent: AimScope4
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 1102297614390523346}
@@ -2855,16 +2837,16 @@ AnimatorStateTransition:
     m_ConditionEvent: Aim
     m_EventTreshold: 0
   - m_ConditionMode: 2
-    m_ConditionEvent: Aim Scope 1
+    m_ConditionEvent: AimScope1
     m_EventTreshold: 0
   - m_ConditionMode: 2
-    m_ConditionEvent: Aim Scope 2
+    m_ConditionEvent: AimScope2
     m_EventTreshold: 0
   - m_ConditionMode: 1
-    m_ConditionEvent: Aim Scope 3
+    m_ConditionEvent: AimScope3
     m_EventTreshold: 0
   - m_ConditionMode: 2
-    m_ConditionEvent: Aim Scope 4
+    m_ConditionEvent: AimScope4
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 1102035979111044882}
@@ -2892,16 +2874,16 @@ AnimatorStateTransition:
     m_ConditionEvent: Aim
     m_EventTreshold: 0
   - m_ConditionMode: 2
-    m_ConditionEvent: Aim Scope 1
+    m_ConditionEvent: AimScope1
     m_EventTreshold: 0
   - m_ConditionMode: 2
-    m_ConditionEvent: Aim Scope 2
+    m_ConditionEvent: AimScope2
     m_EventTreshold: 0
   - m_ConditionMode: 2
-    m_ConditionEvent: Aim Scope 3
+    m_ConditionEvent: AimScope3
     m_EventTreshold: 0
   - m_ConditionMode: 2
-    m_ConditionEvent: Aim Scope 4
+    m_ConditionEvent: AimScope4
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 110212644}
@@ -3092,16 +3074,16 @@ AnimatorStateTransition:
     m_ConditionEvent: Aim
     m_EventTreshold: 0
   - m_ConditionMode: 2
-    m_ConditionEvent: Aim Scope 1
+    m_ConditionEvent: AimScope1
     m_EventTreshold: 0
   - m_ConditionMode: 2
-    m_ConditionEvent: Aim Scope 2
+    m_ConditionEvent: AimScope2
     m_EventTreshold: 0
   - m_ConditionMode: 1
-    m_ConditionEvent: Aim Scope 3
+    m_ConditionEvent: AimScope3
     m_EventTreshold: 0
   - m_ConditionMode: 2
-    m_ConditionEvent: Aim Scope 4
+    m_ConditionEvent: AimScope4
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 1102035979111044882}
@@ -3126,7 +3108,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 2
-    m_ConditionEvent: Aim Scope 2
+    m_ConditionEvent: AimScope2
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 1102798429910526564}

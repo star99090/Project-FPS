@@ -95397,19 +95397,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4440599093563754, guid: 17a8948fa29d3af42aa6e7dd0f094092, type: 3}
   m_PrefabInstance: {fileID: 2144589216}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &8817622591131255248
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8817622591131258757}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a9e4bda27ce150843862952aa5e75d05, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  myEntity: {fileID: 0}
 --- !u!199 &8817622591131255501
 ParticleSystemRenderer:
   serializedVersion: 6
@@ -103090,7 +103077,6 @@ GameObject:
   m_Component:
   - component: {fileID: 8817622591131258453}
   - component: {fileID: 8817622591131255692}
-  - component: {fileID: 8817622591131255248}
   m_Layer: 0
   m_Name: Character
   m_TagString: Untagged

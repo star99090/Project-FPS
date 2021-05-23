@@ -10,6 +10,7 @@ ScriptsOnlyBuild:
     - ExplosionScript
     - GrenadeLauncherScriptLPFP
     - GrenadeScript
+    - HandgunScriptLPFP
     - ImpactScriptBefore
     - InputFieldChange
     - LookAtCamera
@@ -132,6 +133,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 2932}
     - Class: 114
       Script: {instanceID: 3032}
+    - Class: 114
+      Script: {instanceID: 3050}
     - Class: 114
       Script: {instanceID: 3114}
     - Class: 114
@@ -265,6 +268,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 2932}
     - Class: 114
       Script: {instanceID: 3032}
+    - Class: 114
+      Script: {instanceID: 3050}
     - Class: 114
       Script: {instanceID: 3114}
     - Class: 114
@@ -854,7 +859,7 @@ ScriptsOnlyBuild:
     className: RoutineManager
   - hash:
       serializedVersion: 2
-      Hash: b4bd2237173d1d22c7789569faa02e22
+      Hash: ed81d91d488f954710c99f3d63010119
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: HandgunScriptLPFP

@@ -42345,7 +42345,7 @@ GameObject:
   - component: {fileID: 4838705930638815945}
   - component: {fileID: 4836912270965379249}
   m_Layer: 0
-  m_Name: arms_handgun_04
+  m_Name: GLOCK 7
   m_TagString: Handgun
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -42425,7 +42425,6 @@ MonoBehaviour:
     scope1SpriteRenderer: {fileID: 0}
     scope2SpriteRenderer: {fileID: 4679530317664318299}
   sliderBackTimer: 0.65
-  hasStartedSliderBack: 1
   ammo: 9
   bulletForce: 400
   damage: 30

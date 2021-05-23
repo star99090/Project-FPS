@@ -38,14 +38,6 @@ public class BulletScriptBefore : MonoBehaviour
 			Destroy(gameObject);
 		}
 
-		// Blood 태그 오브젝트
-		if (collision.transform.tag == "Blood")
-		{
-			Instantiate(bloodImpactPrefabs.gameObject, transform.position,
-				Quaternion.LookRotation(collision.contacts[0].normal));
-			Destroy(gameObject);
-		}
-
 		// Concrete 태그 오브젝트
 		if (collision.transform.tag == "Concrete")
 		{

@@ -1,7 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
+using Bolt;
 
-public class ImpactScriptBefore : Bolt.EntityBehaviour<IImpactState> {
+public class ImpactScriptBefore : EntityBehaviour<IImpactState>
+{
 
 	[Tooltip("임팩트 파괴 예정 시간")]
 	public float despawnTimer = 3.0f;

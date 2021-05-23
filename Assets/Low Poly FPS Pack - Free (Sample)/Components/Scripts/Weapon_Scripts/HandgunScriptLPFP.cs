@@ -79,7 +79,7 @@ public class HandgunScriptLPFP : EntityBehaviour<IFPSPlayerState>
 	[Header("Weapon Settings")]
 
 	public float sliderBackTimer = 1.58f;
-	public bool hasStartedSliderBack;
+	bool hasStartedSliderBack;
 
 	[Tooltip("최대 탄 수")]
 	public int ammo;
@@ -252,7 +252,8 @@ public class HandgunScriptLPFP : EntityBehaviour<IFPSPlayerState>
 		}
 	}
 
-	private void Start () {
+	private void Start()
+	{
 		currentWeaponText.text = weaponName;
 		totalAmmoText.text = ammo.ToString();
 		shootAudioSource.clip = SoundClips.shootSound;
@@ -294,6 +295,7 @@ public class HandgunScriptLPFP : EntityBehaviour<IFPSPlayerState>
 
 		}
 	}
+
 	private void Update ()
 	{
 		if (!entity.IsOwner) return;
@@ -380,28 +382,28 @@ public class HandgunScriptLPFP : EntityBehaviour<IFPSPlayerState>
 		AnimationCheck();
 
 		// 탄 다 썼을 때
-		if (currentAmmo == 0 && !isCurrentWeapon) 
+		if (currentAmmo == 0 && isCurrentWeapon)
 		{
 			currentWeaponText.text = "OUT OF AMMO";
 
 			outOfAmmo = true;
 
-			if (!isReloadingAnim) 
-				StartCoroutine (AutoReload());
+			if (!isReloadingAnim)
+				StartCoroutine(AutoReload());
 
 			if (hasStartedSliderBack)
 			{
 				anim.SetBool("Out Of Ammo Slider", true);
 				anim.SetLayerWeight(1, 1.0f);
 			}
-		} 
+		}
 		else
 		{
 			currentWeaponText.text = weaponName;
 
 			outOfAmmo = false;
 
-			anim.SetLayerWeight (1, 0.0f);
+			anim.SetLayerWeight(1, 0.0f);
 		}
 
 		// 발사(좌클릭 1번 당 발사)
@@ -470,7 +472,7 @@ public class HandgunScriptLPFP : EntityBehaviour<IFPSPlayerState>
 		if (Input.GetKeyDown (KeyCode.R) && !isReloadingAnim && isCurrentWeapon && !isDraw && !fullAmmo) 
 		{
 			Reload ();
-
+			
 			if (!hasStartedSliderBack) 
 			{
 				hasStartedSliderBack = true;
@@ -521,26 +523,26 @@ public class HandgunScriptLPFP : EntityBehaviour<IFPSPlayerState>
 			StartCoroutine(HandgunSliderBackDelay());
 		}
 		yield return null;
+		isReloading = true;
+		myCharacterModel.GetComponent<CharacterAnimation>().ReloadAnim();
 
-		if (outOfAmmo == true) 
+		anim.Play("Reload Out Of Ammo", 0, 0f);
+
+		mainAudioSource.clip = SoundClips.reloadSoundOutOfAmmo;
+		mainAudioSource.Play();
+
+		// 장전 중, 떨어진 탄피들을 일정 시간 뒤 인스펙터 창에서 삭제
+		if (bulletInMagRenderer != null)
 		{
-			anim.Play ("Reload Out Of Ammo", 0, 0f);
+			bulletInMagRenderer.GetComponent
+			<SkinnedMeshRenderer>().enabled = false;
 
-			mainAudioSource.clip = SoundClips.reloadSoundOutOfAmmo;
-			mainAudioSource.Play ();
+			StartCoroutine(ShowBulletInMag());
+		}
 
-			// 장전 중, 떨어진 탄피들을 일정 시간 뒤 인스펙터 창에서 삭제
-			if (bulletInMagRenderer != null) 
-			{
-				bulletInMagRenderer.GetComponent
-				<SkinnedMeshRenderer> ().enabled = false;
 
-				StartCoroutine (ShowBulletInMag ());
-			}
-		} 
-		//Restore ammo when reloading
-		currentAmmo = ammo;
-		outOfAmmo = false;
+		// 재장전 완료
+		Invoke("SuccessReload", 1.5f);
 	}
 
 	// 장전
@@ -590,8 +592,8 @@ public class HandgunScriptLPFP : EntityBehaviour<IFPSPlayerState>
 	// 현재 재장전 애니메이션 진행 중인지 확인
 	private void AnimationCheck () 
 	{
-		if (anim.GetCurrentAnimatorStateInfo (0).IsName ("Reload Out Of Ammo") || 
-			anim.GetCurrentAnimatorStateInfo (0).IsName ("Reload Ammo Left"))
+		if (anim.GetCurrentAnimatorStateInfo(0).IsName ("Reload Out Of Ammo") || 
+			anim.GetCurrentAnimatorStateInfo(0).IsName ("Reload Ammo Left"))
 			isReloadingAnim = true;
 		else 
 			isReloadingAnim = false;

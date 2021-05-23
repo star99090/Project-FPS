@@ -193,8 +193,7 @@ public class Player : Bolt.EntityBehaviour<IFPSPlayerState>
                     case "Shotgun":
                         myWeapon[mKS].GetComponent<PumpShotgunScriptLPFP>().isCurrentWeapon = true; break;
                     case "Handgun":
-                        //myWeapon[mKS].GetComponent<HandgunScriptLPFP>().isCurrentWeapon = true;
-                        break;
+                        myWeapon[mKS].GetComponent<HandgunScriptLPFP>().isCurrentWeapon = true; break;
                     case "Sniper":
                         //myWeapon[mKS].GetComponent<SniperScriptLPFP>().isCurrentWeapon = true; break;
                     case "BoltActionSniper":
