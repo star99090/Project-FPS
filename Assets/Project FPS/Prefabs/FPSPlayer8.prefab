@@ -6024,9 +6024,16 @@ MonoBehaviour:
   - {fileID: 6609719199933680206}
   - {fileID: 2616086260735471541}
   - {fileID: 1424862207653503160}
+  - {fileID: 4757351773356326435}
+  myWeaponIcon:
+  - {fileID: 21300000, guid: 364206cb355dcf7479b2cdec20b8ec68, type: 3}
+  - {fileID: 21300002, guid: dccc05b8d01dde54f88f9910329187c2, type: 3}
+  - {fileID: 21300018, guid: dccc05b8d01dde54f88f9910329187c2, type: 3}
+  - {fileID: 21300014, guid: dccc05b8d01dde54f88f9910329187c2, type: 3}
   isWeaponChange: 0
   nicknameText: {fileID: 2767158637925020462}
   nicknameCanvas: {fileID: 4693803550105666191}
+  gunIcon: {fileID: 8020348474020443271}
 --- !u!114 &2507485062557573982
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18554,7 +18561,7 @@ MonoBehaviour:
   gunCamera: {fileID: 8738236729564838862}
   fovSpeed: 15
   defaultFov: 40
-  weaponName: Shotgun_01
+  weaponName: Model 780
   scope1: 0
   scope1Texture: {fileID: 21300000, guid: 16923a3edc220904b877f69ae08aca4f, type: 3}
   scope1TextureSize: 0.0045
@@ -27877,7 +27884,7 @@ MonoBehaviour:
   gunCamera: {fileID: 8738236729564838862}
   fovSpeed: 15
   defaultFov: 40
-  weaponName: Assault_Rifle_02
+  weaponName: M4A1-B
   scope1: 1
   scope1Texture: {fileID: 21300000, guid: 2282acb7ec2bb22459ebc6527dd957ea, type: 3}
   scope1TextureSize: 0.0045
@@ -40442,7 +40449,7 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 0
     m_MaxSize: 40
-    m_Alignment: 3
+    m_Alignment: 5
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 1
@@ -42350,7 +42357,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4760903983567784293
 Transform:
   m_ObjectHideFlags: 0
@@ -42402,7 +42409,7 @@ MonoBehaviour:
   gunCamera: {fileID: 8738236729564838862}
   fovSpeed: 15
   defaultFov: 40
-  weaponName: Handgun_04
+  weaponName: GLOCK 7
   scope1: 0
   scope1Texture: {fileID: 0}
   scope1TextureSize: 0.01
@@ -42458,7 +42465,7 @@ MonoBehaviour:
   myEntity: {fileID: 4391489067006608775}
   myCharacterModel: {fileID: 5580624108862950789}
   bloodImpactPrefabs: {fileID: 4418440862474872, guid: a845e59c374ae0240812749e46f13033, type: 3}
-  isCurrentWeapon: 1
+  isCurrentWeapon: 0
 --- !u!82 &4838705930638815945
 AudioSource:
   m_ObjectHideFlags: 0
@@ -42567,7 +42574,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.2
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -61603,7 +61610,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &7721645214998561088
 Transform:
   m_ObjectHideFlags: 0
@@ -61655,7 +61662,7 @@ MonoBehaviour:
   gunCamera: {fileID: 8738236729564838862}
   fovSpeed: 15
   defaultFov: 40
-  weaponName: Assault_Rifle_01
+  weaponName: AKN-47
   scope1: 0
   scope1Texture: {fileID: 0}
   scope1TextureSize: 0.0045
@@ -67957,7 +67964,7 @@ MonoBehaviour:
   gunCamera: {fileID: 8738236729564838862}
   fovSpeed: 15
   defaultFov: 40
-  weaponName: Grenade_Launcher_01
+  weaponName: KL-06
   scope1: 0
   scope1Texture: {fileID: 21300000, guid: 16923a3edc220904b877f69ae08aca4f, type: 3}
   scope1TextureSize: 0.0045

@@ -305,7 +305,7 @@ public class HandgunScriptLPFP : EntityBehaviour<IFPSPlayerState>
 			isDraw = false;
 
 		// 우클릭 조준 시 카메라 셋팅
-		if (Input.GetButton("Fire2") && !isReloadingAnim && !isRunning & !isReloading) 
+		if (Input.GetButton("Fire2") && !isReloadingAnim && !isRunning & !isReloading && !isDraw) 
 		{
 			if (ironSights == true)
 			{
@@ -407,8 +407,8 @@ public class HandgunScriptLPFP : EntityBehaviour<IFPSPlayerState>
 		}
 
 		// 발사(좌클릭 1번 당 발사)
-		if (Input.GetMouseButtonDown (0) && !outOfAmmo && !isReloadingAnim
-			&& !isRunning && !isReloading && isCurrentWeapon && !isDraw) 
+		if (Input.GetMouseButtonDown(0) && !outOfAmmo && !isReloadingAnim
+			&& !isRunning && !isReloading && isCurrentWeapon && !isDraw)
 		{
 			myCharacterModel.GetComponent<CharacterAnimation>().FireAnim();
 

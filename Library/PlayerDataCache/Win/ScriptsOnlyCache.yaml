@@ -379,7 +379,7 @@ ScriptsOnlyBuild:
     className: NetworkManager
   - hash:
       serializedVersion: 2
-      Hash: 390c2fb29ae5aed0efbac0932a0462a2
+      Hash: e2692c2377fb6e6932d0c9b62c66c44a
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Player

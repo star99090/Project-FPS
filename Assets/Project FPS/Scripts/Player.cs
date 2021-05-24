@@ -57,11 +57,13 @@ public class Player : Bolt.EntityBehaviour<IFPSPlayerState>
     [Header("Weapon Settings")]
     [Tooltip("사용할 무기")]
     public GameObject[] myWeapon;
+    public Sprite[] myWeaponIcon;
     public bool isWeaponChange = false;
 #pragma warning restore 649
 
     public Text nicknameText;
     [SerializeField] Transform nicknameCanvas;
+    [SerializeField] Image gunIcon;
 
     private Rigidbody _rigidbody;
     private CapsuleCollider _collider;
@@ -78,6 +80,7 @@ public class Player : Bolt.EntityBehaviour<IFPSPlayerState>
     private void Start()
     {
         myWeapon[0].GetComponent<AutomaticGun>().isCurrentWeapon = true;
+        gunIcon.sprite = myWeaponIcon[0];
         if (entity.IsOwner) NM.myPlayer = this.entity;
 
         state.nickname = TitleLobbyManager.TLM.myNickname;
@@ -181,9 +184,27 @@ public class Player : Bolt.EntityBehaviour<IFPSPlayerState>
 
             if (mKS < myWeapon.Length)
             {
-                myWeapon[mKS - 1].GetComponent<AutomaticGun>().isCurrentWeapon = false;
+                switch (myWeapon[mKS - 1].tag)
+                {
+                    case "AutomaticGun":
+                        myWeapon[mKS - 1].GetComponent<AutomaticGun>().isCurrentWeapon = false; break;
+                    case "GrenadeLauncher":
+                        myWeapon[mKS - 1].GetComponent<GrenadeLauncherScriptLPFP>().isCurrentWeapon = false; break;
+                    case "Shotgun":
+                        myWeapon[mKS - 1].GetComponent<PumpShotgunScriptLPFP>().isCurrentWeapon = false; break;
+                    case "Handgun":
+                        myWeapon[mKS - 1].GetComponent<HandgunScriptLPFP>().isCurrentWeapon = false; break;
+                    case "Sniper":
+                    //myWeapon[mKS - 1].GetComponent<SniperScriptLPFP>().isCurrentWeapon = false; break;
+                    case "BoltActionSniper":
+                    //myWeapon[mKS - 1].GetComponent<BoltActionSniperScriptLPFP>().isCurrentWeapon = false; break;
+                    case "RocketLauncher":
+                        //myWeapon[mKS - 1].GetComponent<RocketLauncherScriptLPFP>().isCurrentWeapon = false; break;
+                        break;
+                }
                 myWeapon[mKS - 1].SetActive(false);
                 myWeapon[mKS].SetActive(true);
+                gunIcon.sprite = myWeaponIcon[mKS];
                 switch (myWeapon[mKS].tag)
                 {
                     case "AutomaticGun":

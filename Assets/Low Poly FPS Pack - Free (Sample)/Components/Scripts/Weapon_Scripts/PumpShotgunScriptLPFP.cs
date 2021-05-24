@@ -355,7 +355,7 @@ public class PumpShotgunScriptLPFP : EntityBehaviour<IFPSPlayerState>
 			isDraw = false;
 
 		// 우클릭 조준 시 카메라 셋팅
-		if (Input.GetButton("Fire2") && !isReloadingAnim && !isRunning & !isReloading) 
+		if (Input.GetButton("Fire2") && !isReloadingAnim && !isRunning & !isReloading && !isDraw) 
 		{
 			if (ironSights == true)
 			{

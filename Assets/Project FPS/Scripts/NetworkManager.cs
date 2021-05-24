@@ -38,7 +38,7 @@ public class NetworkManager : GlobalEventListener
 
     public override void SceneLoadLocalDone(string scene, IProtocolToken token)
     {
-        var spawnPos = new Vector3(Random.Range(-5, 5), 0, 0);
+        var spawnPos = new Vector3(Random.Range(-3, 3), 0, Random.Range(-2, 2));
 
         if (myEntityPos != Vector3.zero)
             spawnPos = myEntityPos;
