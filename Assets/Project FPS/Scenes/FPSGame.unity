@@ -10150,7 +10150,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &220415790
 Transform:
   m_ObjectHideFlags: 0
@@ -45296,6 +45296,10 @@ PrefabInstance:
       value: Metal
       objectReference: {fileID: 0}
     - target: {fileID: 1878481582314246, guid: 2cb70ce085ea4c84bbc5503352d50501, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1878481582314246, guid: 2cb70ce085ea4c84bbc5503352d50501, type: 3}
       propertyPath: m_TagString
       value: Metal
       objectReference: {fileID: 0}
@@ -59321,7 +59325,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1273566300
 Transform:
   m_ObjectHideFlags: 0
@@ -71199,7 +71203,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   players: []
   myPlayer: {fileID: 0}
-  SpawnPrefab: {fileID: 938171020722944254, guid: 0fd12f50aca2d8340861a5db9caa1506, type: 3}
+  SpawnPrefab: {fileID: 3981124597222307131, guid: 6fe9f38769f717e41a0cccbbddd88f78, type: 3}
   killLogCount: 0
   killLogText: {fileID: 1093916617}
   entities: []
@@ -74831,6 +74835,10 @@ PrefabInstance:
     - target: {fileID: 1117548611621822, guid: 5d62812bf89681c41b9fb25d83534cc0, type: 3}
       propertyPath: m_Name
       value: Concrete
+      objectReference: {fileID: 0}
+    - target: {fileID: 1117548611621822, guid: 5d62812bf89681c41b9fb25d83534cc0, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1117548611621822, guid: 5d62812bf89681c41b9fb25d83534cc0, type: 3}
       propertyPath: m_TagString
@@ -103301,7 +103309,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8817622591131257115}
   m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: -0.7071068}
-  m_LocalPosition: {x: 8.041006, y: 0.33999997, z: -2.0230017}
+  m_LocalPosition: {x: 8.041006, y: 0.65, z: -2.0230017}
   m_LocalScale: {x: 0.6999998, y: 0.7, z: 0.6999998}
   m_Children:
   - {fileID: 8817622591131258453}

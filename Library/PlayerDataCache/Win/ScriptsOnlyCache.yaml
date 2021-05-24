@@ -3,6 +3,7 @@ ScriptsOnlyBuild:
     Assembly-CSharp.dll:
     - AutomaticGun
     - BlinkingLightLPFP
+    - BoltActionSniperScriptLPFP
     - BulletScript
     - BulletScriptBefore
     - CasingScriptBefore
@@ -87,6 +88,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 83
       Script: {instanceID: 0}
+    - Class: 86
+      Script: {instanceID: 0}
     - Class: 89
       Script: {instanceID: 0}
     - Class: 90
@@ -124,6 +127,8 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 2256}
     - Class: 114
+      Script: {instanceID: 2572}
+    - Class: 114
       Script: {instanceID: 2584}
     - Class: 114
       Script: {instanceID: 2834}
@@ -150,6 +155,8 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 3790}
     - Class: 115
+      Script: {instanceID: 0}
+    - Class: 124
       Script: {instanceID: 0}
     - Class: 128
       Script: {instanceID: 0}
@@ -214,6 +221,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 83
       Script: {instanceID: 0}
+    - Class: 86
+      Script: {instanceID: 0}
     - Class: 89
       Script: {instanceID: 0}
     - Class: 90
@@ -258,6 +267,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 2292}
     - Class: 114
       Script: {instanceID: 2438}
+    - Class: 114
+      Script: {instanceID: 2572}
     - Class: 114
       Script: {instanceID: 2584}
     - Class: 114
@@ -727,7 +738,7 @@ ScriptsOnlyBuild:
     className: RawImage
   - hash:
       serializedVersion: 2
-      Hash: 75541925b57fd0ce89eaa82203d5610d
+      Hash: a4d9aa02f55f9ea576ded9e36ebde6a9
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: BoltActionSniperScriptLPFP

@@ -150,9 +150,9 @@ public class PumpShotgunScriptLPFP : EntityBehaviour<IFPSPlayerState>
 		public float casingDelayTimer;
 		public Transform casingSpawnPoint;
 		public Transform[] bulletSpawnPoint;
-		[Range(-10, 10)]
+		[Range(-5, 5)]
 		public float bulletSpawnPointMinRotation = -5.0f;
-		[Range(-10, 10)]
+		[Range(-5, 5)]
 		public float bulletSpawnPointMaxRotation = 5.0f;
 	}
 	public spawnpoints Spawnpoints;
@@ -598,14 +598,13 @@ public class PumpShotgunScriptLPFP : EntityBehaviour<IFPSPlayerState>
 					anim.Play("Reload Open", 0, 0f);
 					break;
 			}
-			//anim.Play("Reload Open", 0, 0f);
 		}
 		
 		// 장전 과정
 		Invoke("ReloadSub", 1.47f);
 	}
 
-	void ReloadSub()
+	private void ReloadSub()
 	{
 		StartCoroutine(AmmoPlus());
 	}

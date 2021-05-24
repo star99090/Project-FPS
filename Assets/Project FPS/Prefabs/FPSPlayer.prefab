@@ -1359,9 +1359,11 @@ MonoBehaviour:
     run: Run
     jump: Jump
   myWeapon: []
+  myWeaponIcon: []
   isWeaponChange: 0
   nicknameText: {fileID: 1800653564920912798}
   nicknameCanvas: {fileID: 290881912919417019}
+  gunIcon: {fileID: 0}
 --- !u!114 &6835624471752019052
 MonoBehaviour:
   m_ObjectHideFlags: 0

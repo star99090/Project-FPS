@@ -35536,9 +35536,11 @@ MonoBehaviour:
   - {fileID: 7074581176002646210}
   - {fileID: 2150946115535975737}
   - {fileID: 3049401146024999476}
+  myWeaponIcon: []
   isWeaponChange: 0
   nicknameText: {fileID: 2301738058682296738}
   nicknameCanvas: {fileID: 8697642728423020547}
+  gunIcon: {fileID: 0}
 --- !u!114 &1971423173563546066
 MonoBehaviour:
   m_ObjectHideFlags: 0

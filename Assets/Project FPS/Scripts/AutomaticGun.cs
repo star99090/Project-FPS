@@ -363,7 +363,6 @@ public class AutomaticGun : EntityBehaviour<IFPSPlayerState>
 			evnt.damage = Random.Range(damage - 2, damage + 2);
 			evnt.attackerEntity = myEntity;
 			evnt.Send();
-
 		}
     }
 
