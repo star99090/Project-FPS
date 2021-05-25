@@ -6247,6 +6247,10 @@ MonoBehaviour:
   damage: 20
   showBulletInMagDelay: 0.6
   bulletInMagRenderer: {fileID: 2644991174421508704}
+  normalHitRateMin: -5
+  normalHitRateMax: 5
+  aimHitRateMin: -1
+  aimHitRateMax: 1
   muzzleParticles: {fileID: 2854435490482395248}
   sparkParticles: {fileID: 2855266518700770230}
   minSparkEmission: 1
@@ -7160,7 +7164,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _sceneGuid: 
   _serializerGuid: 0d571f8f-8396-4497-aff8-4335b83be108
-  _prefabId: 5
+  _prefabId: 8
   _updateRate: 1
   _autoFreezeProxyFrames: 0
   _clientPredicted: 1

@@ -106,6 +106,19 @@ public class PumpShotgunScriptLPFP : EntityBehaviour<IFPSPlayerState>
 	private bool outOfAmmo;
 	private bool fullAmmo;
 
+	[Header("Hit Rate Settings")]
+	[Tooltip("일반 사격 명중률 조정")]
+	[Range(-5, 5)]
+	public float normalHitRateMin = -5f;
+	[Range(-5, 5)]
+	public float normalHitRateMax = 5f;
+	[Space(10)]
+	[Tooltip("조준 사격 명중률 조정")]
+	[Range(-3, 3)]
+	public float aimHitRateMin = -3f;
+	[Range(-3, 3)]
+	public float aimHitRateMax = 3f;
+
 	[Header("Bullet Settings")]
 	[Tooltip("총탄 발사 힘")]
 	public float bulletForce = 400f;
@@ -150,10 +163,6 @@ public class PumpShotgunScriptLPFP : EntityBehaviour<IFPSPlayerState>
 		public float casingDelayTimer;
 		public Transform casingSpawnPoint;
 		public Transform[] bulletSpawnPoint;
-		[Range(-5, 5)]
-		public float bulletSpawnPointMinRotation = -5.0f;
-		[Range(-5, 5)]
-		public float bulletSpawnPointMaxRotation = 5.0f;
 	}
 	public spawnpoints Spawnpoints;
 
@@ -350,8 +359,7 @@ public class PumpShotgunScriptLPFP : EntityBehaviour<IFPSPlayerState>
 	{
 		if (!entity.IsOwner) return;
 
-		if (anim.GetCurrentAnimatorStateInfo(0).IsName("Draw")
-			&& anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1f)
+		if (isDraw && !anim.GetCurrentAnimatorStateInfo(0).IsName("Draw"))
 			isDraw = false;
 
 		// 우클릭 조준 시 카메라 셋팅
@@ -490,7 +498,31 @@ public class PumpShotgunScriptLPFP : EntityBehaviour<IFPSPlayerState>
 
 				// 일반 사격 모드
 				if (!isAiming)
-					anim.Play ("Fire", 0, 0f);
+				{
+					anim.Play("Fire", 0, 0f);
+					
+					// 총알 생성 배열
+					for (int i = 0; i < Spawnpoints.bulletSpawnPoint.Length; i++)
+					{
+						// 모든 총알의 Rotation을 min 부터 max 값까지 랜덤하게 부여
+						Spawnpoints.bulletSpawnPoint[i].transform.localRotation = Quaternion.Euler(
+							Random.Range(normalHitRateMin, normalHitRateMax),
+							Random.Range(normalHitRateMin, normalHitRateMax),
+							0);
+
+						// 총알 생성
+						var bullet = (Transform)Instantiate(
+							Prefabs.bulletPrefab,
+							Spawnpoints.bulletSpawnPoint[i].transform.position,
+							Spawnpoints.bulletSpawnPoint[i].transform.rotation);
+
+						// 총알에 힘 싣기
+						bullet.GetComponent<Rigidbody>().velocity =
+							bullet.transform.forward * bulletForce;
+
+						PlayerHitCheck(Spawnpoints.bulletSpawnPoint[i].transform);
+					}
+				}
 
 				// 조준 사격 모드
 				else
@@ -505,28 +537,28 @@ public class PumpShotgunScriptLPFP : EntityBehaviour<IFPSPlayerState>
 						anim.Play("Aim Fire Scope 3", 0, 0f);
 					if (scope4 == true)
 						anim.Play("Aim Fire Scope 4", 0, 0f);
-				}
 
-				// 총알 생성 배열
-				for (int i = 0; i < Spawnpoints.bulletSpawnPoint.Length; i++)
-				{
-					// 모든 총알의 Rotation을 min 부터 max 값까지 랜덤하게 부여
-					Spawnpoints.bulletSpawnPoint[i].transform.localRotation = Quaternion.Euler(
-						Random.Range(Spawnpoints.bulletSpawnPointMinRotation, Spawnpoints.bulletSpawnPointMaxRotation),
-						Random.Range(Spawnpoints.bulletSpawnPointMinRotation, Spawnpoints.bulletSpawnPointMaxRotation),
-						0);
-					
-					// 총알 생성
-					var bullet = (Transform)Instantiate (
-						Prefabs.bulletPrefab,
-						Spawnpoints.bulletSpawnPoint [i].transform.position,
-						Spawnpoints.bulletSpawnPoint [i].transform.rotation);
+					// 총알 생성 배열
+					for (int i = 0; i < Spawnpoints.bulletSpawnPoint.Length; i++)
+					{
+						// 모든 총알의 Rotation을 min 부터 max 값까지 랜덤하게 부여
+						Spawnpoints.bulletSpawnPoint[i].transform.localRotation = Quaternion.Euler(
+							Random.Range(aimHitRateMin, aimHitRateMax),
+							Random.Range(aimHitRateMin, aimHitRateMax),
+							0);
 
-					// 총알에 힘 싣기
-					bullet.GetComponent<Rigidbody>().velocity = 
-						bullet.transform.forward * bulletForce;
+						// 총알 생성
+						var bullet = (Transform)Instantiate(
+							Prefabs.bulletPrefab,
+							Spawnpoints.bulletSpawnPoint[i].transform.position,
+							Spawnpoints.bulletSpawnPoint[i].transform.rotation);
 
-					PlayerHitCheck(Spawnpoints.bulletSpawnPoint[i].transform);
+						// 총알에 힘 싣기
+						bullet.GetComponent<Rigidbody>().velocity =
+							bullet.transform.forward * bulletForce;
+
+						PlayerHitCheck(Spawnpoints.bulletSpawnPoint[i].transform);
+					}
 				}
 
 				StartCoroutine (CasingDelay ());

@@ -38,12 +38,19 @@ public class BoltActionSniperScriptLPFP : EntityBehaviour<IFPSPlayerState>
 	public float fireRate;
 	private float lastFired;
 
-
 	[Tooltip("최대 탄 수")]
 	public int ammo;
 	private int currentAmmo;
 	private bool outOfAmmo;
 	private bool fullAmmo;
+
+	[Header("Hit Rate Settings")]
+	[Tooltip("일반 사격 명중률 조정")]
+	[Range(-5, 5)]
+	public float normalHitRateMin = -5f;
+	[Range(-5, 5)]
+	public float normalHitRateMax = 5f;
+	[Space(10)]
 
 	[Header("Bullet Settings")]
 	[Tooltip("총탄 발사 힘")]
@@ -76,7 +83,6 @@ public class BoltActionSniperScriptLPFP : EntityBehaviour<IFPSPlayerState>
 	public Text currentWeaponText;
 	public Text currentAmmoText;
 	public Text totalAmmoText;
-	[SerializeField] private Text attacker;
 
 	[System.Serializable]
 	public class prefabs
@@ -94,10 +100,6 @@ public class BoltActionSniperScriptLPFP : EntityBehaviour<IFPSPlayerState>
 		public float casingDelayTimer;
 		public Transform casingSpawnPoint;
 		public Transform bulletSpawnPoint;
-		[Range(-5, 5)]
-		public float bulletSpawnPointMinRotation = -5f;
-		[Range(-5, 5)]
-		public float bulletSpawnPointMaxRotation = 5f;
 	}
 	public spawnpoints Spawnpoints;
 
@@ -116,6 +118,7 @@ public class BoltActionSniperScriptLPFP : EntityBehaviour<IFPSPlayerState>
 	[Header("Other Settings")]
 	[SerializeField] private BoltEntity myEntity;
 	[SerializeField] private GameObject myCharacterModel;
+	[SerializeField] private Text attacker;
 	public Transform bloodImpactPrefabs;
 	public bool isCurrentWeapon;
 
@@ -198,8 +201,7 @@ public class BoltActionSniperScriptLPFP : EntityBehaviour<IFPSPlayerState>
 	{
 		if (!entity.IsOwner) return;
 
-		if (anim.GetCurrentAnimatorStateInfo(0).IsName("Draw")
-			&& anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1f)
+		if (isDraw && !anim.GetCurrentAnimatorStateInfo(0).IsName("Draw"))
 			isDraw = false;
 
 		// 우클릭 조준 시 카메라 셋팅
@@ -262,7 +264,7 @@ public class BoltActionSniperScriptLPFP : EntityBehaviour<IFPSPlayerState>
 		}
 
 		// 자동 발사(좌클릭 유지)
-		if (Input.GetMouseButton (0) && !outOfAmmo && !isReloadingAnim
+		if (Input.GetMouseButton(0) && !outOfAmmo && !isReloadingAnim
 			&& !isRunning && !isReloading && isCurrentWeapon && !isDraw)
 		{
 			if (Time.time - lastFired > 1 / fireRate) 
@@ -300,11 +302,10 @@ public class BoltActionSniperScriptLPFP : EntityBehaviour<IFPSPlayerState>
 
 					// 총알의 Rotation을 min 부터 max 값까지 랜덤하게 부여
 					Spawnpoints.bulletSpawnPoint.transform.localRotation = Quaternion.Euler(
-						Random.Range(Spawnpoints.bulletSpawnPointMinRotation, Spawnpoints.bulletSpawnPointMaxRotation),
-						Random.Range(Spawnpoints.bulletSpawnPointMinRotation, Spawnpoints.bulletSpawnPointMaxRotation),
+						Random.Range(normalHitRateMin, normalHitRateMax),
+						Random.Range(normalHitRateMin, normalHitRateMax),
 						0);
 				}
-
 				// 조준 사격 모드
 				else
 				{
@@ -433,7 +434,7 @@ public class BoltActionSniperScriptLPFP : EntityBehaviour<IFPSPlayerState>
 		muzzleFlashLight.enabled = false;
 	}
 
-	// 현재 재장전 애니메이션 진행 중인지 확인
+	// 현재 어느 애니메이션이 진행 중인지 확인
 	private void AnimationCheck() 
 	{
 		if (anim.GetCurrentAnimatorStateInfo(0).IsName("Reload Open") ||
@@ -443,8 +444,8 @@ public class BoltActionSniperScriptLPFP : EntityBehaviour<IFPSPlayerState>
 		else
 			isReloadingAnim = false;
 
-		//Check if shooting
-		if (anim.GetCurrentAnimatorStateInfo (0).IsName ("Fire")) 
+		if (anim.GetCurrentAnimatorStateInfo (0).IsName ("Fire") ||
+			anim.GetCurrentAnimatorStateInfo(0).IsName("Aim Fire")) 
 			isShooting = true;
 		else 
 			isShooting = false;

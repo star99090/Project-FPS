@@ -12886,6 +12886,10 @@ MonoBehaviour:
   damage: 20
   showBulletInMagDelay: 0.6
   bulletInMagRenderer: {fileID: 6859785139422774704}
+  normalHitRateMin: -5
+  normalHitRateMax: 5
+  aimHitRateMin: -1
+  aimHitRateMax: 1
   muzzleParticles: {fileID: 6636831114866143136}
   sparkParticles: {fileID: 6636562633402774630}
   minSparkEmission: 1

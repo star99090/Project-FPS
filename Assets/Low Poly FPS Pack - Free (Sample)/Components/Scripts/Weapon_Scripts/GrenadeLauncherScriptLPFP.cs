@@ -92,10 +92,22 @@ public class GrenadeLauncherScriptLPFP : EntityBehaviour<IFPSPlayerState>
 	}
 	public weaponAttachmentRenderers WeaponAttachmentRenderers;
 
+	[Header("Hit Rate Settings")]
+	[Tooltip("일반 사격 명중률 조정")]
+	[Range(-5, 5)]
+	public float normalHitRateMin = -5f;
+	[Range(-5, 5)]
+	public float normalHitRateMax = 5f;
+	[Space(10)]
+	[Tooltip("조준 사격 명중률 조정")]
+	[Range(-1, 1)]
+	public float aimHitRateMin = -1f;
+	[Range(-1, 1)]
+	public float aimHitRateMax = 1f;
 
 	[Header("Weapon Settings")]
 	[Tooltip("데미지 중간 값")]
-	public int damage = 20;
+	public int damage = 75;
 
 	private int currentAmmo;
 	private int ammo = 1;
@@ -120,7 +132,6 @@ public class GrenadeLauncherScriptLPFP : EntityBehaviour<IFPSPlayerState>
 	public Text currentWeaponText;
 	public Text currentAmmoText;
 	public Text totalAmmoText;
-	[SerializeField] private Text attacker;
 
 	[System.Serializable]
 	public class prefabs
@@ -137,7 +148,6 @@ public class GrenadeLauncherScriptLPFP : EntityBehaviour<IFPSPlayerState>
 		public Transform bulletSpawnPoint;
 	}
 	public spawnpoints Spawnpoints;
-	public Transform aimSpawnpoint;
 
 	[System.Serializable]
 	public class soundClips
@@ -151,15 +161,17 @@ public class GrenadeLauncherScriptLPFP : EntityBehaviour<IFPSPlayerState>
 
 	private bool soundHasPlayed = false;
 
+	[Header("Other Settings")]
 	[SerializeField] private BoltEntity myEntity;
 	[SerializeField] private GameObject myCharacterModel;
+	[SerializeField] private Text attacker;
 	public bool isCurrentWeapon;
+
 	private bool isDraw = true;
 	private bool isReloadingAnim;
 	private bool isReloading;
 	private bool isRunning;
 	private bool isAiming;
-	//private bool isWalking;
 	private void Awake ()
 	{
 		anim = GetComponent<Animator>();
@@ -325,8 +337,7 @@ public class GrenadeLauncherScriptLPFP : EntityBehaviour<IFPSPlayerState>
 	{
 		if (!entity.IsOwner) return;
 
-		if (anim.GetCurrentAnimatorStateInfo(0).IsName("Draw")
-			&& anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1f)
+		if (isDraw && !anim.GetCurrentAnimatorStateInfo(0).IsName("Draw"))
 			isDraw = false;
 
 		// 우클릭 조준 시 카메라 셋팅
@@ -423,12 +434,6 @@ public class GrenadeLauncherScriptLPFP : EntityBehaviour<IFPSPlayerState>
 		// 현재 탄 수 동기화
 		currentAmmoText.text = currentAmmo.ToString();
 
-		// 탄이 장전 된 상태인지
-		/*if (currentAmmo == ammo)
-			fullAmmo = true;
-		else
-			fullAmmo = false;*/
-
 		// 현재 재장전 애니메이션 진행 중인지 확인
 		AnimationCheck();
 
@@ -439,7 +444,7 @@ public class GrenadeLauncherScriptLPFP : EntityBehaviour<IFPSPlayerState>
 
 			outOfAmmo = true;
 			if (!isReloadingAnim)
-				StartCoroutine(AutoReload());
+				AutoReload();
 		}
 		else
 		{
@@ -452,12 +457,7 @@ public class GrenadeLauncherScriptLPFP : EntityBehaviour<IFPSPlayerState>
 		if (Input.GetMouseButtonDown (0) && !outOfAmmo && !isReloadingAnim
 			&& !isRunning && !isReloading && isCurrentWeapon && !isDraw) 
 		{
-			muzzleParticles.Emit (1);
-
-			//Spawn projectile prefab
-
-			// 캐릭터모델의 FireAnim같은거 호출해주기!
-			//myCharacterModel.GetComponent<CharacterAnimation>().FireAnim();
+			myCharacterModel.GetComponent<CharacterAnimation>().FireAnim();
 
 			// 탄 수 감소
 			currentAmmo -= 1;
@@ -470,15 +470,18 @@ public class GrenadeLauncherScriptLPFP : EntityBehaviour<IFPSPlayerState>
 			state.SparkParticleTrigger();
 			state.MuzzleParticleTrigger();
 
-			if (!isAiming) //if not aiming
+			// 일반 사격 모드
+			if (!isAiming)
 			{
 				anim.Play ("Fire", 0, 0f);
 
-				Instantiate(
-					Prefabs.projectilePrefab,
-					Spawnpoints.bulletSpawnPoint.transform.position,
-					Spawnpoints.bulletSpawnPoint.transform.rotation);
-			} 
+				// 총알 생성지의 Rotation을 min 부터 max 값까지 랜덤하게 부여
+				Spawnpoints.bulletSpawnPoint.transform.localRotation = Quaternion.Euler(
+					Random.Range(normalHitRateMin, normalHitRateMax),
+					Random.Range(normalHitRateMin, normalHitRateMax),
+					0);
+			}
+			// 조준 사격 모드
 			else
 			{
 				if (ironSights == true)
@@ -492,11 +495,17 @@ public class GrenadeLauncherScriptLPFP : EntityBehaviour<IFPSPlayerState>
 				if (scope4 == true)
 					anim.Play("Aim Fire Scope 4", 0, 0f);
 
-				Instantiate(
-					Prefabs.projectilePrefab,
-					aimSpawnpoint.position,
-					Spawnpoints.bulletSpawnPoint.transform.rotation);
+				// 총알 생성지의 Rotation을 min 부터 max 값까지 랜덤하게 부여
+				Spawnpoints.bulletSpawnPoint.transform.localRotation = Quaternion.Euler(
+					Random.Range(aimHitRateMin, aimHitRateMax),
+					Random.Range(aimHitRateMin, aimHitRateMax),
+					0);
 			}
+
+			Instantiate(
+				Prefabs.projectilePrefab,
+				Spawnpoints.bulletSpawnPoint.transform.position,
+				Spawnpoints.bulletSpawnPoint.transform.rotation);
 		}
 
 		// 걷기
@@ -521,13 +530,11 @@ public class GrenadeLauncherScriptLPFP : EntityBehaviour<IFPSPlayerState>
 			anim.SetBool("Run", false);
 	}
 
-	private IEnumerator AutoReload ()
+	private void AutoReload()
 	{
-		yield return null;
 		isReloading = true;
-		//myCharacterModel.GetComponent<CharacterAnimation>().ReloadAnim();
-		//모델의 장전하는 애님
-
+		myCharacterModel.GetComponent<CharacterAnimation>().ReloadAnim();
+		
 		if (outOfAmmo == true && isCurrentWeapon) 
 		{
 			anim.Play ("Reload", 0, 0f);
@@ -544,7 +551,6 @@ public class GrenadeLauncherScriptLPFP : EntityBehaviour<IFPSPlayerState>
 		currentAmmo = ammo;
 		outOfAmmo = false;
 		isReloading = false;
-		//fullAmmo = true;
 	}
 
 	// 사격 시 총알의 불빛이 사라지는 시간 설정
@@ -555,7 +561,7 @@ public class GrenadeLauncherScriptLPFP : EntityBehaviour<IFPSPlayerState>
 		muzzleFlashLight.enabled = false;
 	}
 
-	//Check current animation playing
+	// 현재 재장전 애니메이션 진행 중인지 확인
 	private void AnimationCheck ()
 	{ 
 		if (anim.GetCurrentAnimatorStateInfo(0).IsName ("Reload")) 

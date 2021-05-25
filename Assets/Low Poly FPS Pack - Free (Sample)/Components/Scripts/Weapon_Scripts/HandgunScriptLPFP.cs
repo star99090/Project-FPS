@@ -100,6 +100,19 @@ public class HandgunScriptLPFP : EntityBehaviour<IFPSPlayerState>
 	[Tooltip("탄피 안의 총알 모델")]
 	public SkinnedMeshRenderer bulletInMagRenderer;
 
+	[Header("Hit Rate Settings")]
+	[Tooltip("일반 사격 명중률 조정")]
+	[Range(-5, 5)]
+	public float normalHitRateMin = -5f;
+	[Range(-5, 5)]
+	public float normalHitRateMax = 5f;
+	[Space(10)]
+	[Tooltip("조준 사격 명중률 조정")]
+	[Range(-1, 1)]
+	public float aimHitRateMin = -1f;
+	[Range(-1, 1)]
+	public float aimHitRateMax = 1f;
+
 	[Header("Muzzleflash Settings")]
 	public ParticleSystem muzzleParticles;
 	public ParticleSystem sparkParticles;
@@ -292,7 +305,6 @@ public class HandgunScriptLPFP : EntityBehaviour<IFPSPlayerState>
 			evnt.damage = Random.Range(damage - 2, damage + 2);
 			evnt.attackerEntity = myEntity;
 			evnt.Send();
-
 		}
 	}
 
@@ -300,8 +312,7 @@ public class HandgunScriptLPFP : EntityBehaviour<IFPSPlayerState>
 	{
 		if (!entity.IsOwner) return;
 
-		if (anim.GetCurrentAnimatorStateInfo(0).IsName("Draw")
-			&& anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1f)
+		if (isDraw && !anim.GetCurrentAnimatorStateInfo(0).IsName("Draw"))
 			isDraw = false;
 
 		// 우클릭 조준 시 카메라 셋팅
@@ -438,6 +449,12 @@ public class HandgunScriptLPFP : EntityBehaviour<IFPSPlayerState>
 			if (!isAiming)
 			{
 				anim.Play("Fire", 0, 0f);
+
+				// 총알의 Rotation을 min 부터 max 값까지 랜덤하게 부여
+				Spawnpoints.bulletSpawnPoint.transform.localRotation = Quaternion.Euler(
+					Random.Range(normalHitRateMin, normalHitRateMax),
+					Random.Range(normalHitRateMin, normalHitRateMax),
+					0);
 			} 
 			// 조준 사격 모드
 			else
@@ -448,6 +465,12 @@ public class HandgunScriptLPFP : EntityBehaviour<IFPSPlayerState>
 					anim.Play("Aim Fire Scope 1", 0, 0f);
 				if (scope2 == true) 
 					anim.Play("Aim Fire Scope 2", 0, 0f);
+
+				// 총알의 Rotation을 min 부터 max 값까지 랜덤하게 부여
+				Spawnpoints.bulletSpawnPoint.transform.localRotation = Quaternion.Euler(
+					Random.Range(aimHitRateMin, aimHitRateMax),
+					Random.Range(aimHitRateMin, aimHitRateMax),
+					0);
 			}
 				
 			// 총알 생성

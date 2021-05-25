@@ -21,6 +21,8 @@ ScriptsOnlyBuild:
     - PlayerSubScript
     - ProjectileScript
     - PumpShotgunScriptLPFP
+    - RocketLauncherScriptLPFP
+    - SniperScriptLPFP
     - ThirdPersonDemoLPFP
     - TitleLobbyManager
     Unity.Rider.Editor.dll:
@@ -123,6 +125,8 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 1910}
     - Class: 114
+      Script: {instanceID: 2002}
+    - Class: 114
       Script: {instanceID: 2190}
     - Class: 114
       Script: {instanceID: 2256}
@@ -144,6 +148,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 3114}
     - Class: 114
       Script: {instanceID: 3222}
+    - Class: 114
+      Script: {instanceID: 3370}
     - Class: 114
       Script: {instanceID: 3390}
     - Class: 114
@@ -256,6 +262,8 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 1992}
     - Class: 114
+      Script: {instanceID: 2002}
+    - Class: 114
       Script: {instanceID: 2140}
     - Class: 114
       Script: {instanceID: 2190}
@@ -291,6 +299,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 3256}
     - Class: 114
       Script: {instanceID: 3342}
+    - Class: 114
+      Script: {instanceID: 3370}
     - Class: 114
       Script: {instanceID: 3390}
     - Class: 114
@@ -414,7 +424,7 @@ ScriptsOnlyBuild:
     className: Outline
   - hash:
       serializedVersion: 2
-      Hash: 45480720c38ec8c82c20d83f28a50aa9
+      Hash: 48faef9e8057febbaab11d0d2807e38c
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: GrenadeLauncherScriptLPFP
@@ -552,7 +562,7 @@ ScriptsOnlyBuild:
     className: GrenadeScript
   - hash:
       serializedVersion: 2
-      Hash: 6cd94745c6835b6241926cd21116b1df
+      Hash: dd04635fcb0478659ecbf881679087a7
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: RocketLauncherScriptLPFP
@@ -738,13 +748,13 @@ ScriptsOnlyBuild:
     className: RawImage
   - hash:
       serializedVersion: 2
-      Hash: a4d9aa02f55f9ea576ded9e36ebde6a9
+      Hash: fced62e2e0a80e9f86e105140a0fbb69
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: BoltActionSniperScriptLPFP
   - hash:
       serializedVersion: 2
-      Hash: 7201ad6427baf2ffe5ae4574e2280f74
+      Hash: 7f9c40f954683ebe75cd225a725fa237
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: PumpShotgunScriptLPFP
@@ -870,7 +880,7 @@ ScriptsOnlyBuild:
     className: RoutineManager
   - hash:
       serializedVersion: 2
-      Hash: ed81d91d488f954710c99f3d63010119
+      Hash: cf1cbc4de7261659164e2fc0fe1c4032
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: HandgunScriptLPFP
@@ -972,7 +982,7 @@ ScriptsOnlyBuild:
     className: TMP_SpriteAnimator
   - hash:
       serializedVersion: 2
-      Hash: 131a7ace993cfe6a44e5d99655bd08c9
+      Hash: c2c47fa92a8b075cc828cfc3fcc22e39
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: SniperScriptLPFP
@@ -1062,7 +1072,7 @@ ScriptsOnlyBuild:
     className: SignalEmitter
   - hash:
       serializedVersion: 2
-      Hash: 81aa356ff6bbbe25df46c5a2c74c4d0e
+      Hash: 2f31a875fc31f9c25f9211423ed481fb
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: AutomaticGun

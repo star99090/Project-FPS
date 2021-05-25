@@ -18649,6 +18649,10 @@ MonoBehaviour:
   damage: 25
   showBulletInMagDelay: 0.6
   bulletInMagRenderer: {fileID: 2276571301893276534}
+  normalHitRateMin: -5
+  normalHitRateMax: 5
+  aimHitRateMin: -1
+  aimHitRateMax: 1
   muzzleParticles: {fileID: 2067185454566881866}
   sparkParticles: {fileID: 2067933212048439026}
   minSparkEmission: 1
@@ -22799,6 +22803,10 @@ MonoBehaviour:
     scope4SpriteRenderer: {fileID: 3101514067572508963}
   fireRate: 0.85
   ammo: 6
+  normalHitRateMin: -5
+  normalHitRateMax: 5
+  aimHitRateMin: -3
+  aimHitRateMax: 3
   bulletForce: 400
   damage: 17
   muzzleParticles: {fileID: 3115315884202150607}
@@ -22829,8 +22837,6 @@ MonoBehaviour:
     - {fileID: 3019670066569884955}
     - {fileID: 3023809847972877475}
     - {fileID: 3023800442905751107}
-    bulletSpawnPointMinRotation: -5
-    bulletSpawnPointMaxRotation: 5
   SoundClips:
     shootSound: {fileID: 8300000, guid: 38b450e2adcb6f542acc8c1d423bd8dc, type: 3}
     takeOutSound: {fileID: 8300000, guid: 2ae41e984ff1f3e4a840a1a46b6a8816, type: 3}
@@ -40993,7 +40999,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _sceneGuid: 
   _serializerGuid: 0d571f8f-8396-4497-aff8-4335b83be108
-  _prefabId: 12
+  _prefabId: 15
   _updateRate: 1
   _autoFreezeProxyFrames: 0
   _clientPredicted: 1
@@ -41408,6 +41414,8 @@ MonoBehaviour:
     silencerRenderer: {fileID: 4291563815466007145}
   fireRate: 0.75
   ammo: 5
+  normalHitRateMin: -5
+  normalHitRateMax: 5
   bulletForce: 400
   damage: 100
   scopeRenderMaterial: {fileID: 2100000, guid: e42b5b324c3b7cf499d473a7f9762f64, type: 2}
@@ -41424,7 +41432,6 @@ MonoBehaviour:
   currentWeaponText: {fileID: 7140296699743699050}
   currentAmmoText: {fileID: 6179393316540682946}
   totalAmmoText: {fileID: 6399044142905800120}
-  attacker: {fileID: 2043554743114825451}
   Prefabs:
     bulletPrefab: {fileID: 4879702113200764, guid: 5953171a59c27394e9ad5cbb564affa8, type: 3}
     casingPrefab: {fileID: 4420745226056240, guid: 7be59128a5ee3424faf33d7a408c0b2e, type: 3}
@@ -41432,8 +41439,6 @@ MonoBehaviour:
     casingDelayTimer: 0.5
     casingSpawnPoint: {fileID: 4208415810998679709}
     bulletSpawnPoint: {fileID: 4208489564315745439}
-    bulletSpawnPointMinRotation: -10
-    bulletSpawnPointMaxRotation: 10
   SoundClips:
     shootSound: {fileID: 8300000, guid: 38b450e2adcb6f542acc8c1d423bd8dc, type: 3}
     silencerShootSound: {fileID: 8300000, guid: f9ce3352943c16244a2e1504722c93c6, type: 3}
@@ -41441,6 +41446,7 @@ MonoBehaviour:
     aimSound: {fileID: 8300000, guid: acaebc89b98b82142bd2b24edb6081e4, type: 3}
   myEntity: {fileID: 489610479102068802}
   myCharacterModel: {fileID: 8595289384033517632}
+  attacker: {fileID: 2043554743114825451}
   bloodImpactPrefabs: {fileID: 4418440862474872, guid: a845e59c374ae0240812749e46f13033, type: 3}
   isCurrentWeapon: 0
 --- !u!82 &4273190204390473705
@@ -65873,6 +65879,10 @@ MonoBehaviour:
     scope2SpriteRenderer: {fileID: 6321875183142232781}
     scope3SpriteRenderer: {fileID: 5277317529901170184}
     scope4SpriteRenderer: {fileID: 7217007040453015391}
+  normalHitRateMin: -5
+  normalHitRateMax: 5
+  aimHitRateMin: -1
+  aimHitRateMax: 1
   damage: 75
   muzzleParticles: {fileID: 1941879027328555541}
   sparkParticles: {fileID: 9043865342485656429}
@@ -65885,7 +65895,6 @@ MonoBehaviour:
   currentWeaponText: {fileID: 7140296699743699050}
   currentAmmoText: {fileID: 6179393316540682946}
   totalAmmoText: {fileID: 6399044142905800120}
-  attacker: {fileID: 2043554743114825451}
   Prefabs:
     projectilePrefab: {fileID: 4874582308247974, guid: edf8c9b19ab77cd458707a7f9b3d825d, type: 3}
   Spawnpoints:
@@ -65898,6 +65907,7 @@ MonoBehaviour:
     aimSound: {fileID: 8300000, guid: acaebc89b98b82142bd2b24edb6081e4, type: 3}
   myEntity: {fileID: 489610479102068802}
   myCharacterModel: {fileID: 8595289384033517632}
+  attacker: {fileID: 2043554743114825451}
   isCurrentWeapon: 0
 --- !u!1 &6241139494999453845
 GameObject:
@@ -66692,6 +66702,10 @@ MonoBehaviour:
   damage: 35
   showBulletInMagDelay: 0.6
   bulletInMagRenderer: {fileID: 2242935373604783166}
+  normalHitRateMin: -5
+  normalHitRateMax: 5
+  aimHitRateMin: -1
+  aimHitRateMax: 1
   muzzleParticles: {fileID: 1651709852957603434}
   sparkParticles: {fileID: 2803286419245598332}
   minSparkEmission: 1
@@ -85813,6 +85827,10 @@ MonoBehaviour:
   damage: 30
   showBulletInMagDelay: 0.6
   bulletInMagRenderer: {fileID: 8777634105827991300}
+  normalHitRateMin: -5
+  normalHitRateMax: 5
+  aimHitRateMin: -1
+  aimHitRateMax: 1
   muzzleParticles: {fileID: 8861387102522525376}
   sparkParticles: {fileID: 8861854208978317960}
   minSparkEmission: 2

@@ -79,7 +79,7 @@ public class Player : Bolt.EntityBehaviour<IFPSPlayerState>
 
     private void Start()
     {
-        myWeapon[0].GetComponent<AutomaticGun>().isCurrentWeapon = true;
+        myWeapon[0].GetComponent<HandgunScriptLPFP>().isCurrentWeapon = true;
         gunIcon.sprite = myWeaponIcon[0];
         if (entity.IsOwner) NM.myPlayer = this.entity;
 
@@ -192,12 +192,12 @@ public class Player : Bolt.EntityBehaviour<IFPSPlayerState>
                     myWeapon[mKS - 1].GetComponent<PumpShotgunScriptLPFP>().isCurrentWeapon = false;
                 else if (myWeapon[mKS - 1].CompareTag("Handgun"))
                     myWeapon[mKS - 1].GetComponent<HandgunScriptLPFP>().isCurrentWeapon = false;
-                //else if(myWeapon[mKS - 1].CompareTag("Sniper"))
-                    //myWeapon[mKS - 1].GetComponent<SniperScriptLPFP>().isCurrentWeapon = false;
+                else if(myWeapon[mKS - 1].CompareTag("Sniper"))
+                    myWeapon[mKS - 1].GetComponent<SniperScriptLPFP>().isCurrentWeapon = false;
                 else if (myWeapon[mKS - 1].CompareTag("BoltActionSniper"))
                     myWeapon[mKS - 1].GetComponent<BoltActionSniperScriptLPFP>().isCurrentWeapon = false;
-                //else if (myWeapon[mKS - 1].CompareTag("RocketLauncher"))
-                    //myWeapon[mKS - 1].GetComponent<RocketLauncherScriptLPFP>().isCurrentWeapon = false;
+                else if (myWeapon[mKS - 1].CompareTag("RocketLauncher"))
+                    myWeapon[mKS - 1].GetComponent<RocketLauncherScriptLPFP>().isCurrentWeapon = false;
                 
                 myWeapon[mKS - 1].SetActive(false);
 
@@ -211,12 +211,12 @@ public class Player : Bolt.EntityBehaviour<IFPSPlayerState>
                     myWeapon[mKS].GetComponent<PumpShotgunScriptLPFP>().isCurrentWeapon = true;
                 else if (myWeapon[mKS].CompareTag("Handgun"))
                     myWeapon[mKS].GetComponent<HandgunScriptLPFP>().isCurrentWeapon = true;
-                //else if(myWeapon[mKS].CompareTag("Sniper"))
-                  //  myWeapon[mKS].GetComponent<SniperScriptLPFP>().isCurrentWeapon = true;
+                else if(myWeapon[mKS].CompareTag("Sniper"))
+                    myWeapon[mKS].GetComponent<SniperScriptLPFP>().isCurrentWeapon = true;
                 else if (myWeapon[mKS].CompareTag("BoltActionSniper"))
                     myWeapon[mKS].GetComponent<BoltActionSniperScriptLPFP>().isCurrentWeapon = true;
-                //else if (myWeapon[mKS].CompareTag("RocketLauncher"))
-                  //  myWeapon[mKS].GetComponent<RocketLauncherScriptLPFP>().isCurrentWeapon = true;
+                else if (myWeapon[mKS].CompareTag("RocketLauncher"))
+                    myWeapon[mKS].GetComponent<RocketLauncherScriptLPFP>().isCurrentWeapon = true;
             }
             isWeaponChange = false;
         }
