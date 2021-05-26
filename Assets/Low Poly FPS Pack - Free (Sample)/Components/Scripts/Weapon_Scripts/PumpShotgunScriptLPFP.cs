@@ -471,7 +471,8 @@ public class PumpShotgunScriptLPFP : EntityBehaviour<IFPSPlayerState>
 			isAutoReloading = true;
 			currentWeaponText.text = "OUT OF AMMO";
 			
-			Reload();
+			if(!isReloading)
+				Reload();
 		}
 			
 		//Fire
@@ -567,7 +568,7 @@ public class PumpShotgunScriptLPFP : EntityBehaviour<IFPSPlayerState>
 
 		// 재장전
 		if (Input.GetKeyDown(KeyCode.R) && !isReloadingAnim
-			&& isCurrentWeapon && !isDraw && !fullAmmo)
+			&& isCurrentWeapon && !isDraw && !fullAmmo && !isReloading)
 			Reload();
 
 		// 걷기

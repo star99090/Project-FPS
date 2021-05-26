@@ -35,10 +35,14 @@ public class NetworkManager : GlobalEventListener
     [SerializeField] BoltEntity myEntity;
     [SerializeField] Vector3 myEntityPos;
     [SerializeField] Vector3 myEntityRot;
+    [Space(10)]
+    public Transform[] respawnPoint;
 
     public override void SceneLoadLocalDone(string scene, IProtocolToken token)
     {
-        var spawnPos = new Vector3(Random.Range(-3, 3), 0, Random.Range(-2, 2));
+        int randomPos = Random.Range(0, respawnPoint.Length);
+
+        Vector3 spawnPos = respawnPoint[randomPos].position;
 
         if (myEntityPos != Vector3.zero)
             spawnPos = myEntityPos;
