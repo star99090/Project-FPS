@@ -551,7 +551,6 @@ MonoBehaviour:
     projectilePrefab: {fileID: 4874582308247974, guid: edf8c9b19ab77cd458707a7f9b3d825d, type: 3}
   Spawnpoints:
     bulletSpawnPoint: {fileID: 5541018005321483866}
-  aimSpawnpoint: {fileID: 2262221695264059994}
   SoundClips:
     shootSound: {fileID: 8300000, guid: 38b450e2adcb6f542acc8c1d423bd8dc, type: 3}
     takeOutSound: {fileID: 8300000, guid: 2ae41e984ff1f3e4a840a1a46b6a8816, type: 3}
@@ -43945,7 +43944,6 @@ MonoBehaviour:
   Spawnpoints:
     casingSpawnPoint: {fileID: 3476003938487747204}
     bulletSpawnPoint: {fileID: 1810756655359728515}
-  aimSpawnpoint: {fileID: 6570536169404668934}
   SoundClips:
     shootSound: {fileID: 8300000, guid: 38b450e2adcb6f542acc8c1d423bd8dc, type: 3}
     silencerShootSound: {fileID: 0}
@@ -52550,7 +52548,6 @@ MonoBehaviour:
   Spawnpoints:
     casingSpawnPoint: {fileID: 5709072942261227214}
     bulletSpawnPoint: {fileID: 5317572972484844119}
-  aimSpawnpoint: {fileID: 5702874850297992490}
   SoundClips:
     shootSound: {fileID: 8300000, guid: 38b450e2adcb6f542acc8c1d423bd8dc, type: 3}
     silencerShootSound: {fileID: 8300000, guid: f9ce3352943c16244a2e1504722c93c6, type: 3}
@@ -66678,7 +66675,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _sceneGuid: 
   _serializerGuid: 0d571f8f-8396-4497-aff8-4335b83be108
-  _prefabId: 5
+  _prefabId: 8
   _updateRate: 1
   _autoFreezeProxyFrames: 0
   _clientPredicted: 1

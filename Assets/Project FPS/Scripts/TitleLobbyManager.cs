@@ -6,7 +6,7 @@ using UdpKit;
 
 public class TitleLobbyManager : Bolt.GlobalEventListener
 {
-    public static TitleLobbyManager TLM { get; private set; }
+    public static TitleLobbyManager TLM { get; set; }
     private void Awake() => TLM = this;
 
     public GameObject LogPanel;

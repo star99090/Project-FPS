@@ -81,6 +81,10 @@ public class PlayerSubScript : Bolt.EntityBehaviour<IFPSPlayerState>
         evnt.killer = attacker;
         evnt.victim = nickname.text;
         evnt.attackerEntity = attackerEntity;
+        if (attacker == nickname.text)
+            evnt.isSuicide = true;
+        else
+            evnt.isSuicide = false;
         evnt.Send();
 
         state.health = 100;

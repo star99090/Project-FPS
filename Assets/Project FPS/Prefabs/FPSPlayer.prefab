@@ -1405,7 +1405,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _sceneGuid: 
   _serializerGuid: 0d571f8f-8396-4497-aff8-4335b83be108
-  _prefabId: 4
+  _prefabId: 7
   _updateRate: 1
   _autoFreezeProxyFrames: 0
   _clientPredicted: 1
@@ -12908,7 +12908,6 @@ MonoBehaviour:
   Spawnpoints:
     casingSpawnPoint: {fileID: 6833351130944050320}
     bulletSpawnPoint: {fileID: 6830489281966225874}
-  aimSpawnpoint: {fileID: 2536511585528510577}
   SoundClips:
     shootSound: {fileID: 8300000, guid: 38b450e2adcb6f542acc8c1d423bd8dc, type: 3}
     silencerShootSound: {fileID: 0}

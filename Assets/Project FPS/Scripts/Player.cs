@@ -73,6 +73,7 @@ public class Player : Bolt.EntityBehaviour<IFPSPlayerState>
     private SmoothVelocity _velocityX;
     private SmoothVelocity _velocityZ;
     private bool _isGrounded;
+    private bool isESC = false;
 
     private readonly RaycastHit[] _groundCastResults = new RaycastHit[8];
     private readonly RaycastHit[] _wallCastResults = new RaycastHit[8];
@@ -162,21 +163,39 @@ public class Player : Bolt.EntityBehaviour<IFPSPlayerState>
         _isGrounded = true;
     }
 
-
     // 캐릭터와 카메라의 이동과 회전을 처리
     private void FixedUpdate()
     {
         if (!entity.IsOwner) return;
+        
+        if(!isESC)
+            RotateCameraAndCharacter();
 
-        RotateCameraAndCharacter();
         MoveCharacter();
         _isGrounded = false;
+    }
+
+    public void EscapeToggle()
+    {
+        if (Cursor.lockState == CursorLockMode.Locked)
+        {
+            isESC = true;
+            Cursor.lockState = CursorLockMode.None;
+        }
+        else
+        {
+            isESC = false;
+            Cursor.lockState = CursorLockMode.Locked;
+        }
     }
 
     private void Update()
     {
         PlayFootstepSounds();
         if (!entity.IsOwner) return;
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+            EscapeToggle();
 
         if (isWeaponChange)
         {

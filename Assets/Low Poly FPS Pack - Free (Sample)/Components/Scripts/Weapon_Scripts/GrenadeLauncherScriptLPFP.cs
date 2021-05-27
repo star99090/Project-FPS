@@ -318,21 +318,7 @@ public class GrenadeLauncherScriptLPFP : EntityBehaviour<IFPSPlayerState>
 	}
 
 	void SparkParticleCallback() => sparkParticles.Emit(Random.Range(minSparkEmission, maxSparkEmission));
-
-	void PlayerHitCheck()
-	{
-		Physics.Raycast(Spawnpoints.bulletSpawnPoint.position, Spawnpoints.bulletSpawnPoint.forward, out RaycastHit hit);
-		if (hit.collider != null && hit.collider.CompareTag("FPSPlayer"))
-		{
-			var evnt = PlayerHitEvent.Create();
-			evnt.attacker = attacker.text;
-			evnt.targetEntity = hit.collider.gameObject.GetComponent<BoltEntity>();
-			evnt.damage = Random.Range(damage - 2, damage + 2);
-			evnt.attackerEntity = myEntity;
-			evnt.Send();
-		}
-	}
-	
+		
 	private void Update ()
 	{
 		if (!entity.IsOwner) return;

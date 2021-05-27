@@ -119,23 +119,27 @@ public class NetworkManager : GlobalEventListener
 
     public override void OnEvent(KillEvent evnt)
     {
-        evnt.attackerEntity.GetComponent<PlayerSubScript>().myKillScore += 1;
-        evnt.attackerEntity.GetComponent<Player>().isWeaponChange = true;
-        evnt.attackerEntity.GetComponent<PlayerSubScript>().UpdateMyScore();
-
-        for(int i = 0; i < players.Count; i++)
+        if (!evnt.isSuicide)
         {
-            if (players[i].GetComponent<PlayerSubScript>().myKillScore > firstPlayerScore)
+            evnt.attackerEntity.GetComponent<PlayerSubScript>().myKillScore += 1;
+            evnt.attackerEntity.GetComponent<Player>().isWeaponChange = true;
+            evnt.attackerEntity.GetComponent<PlayerSubScript>().UpdateMyScore();
+
+
+            for (int i = 0; i < players.Count; i++)
             {
-                firstPlayerScore = players[i].GetComponent<PlayerSubScript>().myKillScore;
-                firstPlayer = players[i].GetComponent<PlayerSubScript>().nickname.text;
+                if (players[i].GetComponent<PlayerSubScript>().myKillScore > firstPlayerScore)
+                {
+                    firstPlayerScore = players[i].GetComponent<PlayerSubScript>().myKillScore;
+                    firstPlayer = players[i].GetComponent<PlayerSubScript>().nickname.text;
+                }
             }
-        }
 
-        for (int i = 0; i < players.Count; i++)
-        {
-            players[i].GetComponent<PlayerSubScript>().firstPlayerText.text = firstPlayer;
-            players[i].GetComponent<PlayerSubScript>().firstScoreText.text = firstPlayerScore.ToString();
+            for (int i = 0; i < players.Count; i++)
+            {
+                players[i].GetComponent<PlayerSubScript>().firstPlayerText.text = firstPlayer;
+                players[i].GetComponent<PlayerSubScript>().firstScoreText.text = firstPlayerScore.ToString();
+            }
         }
 
         killLogTimer = 0f;

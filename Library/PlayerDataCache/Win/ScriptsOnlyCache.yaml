@@ -30,10 +30,8 @@ ScriptsOnlyBuild:
     UnityEditor.Graphs.dll:
     - UnityEditor.Graphs.AnimationBlendTree.Graph
     - UnityEditor.Graphs.AnimationBlendTree.GraphGUI
-    - UnityEditor.Graphs.AnimationStateMachine.AnyStateNode
     - UnityEditor.Graphs.AnimationStateMachine.Graph
     - UnityEditor.Graphs.AnimationStateMachine.GraphGUI
-    - UnityEditor.Graphs.AnimationStateMachine.StateNode
     - UnityEditor.Graphs.AnimatorControllerTool
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.Api.CallbacksHolder
@@ -107,7 +105,7 @@ ScriptsOnlyBuild:
     - Class: 108
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 1458}
+      Script: {instanceID: 1460}
     - Class: 114
       Script: {instanceID: 1462}
     - Class: 114
@@ -244,7 +242,7 @@ ScriptsOnlyBuild:
     - Class: 108
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 1458}
+      Script: {instanceID: 1460}
     - Class: 114
       Script: {instanceID: 1462}
     - Class: 114
@@ -592,7 +590,7 @@ ScriptsOnlyBuild:
     className: EventTrigger
   - hash:
       serializedVersion: 2
-      Hash: d840fd48d565072564dae6bc562db8ab
+      Hash: 2e8e5c6442065b361e2fdcaefa55c810
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: ProjectileScript
