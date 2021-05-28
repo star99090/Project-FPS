@@ -6206,6 +6206,7 @@ MonoBehaviour:
   fovSpeed: 15
   defaultFov: 40
   weaponName: Assault_Rifle_01
+  aimPoint: {fileID: 0}
   scope1: 1
   scope1Texture: {fileID: 21300000, guid: 2282acb7ec2bb22459ebc6527dd957ea, type: 3}
   scope1TextureSize: 0.0045
@@ -7121,6 +7122,7 @@ MonoBehaviour:
   nicknameText: {fileID: 7168336049331334222}
   nicknameCanvas: {fileID: 9191658581593053035}
   gunIcon: {fileID: 0}
+  Volume: 0
 --- !u!114 &2691810577174281148
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7163,7 +7165,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _sceneGuid: 
   _serializerGuid: 0d571f8f-8396-4497-aff8-4335b83be108
-  _prefabId: 11
+  _prefabId: 12
   _updateRate: 1
   _autoFreezeProxyFrames: 0
   _clientPredicted: 1

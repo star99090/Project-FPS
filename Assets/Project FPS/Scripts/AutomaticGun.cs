@@ -22,6 +22,7 @@ public class AutomaticGun : EntityBehaviour<IFPSPlayerState>
 	[Header("Weapon Name UI")]
 	[Tooltip("총기 이름")]
 	public string weaponName;
+	[SerializeField] GameObject aimPoint;
 
 	[Header("Weapon Attachments (Only use one scope attachment)")]
 	[Space(10)]
@@ -388,6 +389,9 @@ public class AutomaticGun : EntityBehaviour<IFPSPlayerState>
 		// 우클릭 조준 시 카메라 셋팅
 		if (Input.GetButton("Fire2") && !isReloadingAnim && !isRunning & !isReloading && !isDraw)
 		{
+			if (aimPoint.activeSelf == true)
+				aimPoint.SetActive(false);
+
 			if (ironSights == true)
 			{
 				aimFov = ironSightsAimFOV;
@@ -438,6 +442,9 @@ public class AutomaticGun : EntityBehaviour<IFPSPlayerState>
 		// 우클릭 해제
 		else
 		{
+			if (aimPoint.activeSelf == false)
+				aimPoint.SetActive(true);
+
 			gunCamera.fieldOfView = Mathf.Lerp(gunCamera.fieldOfView,
 				defaultFov, fovSpeed * Time.deltaTime);
 

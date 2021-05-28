@@ -1815,6 +1815,7 @@ MonoBehaviour:
   nicknameText: {fileID: 3555824272965139322}
   nicknameCanvas: {fileID: 6205259060944882395}
   gunIcon: {fileID: 0}
+  Volume: 0
 --- !u!114 &3887274061867739914
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1864,7 +1865,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _sceneGuid: 
   _serializerGuid: 0d571f8f-8396-4497-aff8-4335b83be108
-  _prefabId: 14
+  _prefabId: 15
   _updateRate: 1
   _autoFreezeProxyFrames: 0
   _clientPredicted: 1
@@ -3330,6 +3331,7 @@ MonoBehaviour:
   fovSpeed: 15
   defaultFov: 40
   weaponName: Assault_Rifle_02
+  aimPoint: {fileID: 0}
   scope1: 1
   scope1Texture: {fileID: 21300000, guid: 2282acb7ec2bb22459ebc6527dd957ea, type: 3}
   scope1TextureSize: 0.0045
@@ -22263,6 +22265,7 @@ MonoBehaviour:
   fovSpeed: 15
   defaultFov: 40
   weaponName: Assault_Rifle_01
+  aimPoint: {fileID: 0}
   scope1: 0
   scope1Texture: {fileID: 0}
   scope1TextureSize: 0.0045

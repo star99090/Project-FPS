@@ -14,13 +14,20 @@ public class BulletScriptBefore : MonoBehaviour
 	public Transform dirtImpactPrefabs;
 	public Transform concreteImpactPrefabs;
 
+	[Header("ShootingSound")]
+	public GameObject shootingSound;
+	public bool isSilencer;
+
 	private void Start()
 	{
+		if(!isSilencer)
+			BoltNetwork.Instantiate(shootingSound, transform.position, Quaternion.identity);
+
 		// 생성된 이후 예정 시간이 지나면 총알 자동 파괴
 		StartCoroutine(DestroyAfter());
 	}
-	
-	private void OnCollisionEnter (Collision collision) 
+
+    private void OnCollisionEnter (Collision collision) 
 	{
 		// Metal 태그 오브젝트
 		if (collision.transform.tag == "Metal")

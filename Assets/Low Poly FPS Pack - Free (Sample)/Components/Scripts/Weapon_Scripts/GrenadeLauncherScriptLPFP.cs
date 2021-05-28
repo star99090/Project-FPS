@@ -2,6 +2,7 @@
 using System.Collections;
 using UnityEngine.UI;
 using Bolt;
+using static NetworkManager;
 
 public class GrenadeLauncherScriptLPFP : EntityBehaviour<IFPSPlayerState>
 {
@@ -23,6 +24,7 @@ public class GrenadeLauncherScriptLPFP : EntityBehaviour<IFPSPlayerState>
 	[Header("Weapon Name UI")]
 	[Tooltip("총기 이름")]
 	public string weaponName;
+	[SerializeField] GameObject aimPoint;
 
 	[Header("Weapon Attachments (Only use one scope attachment)")]
 	[Space(10)]
@@ -321,14 +323,17 @@ public class GrenadeLauncherScriptLPFP : EntityBehaviour<IFPSPlayerState>
 		
 	private void Update ()
 	{
-		if (!entity.IsOwner) return;
+		if (!entity.IsOwner || NM.isResult) return;
 
 		if (isDraw && !anim.GetCurrentAnimatorStateInfo(0).IsName("Draw"))
 			isDraw = false;
 
 		// 우클릭 조준 시 카메라 셋팅
-		if (Input.GetButton("Fire2") && !isReloadingAnim && !isRunning && !isReloading && !isDraw) 
+		if (Input.GetButton("Fire2") && !isReloadingAnim && !isRunning && !isReloading && !isDraw)
 		{
+			if (aimPoint.activeSelf == true)
+				aimPoint.SetActive(false);
+
 			if (ironSights == true)
 			{
 				aimFov = ironSightsAimFOV;
@@ -377,8 +382,11 @@ public class GrenadeLauncherScriptLPFP : EntityBehaviour<IFPSPlayerState>
 			}
 		} 
 		// 우클릭 해제
-		else 
+		else
 		{
+			if (aimPoint.activeSelf == false)
+				aimPoint.SetActive(true);
+
 			gunCamera.fieldOfView = Mathf.Lerp(gunCamera.fieldOfView,
 				defaultFov,fovSpeed * Time.deltaTime);
 

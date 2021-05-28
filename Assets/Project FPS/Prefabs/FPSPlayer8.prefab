@@ -6034,6 +6034,7 @@ MonoBehaviour:
   nicknameText: {fileID: 2767158637925020462}
   nicknameCanvas: {fileID: 4693803550105666191}
   gunIcon: {fileID: 8020348474020443271}
+  Volume: 0
 --- !u!114 &2507485062557573982
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6083,7 +6084,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _sceneGuid: 
   _serializerGuid: 0d571f8f-8396-4497-aff8-4335b83be108
-  _prefabId: 17
+  _prefabId: 18
   _updateRate: 1
   _autoFreezeProxyFrames: 0
   _clientPredicted: 1
@@ -18562,6 +18563,7 @@ MonoBehaviour:
   fovSpeed: 15
   defaultFov: 40
   weaponName: Model 780
+  aimPoint: {fileID: 0}
   scope1: 0
   scope1Texture: {fileID: 21300000, guid: 16923a3edc220904b877f69ae08aca4f, type: 3}
   scope1TextureSize: 0.0045
@@ -27887,6 +27889,7 @@ MonoBehaviour:
   fovSpeed: 15
   defaultFov: 40
   weaponName: M4A1-B
+  aimPoint: {fileID: 0}
   scope1: 1
   scope1Texture: {fileID: 21300000, guid: 2282acb7ec2bb22459ebc6527dd957ea, type: 3}
   scope1TextureSize: 0.0045
@@ -42415,6 +42418,7 @@ MonoBehaviour:
   fovSpeed: 15
   defaultFov: 40
   weaponName: GLOCK 7
+  aimPoint: {fileID: 0}
   scope1: 0
   scope1Texture: {fileID: 0}
   scope1TextureSize: 0.01
@@ -61672,6 +61676,7 @@ MonoBehaviour:
   fovSpeed: 15
   defaultFov: 40
   weaponName: AKN-47
+  aimPoint: {fileID: 0}
   scope1: 0
   scope1Texture: {fileID: 0}
   scope1TextureSize: 0.0045
@@ -67977,6 +67982,7 @@ MonoBehaviour:
   fovSpeed: 15
   defaultFov: 40
   weaponName: KL-06
+  aimPoint: {fileID: 0}
   scope1: 0
   scope1Texture: {fileID: 21300000, guid: 16923a3edc220904b877f69ae08aca4f, type: 3}
   scope1TextureSize: 0.0045

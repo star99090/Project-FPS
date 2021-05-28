@@ -1364,6 +1364,7 @@ MonoBehaviour:
   nicknameText: {fileID: 1800653564920912798}
   nicknameCanvas: {fileID: 290881912919417019}
   gunIcon: {fileID: 0}
+  Volume: 0
 --- !u!114 &6835624471752019052
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12845,6 +12846,7 @@ MonoBehaviour:
   fovSpeed: 15
   defaultFov: 40
   weaponName: Assault_Rifle_01
+  aimPoint: {fileID: 0}
   scope1: 0
   scope1Texture: {fileID: 0}
   scope1TextureSize: 0.0045

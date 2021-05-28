@@ -125,7 +125,7 @@ public class ProjectileScript : EntityBehaviour<IProjectileState>
             {
 				var evnt = PlayerHitEvent.Create();
 				evnt.targetEntity = hit.gameObject.GetComponent<BoltEntity>();
-				evnt.damage = Random.Range(90, 110);
+				evnt.damage = Random.Range(90, 120);
 
 				var players = NM.players;
 				for (int i = 0; i < players.Count; i++)

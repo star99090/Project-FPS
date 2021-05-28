@@ -4923,7 +4923,6 @@ MonoBehaviour:
   force: 2500
   despawnTime: 30
   radius: 5
-  power: 2250
   smokeParticles: {fileID: 198829711441321964}
   flameParticles: {fileID: 198299060017700864}
   destroyDelay: 5

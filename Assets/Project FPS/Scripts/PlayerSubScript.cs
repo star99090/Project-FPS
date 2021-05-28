@@ -93,4 +93,11 @@ public class PlayerSubScript : Bolt.EntityBehaviour<IFPSPlayerState>
         transform.position = NM.respawnPoint[RP].position;
         transform.rotation = NM.respawnPoint[RP].rotation;
     }
+
+    public void ProgressSub(bool onOff)
+    {
+        firstPlayerText.gameObject.SetActive(onOff);
+        firstScoreText.gameObject.SetActive(onOff);
+        myScoreText.gameObject.SetActive(onOff);
+    }
 }

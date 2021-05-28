@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
@@ -40,7 +41,7 @@ public class Player : Bolt.EntityBehaviour<IFPSPlayerState>
 
     [Header("Look Settings")]
     [Tooltip("마우스 회전 감도"), SerializeField]
-    private float mouseSensitivity = 7f;
+    public float mouseSensitivity;
 
     [Tooltip("최대 회전 속도에 걸리는 시간"), SerializeField]
     private float rotationSmoothness = 0.05f;
@@ -61,9 +62,13 @@ public class Player : Bolt.EntityBehaviour<IFPSPlayerState>
     public bool isWeaponChange = false;
 #pragma warning restore 649
 
+    [Header("Other Settings")]
     public Text nicknameText;
     [SerializeField] Transform nicknameCanvas;
     [SerializeField] Image gunIcon;
+    [SerializeField] GameObject progressPannel;
+    [SerializeField] Text playersScore;
+    public float Volume;
 
     private Rigidbody _rigidbody;
     private CapsuleCollider _collider;
@@ -74,6 +79,7 @@ public class Player : Bolt.EntityBehaviour<IFPSPlayerState>
     private SmoothVelocity _velocityZ;
     private bool _isGrounded;
     private bool isESC = false;
+    private bool isTab = false;
 
     private readonly RaycastHit[] _groundCastResults = new RaycastHit[8];
     private readonly RaycastHit[] _wallCastResults = new RaycastHit[8];
@@ -166,8 +172,8 @@ public class Player : Bolt.EntityBehaviour<IFPSPlayerState>
     // 캐릭터와 카메라의 이동과 회전을 처리
     private void FixedUpdate()
     {
-        if (!entity.IsOwner) return;
-        
+        if (!entity.IsOwner || NM.isResult) return;
+
         if(!isESC)
             RotateCameraAndCharacter();
 
@@ -189,6 +195,44 @@ public class Player : Bolt.EntityBehaviour<IFPSPlayerState>
         }
     }
 
+    private void ProgressScore()
+    {
+        playersScore.text = "";
+
+        List<string> nickList = new List<string>();
+        List<int> scoreList = new List<int>();
+
+        int scoreTemp = 0;
+        string nickTemp = "";
+
+        for (int i = 0; i < NM.players.Count; i++)
+        {
+            nickList.Add(NM.players[i].GetComponent<Player>().nicknameText.text);
+            scoreList.Add(NM.players[i].GetComponent<PlayerSubScript>().myKillScore);
+        }
+        
+        // 닉네임과 점수 정렬
+        for (int i = 0; i < scoreList.Count - 1; i++)
+        {
+            for (int j = i + 1; j < scoreList.Count; j++)
+            {
+                if (scoreList[i] < scoreList[j])
+                {
+                    scoreTemp = scoreList[i];
+                    scoreList[i] = scoreList[j];
+                    scoreList[j] = scoreTemp;
+
+                    nickTemp = nickList[i];
+                    nickList[i] = nickList[j];
+                    nickList[j] = nickTemp;
+                }
+            }
+        }
+
+        for (int i = 0; i < nickList.Count; i++)
+            playersScore.text += nickList[i] + " : " + scoreList[i] + "Kill\n";
+    }
+
     private void Update()
     {
         PlayFootstepSounds();
@@ -196,6 +240,35 @@ public class Player : Bolt.EntityBehaviour<IFPSPlayerState>
 
         if (Input.GetKeyDown(KeyCode.Escape))
             EscapeToggle();
+
+        if (Input.GetKeyDown(KeyCode.Plus) && mouseSensitivity <= 15f)
+            mouseSensitivity += 0.5f;
+
+        if (Input.GetKeyDown(KeyCode.Minus) && mouseSensitivity >= 1f)
+            mouseSensitivity -= 0.5f;
+
+        // 볼륨 조절하는 곳, 로비의 Volume 설정은 플레이어프랩스, 이후는 Canvas로 받자
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            Volume = AudioListener.volume == 0 ? 1 : 0;
+
+            AudioListener.volume = Volume;
+        }
+
+        if (Input.GetKeyDown(KeyCode.Tab))
+        {
+            isTab = !isTab;
+
+            if (isTab)
+            {
+                ProgressScore();
+                progressPannel.SetActive(true);
+            }
+            else
+                progressPannel.SetActive(false);
+
+            GetComponent<PlayerSubScript>().ProgressSub(!isTab);
+        }
 
         if (isWeaponChange)
         {

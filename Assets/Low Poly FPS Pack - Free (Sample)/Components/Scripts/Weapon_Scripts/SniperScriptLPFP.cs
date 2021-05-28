@@ -2,6 +2,7 @@
 using System.Collections;
 using UnityEngine.UI;
 using Bolt;
+using static NetworkManager;
 
 public class SniperScriptLPFP : EntityBehaviour<IFPSPlayerState>
 {
@@ -22,6 +23,7 @@ public class SniperScriptLPFP : EntityBehaviour<IFPSPlayerState>
 	[Header("Weapon Name UI")]
 	[Tooltip("총기 이름")]
 	public string weaponName;
+	[SerializeField] GameObject aimPoint;
 
 	[Header("Weapon Attachments")]
 	public bool silencer;
@@ -142,6 +144,7 @@ public class SniperScriptLPFP : EntityBehaviour<IFPSPlayerState>
 		anim = GetComponent<Animator>();
 		currentAmmo = ammo;
 		muzzleFlashLight.enabled = false;
+		aimPoint.SetActive(false);
 
 		// 소음기 장착
 		if (silencer == true &&
@@ -206,7 +209,7 @@ public class SniperScriptLPFP : EntityBehaviour<IFPSPlayerState>
 
 	private void Update()
 	{
-		if (!entity.IsOwner) return;
+		if (!entity.IsOwner || NM.isResult) return;
 
 		if (isDraw && !anim.GetCurrentAnimatorStateInfo(0).IsName("Draw"))
 			isDraw = false;

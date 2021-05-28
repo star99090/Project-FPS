@@ -93,6 +93,7 @@
     <Compile Include="Assets\Low Poly FPS Pack - Free (Sample)\Components\Scripts\Casings_&amp;_Projectiles\CasingScript.cs" />
     <Compile Include="Assets\Project FPS\Scripts\AutomaticGun.cs" />
     <Compile Include="Assets\Low Poly FPS Pack - Free (Sample)\Scripts\BulletScriptBefore.cs" />
+    <Compile Include="Assets\Project FPS\Scripts\PlaySound.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\Photon\PhotonLibs\netstandard2.0\Photon3Unity3D.xml" />

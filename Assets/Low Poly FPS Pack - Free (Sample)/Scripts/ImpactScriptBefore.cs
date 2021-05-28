@@ -27,6 +27,7 @@ public class ImpactScriptBefore : EntityBehaviour<IImpactState>
 	{
 		yield return new WaitForSeconds (despawnTimer);
 
-		Destroy(gameObject);
+		if(GetComponent<BoltEntity>().IsOwner)
+			BoltNetwork.Destroy(gameObject);
 	}
 }
