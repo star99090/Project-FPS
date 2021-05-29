@@ -68,7 +68,6 @@ public class Player : Bolt.EntityBehaviour<IFPSPlayerState>
     [SerializeField] Image gunIcon;
     [SerializeField] GameObject progressPannel;
     [SerializeField] Text playersScore;
-    public float Volume;
 
     private Rigidbody _rigidbody;
     private CapsuleCollider _collider;
@@ -77,9 +76,16 @@ public class Player : Bolt.EntityBehaviour<IFPSPlayerState>
     private SmoothRotation _rotationY;
     private SmoothVelocity _velocityX;
     private SmoothVelocity _velocityZ;
+    private float Volume = 0.8f;
     private bool _isGrounded;
-    private bool isESC = false;
     private bool isTab = false;
+    public bool isESC = false;
+    public bool isSettings = false;
+    public GameObject ESCPanel;
+    public GameObject SettingsPanel;
+    public Slider SensitivitySlider;
+    public Slider VolumeSlider;
+    public Toggle VolumeToggle;
 
     private readonly RaycastHit[] _groundCastResults = new RaycastHit[8];
     private readonly RaycastHit[] _wallCastResults = new RaycastHit[8];
@@ -172,27 +178,16 @@ public class Player : Bolt.EntityBehaviour<IFPSPlayerState>
     // 캐릭터와 카메라의 이동과 회전을 처리
     private void FixedUpdate()
     {
-        if (!entity.IsOwner || NM.isResult) return;
-
-        if(!isESC)
-            RotateCameraAndCharacter();
-
-        MoveCharacter();
-        _isGrounded = false;
-    }
-
-    public void EscapeToggle()
-    {
-        if (Cursor.lockState == CursorLockMode.Locked)
+        if (!NM.isResult)
         {
-            isESC = true;
-            Cursor.lockState = CursorLockMode.None;
+            if (!entity.IsOwner || isESC || isSettings) return;
+
+            RotateCameraAndCharacter();
+            MoveCharacter();
+            _isGrounded = false;
         }
         else
-        {
-            isESC = false;
-            Cursor.lockState = CursorLockMode.Locked;
-        }
+            Cursor.lockState = CursorLockMode.None;
     }
 
     private void ProgressScore()
@@ -235,24 +230,49 @@ public class Player : Bolt.EntityBehaviour<IFPSPlayerState>
 
     private void Update()
     {
-        PlayFootstepSounds();
-        if (!entity.IsOwner) return;
-
         if (Input.GetKeyDown(KeyCode.Escape))
-            EscapeToggle();
-
-        if (Input.GetKeyDown(KeyCode.Plus) && mouseSensitivity <= 15f)
-            mouseSensitivity += 0.5f;
-
-        if (Input.GetKeyDown(KeyCode.Minus) && mouseSensitivity >= 1f)
-            mouseSensitivity -= 0.5f;
-
-        // 볼륨 조절하는 곳, 로비의 Volume 설정은 플레이어프랩스, 이후는 Canvas로 받자
-        if (Input.GetKeyDown(KeyCode.E))
         {
-            Volume = AudioListener.volume == 0 ? 1 : 0;
+            if (!isSettings)
+            {
+                if (Cursor.lockState == CursorLockMode.Locked)
+                {
+                    isESC = true;
+                    Cursor.lockState = CursorLockMode.None;
+                    ESCPanel.SetActive(true);
+                }
+                else
+                {
+                    isESC = false;
+                    Cursor.lockState = CursorLockMode.Locked;
+                    ESCPanel.SetActive(false);
+                }
+            }
+            else
+            {
+                isESC = false;
+                isSettings = false;
+                Cursor.lockState = CursorLockMode.Locked;
+                SettingsPanel.SetActive(false);
+            }
+        }
 
-            AudioListener.volume = Volume;
+        PlayFootstepSounds();
+        if (!entity.IsOwner || NM.isResult || isESC || isSettings) return;
+
+        if (Input.GetKeyDown(KeyCode.LeftBracket))
+        {
+            mouseSensitivity += 0.5f;
+            if (mouseSensitivity > 15f)
+                mouseSensitivity = 15f;
+            SensitivitySlider.value = mouseSensitivity;
+        }
+
+        if (Input.GetKeyDown(KeyCode.RightBracket))
+        {
+            mouseSensitivity -= 0.5f;
+            if (mouseSensitivity < 0.5f)
+                mouseSensitivity = 0.5f;
+            SensitivitySlider.value = mouseSensitivity;
         }
 
         if (Input.GetKeyDown(KeyCode.Tab))
@@ -486,6 +506,64 @@ public class Player : Bolt.EntityBehaviour<IFPSPlayerState>
         {
             set { _current = value; }
         }
+    }
+
+    public void Resume()
+    {
+        if (Cursor.lockState == CursorLockMode.Locked)
+        {
+            isESC = true;
+            Cursor.lockState = CursorLockMode.None;
+            ESCPanel.SetActive(true);
+        }
+        else
+        {
+            isESC = false;
+            Cursor.lockState = CursorLockMode.Locked;
+            ESCPanel.SetActive(false);
+        }
+    }
+
+    public void Settings()
+    {
+        isSettings = true;
+        ESCPanel.SetActive(false);
+        SettingsPanel.SetActive(true);
+    }
+
+    public void Lobby()
+    {
+        NM.ShutdownRequest();
+    }
+
+    public void Exit()
+    {
+        Application.Quit();
+    }
+
+    public void SensitivityValueChange()
+    {
+        mouseSensitivity = SensitivitySlider.value;
+    }
+
+    public void VolumeValueChange()
+    {
+        AudioListener.volume = VolumeSlider.value;
+        Volume = VolumeSlider.value;
+    }
+
+    public void VolumeValueToggle()
+    {
+        AudioListener.volume = VolumeToggle.isOn ? Volume : 0;
+        VolumeSlider.enabled = VolumeToggle.isOn;
+    }
+
+    public void Return()
+    {
+        isESC = false;
+        isSettings = false;
+        Cursor.lockState = CursorLockMode.Locked;
+        SettingsPanel.SetActive(false);
     }
 
     // 조작 매핑

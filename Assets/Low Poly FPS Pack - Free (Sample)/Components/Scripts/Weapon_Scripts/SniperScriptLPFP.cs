@@ -209,7 +209,9 @@ public class SniperScriptLPFP : EntityBehaviour<IFPSPlayerState>
 
 	private void Update()
 	{
-		if (!entity.IsOwner || NM.isResult) return;
+		if (!entity.IsOwner || NM.isResult
+			|| myEntity.GetComponent<Player>().isESC
+			|| myEntity.GetComponent<Player>().isSettings) return;
 
 		if (isDraw && !anim.GetCurrentAnimatorStateInfo(0).IsName("Draw"))
 			isDraw = false;

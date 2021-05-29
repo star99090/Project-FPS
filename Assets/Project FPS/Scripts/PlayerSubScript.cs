@@ -87,7 +87,10 @@ public class PlayerSubScript : Bolt.EntityBehaviour<IFPSPlayerState>
             evnt.isSuicide = false;
         evnt.Send();
 
-        state.health = 100;
+        if (evnt.isSuicide)
+            state.health = 1;
+        else
+            state.health = 100;
 
         int RP = Random.Range(0, NM.respawnPoint.Length);
         transform.position = NM.respawnPoint[RP].position;

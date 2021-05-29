@@ -6,6 +6,7 @@ using Bolt.Matchmaking;
 using UdpKit;
 using System.Linq;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 #pragma warning disable CS0618
 
 public class NetworkManager : GlobalEventListener
@@ -44,7 +45,7 @@ public class NetworkManager : GlobalEventListener
     public GameObject tabPanel;
     public Text winnerNickname;
     public Text playersScore;
-    public bool isResult;
+    public bool isResult = false;
 
     private string currentSession;
     private bool isMyHost;
@@ -121,7 +122,7 @@ public class NetworkManager : GlobalEventListener
 
     public override void OnEvent(PlayerHitEvent evnt)
     {
-        if (myPlayer = evnt.targetEntity)
+        if (myPlayer == evnt.targetEntity)
         {
             myPlayer.GetComponent<PlayerSubScript>().HealthChange(evnt.damage, evnt.attacker, evnt.attackerEntity);
         }
@@ -150,15 +151,21 @@ public class NetworkManager : GlobalEventListener
                 players[i].GetComponent<PlayerSubScript>().firstScoreText.text = firstPlayerScore.ToString();
             }
 
-            if (evnt.attackerEntity.GetComponent<PlayerSubScript>().myKillScore == 2)
+            if (evnt.attackerEntity.GetComponent<PlayerSubScript>().myKillScore == 3)
             {
                 isResult = true;
 
                 winnerNickname.text = evnt.killer;
-                
+                myPlayer.GetComponent<PlayerSubScript>().ProgressSub(false);
+
                 ProgressScore();
 
                 resultPanel.SetActive(true);
+
+                if (BoltNetwork.IsServer)
+                    StartCoroutine(Shutdown(5.1f));
+                else
+                    StartCoroutine(Shutdown(5.0f));
             }
         }
 
@@ -285,6 +292,11 @@ public class NetworkManager : GlobalEventListener
         evnt.Send();
     }
 
+    public void ShutdownRequest()
+    {
+        StartCoroutine(Shutdown());
+    }
+
     IEnumerator UpdateEntityAndSessionName()
     {
         yield return null;
@@ -293,6 +305,14 @@ public class NetworkManager : GlobalEventListener
         myUpdate.rotation = myPlayer.transform.rotation.eulerAngles;
         myUpdate.sessionName = currentSession;
         myUpdate.Send();
+    }
+
+    IEnumerator Shutdown(float delay = 0f)
+    {
+        yield return new WaitForSeconds(delay);
+        BoltNetwork.Shutdown();
+        yield return new WaitForEndOfFrame();
+        SceneManager.LoadScene("Title&Lobby");
     }
 
     public override void Disconnected(BoltConnection connection) => StartCoroutine(UpdateEntityAndSessionName());

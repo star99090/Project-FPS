@@ -113,59 +113,59 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 1462}
     - Class: 114
-      Script: {instanceID: 1530}
+      Script: {instanceID: 1574}
     - Class: 114
-      Script: {instanceID: 1560}
-    - Class: 114
-      Script: {instanceID: 1596}
-    - Class: 114
-      Script: {instanceID: 1618}
+      Script: {instanceID: 1604}
     - Class: 114
       Script: {instanceID: 1640}
     - Class: 114
-      Script: {instanceID: 1666}
+      Script: {instanceID: 1662}
     - Class: 114
-      Script: {instanceID: 1872}
+      Script: {instanceID: 1684}
     - Class: 114
-      Script: {instanceID: 1910}
+      Script: {instanceID: 1710}
     - Class: 114
-      Script: {instanceID: 2002}
+      Script: {instanceID: 1788}
     - Class: 114
-      Script: {instanceID: 2190}
+      Script: {instanceID: 1918}
     - Class: 114
-      Script: {instanceID: 2256}
+      Script: {instanceID: 1956}
     - Class: 114
-      Script: {instanceID: 2572}
+      Script: {instanceID: 2048}
     - Class: 114
-      Script: {instanceID: 2584}
+      Script: {instanceID: 2236}
     - Class: 114
-      Script: {instanceID: 2834}
+      Script: {instanceID: 2302}
     - Class: 114
-      Script: {instanceID: 2872}
+      Script: {instanceID: 2618}
     - Class: 114
-      Script: {instanceID: 2932}
+      Script: {instanceID: 2630}
     - Class: 114
-      Script: {instanceID: 3032}
+      Script: {instanceID: 2880}
     - Class: 114
-      Script: {instanceID: 3050}
+      Script: {instanceID: 2918}
     - Class: 114
-      Script: {instanceID: 3114}
+      Script: {instanceID: 2978}
     - Class: 114
-      Script: {instanceID: 3222}
+      Script: {instanceID: 3078}
     - Class: 114
-      Script: {instanceID: 3370}
+      Script: {instanceID: 3096}
     - Class: 114
-      Script: {instanceID: 3390}
+      Script: {instanceID: 3160}
     - Class: 114
-      Script: {instanceID: 3398}
+      Script: {instanceID: 3268}
     - Class: 114
-      Script: {instanceID: 3614}
+      Script: {instanceID: 3416}
     - Class: 114
-      Script: {instanceID: 3702}
+      Script: {instanceID: 3436}
     - Class: 114
-      Script: {instanceID: 3790}
+      Script: {instanceID: 3444}
     - Class: 114
-      Script: {instanceID: 1310096}
+      Script: {instanceID: 3660}
+    - Class: 114
+      Script: {instanceID: 3748}
+    - Class: 114
+      Script: {instanceID: 3836}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 124
@@ -254,77 +254,77 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 1462}
     - Class: 114
-      Script: {instanceID: 1530}
+      Script: {instanceID: 1574}
     - Class: 114
-      Script: {instanceID: 1560}
+      Script: {instanceID: 1604}
     - Class: 114
-      Script: {instanceID: 1618}
+      Script: {instanceID: 1662}
     - Class: 114
-      Script: {instanceID: 1640}
+      Script: {instanceID: 1684}
     - Class: 114
-      Script: {instanceID: 1666}
+      Script: {instanceID: 1710}
     - Class: 114
-      Script: {instanceID: 1872}
+      Script: {instanceID: 1788}
     - Class: 114
-      Script: {instanceID: 1910}
+      Script: {instanceID: 1918}
     - Class: 114
-      Script: {instanceID: 1992}
+      Script: {instanceID: 1956}
     - Class: 114
-      Script: {instanceID: 2002}
+      Script: {instanceID: 2038}
     - Class: 114
-      Script: {instanceID: 2140}
+      Script: {instanceID: 2048}
     - Class: 114
-      Script: {instanceID: 2190}
+      Script: {instanceID: 2186}
     - Class: 114
-      Script: {instanceID: 2256}
+      Script: {instanceID: 2236}
     - Class: 114
-      Script: {instanceID: 2268}
+      Script: {instanceID: 2302}
     - Class: 114
-      Script: {instanceID: 2292}
+      Script: {instanceID: 2314}
     - Class: 114
-      Script: {instanceID: 2438}
+      Script: {instanceID: 2338}
     - Class: 114
-      Script: {instanceID: 2572}
+      Script: {instanceID: 2484}
     - Class: 114
-      Script: {instanceID: 2584}
+      Script: {instanceID: 2618}
     - Class: 114
-      Script: {instanceID: 2834}
+      Script: {instanceID: 2630}
     - Class: 114
-      Script: {instanceID: 2872}
+      Script: {instanceID: 2880}
     - Class: 114
-      Script: {instanceID: 2932}
+      Script: {instanceID: 2918}
     - Class: 114
-      Script: {instanceID: 3032}
+      Script: {instanceID: 2978}
     - Class: 114
-      Script: {instanceID: 3050}
+      Script: {instanceID: 3078}
     - Class: 114
-      Script: {instanceID: 3114}
+      Script: {instanceID: 3096}
     - Class: 114
-      Script: {instanceID: 3182}
+      Script: {instanceID: 3160}
     - Class: 114
-      Script: {instanceID: 3222}
+      Script: {instanceID: 3228}
     - Class: 114
-      Script: {instanceID: 3256}
+      Script: {instanceID: 3268}
     - Class: 114
-      Script: {instanceID: 3342}
+      Script: {instanceID: 3302}
     - Class: 114
-      Script: {instanceID: 3370}
+      Script: {instanceID: 3388}
     - Class: 114
-      Script: {instanceID: 3390}
+      Script: {instanceID: 3416}
     - Class: 114
-      Script: {instanceID: 3398}
+      Script: {instanceID: 3436}
     - Class: 114
-      Script: {instanceID: 3530}
+      Script: {instanceID: 3444}
     - Class: 114
-      Script: {instanceID: 3614}
+      Script: {instanceID: 3576}
     - Class: 114
-      Script: {instanceID: 3702}
+      Script: {instanceID: 3660}
     - Class: 114
-      Script: {instanceID: 3762}
+      Script: {instanceID: 3748}
     - Class: 114
-      Script: {instanceID: 3790}
+      Script: {instanceID: 3808}
     - Class: 114
-      Script: {instanceID: 1310096}
+      Script: {instanceID: 3836}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 124
@@ -474,6 +474,12 @@ ScriptsOnlyBuild:
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.UI
     className: VerticalLayoutGroup
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: PlaySound
   - hash:
       serializedVersion: 2
       Hash: 21a9c6dbf300fc1f6dc15ca7e2c39a37
@@ -1137,9 +1143,9 @@ ScriptsOnlyBuild:
   - hash:
       serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: PlaySound
+    assemblyName: bolt.dll
+    namespaceName: Bolt.Photon
+    className: PhotonCloudGlobalBehavior
   platform: 5
   scenePathNames:
   - Assets/Project FPS/Scenes/Title&Lobby.unity
