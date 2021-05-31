@@ -53,7 +53,7 @@ public class TitleLobbyManager : Bolt.GlobalEventListener
     }
 
     public void OnclickSearchingServer() => LogPanel.SetActive(!LogPanel.activeSelf);
-
+    public void Exit() => Application.Quit();
     public void OnMouseOver() => cameraAudio.GetComponent<AudioSource>().PlayOneShot(mouseOnOver);
     public void OnMouseDown() => cameraAudio.GetComponent<AudioSource>().PlayOneShot(mouseClick);
 }

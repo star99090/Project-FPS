@@ -24,7 +24,7 @@ public class PlayerSubScript : Bolt.EntityBehaviour<IFPSPlayerState>
     BoltEntity attackerEntity;
 
     private void OnDestroy() => NM.players.Remove(entity);
-    public void UpdateMyScore() => myScoreText.text = "MY SCORE " + myKillScore;
+    public void UpdateMyScore() => myScoreText.text = myKillScore.ToString();
 
     public override void Attached()
     {

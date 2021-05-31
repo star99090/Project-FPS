@@ -1,6 +1,6 @@
 Using pre-set license
 Built from '2020.3/staging' branch; Version is '2020.3.0f1 (c7b5465681fb) revision 13088070'; Using compiler version '192528614'; Build Type 'Release'
-OS: 'Windows 10 Home; OS build 19041.985; Version 2004; 64bit' Language: 'ko' Physical Memory: 16335 MB
+OS: 'Windows 10 Pro; OS build 18362.356; Version 1903; 64bit' Language: 'ko' Physical Memory: 8099 MB
 BatchMode: 1, IsHumanControllingUs: 0, StartBugReporterOnCrash: 0, Is64bit: 1, IsPro: 0
 
  COMMAND LINE ARGUMENTS:
@@ -11,898 +11,1362 @@ C:\Program Files\Unity\Hub\Editor\2020.3.0f1\Editor\Unity.exe
 -name
 AssetImportWorker0
 -projectPath
-D:/git/Project-FPS
+C:/Users/user/Desktop/UnityWork/Project-FPS
 -logFile
 Logs/AssetImportWorker0.log
 -srvPort
-1380
-Successfully changed project path to: D:/git/Project-FPS
-D:/git/Project-FPS
+56061
+Successfully changed project path to: C:/Users/user/Desktop/UnityWork/Project-FPS
+C:/Users/user/Desktop/UnityWork/Project-FPS
 Using Asset Import Pipeline V2.
-Refreshing native plugins compatible for Editor in 46.49 ms, found 0 plugins.
+Refreshing native plugins compatible for Editor in 99.77 ms, found 0 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Initialize engine version: 2020.3.0f1 (c7b5465681fb)
 [Subsystems] Discovering subsystems at path C:/Program Files/Unity/Hub/Editor/2020.3.0f1/Editor/Data/Resources/UnitySubsystems
-[Subsystems] Discovering subsystems at path D:/git/Project-FPS/Assets
+[Subsystems] Discovering subsystems at path C:/Users/user/Desktop/UnityWork/Project-FPS/Assets
 GfxDevice: creating device client; threaded=0
 Direct3D:
-    Version:  Direct3D 11.0 [level 11.1]
-    Renderer: NVIDIA GeForce GTX 1060 6GB (ID=0x1c03)
+    Version:  Direct3D 11.0 [level 11.0]
+    Renderer: NVIDIA GeForce 840M (ID=0x1341)
     Vendor:   
-    VRAM:     6052 MB
-    Driver:   27.21.14.6172
+    VRAM:     2019 MB
+    Driver:   21.21.13.6909
 Initialize mono
 Mono path[0] = 'C:/Program Files/Unity/Hub/Editor/2020.3.0f1/Editor/Data/Managed'
 Mono path[1] = 'C:/Program Files/Unity/Hub/Editor/2020.3.0f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit'
 Mono config path = 'C:/Program Files/Unity/Hub/Editor/2020.3.0f1/Editor/Data/MonoBleedingEdge/etc'
-Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56604
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56496
 Begin MonoManager ReloadAssembly
 Registering precompiled unity dll's ...
 Register platform support module: C:/Program Files/Unity/Hub/Editor/2020.3.0f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
-Registered in 0.004499 seconds.
+Registered in 0.008079 seconds.
 Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 41.20 ms, found 0 plugins.
+Refreshing native plugins compatible for Editor in 54.05 ms, found 0 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Invoked RoslynAnalysisRunner static constructor.
 RoslynAnalysisRunner will not be running.
 RoslynAnalysisRunner has terminated.
 Mono: successfully reloaded assembly
-- Completed reload, in  1.602 seconds
+- Completed reload, in  2.638 seconds
 Platform modules already initialized, skipping
 Registering precompiled user dll's ...
-Registered in 0.009119 seconds.
+Registered in 0.053248 seconds.
 Begin MonoManager ReloadAssembly
 Symbol file LoadedFromMemory is not a mono symbol file
 Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 0.43 ms, found 0 plugins.
+Refreshing native plugins compatible for Editor in 1.74 ms, found 0 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Invoked RoslynAnalysisRunner static constructor.
 RoslynAnalysisRunner will not be running.
 RoslynAnalysisRunner has terminated.
 Mono: successfully reloaded assembly
-- Completed reload, in  1.127 seconds
+- Completed reload, in  2.776 seconds
 Platform modules already initialized, skipping
 ========================================================================
 Worker process is ready to serve import requests
-Launched and connected shader compiler UnityShaderCompiler.exe after 0.07 seconds
-Refreshing native plugins compatible for Editor in 0.76 ms, found 0 plugins.
+Launched and connected shader compiler UnityShaderCompiler.exe after 0.16 seconds
+Refreshing native plugins compatible for Editor in 0.77 ms, found 0 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Unloading 1200 Unused Serialized files (Serialized files now loaded: 0)
 System memory in use before: 69.0 MB.
 System memory in use after: 69.1 MB.
 
 Unloading 27 unused Assets to reduce memory usage. Loaded Objects now: 1681.
-Total: 1.800700 ms (FindLiveObjects: 0.183500 ms CreateObjectMapping: 0.038800 ms MarkObjects: 1.492700 ms  DeleteObjects: 0.084700 ms)
+Total: 4.652800 ms (FindLiveObjects: 0.422500 ms CreateObjectMapping: 0.195200 ms MarkObjects: 3.886100 ms  DeleteObjects: 0.146600 ms)
 
 ========================================================================
 Received Import Request.
-  path: Assets/Resources/Images
-  artifactKey: Guid(2e7deef4404995244b02ac1ff6ec8e12) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/Images using Guid(2e7deef4404995244b02ac1ff6ec8e12) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'af10362bd65a55fa0c63416499aa2b42') in 0.011008 seconds
-  Import took 0.031584 seconds .
+  path: Assets/Project FPS/Scripts/TitleLobbyManager.cs
+  artifactKey: Guid(bed3c37af4f8f1d498a73b3eeabb6df0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Project FPS/Scripts/TitleLobbyManager.cs using Guid(bed3c37af4f8f1d498a73b3eeabb6df0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f0d97fc6815acc565327901e257e4180') in 0.127821 seconds
+  Import took 0.133211 seconds .
+
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.034758 seconds.
+Begin MonoManager ReloadAssembly
+Symbol file LoadedFromMemory is not a mono symbol file
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 0.59 ms, found 0 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Invoked RoslynAnalysisRunner static constructor.
+RoslynAnalysisRunner will not be running.
+RoslynAnalysisRunner has terminated.
+Mono: successfully reloaded assembly
+- Completed reload, in  1.853 seconds
+Platform modules already initialized, skipping
+Refreshing native plugins compatible for Editor in 0.63 ms, found 0 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 1193 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 68.8 MB.
+System memory in use after: 68.9 MB.
+
+Unloading 22 unused Assets to reduce memory usage. Loaded Objects now: 1684.
+Total: 2.551500 ms (FindLiveObjects: 0.281300 ms CreateObjectMapping: 0.107600 ms MarkObjects: 2.139500 ms  DeleteObjects: 0.021300 ms)
 
 ========================================================================
 Received Import Request.
-  Time since last request: 370.352132 seconds.
-  path: Assets/Resources/Fonts
-  artifactKey: Guid(f9a825dd88d99534b88e869994d756fd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/Fonts using Guid(f9a825dd88d99534b88e869994d756fd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9793e3311db0f8b8ab30ee6aa316e481') in 0.008572 seconds
-  Import took 0.019346 seconds .
+  Time since last request: 85.056589 seconds.
+  path: Assets/Project FPS/Scripts/TitleLobbyManager.cs
+  artifactKey: Guid(bed3c37af4f8f1d498a73b3eeabb6df0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Project FPS/Scripts/TitleLobbyManager.cs using Guid(bed3c37af4f8f1d498a73b3eeabb6df0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4705898bf310e0231628c0d93f85dce9') in 0.009789 seconds
+  Import took 0.013401 seconds .
 
 ========================================================================
 Received Import Request.
-  Time since last request: 0.732318 seconds.
-  path: Assets/Resources/Fonts/neodgm_pro.ttf
-  artifactKey: Guid(85f6af68c1dc22d499b431f127d299d9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/Fonts/neodgm_pro.ttf using Guid(85f6af68c1dc22d499b431f127d299d9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '77e7de8405e0675c769655694c51e671') in 0.131946 seconds
-  Import took 0.144866 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.992494 seconds.
-  path: Assets/Resources
-  artifactKey: Guid(85a6b5658ad45ae46bf2e6dcd4662b7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources using Guid(85a6b5658ad45ae46bf2e6dcd4662b7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '268a5f448c18318f53fdbd98ce45b944') in 0.007109 seconds
-  Import took 0.017545 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 447.506229 seconds.
-  path: Assets/Resources/Images/setting.png
-  artifactKey: Guid(b26747ef3da7b1a4cae654beaffff104) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/Images/setting.png using Guid(b26747ef3da7b1a4cae654beaffff104) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0fec06199f530d8bf0885c5d4d530dd7') in 0.103020 seconds
-  Import took 0.105868 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 7.060906 seconds.
-  path: Assets/Resources/Images/setting.png
-  artifactKey: Guid(b26747ef3da7b1a4cae654beaffff104) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/Images/setting.png using Guid(b26747ef3da7b1a4cae654beaffff104) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5cde8df62844e6ccb5a4831aa041e5b1') in 0.042001 seconds
-  Import took 0.044986 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 72.074863 seconds.
-  path: Assets/Resources/Images/circle.png
-  artifactKey: Guid(e62ab9a451f6a5649a94542a0689600d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/Images/circle.png using Guid(e62ab9a451f6a5649a94542a0689600d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b7ea18cc0e774e91f9897f47683f46aa') in 0.011801 seconds
-  Import took 0.030095 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 3.091062 seconds.
-  path: Assets/Resources/Images/circle.png
-  artifactKey: Guid(e62ab9a451f6a5649a94542a0689600d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/Images/circle.png using Guid(e62ab9a451f6a5649a94542a0689600d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '24e5c2b7844dc5f8c4e66637089f8611') in 0.016392 seconds
-  Import took 0.029756 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 20.042848 seconds.
-  path: Assets/Resources/Images/bar.png
-  artifactKey: Guid(1ffb4225e89912447a45a19aab0bfa6f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/Images/bar.png using Guid(1ffb4225e89912447a45a19aab0bfa6f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6b7d714b91aee4817b5f6caabcc2d70b') in 0.014120 seconds
-  Import took 0.016949 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 3.202501 seconds.
-  path: Assets/Resources/Images/bar.png
-  artifactKey: Guid(1ffb4225e89912447a45a19aab0bfa6f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/Images/bar.png using Guid(1ffb4225e89912447a45a19aab0bfa6f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '979519bbbdfc772dc3d193b355bb5fa6') in 0.011755 seconds
-  Import took 0.014183 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 102.609072 seconds.
-  path: Assets/Project FPS/Prefabs/FPSPlayer12.prefab
-  artifactKey: Guid(5fb6842599183e14d96493e4179df95f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Project FPS/Prefabs/FPSPlayer12.prefab using Guid(5fb6842599183e14d96493e4179df95f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'bb2501b49de49b410cec35ec1e026238') in 0.360516 seconds
-  Import took 0.379690 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.936227 seconds.
+  Time since last request: 10.664137 seconds.
   path: Assets/Project FPS/Prefabs/FPSPlayer13.prefab
   artifactKey: Guid(12845470bd06193428ba7930d79e39da) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Project FPS/Prefabs/FPSPlayer13.prefab using Guid(12845470bd06193428ba7930d79e39da) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '92a62265d619cd0beb4995013f11bcc0') in 0.288507 seconds
-  Import took 0.304053 seconds .
+Start importing Assets/Project FPS/Prefabs/FPSPlayer13.prefab using Guid(12845470bd06193428ba7930d79e39da) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c7b5b4a193dd9f0b7d2f6f782efee22b') in 0.876213 seconds
+  Import took 0.909731 seconds .
 
 ========================================================================
 Received Import Request.
-  Time since last request: 36.319515 seconds.
-  path: Assets/Low Poly FPS Pack - Free (Sample)/Components/Textures_&_Sprites/Scope_Textures/Red_Square_Sight_Texture-removebg-preview.png
-  artifactKey: Guid(fc2eb0b5585ad9141af793efaadce498) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Low Poly FPS Pack - Free (Sample)/Components/Textures_&_Sprites/Scope_Textures/Red_Square_Sight_Texture-removebg-preview.png using Guid(fc2eb0b5585ad9141af793efaadce498) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '265e0abd2bc3de3db3f28e4704381601') in 0.014523 seconds
-  Import took 0.025244 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.010587 seconds.
-  path: Assets/Low Poly FPS Pack - Free (Sample)/Components/Textures_&_Sprites/Scope_Textures/Red_Square_Sight_Texture-removebg-preview.png
-  artifactKey: Guid(fc2eb0b5585ad9141af793efaadce498) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Low Poly FPS Pack - Free (Sample)/Components/Textures_&_Sprites/Scope_Textures/Red_Square_Sight_Texture-removebg-preview.png using Guid(fc2eb0b5585ad9141af793efaadce498) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '265e0abd2bc3de3db3f28e4704381601') in 0.008689 seconds
-  Import took 0.011533 seconds .
-
-========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.009960 seconds.
-Begin MonoManager ReloadAssembly
-Symbol file LoadedFromMemory is not a mono symbol file
-Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 0.48 ms, found 0 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Invoked RoslynAnalysisRunner static constructor.
-RoslynAnalysisRunner will not be running.
-RoslynAnalysisRunner has terminated.
-Mono: successfully reloaded assembly
-- Completed reload, in  1.015 seconds
-Platform modules already initialized, skipping
-Refreshing native plugins compatible for Editor in 0.49 ms, found 0 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 1193 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 88.2 MB.
-System memory in use after: 88.3 MB.
-
-Unloading 28 unused Assets to reduce memory usage. Loaded Objects now: 1739.
-Total: 1.883700 ms (FindLiveObjects: 0.271400 ms CreateObjectMapping: 0.057400 ms MarkObjects: 1.506400 ms  DeleteObjects: 0.046800 ms)
-
-========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.013546 seconds.
-Begin MonoManager ReloadAssembly
-Symbol file LoadedFromMemory is not a mono symbol file
-Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 0.82 ms, found 0 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Invoked RoslynAnalysisRunner static constructor.
-RoslynAnalysisRunner will not be running.
-RoslynAnalysisRunner has terminated.
-Mono: successfully reloaded assembly
-- Completed reload, in  1.295 seconds
-Platform modules already initialized, skipping
-Refreshing native plugins compatible for Editor in 0.87 ms, found 0 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 1193 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 88.3 MB.
-System memory in use after: 88.4 MB.
-
-Unloading 22 unused Assets to reduce memory usage. Loaded Objects now: 1742.
-Total: 2.511000 ms (FindLiveObjects: 0.265900 ms CreateObjectMapping: 0.042500 ms MarkObjects: 2.172400 ms  DeleteObjects: 0.028600 ms)
-
-========================================================================
-Received Import Request.
-  Time since last request: 681.755011 seconds.
+  Time since last request: 8.581237 seconds.
   path: Assets/Project FPS/Prefabs/FPSPlayer13.prefab
   artifactKey: Guid(12845470bd06193428ba7930d79e39da) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Project FPS/Prefabs/FPSPlayer13.prefab using Guid(12845470bd06193428ba7930d79e39da) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '43edee4a1535c60404c743a02343db2a') in 0.360743 seconds
-  Import took 0.396285 seconds .
+Start importing Assets/Project FPS/Prefabs/FPSPlayer13.prefab using Guid(12845470bd06193428ba7930d79e39da) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'fd39bc80478b0c60c57e543ca2941e19') in 0.522959 seconds
+  Import took 0.547149 seconds .
 
 ========================================================================
 Received Import Request.
-  Time since last request: 150.729187 seconds.
-  path: Assets/Project FPS/Prefabs/ShootingSound.prefab
-  artifactKey: Guid(91f2c6fc7a44ece4faa962917dfa1044) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Project FPS/Prefabs/ShootingSound.prefab using Guid(91f2c6fc7a44ece4faa962917dfa1044) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '72c50d6dc9552cf6d7addf376867155a') in 0.010248 seconds
-  Import took 0.022191 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.058618 seconds.
-  path: Assets/Project FPS/Prefabs/ShootingSound.prefab
-  artifactKey: Guid(91f2c6fc7a44ece4faa962917dfa1044) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Project FPS/Prefabs/ShootingSound.prefab using Guid(91f2c6fc7a44ece4faa962917dfa1044) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '72c50d6dc9552cf6d7addf376867155a') in 0.003946 seconds
-  Import took 0.006349 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.192450 seconds.
+  Time since last request: 0.174981 seconds.
   path: Assets/Project FPS/Prefabs/FPSPlayer13.prefab
   artifactKey: Guid(12845470bd06193428ba7930d79e39da) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Project FPS/Prefabs/FPSPlayer13.prefab using Guid(12845470bd06193428ba7930d79e39da) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8a4c6a85e637d8ade1ca9a423618d28b') in 0.233765 seconds
-  Import took 0.251241 seconds .
-
-========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.009850 seconds.
-Begin MonoManager ReloadAssembly
-Symbol file LoadedFromMemory is not a mono symbol file
-Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 0.45 ms, found 0 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Invoked RoslynAnalysisRunner static constructor.
-RoslynAnalysisRunner will not be running.
-RoslynAnalysisRunner has terminated.
-Mono: successfully reloaded assembly
-- Completed reload, in  0.958 seconds
-Platform modules already initialized, skipping
-Refreshing native plugins compatible for Editor in 0.44 ms, found 0 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 1193 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 88.5 MB.
-System memory in use after: 88.6 MB.
-
-Unloading 28 unused Assets to reduce memory usage. Loaded Objects now: 1746.
-Total: 1.747200 ms (FindLiveObjects: 0.149000 ms CreateObjectMapping: 0.029700 ms MarkObjects: 1.522800 ms  DeleteObjects: 0.044400 ms)
-
-========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.010862 seconds.
-Begin MonoManager ReloadAssembly
-Symbol file LoadedFromMemory is not a mono symbol file
-Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 0.75 ms, found 0 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Invoked RoslynAnalysisRunner static constructor.
-RoslynAnalysisRunner will not be running.
-RoslynAnalysisRunner has terminated.
-Mono: successfully reloaded assembly
-- Completed reload, in  1.029 seconds
-Platform modules already initialized, skipping
-Refreshing native plugins compatible for Editor in 0.44 ms, found 0 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 1193 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 88.5 MB.
-System memory in use after: 88.6 MB.
-
-Unloading 22 unused Assets to reduce memory usage. Loaded Objects now: 1749.
-Total: 1.801400 ms (FindLiveObjects: 0.210500 ms CreateObjectMapping: 0.040300 ms MarkObjects: 1.530200 ms  DeleteObjects: 0.019300 ms)
+Start importing Assets/Project FPS/Prefabs/FPSPlayer13.prefab using Guid(12845470bd06193428ba7930d79e39da) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'fd39bc80478b0c60c57e543ca2941e19') in 0.551495 seconds
+  Import took 0.581012 seconds .
 
 ========================================================================
 Received Import Request.
-  Time since last request: 257.592738 seconds.
+  Time since last request: 172.466670 seconds.
+  path: Assets/Project FPS/Scenes/FPSGame.unity
+  artifactKey: Guid(6a75e3cb0cec14f409639edfaf3b626b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Project FPS/Scenes/FPSGame.unity using Guid(6a75e3cb0cec14f409639edfaf3b626b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '778b79d3040801681137d448254b1700') in 0.010843 seconds
+  Import took 0.014878 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 543.458685 seconds.
+  path: Assets/Low Poly Apocalyptic City/Textures/tex00.mat
+  artifactKey: Guid(122ce9396a25b834a9addc3ee0951b7f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Low Poly Apocalyptic City/Textures/tex00.mat using Guid(122ce9396a25b834a9addc3ee0951b7f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e8bf508528eda245630bd0151e1dffd2') in 0.103036 seconds
+  Import took 0.110096 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000537 seconds.
+  path: Assets/Low Poly Apocalyptic City/Materials/tex2.mat
+  artifactKey: Guid(655cdb12937795f47b66817dcc94d7fc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Low Poly Apocalyptic City/Materials/tex2.mat using Guid(655cdb12937795f47b66817dcc94d7fc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '061639081cee1e5c2180852f6c3f7472') in 0.035922 seconds
+  Import took 0.043111 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000458 seconds.
+  path: Assets/Low Poly FPS Pack - Free (Sample)/Components/Materials/Scope_Render_Materials/Sniper_03_Scope_Render_Material.mat
+  artifactKey: Guid(1f72248d5d03a9048bc93b70014819a3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Low Poly FPS Pack - Free (Sample)/Components/Materials/Scope_Render_Materials/Sniper_03_Scope_Render_Material.mat using Guid(1f72248d5d03a9048bc93b70014819a3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a218a423537b7aed7578fd4eb8704996') in 0.035685 seconds
+  Import took 0.040455 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000454 seconds.
+  path: Assets/Low Poly Apocalyptic City/Textures/tex01.mat
+  artifactKey: Guid(df88ee5bee7ebbd42bdf960f6c72f612) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Low Poly Apocalyptic City/Textures/tex01.mat using Guid(df88ee5bee7ebbd42bdf960f6c72f612) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '526556a4e03b6841110f16f4acf3f5f1') in 0.114962 seconds
+  Import took 0.119587 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000501 seconds.
+  path: Assets/Low Poly Apocalyptic City/Materials/tex1.mat
+  artifactKey: Guid(bcc72d57030d4544b9f494af06928e5e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Low Poly Apocalyptic City/Materials/tex1.mat using Guid(bcc72d57030d4544b9f494af06928e5e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8142d72cbd22042e149e70fdf61f2666') in 0.037341 seconds
+  Import took 0.041677 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000434 seconds.
+  path: Assets/Low Poly FPS Pack - Free (Sample)/Components/Materials/Scope_Render_Materials/Sniper_Scope_Glass_Material.mat
+  artifactKey: Guid(8c0e9280805e4a84697b3a8ae5537927) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Low Poly FPS Pack - Free (Sample)/Components/Materials/Scope_Render_Materials/Sniper_Scope_Glass_Material.mat using Guid(8c0e9280805e4a84697b3a8ae5537927) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5506b722777945c4b05c8ff646de511d') in 0.029409 seconds
+  Import took 0.034321 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000594 seconds.
+  path: Assets/Low Poly FPS Pack - Free (Sample)/Components/Materials/Scope_Render_Materials/Sniper_01_Scope_Render_Material.mat
+  artifactKey: Guid(e42b5b324c3b7cf499d473a7f9762f64) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Low Poly FPS Pack - Free (Sample)/Components/Materials/Scope_Render_Materials/Sniper_01_Scope_Render_Material.mat using Guid(e42b5b324c3b7cf499d473a7f9762f64) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8e402a6a8801367365d709b1a9c5f44a') in 0.028260 seconds
+  Import took 0.032399 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000490 seconds.
+  path: Assets/Low Poly Apocalyptic City/Textures/tex00.mat
+  artifactKey: Guid(122ce9396a25b834a9addc3ee0951b7f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Low Poly Apocalyptic City/Textures/tex00.mat using Guid(122ce9396a25b834a9addc3ee0951b7f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e8bf508528eda245630bd0151e1dffd2') in 0.031620 seconds
+  Import took 0.035782 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000494 seconds.
+  path: Assets/Low Poly FPS Pack - Free (Sample)/Components/Materials/Scope_Materials/Scope_04_Material.mat
+  artifactKey: Guid(b9c1c4b968da75545ab99f0d4dd096c9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Low Poly FPS Pack - Free (Sample)/Components/Materials/Scope_Materials/Scope_04_Material.mat using Guid(b9c1c4b968da75545ab99f0d4dd096c9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '710ee257cda407cf8a3e81fc05960e52') in 0.049710 seconds
+  Import took 0.054274 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000464 seconds.
+  path: Assets/Low Poly FPS Pack - Free (Sample)/Components/Materials/Scope_Materials/Scope_01_03_Material.mat
+  artifactKey: Guid(1c55be497a4799c48ba71115af93ede8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Low Poly FPS Pack - Free (Sample)/Components/Materials/Scope_Materials/Scope_01_03_Material.mat using Guid(1c55be497a4799c48ba71115af93ede8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '96203f8efedcfb656bb5c89596ac4871') in 0.043510 seconds
+  Import took 0.048404 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000413 seconds.
+  path: Assets/Low Poly Apocalyptic City/Models/Road/pathway02.FBX
+  artifactKey: Guid(8e75086c701260e4190d480874de3262) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Low Poly Apocalyptic City/Models/Road/pathway02.FBX using Guid(8e75086c701260e4190d480874de3262) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f6886fe38d565c9b07172c0ee6bc8b77') in 0.256655 seconds
+  Import took 0.261196 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000406 seconds.
+  path: Assets/Low Poly Apocalyptic City/Models/Сonstruction/Stair02.FBX
+  artifactKey: Guid(eafd7497e3e3fae4b95f1b4a00aaac80) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Low Poly Apocalyptic City/Models/Сonstruction/Stair02.FBX using Guid(eafd7497e3e3fae4b95f1b4a00aaac80) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '06de58e33cadd72827ef8b9a90454a15') in 0.051936 seconds
+  Import took 0.056254 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000445 seconds.
+  path: Assets/Low Poly FPS Pack/Third_Person_Character/Components/Plane_Demo_Scene_Components/Materials/PlaneLightsMaterial.mat
+  artifactKey: Guid(551d88d1c36c2f541bb3004fd672776a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Low Poly FPS Pack/Third_Person_Character/Components/Plane_Demo_Scene_Components/Materials/PlaneLightsMaterial.mat using Guid(551d88d1c36c2f541bb3004fd672776a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5d09759d1f23f8157a0216988ed88a19') in 0.038639 seconds
+  Import took 0.043380 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000534 seconds.
+  path: Assets/Low Poly Apocalyptic City/Models/Road/pathway05.FBX
+  artifactKey: Guid(9277c33cdcc48fe4ebb34884bb839b20) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Low Poly Apocalyptic City/Models/Road/pathway05.FBX using Guid(9277c33cdcc48fe4ebb34884bb839b20) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3e55e1a8f2a26ac1426c9d869ec03752') in 0.048313 seconds
+  Import took 0.053158 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000441 seconds.
+  path: Assets/Low Poly Apocalyptic City/Models/Сonstruction/Stair01.FBX
+  artifactKey: Guid(ae88384d89d03774388b9b2ff512c982) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Low Poly Apocalyptic City/Models/Сonstruction/Stair01.FBX using Guid(ae88384d89d03774388b9b2ff512c982) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '42d0a179c6944607bf974334dee8fb76') in 0.057802 seconds
+  Import took 0.062209 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000455 seconds.
+  path: Assets/Low Poly Apocalyptic City/Models/Road/pathway03.FBX
+  artifactKey: Guid(20ff23f1036538949a75626d0a38d2e5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Low Poly Apocalyptic City/Models/Road/pathway03.FBX using Guid(20ff23f1036538949a75626d0a38d2e5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'aaed6941354f126dd49f0ea56c7bd196') in 0.064735 seconds
+  Import took 0.069704 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000481 seconds.
+  path: Assets/Low Poly Apocalyptic City/Models/Road/Car4.FBX
+  artifactKey: Guid(c3967892c20f2e046badd211733e317c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Low Poly Apocalyptic City/Models/Road/Car4.FBX using Guid(c3967892c20f2e046badd211733e317c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e00e95503146566a78213d99ffb94d05') in 0.057120 seconds
+  Import took 0.062682 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000555 seconds.
+  path: Assets/Low Poly Apocalyptic City/Models/Road/pathway04.FBX
+  artifactKey: Guid(97026cc05573aca4f98b9f35cc626723) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Low Poly Apocalyptic City/Models/Road/pathway04.FBX using Guid(97026cc05573aca4f98b9f35cc626723) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '46abef5ea28b42048f16135389029c10') in 0.047568 seconds
+  Import took 0.053596 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000423 seconds.
+  path: Assets/Low Poly Apocalyptic City/Models/Сonstruction/Interior/refrigerator01Door.FBX
+  artifactKey: Guid(ee27d266772001841973ab5748987692) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Low Poly Apocalyptic City/Models/Сonstruction/Interior/refrigerator01Door.FBX using Guid(ee27d266772001841973ab5748987692) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2b8fa609bb0a6d7167febbcfa5a73ff1') in 0.048447 seconds
+  Import took 0.054122 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000478 seconds.
+  path: Assets/BOXOPHOBIC/Skybox Cubemap Extended/Demo/Materials/Skybox Cubemap Extended Day.mat
+  artifactKey: Guid(2bd8959f5fbd3644aa33af1a155fc147) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/BOXOPHOBIC/Skybox Cubemap Extended/Demo/Materials/Skybox Cubemap Extended Day.mat using Guid(2bd8959f5fbd3644aa33af1a155fc147) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '413d3361e9f058ba28fa5d024688d2fb') in 0.031783 seconds
+  Import took 0.036634 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000409 seconds.
+  path: Assets/Low Poly FPS Pack - Free (Sample)/Components/Materials/Scope_Materials/Scope_02_Material.mat
+  artifactKey: Guid(32cc69ef9c7e82247bccebfca8c5e623) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Low Poly FPS Pack - Free (Sample)/Components/Materials/Scope_Materials/Scope_02_Material.mat using Guid(32cc69ef9c7e82247bccebfca8c5e623) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a67cc3b56fa69000427f5f98fc80c705') in 0.057395 seconds
+  Import took 0.063294 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.002651 seconds.
+  path: Assets/Low Poly FPS Pack/Third_Person_Character/Components/Plane_Demo_Scene_Components/Materials/PlaneLightsGreenMaterial.mat
+  artifactKey: Guid(f7fd8d43cae475545a30227a7b09c2c6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Low Poly FPS Pack/Third_Person_Character/Components/Plane_Demo_Scene_Components/Materials/PlaneLightsGreenMaterial.mat using Guid(f7fd8d43cae475545a30227a7b09c2c6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'aa7ae069b52e8d8e5e4573120315ecd0') in 0.056190 seconds
+  Import took 0.061718 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000445 seconds.
+  path: Assets/Low Poly Apocalyptic City/Models/Сonstruction/Interior/rack02.FBX
+  artifactKey: Guid(e2dc7108b7330ad4ab791cc712d8c4f4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Low Poly Apocalyptic City/Models/Сonstruction/Interior/rack02.FBX using Guid(e2dc7108b7330ad4ab791cc712d8c4f4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd88370c9d1f00cf61d709fa1c4f761a4') in 0.054260 seconds
+  Import took 0.061732 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000474 seconds.
+  path: Assets/Low Poly Apocalyptic City/Models/Road/road02.FBX
+  artifactKey: Guid(c94efbd0cf60e0c4c9eb4035f351a644) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Low Poly Apocalyptic City/Models/Road/road02.FBX using Guid(c94efbd0cf60e0c4c9eb4035f351a644) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '40cedfa3dcad1d90d79b2336e3ea5283') in 0.060803 seconds
+  Import took 0.066924 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000526 seconds.
+  path: Assets/Low Poly Apocalyptic City/Models/Road/road01.FBX
+  artifactKey: Guid(7633e68777f72ea4cb2cfd3d58093458) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Low Poly Apocalyptic City/Models/Road/road01.FBX using Guid(7633e68777f72ea4cb2cfd3d58093458) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b6b864d47cf46b307b7389daa2ca7c2d') in 0.051467 seconds
+  Import took 0.057302 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000463 seconds.
+  path: Assets/Low Poly Apocalyptic City/Models/Road/pathway06.FBX
+  artifactKey: Guid(98717ee79bcd1f2479a165d3a1b65278) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Low Poly Apocalyptic City/Models/Road/pathway06.FBX using Guid(98717ee79bcd1f2479a165d3a1b65278) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd16f0dcc4f80f21e308486009a62bd82') in 0.047226 seconds
+  Import took 0.051499 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000411 seconds.
+  path: Assets/Low Poly FPS Pack - Free (Sample)/Components/Materials/Scope_Render_Materials/Sniper_02_Scope_Render_Material.mat
+  artifactKey: Guid(272c7585ea4d2864c8a55f6d94ffb6b9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Low Poly FPS Pack - Free (Sample)/Components/Materials/Scope_Render_Materials/Sniper_02_Scope_Render_Material.mat using Guid(272c7585ea4d2864c8a55f6d94ffb6b9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b389f268fcfe927cd7d95143fda83a93') in 0.034962 seconds
+  Import took 0.040150 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 4.283580 seconds.
+  path: Assets/Low Poly Apocalyptic City/Models/Сonstruction/Interior/Wall01.FBX
+  artifactKey: Guid(da62512576f81ab4a8328eb91f806528) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Low Poly Apocalyptic City/Models/Сonstruction/Interior/Wall01.FBX using Guid(da62512576f81ab4a8328eb91f806528) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'dc9af1bf750799d8f44ef9f8858e80a5') in 0.041817 seconds
+  Import took 0.046290 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000467 seconds.
+  path: Assets/Low Poly Apocalyptic City/Models/Road/road03.FBX
+  artifactKey: Guid(98dbbec7a44d32645a39f3eb4a0a83b4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Low Poly Apocalyptic City/Models/Road/road03.FBX using Guid(98dbbec7a44d32645a39f3eb4a0a83b4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9de674a1a41034f5e51c9224b3140716') in 0.048060 seconds
+  Import took 0.052880 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000529 seconds.
+  path: Assets/Low Poly Apocalyptic City/Models/Road/Car3.FBX
+  artifactKey: Guid(338665ea0c96f804b9b0b20b392950b1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Low Poly Apocalyptic City/Models/Road/Car3.FBX using Guid(338665ea0c96f804b9b0b20b392950b1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '711b467d2d10b2df6471f17eb977d204') in 0.050102 seconds
+  Import took 0.055170 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000538 seconds.
+  path: Assets/Low Poly Apocalyptic City/Models/Сonstruction/Interior/rack01.FBX
+  artifactKey: Guid(cb44dd5fed6bb6d46a63acdc6a73b552) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Low Poly Apocalyptic City/Models/Сonstruction/Interior/rack01.FBX using Guid(cb44dd5fed6bb6d46a63acdc6a73b552) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '84a644e1e30b588f79dde58273af8507') in 0.052787 seconds
+  Import took 0.058468 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000589 seconds.
+  path: Assets/Low Poly Apocalyptic City/Models/Grass01Land.FBX
+  artifactKey: Guid(043cac1d7bb4e8244a6171e3f9cd3176) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Low Poly Apocalyptic City/Models/Grass01Land.FBX using Guid(043cac1d7bb4e8244a6171e3f9cd3176) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f9094919893f29a3a9a749120b68464f') in 0.051444 seconds
+  Import took 0.056725 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000518 seconds.
+  path: Assets/Low Poly Apocalyptic City/Models/Сonstruction/Floor03Ruined01.FBX
+  artifactKey: Guid(1e0e2c170e4e7f74b9488d6cd070e40d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Low Poly Apocalyptic City/Models/Сonstruction/Floor03Ruined01.FBX using Guid(1e0e2c170e4e7f74b9488d6cd070e40d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '997f424d35d2762814e5daf2381398d9') in 0.160769 seconds
+  Import took 0.171854 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000753 seconds.
+  path: Assets/Low Poly Apocalyptic City/Models/Road/Border02.FBX
+  artifactKey: Guid(1f22db573ea19b54985c5b71caa59767) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Low Poly Apocalyptic City/Models/Road/Border02.FBX using Guid(1f22db573ea19b54985c5b71caa59767) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '03c61e4689bf2b87ca7bda43ac2afd5e') in 0.053697 seconds
+  Import took 0.060315 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000526 seconds.
+  path: Assets/Low Poly Apocalyptic City/Models/Road/Car.FBX
+  artifactKey: Guid(7db85d61d3ce5b941aac968e113c365d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Low Poly Apocalyptic City/Models/Road/Car.FBX using Guid(7db85d61d3ce5b941aac968e113c365d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '50503b36ddd4ced15f30e55848cf5c91') in 0.054873 seconds
+  Import took 0.061603 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000507 seconds.
+  path: Assets/Low Poly Apocalyptic City/Models/Сonstruction/Interior/Table01.FBX
+  artifactKey: Guid(770a8c1efba27e24fa23af1b1fcf174b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Low Poly Apocalyptic City/Models/Сonstruction/Interior/Table01.FBX using Guid(770a8c1efba27e24fa23af1b1fcf174b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'db6492abf5bb58d737a91aa74a0342d8') in 0.050394 seconds
+  Import took 0.056372 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000506 seconds.
+  path: Assets/Low Poly FPS Pack - Free (Sample)/Components/Materials/Particles/MuzzleFlash.mat
+  artifactKey: Guid(b0ea9aa64da8c76498ef3b008d0cca1b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Low Poly FPS Pack - Free (Sample)/Components/Materials/Particles/MuzzleFlash.mat using Guid(b0ea9aa64da8c76498ef3b008d0cca1b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '161886044eedb9e6a913ef1aa4887379') in 0.040108 seconds
+  Import took 0.044939 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000403 seconds.
+  path: Assets/Low Poly Apocalyptic City/Models/Road/Border03.FBX
+  artifactKey: Guid(4987543758345ff4193463fa46c2fcd6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Low Poly Apocalyptic City/Models/Road/Border03.FBX using Guid(4987543758345ff4193463fa46c2fcd6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'beef57c83799d4a565e1df5d178a8ada') in 0.040270 seconds
+  Import took 0.045324 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000690 seconds.
+  path: Assets/Low Poly Apocalyptic City/Models/Road/pathway01.FBX
+  artifactKey: Guid(0caab8b42e2498c4dbe1ecf206bd1008) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Low Poly Apocalyptic City/Models/Road/pathway01.FBX using Guid(0caab8b42e2498c4dbe1ecf206bd1008) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3bf616d7264c6323b974d36860c04b44') in 0.045167 seconds
+  Import took 0.050285 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000437 seconds.
+  path: Assets/Low Poly Apocalyptic City/Models/crack03.FBX
+  artifactKey: Guid(b0e5c65aabf93ef41ad0425d66b44f38) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Low Poly Apocalyptic City/Models/crack03.FBX using Guid(b0e5c65aabf93ef41ad0425d66b44f38) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '342d313708b45475f4bb6882c58a486f') in 0.045178 seconds
+  Import took 0.049666 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000513 seconds.
+  path: Assets/Low Poly Apocalyptic City/Models/Road/Car1.FBX
+  artifactKey: Guid(bf81782b1e63b3648b5dd75ea71b4096) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Low Poly Apocalyptic City/Models/Road/Car1.FBX using Guid(bf81782b1e63b3648b5dd75ea71b4096) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '845b0d0448398a6c20156e3b82f54ed9') in 0.052221 seconds
+  Import took 0.058676 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000460 seconds.
+  path: Assets/Low Poly Apocalyptic City/Models/Сonstruction/Floor01Ruined01.FBX
+  artifactKey: Guid(ca299bf124ba79040a5dc7a1f40888db) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Low Poly Apocalyptic City/Models/Сonstruction/Floor01Ruined01.FBX using Guid(ca299bf124ba79040a5dc7a1f40888db) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'fa00e4a6291b7c1c3eea0faa9740f737') in 0.053297 seconds
+  Import took 0.058481 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000432 seconds.
+  path: Assets/Low Poly Apocalyptic City/Models/Сonstruction/Fence01Corner.FBX
+  artifactKey: Guid(1c1229b43e42fb1408b83975f5d09055) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Low Poly Apocalyptic City/Models/Сonstruction/Fence01Corner.FBX using Guid(1c1229b43e42fb1408b83975f5d09055) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '721f120680ccf4a65035cacee01d0809') in 0.045461 seconds
+  Import took 0.050418 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000458 seconds.
+  path: Assets/Low Poly Apocalyptic City/Models/Road/Border04.FBX
+  artifactKey: Guid(292400d601b74d94db86464a2ce68737) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Low Poly Apocalyptic City/Models/Road/Border04.FBX using Guid(292400d601b74d94db86464a2ce68737) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e344a382713bc0f785e4f11f5e3c2d41') in 0.058723 seconds
+  Import took 0.063928 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000458 seconds.
+  path: Assets/Low Poly Apocalyptic City/Models/trash08.FBX
+  artifactKey: Guid(73fae0413bed04245956954eddac8269) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Low Poly Apocalyptic City/Models/trash08.FBX using Guid(73fae0413bed04245956954eddac8269) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '251a1e0147791bd70ffcedb3916d1676') in 0.045642 seconds
+  Import took 0.051501 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000450 seconds.
+  path: Assets/Low Poly Apocalyptic City/Models/Сonstruction/BasementWallCorner.FBX
+  artifactKey: Guid(07a2682195f8be64fbc322b1e30ed43b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Low Poly Apocalyptic City/Models/Сonstruction/BasementWallCorner.FBX using Guid(07a2682195f8be64fbc322b1e30ed43b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b92d2d121cb0967077658fdd1539d27c') in 0.054947 seconds
+  Import took 0.060408 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000471 seconds.
+  path: Assets/Low Poly Apocalyptic City/Models/crack01.FBX
+  artifactKey: Guid(9d732c1fe99d23d47ab2cc4e4781fe9d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Low Poly Apocalyptic City/Models/crack01.FBX using Guid(9d732c1fe99d23d47ab2cc4e4781fe9d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '76e58050b19fbe451154f6f0ac53a091') in 0.047020 seconds
+  Import took 0.053022 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000532 seconds.
+  path: Assets/Low Poly Apocalyptic City/Models/Сonstruction/House02/WallExt0203.FBX
+  artifactKey: Guid(9f09aebf56a016c46b22f6c323ab8765) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Low Poly Apocalyptic City/Models/Сonstruction/House02/WallExt0203.FBX using Guid(9f09aebf56a016c46b22f6c323ab8765) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4e4ea2822669fc880033131c21f655c7') in 0.057382 seconds
+  Import took 0.063967 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000552 seconds.
+  path: Assets/Low Poly Apocalyptic City/Models/trash04.FBX
+  artifactKey: Guid(8d9bf96ba9b6f1e4985f34fb6cb49723) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Low Poly Apocalyptic City/Models/trash04.FBX using Guid(8d9bf96ba9b6f1e4985f34fb6cb49723) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '87d5d9f648f5917387e189b11722488c') in 0.090189 seconds
+  Import took 0.098008 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000526 seconds.
+  path: Assets/Low Poly Apocalyptic City/Models/Сonstruction/House02/WallExt0201.FBX
+  artifactKey: Guid(f544c50f670d6df4b90db5eb4401763f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Low Poly Apocalyptic City/Models/Сonstruction/House02/WallExt0201.FBX using Guid(f544c50f670d6df4b90db5eb4401763f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4584234deae67c40072901479c1a1af6') in 0.076170 seconds
+  Import took 0.083859 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000871 seconds.
+  path: Assets/Low Poly Apocalyptic City/Models/Сonstruction/House02/WallExtDoor02.FBX
+  artifactKey: Guid(7dd85818276f02a4d9e357b11b97274b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Low Poly Apocalyptic City/Models/Сonstruction/House02/WallExtDoor02.FBX using Guid(7dd85818276f02a4d9e357b11b97274b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4dd6043802c9839df298e7e115d0b782') in 0.081284 seconds
+  Import took 0.086274 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000611 seconds.
+  path: Assets/Low Poly Apocalyptic City/Models/Сonstruction/House02/WallExt0202.FBX
+  artifactKey: Guid(49dbe104ed7a7e344a57321037230ac8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Low Poly Apocalyptic City/Models/Сonstruction/House02/WallExt0202.FBX using Guid(49dbe104ed7a7e344a57321037230ac8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '84e58bb70e88e388349bcc491a37ee63') in 0.063567 seconds
+  Import took 0.069220 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000539 seconds.
+  path: Assets/Low Poly Apocalyptic City/Models/trash05.FBX
+  artifactKey: Guid(94514bb1847627748ad059d5c6a32072) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Low Poly Apocalyptic City/Models/trash05.FBX using Guid(94514bb1847627748ad059d5c6a32072) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '49478388062700b12f34db3649c97398') in 0.067030 seconds
+  Import took 0.072765 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000577 seconds.
+  path: Assets/Low Poly Apocalyptic City/Models/Сonstruction/Interior/till01.FBX
+  artifactKey: Guid(517715914d6f74e4bae7bd3cc295f043) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Low Poly Apocalyptic City/Models/Сonstruction/Interior/till01.FBX using Guid(517715914d6f74e4bae7bd3cc295f043) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ed0e22bd99f4920acafb5db491ff1ef6') in 0.048297 seconds
+  Import took 0.056332 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000653 seconds.
+  path: Assets/Low Poly Apocalyptic City/Models/Сonstruction/House01/WallExt01.FBX
+  artifactKey: Guid(3ecd7718ddfdd5643aa14cd5e7d14cb6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Low Poly Apocalyptic City/Models/Сonstruction/House01/WallExt01.FBX using Guid(3ecd7718ddfdd5643aa14cd5e7d14cb6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a03743fd59e793783bd2faf75d96af96') in 0.054602 seconds
+  Import took 0.061198 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000552 seconds.
+  path: Assets/Low Poly Apocalyptic City/Models/Сonstruction/House01/WallDoor02.FBX
+  artifactKey: Guid(beca13ca260f13c4284e2a68e8584385) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Low Poly Apocalyptic City/Models/Сonstruction/House01/WallDoor02.FBX using Guid(beca13ca260f13c4284e2a68e8584385) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '203a2d3eac1475ce0f43f4b1eef40528') in 0.046010 seconds
+  Import took 0.053498 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000421 seconds.
+  path: Assets/Low Poly Apocalyptic City/Models/Сonstruction/plinth04.FBX
+  artifactKey: Guid(f96ac4833991a1b45b9c3a792b6f2c6e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Low Poly Apocalyptic City/Models/Сonstruction/plinth04.FBX using Guid(f96ac4833991a1b45b9c3a792b6f2c6e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '86aa0b763b39e8606fbcf0a6b9756d5c') in 0.073793 seconds
+  Import took 0.079329 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000442 seconds.
+  path: Assets/Low Poly Apocalyptic City/Models/Сonstruction/Stair03.FBX
+  artifactKey: Guid(99fcc2a5a1ee1e047af33d33b1a5b256) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Low Poly Apocalyptic City/Models/Сonstruction/Stair03.FBX using Guid(99fcc2a5a1ee1e047af33d33b1a5b256) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '45bdbdcba25488b250cd97b50323022c') in 0.063319 seconds
+  Import took 0.069973 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000512 seconds.
+  path: Assets/Low Poly Apocalyptic City/Models/Сonstruction/Balkon.FBX
+  artifactKey: Guid(513dd022c67568b40a28f4c79730601f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Low Poly Apocalyptic City/Models/Сonstruction/Balkon.FBX using Guid(513dd022c67568b40a28f4c79730601f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '449c1d7ca6ff044e1cafbf7744b97182') in 0.046145 seconds
+  Import took 0.052332 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000646 seconds.
+  path: Assets/Low Poly Apocalyptic City/Models/Сonstruction/House01/Wall01Ruined06.FBX
+  artifactKey: Guid(5620e9fe9a0d6924a8631e0aff760d03) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Low Poly Apocalyptic City/Models/Сonstruction/House01/Wall01Ruined06.FBX using Guid(5620e9fe9a0d6924a8631e0aff760d03) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '908d46f742ae517565da24eb12459e94') in 0.058734 seconds
+  Import took 0.065954 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000500 seconds.
+  path: Assets/Low Poly Apocalyptic City/Models/Сonstruction/Interior/trashcan01.FBX
+  artifactKey: Guid(0f70aecf18fd4d64ab6bcef70041175f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Low Poly Apocalyptic City/Models/Сonstruction/Interior/trashcan01.FBX using Guid(0f70aecf18fd4d64ab6bcef70041175f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd72c08d9853f49d87f45f4af638f1a21') in 0.052790 seconds
+  Import took 0.058274 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000528 seconds.
+  path: Assets/Low Poly Apocalyptic City/Models/fan01.FBX
+  artifactKey: Guid(4ef1478c34224044fb9bdee2a8e8ed60) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Low Poly Apocalyptic City/Models/fan01.FBX using Guid(4ef1478c34224044fb9bdee2a8e8ed60) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '1e5960a52d2f8e7ac0b5557c7a992998') in 0.076718 seconds
+  Import took 0.082596 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000805 seconds.
+  path: Assets/Low Poly Apocalyptic City/Models/Сonstruction/Fence.FBX
+  artifactKey: Guid(7d8b17f74a48fe8469701fbc84dfed76) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Low Poly Apocalyptic City/Models/Сonstruction/Fence.FBX using Guid(7d8b17f74a48fe8469701fbc84dfed76) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e97937d611e182bb0276511001a68dc8') in 0.047140 seconds
+  Import took 0.053886 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000506 seconds.
+  path: Assets/Low Poly Apocalyptic City/Models/Сonstruction/Floor03.FBX
+  artifactKey: Guid(aee6bad226ac1f64ab9c74d59df0fd8b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Low Poly Apocalyptic City/Models/Сonstruction/Floor03.FBX using Guid(aee6bad226ac1f64ab9c74d59df0fd8b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e8e2225ed9cb2c26d6f466917b825046') in 0.049753 seconds
+  Import took 0.054377 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000421 seconds.
+  path: Assets/Low Poly FPS Pack - Free (Sample)/Components/Materials/Particles/Muzzleflash Material.mat
+  artifactKey: Guid(8adeec65686b8f2418219361b43c1f59) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Low Poly FPS Pack - Free (Sample)/Components/Materials/Particles/Muzzleflash Material.mat using Guid(8adeec65686b8f2418219361b43c1f59) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c1c3322643e6ebb9e82d56305ecc2e32') in 0.030095 seconds
+  Import took 0.034708 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000468 seconds.
+  path: Assets/Low Poly Apocalyptic City/Models/Сonstruction/BasementWallRuined.FBX
+  artifactKey: Guid(a15e877d71b2f6a42a1debd5e7e43f3b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Low Poly Apocalyptic City/Models/Сonstruction/BasementWallRuined.FBX using Guid(a15e877d71b2f6a42a1debd5e7e43f3b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd58ca9f03acf075d886a4a70094222a6') in 0.048823 seconds
+  Import took 0.053662 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000547 seconds.
+  path: Assets/Low Poly Apocalyptic City/Models/trash01.FBX
+  artifactKey: Guid(959b1dbe39abdc04c955da352a3f7b89) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Low Poly Apocalyptic City/Models/trash01.FBX using Guid(959b1dbe39abdc04c955da352a3f7b89) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7a6b05a58dfdd0d7751406bc1df6b034') in 0.048196 seconds
+  Import took 0.053434 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000501 seconds.
+  path: Assets/Low Poly Apocalyptic City/Models/Сonstruction/Interior/refrigerator01.FBX
+  artifactKey: Guid(c9fc7c5448d40954aa716d1d752f17e5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Low Poly Apocalyptic City/Models/Сonstruction/Interior/refrigerator01.FBX using Guid(c9fc7c5448d40954aa716d1d752f17e5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2e3010a6717fe4ba9e5a55317b65414b') in 0.060054 seconds
+  Import took 0.065468 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000526 seconds.
+  path: Assets/Low Poly Apocalyptic City/Models/Сonstruction/House01/Wall01Ruined09.FBX
+  artifactKey: Guid(6ee52451ce108414ab34f6bcea2db1cc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Low Poly Apocalyptic City/Models/Сonstruction/House01/Wall01Ruined09.FBX using Guid(6ee52451ce108414ab34f6bcea2db1cc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e80f8a198b802aeca118d50e05184608') in 0.053198 seconds
+  Import took 0.060298 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000632 seconds.
+  path: Assets/Low Poly Apocalyptic City/Models/Сonstruction/Floor01.FBX
+  artifactKey: Guid(63977a315fe42cf438c67f0012ab40cc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Low Poly Apocalyptic City/Models/Сonstruction/Floor01.FBX using Guid(63977a315fe42cf438c67f0012ab40cc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '889f6fe7fd8474d72c6a2a02185df0c3') in 0.063145 seconds
+  Import took 0.069236 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000498 seconds.
+  path: Assets/Low Poly Apocalyptic City/Models/Сonstruction/House01/Wall01Ruined02.FBX
+  artifactKey: Guid(7f82fc1f37a238144b85aac2914fa05e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Low Poly Apocalyptic City/Models/Сonstruction/House01/Wall01Ruined02.FBX using Guid(7f82fc1f37a238144b85aac2914fa05e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '70aeaaa6ae28d87de4c9147797e3e784') in 0.061167 seconds
+  Import took 0.162699 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000433 seconds.
+  path: Assets/Low Poly Apocalyptic City/Models/Grass02.FBX
+  artifactKey: Guid(2d88d94c0f595304eb8c9877556e8331) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Low Poly Apocalyptic City/Models/Grass02.FBX using Guid(2d88d94c0f595304eb8c9877556e8331) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '251aca80fd750624c091f6b17f96a85e') in 0.056925 seconds
+  Import took 0.064686 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000584 seconds.
+  path: Assets/Low Poly Apocalyptic City/Models/Сonstruction/Fence01.FBX
+  artifactKey: Guid(d1bbdd35d4faf014bb91614d8140bc83) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Low Poly Apocalyptic City/Models/Сonstruction/Fence01.FBX using Guid(d1bbdd35d4faf014bb91614d8140bc83) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'fd78fbc410b4279d7b38d06631edef03') in 0.048146 seconds
+  Import took 0.053484 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000506 seconds.
+  path: Assets/Low Poly Apocalyptic City/Models/trash06.FBX
+  artifactKey: Guid(e285c43d49831d245bd26bbcf26df44e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Low Poly Apocalyptic City/Models/trash06.FBX using Guid(e285c43d49831d245bd26bbcf26df44e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2aa28c701a88247c2d79a6c825d5fdb4') in 0.050061 seconds
+  Import took 0.056547 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000470 seconds.
+  path: Assets/Low Poly Apocalyptic City/Models/Roof01Corner.FBX
+  artifactKey: Guid(b842ab2365806124b891bd36748bd8f9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Low Poly Apocalyptic City/Models/Roof01Corner.FBX using Guid(b842ab2365806124b891bd36748bd8f9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '1eb449df57c57861bbb794b66509342c') in 0.055042 seconds
+  Import took 0.060411 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000471 seconds.
+  path: Assets/Low Poly Apocalyptic City/Models/Сonstruction/House02/Wall02Window01.FBX
+  artifactKey: Guid(da25a4d08907fdd41992ddbae3c365f5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Low Poly Apocalyptic City/Models/Сonstruction/House02/Wall02Window01.FBX using Guid(da25a4d08907fdd41992ddbae3c365f5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '89b361302b6d23072b5101ae79edaeea') in 0.065197 seconds
+  Import took 0.070339 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000431 seconds.
+  path: Assets/Low Poly Apocalyptic City/Models/Сonstruction/House02/Wall0201.FBX
+  artifactKey: Guid(65f0b23e6527a8844969e1baec8d6b3c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Low Poly Apocalyptic City/Models/Сonstruction/House02/Wall0201.FBX using Guid(65f0b23e6527a8844969e1baec8d6b3c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ef37bea2111e4322c250a1b47a168e08') in 0.064405 seconds
+  Import took 0.069168 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000465 seconds.
+  path: Assets/Low Poly Apocalyptic City/Models/Сonstruction/House01/WallExtWindow01.FBX
+  artifactKey: Guid(b1747e7442b98734e9f36234766253f1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Low Poly Apocalyptic City/Models/Сonstruction/House01/WallExtWindow01.FBX using Guid(b1747e7442b98734e9f36234766253f1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7cfb7d848ea85813a4a5c37e0128b5de') in 0.049449 seconds
+  Import took 0.055265 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000506 seconds.
+  path: Assets/Low Poly Apocalyptic City/Models/Road/road04.FBX
+  artifactKey: Guid(eced362e77a33764ebb946ec9b2c08c7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Low Poly Apocalyptic City/Models/Road/road04.FBX using Guid(eced362e77a33764ebb946ec9b2c08c7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'dc38be7e45472460a4c0c5acb4770c4c') in 0.050460 seconds
+  Import took 0.055955 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000500 seconds.
+  path: Assets/Low Poly Apocalyptic City/Models/Fence.FBX
+  artifactKey: Guid(dec6c58f983d1974faa96e2f81e178d3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Low Poly Apocalyptic City/Models/Fence.FBX using Guid(dec6c58f983d1974faa96e2f81e178d3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '740d4584020e8c9ded790bd53fa8d82e') in 0.050143 seconds
+  Import took 0.056130 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000482 seconds.
+  path: Assets/Low Poly Apocalyptic City/Models/Сonstruction/BalkonStair.FBX
+  artifactKey: Guid(f0260fec174928e43b726de31fc05e6a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Low Poly Apocalyptic City/Models/Сonstruction/BalkonStair.FBX using Guid(f0260fec174928e43b726de31fc05e6a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8bf21a256a32c0ffa0f66d52bcbdc0fc') in 0.044767 seconds
+  Import took 0.049272 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000506 seconds.
+  path: Assets/Low Poly Apocalyptic City/Models/trash09.FBX
+  artifactKey: Guid(132702e117d85094cac97f601ed11a5d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Low Poly Apocalyptic City/Models/trash09.FBX using Guid(132702e117d85094cac97f601ed11a5d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3c2666c3d8c332dc330d94f0f07faa25') in 0.059291 seconds
+  Import took 0.065243 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000480 seconds.
+  path: Assets/Low Poly Apocalyptic City/Models/Сonstruction/plinth01.FBX
+  artifactKey: Guid(78083ff944d12bb469e141d0bcd0283f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Low Poly Apocalyptic City/Models/Сonstruction/plinth01.FBX using Guid(78083ff944d12bb469e141d0bcd0283f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'cd7edcd183332a972eb31325a364cbcb') in 0.066289 seconds
+  Import took 0.073416 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000596 seconds.
+  path: Assets/Low Poly Apocalyptic City/Models/Сonstruction/House01/Wall01Ruined01.FBX
+  artifactKey: Guid(7d16275a6b6fc674a815949979fe9d1a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Low Poly Apocalyptic City/Models/Сonstruction/House01/Wall01Ruined01.FBX using Guid(7d16275a6b6fc674a815949979fe9d1a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6ae16e440f791b012932fded1b6279ee') in 0.058922 seconds
+  Import took 0.064698 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000568 seconds.
+  path: Assets/Low Poly Apocalyptic City/Models/trash07.FBX
+  artifactKey: Guid(bb35ecd893cf1574f8b81d63b47b587d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Low Poly Apocalyptic City/Models/trash07.FBX using Guid(bb35ecd893cf1574f8b81d63b47b587d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '1d98c0da72886a9a79cbe1a917c048c8') in 0.056650 seconds
+  Import took 0.062774 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000586 seconds.
+  path: Assets/Low Poly Apocalyptic City/Models/Сonstruction/Stair04.FBX
+  artifactKey: Guid(1b2e4695425779e4ea63c0b3524a1bbe) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Low Poly Apocalyptic City/Models/Сonstruction/Stair04.FBX using Guid(1b2e4695425779e4ea63c0b3524a1bbe) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3e94746b10b4f1af8501b1941c1de816') in 0.056968 seconds
+  Import took 0.065054 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000504 seconds.
+  path: Assets/Low Poly Apocalyptic City/Models/Сonstruction/plinth03.FBX
+  artifactKey: Guid(fbcaf891621bdaf4da364c15ac15d350) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Low Poly Apocalyptic City/Models/Сonstruction/plinth03.FBX using Guid(fbcaf891621bdaf4da364c15ac15d350) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '1c8036942b6859285805b5b0fae1676f') in 0.061801 seconds
+  Import took 0.067370 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.001000 seconds.
+  path: Assets/Low Poly Apocalyptic City/Models/lantern01.FBX
+  artifactKey: Guid(de9d2c2d569eecc41b747baadcc8604c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Low Poly Apocalyptic City/Models/lantern01.FBX using Guid(de9d2c2d569eecc41b747baadcc8604c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0dd5d1d41866462056403e1ff61b7796') in 0.052983 seconds
+  Import took 0.058806 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000472 seconds.
+  path: Assets/Low Poly Apocalyptic City/Models/Сonstruction/House01/WallDoor01.FBX
+  artifactKey: Guid(5c996725f0ffa43439d6a5edf99ed142) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Low Poly Apocalyptic City/Models/Сonstruction/House01/WallDoor01.FBX using Guid(5c996725f0ffa43439d6a5edf99ed142) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8f9eda87612ab0d3f1f27cd13b706a98') in 0.051963 seconds
+  Import took 0.057193 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000469 seconds.
+  path: Assets/Low Poly Apocalyptic City/Models/Сonstruction/House01/WallExtWindow0102.FBX
+  artifactKey: Guid(b497f40351e31e44faeb807fd7a08c92) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Low Poly Apocalyptic City/Models/Сonstruction/House01/WallExtWindow0102.FBX using Guid(b497f40351e31e44faeb807fd7a08c92) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '304442a3379459fa789ac4708bafb42c') in 0.083640 seconds
+  Import took 0.088723 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000452 seconds.
+  path: Assets/Low Poly Apocalyptic City/Models/Сonstruction/Floor01Ruined02.FBX
+  artifactKey: Guid(f567620c290db554bb8575ab5329823d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Low Poly Apocalyptic City/Models/Сonstruction/Floor01Ruined02.FBX using Guid(f567620c290db554bb8575ab5329823d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9737678495734539ba1e7714bc36b64f') in 0.070281 seconds
+  Import took 0.077593 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000540 seconds.
+  path: Assets/Low Poly Apocalyptic City/Models/Сonstruction/House02/Wall02Door03.FBX
+  artifactKey: Guid(66e3e934530be6e4980ccbbc9ede07c4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Low Poly Apocalyptic City/Models/Сonstruction/House02/Wall02Door03.FBX using Guid(66e3e934530be6e4980ccbbc9ede07c4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '38a8e44caf01a9eb1656b04d35ec3c0d') in 0.077386 seconds
+  Import took 0.083999 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000579 seconds.
+  path: Assets/Low Poly Apocalyptic City/Models/border02.FBX
+  artifactKey: Guid(e3694df59bc2a504dbd44db4630a2422) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Low Poly Apocalyptic City/Models/border02.FBX using Guid(e3694df59bc2a504dbd44db4630a2422) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ba85f7cecfe9bbe9a24ccebcb9bd8e95') in 0.070584 seconds
+  Import took 0.077975 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000594 seconds.
+  path: Assets/Low Poly Apocalyptic City/Models/trash02.FBX
+  artifactKey: Guid(69cbee73934c80d4ca20de925c1a796c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Low Poly Apocalyptic City/Models/trash02.FBX using Guid(69cbee73934c80d4ca20de925c1a796c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd9338c1a515e613789be0c8f3c11ee26') in 0.060098 seconds
+  Import took 0.068998 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000539 seconds.
+  path: Assets/Low Poly Apocalyptic City/Models/Сonstruction/House01/Wall01Ruined03.FBX
+  artifactKey: Guid(d06b6f95d48d8a644ae7a5c218e1f1e9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Low Poly Apocalyptic City/Models/Сonstruction/House01/Wall01Ruined03.FBX using Guid(d06b6f95d48d8a644ae7a5c218e1f1e9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd573849978cb2a19241c01fe0f9459b3') in 0.060417 seconds
+  Import took 0.067419 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000556 seconds.
+  path: Assets/Low Poly Apocalyptic City/Models/Roof02.FBX
+  artifactKey: Guid(936e4e46a08774c46950c2896258bc4d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Low Poly Apocalyptic City/Models/Roof02.FBX using Guid(936e4e46a08774c46950c2896258bc4d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '21a8a4de6e1f9c5b738b640b8f538dcb') in 0.053920 seconds
+  Import took 0.061831 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000605 seconds.
+  path: Assets/Low Poly Apocalyptic City/Models/Сonstruction/House01/Wall01Ruined07.FBX
+  artifactKey: Guid(860882bcd5bb7be44ae9c5bfadd54b3b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Low Poly Apocalyptic City/Models/Сonstruction/House01/Wall01Ruined07.FBX using Guid(860882bcd5bb7be44ae9c5bfadd54b3b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7f3801dec8dc5291f51013541b487f81') in 0.061414 seconds
+  Import took 0.067662 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000495 seconds.
+  path: Assets/Low Poly Apocalyptic City/Models/Grass01.FBX
+  artifactKey: Guid(e9c38fc9b43e015428d6ce0578322dbc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Low Poly Apocalyptic City/Models/Grass01.FBX using Guid(e9c38fc9b43e015428d6ce0578322dbc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c3d67c9128794959cf78d7dc0477cd8c') in 0.055315 seconds
+  Import took 0.061154 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000553 seconds.
+  path: Assets/Low Poly Apocalyptic City/Models/border01.FBX
+  artifactKey: Guid(34de36073412f21458c7282e84b08fc3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Low Poly Apocalyptic City/Models/border01.FBX using Guid(34de36073412f21458c7282e84b08fc3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'bb6bf8b1be00fdd047924cfbede7ce03') in 0.048684 seconds
+  Import took 0.056479 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000538 seconds.
+  path: Assets/Low Poly Apocalyptic City/Models/Сonstruction/House01/Wall01Ruined04.FBX
+  artifactKey: Guid(6d79417008629504bb5546775b6ce251) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Low Poly Apocalyptic City/Models/Сonstruction/House01/Wall01Ruined04.FBX using Guid(6d79417008629504bb5546775b6ce251) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f2ffd1f4405971b17dde3cc28900bb6e') in 0.049886 seconds
+  Import took 0.055827 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000809 seconds.
+  path: Assets/Low Poly Apocalyptic City/Models/Сonstruction/FenceStair.FBX
+  artifactKey: Guid(f97d7b057d69d434e801109c44bfada2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Low Poly Apocalyptic City/Models/Сonstruction/FenceStair.FBX using Guid(f97d7b057d69d434e801109c44bfada2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '32a3bc749e216f5a277a250f19d031c7') in 0.048583 seconds
+  Import took 0.054023 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000455 seconds.
+  path: Assets/Low Poly Apocalyptic City/Models/Сonstruction/House01/Wall01Ruined05.FBX
+  artifactKey: Guid(fdbc25c1fab70fe44a3383949700a2f6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Low Poly Apocalyptic City/Models/Сonstruction/House01/Wall01Ruined05.FBX using Guid(fdbc25c1fab70fe44a3383949700a2f6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd47914efd394583257a2031e50a52c57') in 0.074853 seconds
+  Import took 0.080394 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000589 seconds.
+  path: Assets/Low Poly Apocalyptic City/Models/Сonstruction/plinth02.FBX
+  artifactKey: Guid(de1a905f254ad1945ac20ec37696138f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Low Poly Apocalyptic City/Models/Сonstruction/plinth02.FBX using Guid(de1a905f254ad1945ac20ec37696138f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a26022d8bdbc94fc5698fe600c831190') in 0.075994 seconds
+  Import took 0.091234 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000664 seconds.
+  path: Assets/Low Poly Apocalyptic City/Models/Сonstruction/House02/Wall02Door02.FBX
+  artifactKey: Guid(f868cbebe211ed34394d60356b089242) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Low Poly Apocalyptic City/Models/Сonstruction/House02/Wall02Door02.FBX using Guid(f868cbebe211ed34394d60356b089242) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd170e8385143363344dbfa6e4a8bad7f') in 0.077174 seconds
+  Import took 0.084724 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000610 seconds.
+  path: Assets/Low Poly Apocalyptic City/Models/Road/Border01.FBX
+  artifactKey: Guid(3e1dd0a235855a24290279aefbc86fb5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Low Poly Apocalyptic City/Models/Road/Border01.FBX using Guid(3e1dd0a235855a24290279aefbc86fb5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'dbcef63d14edc3d35b97e87d0642cea5') in 0.103345 seconds
+  Import took 0.114618 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000622 seconds.
+  path: Assets/Low Poly Apocalyptic City/Models/crack02.FBX
+  artifactKey: Guid(58493bd65933cbd479fd39c24976545c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Low Poly Apocalyptic City/Models/crack02.FBX using Guid(58493bd65933cbd479fd39c24976545c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e2c63e55b1ae8847d21741973077051d') in 0.165427 seconds
+  Import took 0.182096 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.010003 seconds.
+  path: Assets/Low Poly Apocalyptic City/Models/Сonstruction/StairRailing.FBX
+  artifactKey: Guid(b194815e143091f40b0349c6cf6943d8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Low Poly Apocalyptic City/Models/Сonstruction/StairRailing.FBX using Guid(b194815e143091f40b0349c6cf6943d8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '498a4c307beaf899461cf07d60141bf6') in 0.059297 seconds
+  Import took 0.066593 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000709 seconds.
+  path: Assets/Low Poly Apocalyptic City/Models/crack04.FBX
+  artifactKey: Guid(dcd3833580ba61b41accd0685dc19287) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Low Poly Apocalyptic City/Models/crack04.FBX using Guid(dcd3833580ba61b41accd0685dc19287) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'cea06d69f37d03871d5f5747fbc7a47f') in 0.059156 seconds
+  Import took 0.067580 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000613 seconds.
+  path: Assets/Low Poly Apocalyptic City/Models/trash03.FBX
+  artifactKey: Guid(5574f1f69dbc9484d8c1511e436e1b46) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Low Poly Apocalyptic City/Models/trash03.FBX using Guid(5574f1f69dbc9484d8c1511e436e1b46) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2e9c3e0c5f8afaa71b5b3d57a1fea3e4') in 0.065762 seconds
+  Import took 0.072140 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000575 seconds.
+  path: Assets/Low Poly Apocalyptic City/Models/Сonstruction/House01/Wall01Ruined08.FBX
+  artifactKey: Guid(8884263a86fd99b4f89c9a0014a10df5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Low Poly Apocalyptic City/Models/Сonstruction/House01/Wall01Ruined08.FBX using Guid(8884263a86fd99b4f89c9a0014a10df5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e97f693dde58a53b10447a2c6436e1fb') in 0.090032 seconds
+  Import took 0.097858 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000686 seconds.
+  path: Assets/Low Poly Apocalyptic City/Models/Сonstruction/House01/WallExtDoor02.FBX
+  artifactKey: Guid(9076b86e84f3123499732950275ddd56) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Low Poly Apocalyptic City/Models/Сonstruction/House01/WallExtDoor02.FBX using Guid(9076b86e84f3123499732950275ddd56) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2f8ba3222358a561324d3f601d6dce43') in 0.071932 seconds
+  Import took 0.080249 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000521 seconds.
+  path: Assets/Low Poly Apocalyptic City/Models/Сonstruction/Interior/tv01.FBX
+  artifactKey: Guid(cc54c76228ad09043b3be883ac8f4dde) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Low Poly Apocalyptic City/Models/Сonstruction/Interior/tv01.FBX using Guid(cc54c76228ad09043b3be883ac8f4dde) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'db8ea0b3bcad0bee15e37ed6bf5ae571') in 0.066108 seconds
+  Import took 0.073709 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000620 seconds.
+  path: Assets/Low Poly Apocalyptic City/Models/Сonstruction/Floor02.FBX
+  artifactKey: Guid(76f18cca6333fe244923a7e9a3b18465) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Low Poly Apocalyptic City/Models/Сonstruction/Floor02.FBX using Guid(76f18cca6333fe244923a7e9a3b18465) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '29891e504fa7ed6b2f638df37084bb51') in 0.085844 seconds
+  Import took 0.093122 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000846 seconds.
+  path: Assets/Low Poly Apocalyptic City/Models/Сonstruction/Interior/Chear01.FBX
+  artifactKey: Guid(ae1a49543af892249b211c3f37169207) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Low Poly Apocalyptic City/Models/Сonstruction/Interior/Chear01.FBX using Guid(ae1a49543af892249b211c3f37169207) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'aaa982ddd93d1c3496e399c0c42e9cd0') in 0.072652 seconds
+  Import took 0.080100 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000751 seconds.
+  path: Assets/Low Poly Apocalyptic City/Models/Сonstruction/Interior/trashcan02.FBX
+  artifactKey: Guid(ec539990b85eb7a4bb74714b625f7b7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Low Poly Apocalyptic City/Models/Сonstruction/Interior/trashcan02.FBX using Guid(ec539990b85eb7a4bb74714b625f7b7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c75cb346a674ab19efaf67e2a2d4a2a7') in 0.085176 seconds
+  Import took 0.092349 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000600 seconds.
+  path: Assets/Low Poly Apocalyptic City/Models/Сonstruction/Floor02Ruined.FBX
+  artifactKey: Guid(3d89527d43935004d8e5f1b7ddedabaa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Low Poly Apocalyptic City/Models/Сonstruction/Floor02Ruined.FBX using Guid(3d89527d43935004d8e5f1b7ddedabaa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b51f33189acea86b062e1b8c4ce660dc') in 0.071506 seconds
+  Import took 0.078042 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000629 seconds.
+  path: Assets/Low Poly Apocalyptic City/Models/Сonstruction/House01/WallExtDoor01.FBX
+  artifactKey: Guid(0d999dcdcc335a54899736c680b8dc35) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Low Poly Apocalyptic City/Models/Сonstruction/House01/WallExtDoor01.FBX using Guid(0d999dcdcc335a54899736c680b8dc35) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '29feb032a7a4e01f05a7bf2408a5c62e') in 0.059169 seconds
+  Import took 0.066362 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000611 seconds.
+  path: Assets/Low Poly Apocalyptic City/Models/Road/Car2.FBX
+  artifactKey: Guid(09b3d0e1bc1affe49b18c09f353ea3c5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Low Poly Apocalyptic City/Models/Road/Car2.FBX using Guid(09b3d0e1bc1affe49b18c09f353ea3c5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a0ed2d533ab9662ed68a3de3da05e786') in 0.073681 seconds
+  Import took 0.081731 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000692 seconds.
+  path: Assets/BOXOPHOBIC/Skybox Cubemap Extended
+  artifactKey: Guid(06fe4632bd09e57468b68c174e122233) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/BOXOPHOBIC/Skybox Cubemap Extended using Guid(06fe4632bd09e57468b68c174e122233) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6839f11ee165165d8a07758fec911b6a') in 0.019600 seconds
+  Import took 0.026585 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000596 seconds.
+  path: Assets/Low Poly Apocalyptic City/Models/Ruined.FBX
+  artifactKey: Guid(3021abe4eab9fd941acb594b32f9dc5d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Low Poly Apocalyptic City/Models/Ruined.FBX using Guid(3021abe4eab9fd941acb594b32f9dc5d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3aeac160c07af7cbc705376b66127f15') in 0.061669 seconds
+  Import took 0.069150 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000709 seconds.
+  path: Assets/Low Poly Apocalyptic City/Models/Сonstruction/House01/Wall01.FBX
+  artifactKey: Guid(7e472d59ac50bda4db3cc996b7a067b3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Low Poly Apocalyptic City/Models/Сonstruction/House01/Wall01.FBX using Guid(7e472d59ac50bda4db3cc996b7a067b3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '1f1a300458d74cf9a314bc959c1f1e3f') in 0.057086 seconds
+  Import took 0.064240 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000612 seconds.
+  path: Assets/Low Poly Apocalyptic City/Models/Сonstruction/Interior/Wall02.FBX
+  artifactKey: Guid(741845ba97d049f4d866ab935651b9a8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Low Poly Apocalyptic City/Models/Сonstruction/Interior/Wall02.FBX using Guid(741845ba97d049f4d866ab935651b9a8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd66569799a4afdfae539efd4f3e08ba8') in 0.062215 seconds
+  Import took 0.069216 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000629 seconds.
+  path: Assets/Low Poly Apocalyptic City/Models/Сonstruction/BasementWall.FBX
+  artifactKey: Guid(640765d057038b7469a1d2dd67f488ed) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Low Poly Apocalyptic City/Models/Сonstruction/BasementWall.FBX using Guid(640765d057038b7469a1d2dd67f488ed) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2048315a954a02839606cda59ed20637') in 0.059150 seconds
+  Import took 0.065140 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000566 seconds.
+  path: Assets/Low Poly Apocalyptic City/Models/Сonstruction/Interior/wardrobe01.FBX
+  artifactKey: Guid(57fcbe71b1a4fc24c8eaadee14582308) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Low Poly Apocalyptic City/Models/Сonstruction/Interior/wardrobe01.FBX using Guid(57fcbe71b1a4fc24c8eaadee14582308) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '919c34236bb4237254035d51c1db6a55') in 0.060985 seconds
+  Import took 0.068385 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000572 seconds.
+  path: Assets/Low Poly Apocalyptic City/Models/Road/Wheel01.FBX
+  artifactKey: Guid(39db50b8be4ee614b91b30df65415b77) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Low Poly Apocalyptic City/Models/Road/Wheel01.FBX using Guid(39db50b8be4ee614b91b30df65415b77) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '47ea2aecd63ca1583186abb3ba229c9e') in 0.058219 seconds
+  Import took 0.065625 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000549 seconds.
+  path: Assets/Low Poly Apocalyptic City/Models/Сonstruction/Interior/box01.FBX
+  artifactKey: Guid(4e5fa34dc6cebf246a635d276d63d28c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Low Poly Apocalyptic City/Models/Сonstruction/Interior/box01.FBX using Guid(4e5fa34dc6cebf246a635d276d63d28c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e321d36e751e4da64b15763fa29973a8') in 0.069934 seconds
+  Import took 0.076169 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000519 seconds.
+  path: Assets/Low Poly Apocalyptic City/Models/Сonstruction/Interior/Door01.FBX
+  artifactKey: Guid(562ba0b481d4c6744a4f042184eda6c9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Low Poly Apocalyptic City/Models/Сonstruction/Interior/Door01.FBX using Guid(562ba0b481d4c6744a4f042184eda6c9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '12facf3a29a8a9b6f5d4accdd4049b88') in 0.062460 seconds
+  Import took 0.068127 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000464 seconds.
+  path: Assets/Low Poly Apocalyptic City/Models/Roof01.FBX
+  artifactKey: Guid(9aad288bd0a4cc74a932d85fc4ac89f2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Low Poly Apocalyptic City/Models/Roof01.FBX using Guid(9aad288bd0a4cc74a932d85fc4ac89f2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5f9466321ef383c33eb1becfb08e4227') in 0.053147 seconds
+  Import took 0.059201 seconds .
+
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.064704 seconds.
+Begin MonoManager ReloadAssembly
+Symbol file LoadedFromMemory is not a mono symbol file
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 1.55 ms, found 0 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Invoked RoslynAnalysisRunner static constructor.
+RoslynAnalysisRunner will not be running.
+RoslynAnalysisRunner has terminated.
+Mono: successfully reloaded assembly
+- Completed reload, in  2.945 seconds
+Platform modules already initialized, skipping
+Refreshing native plugins compatible for Editor in 0.91 ms, found 0 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 1247 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 90.0 MB.
+System memory in use after: 90.0 MB.
+
+Unloading 31 unused Assets to reduce memory usage. Loaded Objects now: 1786.
+Total: 4.664000 ms (FindLiveObjects: 0.508000 ms CreateObjectMapping: 0.210400 ms MarkObjects: 3.727600 ms  DeleteObjects: 0.214100 ms)
+
+========================================================================
+Received Import Request.
+  Time since last request: 112.467050 seconds.
+  path: Assets/BOXOPHOBIC/Skybox Cubemap Extended/Demo/Textures/Polyverse Skies - Blue Sky.png
+  artifactKey: Guid(beb1457d375110e468b8d8e1f29fccea) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/BOXOPHOBIC/Skybox Cubemap Extended/Demo/Textures/Polyverse Skies - Blue Sky.png using Guid(beb1457d375110e468b8d8e1f29fccea) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c9093c209c0f2392c20c7fae5e2a836d') in 0.455909 seconds
+  Import took 0.468389 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.004126 seconds.
+  path: Assets/BOXOPHOBIC/Skybox Cubemap Extended/Demo/Textures/Polyverse Skies - Blue Sky.png
+  artifactKey: Guid(beb1457d375110e468b8d8e1f29fccea) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/BOXOPHOBIC/Skybox Cubemap Extended/Demo/Textures/Polyverse Skies - Blue Sky.png using Guid(beb1457d375110e468b8d8e1f29fccea) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c9093c209c0f2392c20c7fae5e2a836d') in 0.315467 seconds
+  Import took 0.328239 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 61.976940 seconds.
   path: Assets/Project FPS/Prefabs/FPSPlayer13.prefab
   artifactKey: Guid(12845470bd06193428ba7930d79e39da) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Project FPS/Prefabs/FPSPlayer13.prefab using Guid(12845470bd06193428ba7930d79e39da) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7f71769121bc99df2207753ac610b109') in 0.348811 seconds
-  Import took 0.367687 seconds .
-
-========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.009628 seconds.
-Begin MonoManager ReloadAssembly
-Symbol file LoadedFromMemory is not a mono symbol file
-Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 0.56 ms, found 0 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Invoked RoslynAnalysisRunner static constructor.
-RoslynAnalysisRunner will not be running.
-RoslynAnalysisRunner has terminated.
-Mono: successfully reloaded assembly
-- Completed reload, in  0.999 seconds
-Platform modules already initialized, skipping
-Refreshing native plugins compatible for Editor in 0.55 ms, found 0 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 1193 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 88.6 MB.
-System memory in use after: 88.7 MB.
-
-Unloading 28 unused Assets to reduce memory usage. Loaded Objects now: 1753.
-Total: 2.013200 ms (FindLiveObjects: 0.139500 ms CreateObjectMapping: 0.030100 ms MarkObjects: 1.791300 ms  DeleteObjects: 0.051000 ms)
+Start importing Assets/Project FPS/Prefabs/FPSPlayer13.prefab using Guid(12845470bd06193428ba7930d79e39da) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3d2e1fa37844679eeab9e42d311cf40c') in 0.863952 seconds
+  Import took 0.892531 seconds .
 
 ========================================================================
 Received Import Request.
-  Time since last request: 36.695017 seconds.
-  path: Assets/Project FPS/Prefabs/FPSPlayer13.prefab
-  artifactKey: Guid(12845470bd06193428ba7930d79e39da) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Project FPS/Prefabs/FPSPlayer13.prefab using Guid(12845470bd06193428ba7930d79e39da) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e687143ea461e2a71e72a503b7a285f4') in 0.358702 seconds
-  Import took 0.377701 seconds .
-
-========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.010359 seconds.
-Begin MonoManager ReloadAssembly
-Symbol file LoadedFromMemory is not a mono symbol file
-Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 0.56 ms, found 0 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Invoked RoslynAnalysisRunner static constructor.
-RoslynAnalysisRunner will not be running.
-RoslynAnalysisRunner has terminated.
-Mono: successfully reloaded assembly
-- Completed reload, in  0.953 seconds
-Platform modules already initialized, skipping
-Refreshing native plugins compatible for Editor in 0.47 ms, found 0 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 1193 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 88.6 MB.
-System memory in use after: 88.7 MB.
-
-Unloading 28 unused Assets to reduce memory usage. Loaded Objects now: 1757.
-Total: 2.037200 ms (FindLiveObjects: 0.197900 ms CreateObjectMapping: 0.037600 ms MarkObjects: 1.749900 ms  DeleteObjects: 0.050400 ms)
+  Time since last request: 16.186368 seconds.
+  path: Assets/Resources/Images/off_b.png
+  artifactKey: Guid(122110a0fca2d4e41b1676bde5d313f1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/Images/off_b.png using Guid(122110a0fca2d4e41b1676bde5d313f1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'fff11bbc95bb170b275e1e73863e3c93') in 0.028687 seconds
+  Import took 0.033427 seconds .
 
 ========================================================================
 Received Import Request.
-  Time since last request: 148.090486 seconds.
-  path: Assets/Project FPS/Prefabs/FPSPlayer13.prefab
-  artifactKey: Guid(12845470bd06193428ba7930d79e39da) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Project FPS/Prefabs/FPSPlayer13.prefab using Guid(12845470bd06193428ba7930d79e39da) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c2a5e262905ef417485147cb7bd4c8f3') in 0.364959 seconds
-  Import took 0.385137 seconds .
-
-========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.011697 seconds.
-Begin MonoManager ReloadAssembly
-Symbol file LoadedFromMemory is not a mono symbol file
-Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 0.45 ms, found 0 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Invoked RoslynAnalysisRunner static constructor.
-RoslynAnalysisRunner will not be running.
-RoslynAnalysisRunner has terminated.
-Mono: successfully reloaded assembly
-- Completed reload, in  0.954 seconds
-Platform modules already initialized, skipping
-Refreshing native plugins compatible for Editor in 0.46 ms, found 0 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 1193 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 88.7 MB.
-System memory in use after: 88.8 MB.
-
-Unloading 28 unused Assets to reduce memory usage. Loaded Objects now: 1761.
-Total: 1.761100 ms (FindLiveObjects: 0.161200 ms CreateObjectMapping: 0.030500 ms MarkObjects: 1.522700 ms  DeleteObjects: 0.045500 ms)
-
-========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.009669 seconds.
-Begin MonoManager ReloadAssembly
-Symbol file LoadedFromMemory is not a mono symbol file
-Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 0.75 ms, found 0 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Invoked RoslynAnalysisRunner static constructor.
-RoslynAnalysisRunner will not be running.
-RoslynAnalysisRunner has terminated.
-Mono: successfully reloaded assembly
-- Completed reload, in  0.975 seconds
-Platform modules already initialized, skipping
-Refreshing native plugins compatible for Editor in 0.45 ms, found 0 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 1193 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 88.7 MB.
-System memory in use after: 88.8 MB.
-
-Unloading 22 unused Assets to reduce memory usage. Loaded Objects now: 1764.
-Total: 1.867300 ms (FindLiveObjects: 0.233400 ms CreateObjectMapping: 0.058000 ms MarkObjects: 1.551400 ms  DeleteObjects: 0.023200 ms)
+  Time since last request: 0.039939 seconds.
+  path: Assets/Resources/Images/off_b.png
+  artifactKey: Guid(122110a0fca2d4e41b1676bde5d313f1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/Images/off_b.png using Guid(122110a0fca2d4e41b1676bde5d313f1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'fff11bbc95bb170b275e1e73863e3c93') in 0.023394 seconds
+  Import took 0.027838 seconds .
 
 ========================================================================
 Received Import Request.
-  Time since last request: 138.013732 seconds.
-  path: Assets/Resources/Images/off_w.png
-  artifactKey: Guid(8c7748fd872a4e74b92778534f930f8d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/Images/off_w.png using Guid(8c7748fd872a4e74b92778534f930f8d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd89e9854645cf5a240f838e8bfdf5e40') in 0.048818 seconds
-  Import took 0.051927 seconds .
+  Time since last request: 6.152282 seconds.
+  path: Assets/Resources/Images/off_b.png
+  artifactKey: Guid(122110a0fca2d4e41b1676bde5d313f1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/Images/off_b.png using Guid(122110a0fca2d4e41b1676bde5d313f1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b23ea7f38d5546ea004b789317847974') in 0.059817 seconds
+  Import took 0.065784 seconds .
 
 ========================================================================
 Received Import Request.
-  Time since last request: 0.378705 seconds.
-  path: Assets/Resources/Images/effect_g.png
-  artifactKey: Guid(86ef34ec3ec829043b5e05e700119fd3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/Images/effect_g.png using Guid(86ef34ec3ec829043b5e05e700119fd3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '74fc7c7605c5885d2a37006650a8b7a8') in 0.012145 seconds
-  Import took 0.014571 seconds .
-
-========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.008862 seconds.
-Begin MonoManager ReloadAssembly
-Symbol file LoadedFromMemory is not a mono symbol file
-Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 0.58 ms, found 0 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Invoked RoslynAnalysisRunner static constructor.
-RoslynAnalysisRunner will not be running.
-RoslynAnalysisRunner has terminated.
-Mono: successfully reloaded assembly
-- Completed reload, in  1.099 seconds
-Platform modules already initialized, skipping
-Refreshing native plugins compatible for Editor in 0.47 ms, found 0 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 1193 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 88.7 MB.
-System memory in use after: 88.8 MB.
-
-Unloading 22 unused Assets to reduce memory usage. Loaded Objects now: 1768.
-Total: 1.731600 ms (FindLiveObjects: 0.150000 ms CreateObjectMapping: 0.029200 ms MarkObjects: 1.532100 ms  DeleteObjects: 0.019000 ms)
-
-========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.010365 seconds.
-Begin MonoManager ReloadAssembly
-Symbol file LoadedFromMemory is not a mono symbol file
-Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 0.80 ms, found 0 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Invoked RoslynAnalysisRunner static constructor.
-RoslynAnalysisRunner will not be running.
-RoslynAnalysisRunner has terminated.
-Mono: successfully reloaded assembly
-- Completed reload, in  1.270 seconds
-Platform modules already initialized, skipping
-Refreshing native plugins compatible for Editor in 0.64 ms, found 0 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 1193 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 88.7 MB.
-System memory in use after: 88.8 MB.
-
-Unloading 22 unused Assets to reduce memory usage. Loaded Objects now: 1771.
-Total: 2.520600 ms (FindLiveObjects: 0.196800 ms CreateObjectMapping: 0.034700 ms MarkObjects: 2.261400 ms  DeleteObjects: 0.025900 ms)
+  Time since last request: 2.646334 seconds.
+  path: Assets/Resources/Images/on_w.png
+  artifactKey: Guid(0df00fd3402055f48b09ed73204f9ae0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/Images/on_w.png using Guid(0df00fd3402055f48b09ed73204f9ae0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ce856bea8e7fd410341acaa27239ead6') in 0.020250 seconds
+  Import took 0.024680 seconds .
 
 ========================================================================
 Received Import Request.
-  Time since last request: 562.455014 seconds.
-  path: Assets/Resources/Images/map.png
-  artifactKey: Guid(25d42a354bc18134494983a9be39e74c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/Images/map.png using Guid(25d42a354bc18134494983a9be39e74c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '319b10866a8bcd1eb68753f496712358') in 0.051034 seconds
-  Import took 0.059579 seconds .
+  Time since last request: 0.001682 seconds.
+  path: Assets/Resources/Images/on_w.png
+  artifactKey: Guid(0df00fd3402055f48b09ed73204f9ae0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/Images/on_w.png using Guid(0df00fd3402055f48b09ed73204f9ae0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ce856bea8e7fd410341acaa27239ead6') in 0.017254 seconds
+  Import took 0.021752 seconds .
 
 ========================================================================
 Received Import Request.
-  Time since last request: 6.239902 seconds.
-  path: Assets/Resources/Images/map.png
-  artifactKey: Guid(25d42a354bc18134494983a9be39e74c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/Images/map.png using Guid(25d42a354bc18134494983a9be39e74c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3f375a20bfd0aaa806d0daa9ff68a68d') in 0.031783 seconds
-  Import took 0.034503 seconds .
-
-========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.010559 seconds.
-Begin MonoManager ReloadAssembly
-Symbol file LoadedFromMemory is not a mono symbol file
-Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 0.46 ms, found 0 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Invoked RoslynAnalysisRunner static constructor.
-RoslynAnalysisRunner will not be running.
-RoslynAnalysisRunner has terminated.
-Mono: successfully reloaded assembly
-- Completed reload, in  1.016 seconds
-Platform modules already initialized, skipping
-Refreshing native plugins compatible for Editor in 0.48 ms, found 0 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 1193 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 88.7 MB.
-System memory in use after: 88.8 MB.
-
-Unloading 22 unused Assets to reduce memory usage. Loaded Objects now: 1775.
-Total: 1.676500 ms (FindLiveObjects: 0.148600 ms CreateObjectMapping: 0.030200 ms MarkObjects: 1.478100 ms  DeleteObjects: 0.018700 ms)
+  Time since last request: 6.815730 seconds.
+  path: Assets/Resources/Images/on_w.png
+  artifactKey: Guid(0df00fd3402055f48b09ed73204f9ae0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/Images/on_w.png using Guid(0df00fd3402055f48b09ed73204f9ae0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b5518fe7b284edb13ae2c08fe7ff7b48') in 0.032535 seconds
+  Import took 0.036691 seconds .
 
 ========================================================================
 Received Import Request.
-  Time since last request: 90.264783 seconds.
-  path: Assets/Resources/Images/killscore.png
-  artifactKey: Guid(9308599c0ec54ca4ebfd5500750b0dd0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/Images/killscore.png using Guid(9308599c0ec54ca4ebfd5500750b0dd0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '04463485aecb91fb29674914354ab08e') in 0.049254 seconds
-  Import took 0.052082 seconds .
-
-========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.010249 seconds.
-Begin MonoManager ReloadAssembly
-Symbol file LoadedFromMemory is not a mono symbol file
-Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 0.50 ms, found 0 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Invoked RoslynAnalysisRunner static constructor.
-RoslynAnalysisRunner will not be running.
-RoslynAnalysisRunner has terminated.
-Mono: successfully reloaded assembly
-- Completed reload, in  1.040 seconds
-Platform modules already initialized, skipping
-Refreshing native plugins compatible for Editor in 0.60 ms, found 0 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 1193 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 88.7 MB.
-System memory in use after: 88.8 MB.
-
-Unloading 22 unused Assets to reduce memory usage. Loaded Objects now: 1779.
-Total: 1.828400 ms (FindLiveObjects: 0.159700 ms CreateObjectMapping: 0.030700 ms MarkObjects: 1.612500 ms  DeleteObjects: 0.024700 ms)
-
-========================================================================
-Received Import Request.
-  Time since last request: 62.295430 seconds.
-  path: Assets/Resources/Images/effect_g.png
-  artifactKey: Guid(86ef34ec3ec829043b5e05e700119fd3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/Images/effect_g.png using Guid(86ef34ec3ec829043b5e05e700119fd3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f918562b97a9f2ce902bf46a8453a419') in 0.068252 seconds
-  Import took 0.071049 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 1.207608 seconds.
-  path: Assets/Resources/Images/effect_r.png
-  artifactKey: Guid(2a0afec3862a3634496041fa304c132c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/Images/effect_r.png using Guid(2a0afec3862a3634496041fa304c132c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '87dd491c241edf9bd84270ca6f50889d') in 0.011469 seconds
-  Import took 0.013886 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 2.396824 seconds.
-  path: Assets/Resources/Images/effect_r.png
-  artifactKey: Guid(2a0afec3862a3634496041fa304c132c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/Images/effect_r.png using Guid(2a0afec3862a3634496041fa304c132c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'fff824d23d2be275f71f9a4a3655f380') in 0.015740 seconds
-  Import took 0.018553 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 73.195819 seconds.
+  Time since last request: 12.372820 seconds.
   path: Assets/Resources/Images/triangle.png
   artifactKey: Guid(753751c107aa7034999b1bc8d73a43e0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/Images/triangle.png using Guid(753751c107aa7034999b1bc8d73a43e0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '54950a2a64476c0a162658448c37f3e0') in 0.014551 seconds
-  Import took 0.017123 seconds .
+Start importing Assets/Resources/Images/triangle.png using Guid(753751c107aa7034999b1bc8d73a43e0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '24cd04e0f6a19afa03489a605b40aede') in 0.052664 seconds
+  Import took 0.058808 seconds .
 
 ========================================================================
 Received Import Request.
-  Time since last request: 2.638222 seconds.
+  Time since last request: 0.012186 seconds.
   path: Assets/Resources/Images/triangle.png
   artifactKey: Guid(753751c107aa7034999b1bc8d73a43e0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/Images/triangle.png using Guid(753751c107aa7034999b1bc8d73a43e0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '95e45032a75eeee8fc7f571e78f302b8') in 0.019163 seconds
-  Import took 0.022019 seconds .
+Start importing Assets/Resources/Images/triangle.png using Guid(753751c107aa7034999b1bc8d73a43e0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '24cd04e0f6a19afa03489a605b40aede') in 0.030963 seconds
+  Import took 0.036158 seconds .
 
 ========================================================================
 Received Import Request.
-  Time since last request: 92.858731 seconds.
+  Time since last request: 2.240612 seconds.
+  path: Assets/Resources/Images/setting.png
+  artifactKey: Guid(b26747ef3da7b1a4cae654beaffff104) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/Images/setting.png using Guid(b26747ef3da7b1a4cae654beaffff104) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'dc3409fde4675bb196af588774c2a462') in 0.044821 seconds
+  Import took 0.049158 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.541354 seconds.
+  path: Assets/Resources/Images/map.png
+  artifactKey: Guid(25d42a354bc18134494983a9be39e74c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/Images/map.png using Guid(25d42a354bc18134494983a9be39e74c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3ef05e6cbaa7f678f713f3c413bf88d6') in 0.053760 seconds
+  Import took 0.059041 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.435752 seconds.
   path: Assets/Resources/Images/killscore.png
   artifactKey: Guid(9308599c0ec54ca4ebfd5500750b0dd0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/Images/killscore.png using Guid(9308599c0ec54ca4ebfd5500750b0dd0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '98011246db7ac71d9f215954e8509141') in 0.013817 seconds
-  Import took 0.016404 seconds .
+Start importing Assets/Resources/Images/killscore.png using Guid(9308599c0ec54ca4ebfd5500750b0dd0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '13c9f7a6370cca44cd7b87aacbafa79e') in 0.040862 seconds
+  Import took 0.046129 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 57.100958 seconds.
+  path: Assets/Scenes
+  artifactKey: Guid(399bc6499226a6e489548149b726ee7f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes using Guid(399bc6499226a6e489548149b726ee7f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '27958238b5ba6817aa40a88e14ba8da0') in 0.019691 seconds
+  Import took 0.024812 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 4.963982 seconds.
+  path: Assets/Project FPS/Scenes/Title&Lobby.unity
+  artifactKey: Guid(9fc0d4010bbf28b4594072e72b8655ab) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Project FPS/Scenes/Title&Lobby.unity using Guid(9fc0d4010bbf28b4594072e72b8655ab) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a755aafa897ac9ed7c45d3ae764631b6') in 0.020413 seconds
+  Import took 0.026517 seconds .
 
 ========================================================================
 Received Prepare
 Registering precompiled user dll's ...
-Registered in 0.011728 seconds.
+Registered in 0.038000 seconds.
 Begin MonoManager ReloadAssembly
 Symbol file LoadedFromMemory is not a mono symbol file
 Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 0.45 ms, found 0 plugins.
+Refreshing native plugins compatible for Editor in 0.77 ms, found 0 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Invoked RoslynAnalysisRunner static constructor.
 RoslynAnalysisRunner will not be running.
 RoslynAnalysisRunner has terminated.
 Mono: successfully reloaded assembly
-- Completed reload, in  1.105 seconds
-Platform modules already initialized, skipping
-Refreshing native plugins compatible for Editor in 0.64 ms, found 0 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 1193 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 88.7 MB.
-System memory in use after: 88.8 MB.
-
-Unloading 22 unused Assets to reduce memory usage. Loaded Objects now: 1788.
-Total: 2.464500 ms (FindLiveObjects: 0.194900 ms CreateObjectMapping: 0.047400 ms MarkObjects: 2.192800 ms  DeleteObjects: 0.027900 ms)
-
-========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.008972 seconds.
-Begin MonoManager ReloadAssembly
-Symbol file LoadedFromMemory is not a mono symbol file
-Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 0.71 ms, found 0 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Invoked RoslynAnalysisRunner static constructor.
-RoslynAnalysisRunner will not be running.
-RoslynAnalysisRunner has terminated.
-Mono: successfully reloaded assembly
-- Completed reload, in  1.097 seconds
-Platform modules already initialized, skipping
-Refreshing native plugins compatible for Editor in 0.45 ms, found 0 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 1193 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 89.1 MB.
-System memory in use after: 89.2 MB.
-
-Unloading 22 unused Assets to reduce memory usage. Loaded Objects now: 1791.
-Total: 1.729500 ms (FindLiveObjects: 0.161600 ms CreateObjectMapping: 0.030200 ms MarkObjects: 1.510500 ms  DeleteObjects: 0.025700 ms)
-
-========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.012384 seconds.
-Begin MonoManager ReloadAssembly
-Symbol file LoadedFromMemory is not a mono symbol file
-Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 0.46 ms, found 0 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Invoked RoslynAnalysisRunner static constructor.
-RoslynAnalysisRunner will not be running.
-RoslynAnalysisRunner has terminated.
-Mono: successfully reloaded assembly
-- Completed reload, in  0.964 seconds
-Platform modules already initialized, skipping
-Refreshing native plugins compatible for Editor in 0.60 ms, found 0 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 1193 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 89.1 MB.
-System memory in use after: 89.2 MB.
-
-Unloading 22 unused Assets to reduce memory usage. Loaded Objects now: 1794.
-Total: 2.391600 ms (FindLiveObjects: 0.173600 ms CreateObjectMapping: 0.031900 ms MarkObjects: 2.155100 ms  DeleteObjects: 0.029000 ms)
-
-========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.011308 seconds.
-Begin MonoManager ReloadAssembly
-Symbol file LoadedFromMemory is not a mono symbol file
-Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 0.76 ms, found 0 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Invoked RoslynAnalysisRunner static constructor.
-RoslynAnalysisRunner will not be running.
-RoslynAnalysisRunner has terminated.
-Mono: successfully reloaded assembly
-- Completed reload, in  1.058 seconds
-Platform modules already initialized, skipping
-Refreshing native plugins compatible for Editor in 0.45 ms, found 0 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 1193 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 89.1 MB.
-System memory in use after: 89.2 MB.
-
-Unloading 22 unused Assets to reduce memory usage. Loaded Objects now: 1797.
-Total: 1.777200 ms (FindLiveObjects: 0.164800 ms CreateObjectMapping: 0.030500 ms MarkObjects: 1.559400 ms  DeleteObjects: 0.021100 ms)
-
-========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.010698 seconds.
-Begin MonoManager ReloadAssembly
-Symbol file LoadedFromMemory is not a mono symbol file
-Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 0.52 ms, found 0 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Invoked RoslynAnalysisRunner static constructor.
-RoslynAnalysisRunner will not be running.
-RoslynAnalysisRunner has terminated.
-Mono: successfully reloaded assembly
-- Completed reload, in  0.961 seconds
-Platform modules already initialized, skipping
-Refreshing native plugins compatible for Editor in 0.49 ms, found 0 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 1193 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 89.1 MB.
-System memory in use after: 89.2 MB.
-
-Unloading 22 unused Assets to reduce memory usage. Loaded Objects now: 1800.
-Total: 1.895000 ms (FindLiveObjects: 0.247400 ms CreateObjectMapping: 0.054200 ms MarkObjects: 1.568500 ms  DeleteObjects: 0.023200 ms)
-
-========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.010379 seconds.
-Begin MonoManager ReloadAssembly
-Symbol file LoadedFromMemory is not a mono symbol file
-Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 0.45 ms, found 0 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Invoked RoslynAnalysisRunner static constructor.
-RoslynAnalysisRunner will not be running.
-RoslynAnalysisRunner has terminated.
-Mono: successfully reloaded assembly
-- Completed reload, in  1.065 seconds
-Platform modules already initialized, skipping
-Refreshing native plugins compatible for Editor in 0.45 ms, found 0 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 1193 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 89.1 MB.
-System memory in use after: 89.2 MB.
-
-Unloading 22 unused Assets to reduce memory usage. Loaded Objects now: 1803.
-Total: 2.218700 ms (FindLiveObjects: 0.183700 ms CreateObjectMapping: 0.032300 ms MarkObjects: 1.965200 ms  DeleteObjects: 0.035800 ms)
-
-========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.010337 seconds.
-Begin MonoManager ReloadAssembly
-Symbol file LoadedFromMemory is not a mono symbol file
-Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 0.60 ms, found 0 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Invoked RoslynAnalysisRunner static constructor.
-RoslynAnalysisRunner will not be running.
-RoslynAnalysisRunner has terminated.
-Mono: successfully reloaded assembly
-- Completed reload, in  1.074 seconds
-Platform modules already initialized, skipping
-Refreshing native plugins compatible for Editor in 0.46 ms, found 0 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 1193 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 89.1 MB.
-System memory in use after: 89.2 MB.
-
-Unloading 22 unused Assets to reduce memory usage. Loaded Objects now: 1806.
-Total: 1.619800 ms (FindLiveObjects: 0.154500 ms CreateObjectMapping: 0.031200 ms MarkObjects: 1.415400 ms  DeleteObjects: 0.017100 ms)
-
-========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.009029 seconds.
-Begin MonoManager ReloadAssembly
-Symbol file LoadedFromMemory is not a mono symbol file
-Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 0.62 ms, found 0 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Invoked RoslynAnalysisRunner static constructor.
-RoslynAnalysisRunner will not be running.
-RoslynAnalysisRunner has terminated.
-Mono: successfully reloaded assembly
-- Completed reload, in  1.160 seconds
-Platform modules already initialized, skipping
-Refreshing native plugins compatible for Editor in 0.55 ms, found 0 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 1193 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 89.1 MB.
-System memory in use after: 89.2 MB.
-
-Unloading 22 unused Assets to reduce memory usage. Loaded Objects now: 1809.
-Total: 1.935400 ms (FindLiveObjects: 0.178400 ms CreateObjectMapping: 0.031100 ms MarkObjects: 1.685500 ms  DeleteObjects: 0.039100 ms)
-
-========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.010030 seconds.
-Begin MonoManager ReloadAssembly
-Symbol file LoadedFromMemory is not a mono symbol file
-Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 0.50 ms, found 0 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Invoked RoslynAnalysisRunner static constructor.
-RoslynAnalysisRunner will not be running.
-RoslynAnalysisRunner has terminated.
-Mono: successfully reloaded assembly
-- Completed reload, in  1.059 seconds
-Platform modules already initialized, skipping
-Refreshing native plugins compatible for Editor in 0.45 ms, found 0 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 1193 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 89.1 MB.
-System memory in use after: 89.2 MB.
-
-Unloading 22 unused Assets to reduce memory usage. Loaded Objects now: 1812.
-Total: 1.798200 ms (FindLiveObjects: 0.192100 ms CreateObjectMapping: 0.038100 ms MarkObjects: 1.545600 ms  DeleteObjects: 0.021200 ms)
-
-========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.011044 seconds.
-Begin MonoManager ReloadAssembly
-Symbol file LoadedFromMemory is not a mono symbol file
-Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 0.62 ms, found 0 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Invoked RoslynAnalysisRunner static constructor.
-RoslynAnalysisRunner will not be running.
-RoslynAnalysisRunner has terminated.
-Mono: successfully reloaded assembly
-- Completed reload, in  1.073 seconds
-Platform modules already initialized, skipping
-Refreshing native plugins compatible for Editor in 0.45 ms, found 0 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 1193 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 89.1 MB.
-System memory in use after: 89.3 MB.
-
-Unloading 22 unused Assets to reduce memory usage. Loaded Objects now: 1815.
-Total: 1.699300 ms (FindLiveObjects: 0.163200 ms CreateObjectMapping: 0.030300 ms MarkObjects: 1.484100 ms  DeleteObjects: 0.020700 ms)
-
-========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.010835 seconds.
-Begin MonoManager ReloadAssembly
-Symbol file LoadedFromMemory is not a mono symbol file
-Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 0.55 ms, found 0 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Invoked RoslynAnalysisRunner static constructor.
-RoslynAnalysisRunner will not be running.
-RoslynAnalysisRunner has terminated.
-Mono: successfully reloaded assembly
-- Completed reload, in  1.048 seconds
-Platform modules already initialized, skipping
-Refreshing native plugins compatible for Editor in 0.62 ms, found 0 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 1193 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 89.2 MB.
-System memory in use after: 89.3 MB.
-
-Unloading 22 unused Assets to reduce memory usage. Loaded Objects now: 1818.
-Total: 2.128600 ms (FindLiveObjects: 0.237600 ms CreateObjectMapping: 0.049900 ms MarkObjects: 1.820300 ms  DeleteObjects: 0.019300 ms)
-
-========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.011031 seconds.
-Begin MonoManager ReloadAssembly
-Symbol file LoadedFromMemory is not a mono symbol file
-Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 0.78 ms, found 0 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Invoked RoslynAnalysisRunner static constructor.
-RoslynAnalysisRunner will not be running.
-RoslynAnalysisRunner has terminated.
-Mono: successfully reloaded assembly
-- Completed reload, in  1.298 seconds
+- Completed reload, in  2.298 seconds
 Platform modules already initialized, skipping
 Refreshing native plugins compatible for Editor in 0.74 ms, found 0 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 1193 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 89.2 MB.
-System memory in use after: 89.3 MB.
+Unloading 1247 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 90.1 MB.
+System memory in use after: 90.2 MB.
 
-Unloading 22 unused Assets to reduce memory usage. Loaded Objects now: 1821.
-Total: 3.354800 ms (FindLiveObjects: 0.267600 ms CreateObjectMapping: 0.056300 ms MarkObjects: 2.987500 ms  DeleteObjects: 0.042100 ms)
+Unloading 31 unused Assets to reduce memory usage. Loaded Objects now: 1803.
+Total: 3.377000 ms (FindLiveObjects: 0.275900 ms CreateObjectMapping: 0.133300 ms MarkObjects: 2.789300 ms  DeleteObjects: 0.176200 ms)
+
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.043959 seconds.
+Begin MonoManager ReloadAssembly
+Symbol file LoadedFromMemory is not a mono symbol file
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 0.81 ms, found 0 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Invoked RoslynAnalysisRunner static constructor.
+RoslynAnalysisRunner will not be running.
+RoslynAnalysisRunner has terminated.
+Mono: successfully reloaded assembly
+- Completed reload, in  2.163 seconds
+Platform modules already initialized, skipping
+Refreshing native plugins compatible for Editor in 0.69 ms, found 0 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 1247 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 90.2 MB.
+System memory in use after: 90.2 MB.
+
+Unloading 24 unused Assets to reduce memory usage. Loaded Objects now: 1806.
+Total: 2.861600 ms (FindLiveObjects: 0.240300 ms CreateObjectMapping: 0.110700 ms MarkObjects: 2.374500 ms  DeleteObjects: 0.133800 ms)
 
 AssetImportWorkerClient::OnTransportError - code=2 error=End of file

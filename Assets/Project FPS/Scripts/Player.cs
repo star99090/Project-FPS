@@ -230,29 +230,32 @@ public class Player : Bolt.EntityBehaviour<IFPSPlayerState>
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (entity.IsOwner)
         {
-            if (!isSettings)
+            if (Input.GetKeyDown(KeyCode.Escape))
             {
-                if (Cursor.lockState == CursorLockMode.Locked)
+                if (!isSettings)
                 {
-                    isESC = true;
-                    Cursor.lockState = CursorLockMode.None;
-                    ESCPanel.SetActive(true);
+                    if (Cursor.lockState == CursorLockMode.Locked)
+                    {
+                        isESC = true;
+                        Cursor.lockState = CursorLockMode.None;
+                        ESCPanel.SetActive(true);
+                    }
+                    else
+                    {
+                        isESC = false;
+                        Cursor.lockState = CursorLockMode.Locked;
+                        ESCPanel.SetActive(false);
+                    }
                 }
                 else
                 {
                     isESC = false;
+                    isSettings = false;
                     Cursor.lockState = CursorLockMode.Locked;
-                    ESCPanel.SetActive(false);
+                    SettingsPanel.SetActive(false);
                 }
-            }
-            else
-            {
-                isESC = false;
-                isSettings = false;
-                Cursor.lockState = CursorLockMode.Locked;
-                SettingsPanel.SetActive(false);
             }
         }
 
