@@ -151,7 +151,7 @@ public class NetworkManager : GlobalEventListener
                 players[i].GetComponent<PlayerSubScript>().firstScoreText.text = firstPlayerScore.ToString();
             }
 
-            if (evnt.attackerEntity.GetComponent<PlayerSubScript>().myKillScore == 3)
+            if (evnt.attackerEntity.GetComponent<PlayerSubScript>().myKillScore == 1)
             {
                 isResult = true;
 

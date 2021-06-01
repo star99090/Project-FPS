@@ -16,6 +16,7 @@ public class PlayerSubScript : Bolt.EntityBehaviour<IFPSPlayerState>
     public Text firstPlayerText;
     public Text firstScoreText;
     public Text myScoreText;
+    public GameObject KillScorePanel;
 
     public Transform armsParent;
     public Text HealthText;
@@ -99,10 +100,5 @@ public class PlayerSubScript : Bolt.EntityBehaviour<IFPSPlayerState>
         transform.rotation = NM.respawnPoint[RP].rotation;
     }
 
-    public void ProgressSub(bool onOff)
-    {
-        firstPlayerText.gameObject.SetActive(onOff);
-        firstScoreText.gameObject.SetActive(onOff);
-        myScoreText.gameObject.SetActive(onOff);
-    }
+    public void ProgressSub(bool onOff) => KillScorePanel.SetActive(onOff);
 }
