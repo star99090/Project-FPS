@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhotonRealtime", "PhotonRealtime.csproj", "{EEA46792-D5D0-43F4-0F4B-8483D50BAEDA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Boxophobic.Utils.Scripts", "Boxophobic.Utils.Scripts.csproj", "{D4A75F20-86A3-6047-9B47-5D62963B59BD}"
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp", "Assembly-CSharp.csproj", "{0339C13E-9DD6-678D-C320-270F0934748E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhotonBolt", "PhotonBolt.csproj", "{1D1F22AB-7E74-7167-2791-6943D7CF8D56}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhotonWebSocket", "PhotonWebSocket.csproj", "{9DFA93A1-7AF1-CE20-8106-FA8BAB3A6870}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Boxophobic.Utils.Scripts", "Boxophobic.Utils.Scripts.csproj", "{D4A75F20-86A3-6047-9B47-5D62963B59BD}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhotonBolt-Editor", "PhotonBolt-Editor.csproj", "{A1B9ACFF-3A08-19AB-D69A-462BB3EE76EB}"
 EndProject
@@ -27,6 +27,10 @@ Global
 		{EEA46792-D5D0-43F4-0F4B-8483D50BAEDA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EEA46792-D5D0-43F4-0F4B-8483D50BAEDA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EEA46792-D5D0-43F4-0F4B-8483D50BAEDA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D4A75F20-86A3-6047-9B47-5D62963B59BD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D4A75F20-86A3-6047-9B47-5D62963B59BD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D4A75F20-86A3-6047-9B47-5D62963B59BD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D4A75F20-86A3-6047-9B47-5D62963B59BD}.Release|Any CPU.Build.0 = Release|Any CPU
 		{0339C13E-9DD6-678D-C320-270F0934748E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{0339C13E-9DD6-678D-C320-270F0934748E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0339C13E-9DD6-678D-C320-270F0934748E}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -39,10 +43,6 @@ Global
 		{9DFA93A1-7AF1-CE20-8106-FA8BAB3A6870}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9DFA93A1-7AF1-CE20-8106-FA8BAB3A6870}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9DFA93A1-7AF1-CE20-8106-FA8BAB3A6870}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D4A75F20-86A3-6047-9B47-5D62963B59BD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D4A75F20-86A3-6047-9B47-5D62963B59BD}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D4A75F20-86A3-6047-9B47-5D62963B59BD}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D4A75F20-86A3-6047-9B47-5D62963B59BD}.Release|Any CPU.Build.0 = Release|Any CPU
 		{A1B9ACFF-3A08-19AB-D69A-462BB3EE76EB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{A1B9ACFF-3A08-19AB-D69A-462BB3EE76EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A1B9ACFF-3A08-19AB-D69A-462BB3EE76EB}.Release|Any CPU.ActiveCfg = Release|Any CPU

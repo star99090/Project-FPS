@@ -11,6 +11,7 @@ public class PlayerSubScript : Bolt.EntityBehaviour<IFPSPlayerState>
 
     public GameObject NicknameCanvas;
     public GameObject GunCamera;
+    public GameObject Minimap;
     public Text nickname;
     public Text firstPlayerText;
     public Text firstScoreText;
@@ -49,6 +50,7 @@ public class PlayerSubScript : Bolt.EntityBehaviour<IFPSPlayerState>
     {
         NicknameCanvas.SetActive(false);
         GunCamera.SetActive(true);
+        Minimap.SetActive(true);
     }
 
     public void MyBodySet()
