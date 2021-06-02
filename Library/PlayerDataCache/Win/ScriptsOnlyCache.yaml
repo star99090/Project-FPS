@@ -10,11 +10,11 @@ ScriptsOnlyBuild:
     - CharacterAnimation
     - ExplosionScript
     - GrenadeLauncherScriptLPFP
-    - GrenadeScript
     - HandgunScriptLPFP
     - ImpactScriptBefore
     - InputFieldChange
     - LookAtCamera
+    - MinimapCamera
     - NetworkManager
     - PlaySound
     - PlaySoundScript
@@ -24,7 +24,6 @@ ScriptsOnlyBuild:
     - PumpShotgunScriptLPFP
     - RocketLauncherScriptLPFP
     - SniperScriptLPFP
-    - ThirdPersonDemoLPFP
     - TitleLobbyManager
     Unity.Rider.Editor.dll:
     - Packages.Rider.Editor.UnitTesting.CallbackData
@@ -112,15 +111,11 @@ ScriptsOnlyBuild:
     - Class: 108
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 1462}
-    - Class: 114
       Script: {instanceID: 1464}
     - Class: 114
       Script: {instanceID: 1466}
     - Class: 114
       Script: {instanceID: 1534}
-    - Class: 114
-      Script: {instanceID: 1564}
     - Class: 114
       Script: {instanceID: 1602}
     - Class: 114
@@ -162,21 +157,25 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 3178}
     - Class: 114
-      Script: {instanceID: 3290}
+      Script: {instanceID: 3248}
     - Class: 114
-      Script: {instanceID: 3446}
+      Script: {instanceID: 3292}
     - Class: 114
-      Script: {instanceID: 3466}
+      Script: {instanceID: 3346}
     - Class: 114
-      Script: {instanceID: 3474}
+      Script: {instanceID: 3450}
     - Class: 114
-      Script: {instanceID: 3704}
+      Script: {instanceID: 3470}
     - Class: 114
-      Script: {instanceID: 3800}
+      Script: {instanceID: 3478}
     - Class: 114
-      Script: {instanceID: 3862}
+      Script: {instanceID: 3708}
     - Class: 114
-      Script: {instanceID: 3890}
+      Script: {instanceID: 3804}
+    - Class: 114
+      Script: {instanceID: 3866}
+    - Class: 114
+      Script: {instanceID: 3894}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 124
@@ -263,8 +262,6 @@ ScriptsOnlyBuild:
     - Class: 108
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 1462}
-    - Class: 114
       Script: {instanceID: 1464}
     - Class: 114
       Script: {instanceID: 1466}
@@ -286,8 +283,6 @@ ScriptsOnlyBuild:
       Script: {instanceID: 1894}
     - Class: 114
       Script: {instanceID: 1936}
-    - Class: 114
-      Script: {instanceID: 2022}
     - Class: 114
       Script: {instanceID: 2032}
     - Class: 114
@@ -323,34 +318,34 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 3248}
     - Class: 114
-      Script: {instanceID: 3290}
+      Script: {instanceID: 3250}
     - Class: 114
-      Script: {instanceID: 3324}
+      Script: {instanceID: 3292}
     - Class: 114
-      Script: {instanceID: 3416}
+      Script: {instanceID: 3346}
     - Class: 114
-      Script: {instanceID: 3446}
+      Script: {instanceID: 3420}
     - Class: 114
-      Script: {instanceID: 3466}
+      Script: {instanceID: 3450}
     - Class: 114
-      Script: {instanceID: 3474}
+      Script: {instanceID: 3470}
     - Class: 114
-      Script: {instanceID: 3616}
+      Script: {instanceID: 3478}
     - Class: 114
-      Script: {instanceID: 3704}
+      Script: {instanceID: 3620}
     - Class: 114
-      Script: {instanceID: 3800}
+      Script: {instanceID: 3708}
     - Class: 114
-      Script: {instanceID: 3862}
+      Script: {instanceID: 3804}
     - Class: 114
-      Script: {instanceID: 3890}
+      Script: {instanceID: 3866}
+    - Class: 114
+      Script: {instanceID: 3894}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 124
       Script: {instanceID: 0}
     - Class: 128
-      Script: {instanceID: 0}
-    - Class: 134
       Script: {instanceID: 0}
     - Class: 135
       Script: {instanceID: 0}
@@ -399,12 +394,6 @@ ScriptsOnlyBuild:
     className: Slider
   - hash:
       serializedVersion: 2
-      Hash: ae83e830e7a90c0aff918c4c2e520825
-    assemblyName: UnityEngine.UI.dll
-    namespaceName: UnityEngine.UI
-    className: GraphicRaycaster
-  - hash:
-      serializedVersion: 2
       Hash: 5ab533713adae59372fb3e10a585c186
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
@@ -429,13 +418,13 @@ ScriptsOnlyBuild:
     className: TMP_InputField
   - hash:
       serializedVersion: 2
-      Hash: c0012428d119cc5fd6d4cdb0f402c071
+      Hash: 1ac72b5f12739cb05dac06353d73d6ac
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: NetworkManager
   - hash:
       serializedVersion: 2
-      Hash: 940b3e5cb47ed0a0b006a8f715e4ba7c
+      Hash: e0b52f08775ffef6334f195ae49ebdea
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Player
@@ -981,6 +970,12 @@ ScriptsOnlyBuild:
     className: AutomaticGunScriptLPFP
   - hash:
       serializedVersion: 2
+      Hash: ec0021064e603e51fd4299d0295d3bfc
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: MinimapCamera
+  - hash:
+      serializedVersion: 2
       Hash: b4674e57d600d34b2c920b407eabba39
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
@@ -1009,6 +1004,12 @@ ScriptsOnlyBuild:
     assemblyName: UnityEngine.TestRunner.dll
     namespaceName: UnityEngine.TestRunner.Utils
     className: TestRunCallbackListener
+  - hash:
+      serializedVersion: 2
+      Hash: ae83e830e7a90c0aff918c4c2e520825
+    assemblyName: UnityEngine.UI.dll
+    namespaceName: UnityEngine.UI
+    className: GraphicRaycaster
   - hash:
       serializedVersion: 2
       Hash: e7a73f5f78ba6445195ec23b74a1ce2d
@@ -1053,7 +1054,7 @@ ScriptsOnlyBuild:
     className: ImpactScriptBefore
   - hash:
       serializedVersion: 2
-      Hash: 5f93f443d9979da19e1a21801be64697
+      Hash: 1f0b9efe66e88f4869d0ad4575dcbaaa
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: PlayerSubScript

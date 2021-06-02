@@ -62,12 +62,17 @@ public class Player : Bolt.EntityBehaviour<IFPSPlayerState>
     public bool isWeaponChange = false;
 #pragma warning restore 649
 
+    [Header("Progress Tab Settings")]
+    [SerializeField] Text rank;
+    [SerializeField] Text userName;
+    [SerializeField] Text kill;
+    [SerializeField] Text death;
+
     [Header("Other Settings")]
     public Text nicknameText;
     [SerializeField] Transform nicknameCanvas;
     [SerializeField] Image gunIcon;
     [SerializeField] GameObject progressPannel;
-    [SerializeField] Text playersScore;
 
     private Rigidbody _rigidbody;
     private CapsuleCollider _collider;
@@ -192,26 +197,49 @@ public class Player : Bolt.EntityBehaviour<IFPSPlayerState>
 
     private void ProgressScore()
     {
-        playersScore.text = "";
+        rank.text = "";
+        userName.text = "";
+        kill.text = "";
+        death.text = "";
 
         List<string> nickList = new List<string>();
         List<int> scoreList = new List<int>();
+        List<int> deathList = new List<int>();
 
         int scoreTemp = 0;
+        int deathTemp = 0;
         string nickTemp = "";
 
         for (int i = 0; i < NM.players.Count; i++)
         {
             nickList.Add(NM.players[i].GetComponent<Player>().nicknameText.text);
             scoreList.Add(NM.players[i].GetComponent<PlayerSubScript>().myKillScore);
+            deathList.Add(NM.players[i].GetComponent<PlayerSubScript>().death);
         }
         
-        // 닉네임과 점수 정렬
+        // 닉네임과 킬, 데스 정렬
         for (int i = 0; i < scoreList.Count - 1; i++)
         {
             for (int j = i + 1; j < scoreList.Count; j++)
             {
-                if (scoreList[i] < scoreList[j])
+                if(scoreList[i] == scoreList[j])
+                {
+                    if(deathList[i] < deathList[j])
+                    {
+                        scoreTemp = scoreList[i];
+                        scoreList[i] = scoreList[j];
+                        scoreList[j] = scoreTemp;
+
+                        nickTemp = nickList[i];
+                        nickList[i] = nickList[j];
+                        nickList[j] = nickTemp;
+
+                        deathTemp = deathList[i];
+                        deathList[i] = deathList[j];
+                        deathList[j] = deathTemp;
+                    }
+                }
+                else if (scoreList[i] < scoreList[j])
                 {
                     scoreTemp = scoreList[i];
                     scoreList[i] = scoreList[j];
@@ -220,12 +248,21 @@ public class Player : Bolt.EntityBehaviour<IFPSPlayerState>
                     nickTemp = nickList[i];
                     nickList[i] = nickList[j];
                     nickList[j] = nickTemp;
+
+                    deathTemp = deathList[i];
+                    deathList[i] = deathList[j];
+                    deathList[j] = deathTemp;
                 }
             }
         }
 
-        for (int i = 0; i < nickList.Count; i++)
-            playersScore.text += nickList[i] + " : " + scoreList[i] + "Kill\n";
+        for(int i = 0; i < nickList.Count; i++)
+        {
+            rank.text += (i+1).ToString() + "\n";
+            userName.text += nickList[i] + "\n";
+            kill.text += scoreList[i] + "\n";
+            death.text += deathList[i] + "\n";
+        }
     }
 
     private void Update()
@@ -264,17 +301,17 @@ public class Player : Bolt.EntityBehaviour<IFPSPlayerState>
 
         if (Input.GetKeyDown(KeyCode.LeftBracket))
         {
-            mouseSensitivity += 0.5f;
-            if (mouseSensitivity > 15f)
-                mouseSensitivity = 15f;
+            mouseSensitivity -= 0.5f;
+            if (mouseSensitivity < 0.5f)
+                mouseSensitivity = 0.5f;
             SensitivitySlider.value = mouseSensitivity;
         }
 
         if (Input.GetKeyDown(KeyCode.RightBracket))
         {
-            mouseSensitivity -= 0.5f;
-            if (mouseSensitivity < 0.5f)
-                mouseSensitivity = 0.5f;
+            mouseSensitivity += 0.5f;
+            if (mouseSensitivity > 15f)
+                mouseSensitivity = 15f;
             SensitivitySlider.value = mouseSensitivity;
         }
 

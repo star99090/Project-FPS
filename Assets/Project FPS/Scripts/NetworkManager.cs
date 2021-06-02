@@ -42,9 +42,11 @@ public class NetworkManager : GlobalEventListener
 
     [Header("About Server Canvas")]
     public GameObject resultPanel;
-    public GameObject tabPanel;
     public Text winnerNickname;
-    public Text playersScore;
+    public Text rank;
+    public Text userName;
+    public Text kill;
+    public Text death;
     public bool isResult = false;
 
     private string currentSession;
@@ -136,6 +138,9 @@ public class NetworkManager : GlobalEventListener
             evnt.attackerEntity.GetComponent<Player>().isWeaponChange = true;
             evnt.attackerEntity.GetComponent<PlayerSubScript>().UpdateMyScore();
 
+            evnt.vitimEntity.GetComponent<PlayerSubScript>().death += 1;
+            evnt.vitimEntity.GetComponent<PlayerSubScript>().UpdateMyDeath();
+
             for (int i = 0; i < players.Count; i++)
             {
                 if (players[i].GetComponent<PlayerSubScript>().myKillScore > firstPlayerScore)
@@ -151,7 +156,7 @@ public class NetworkManager : GlobalEventListener
                 players[i].GetComponent<PlayerSubScript>().firstScoreText.text = firstPlayerScore.ToString();
             }
 
-            if (evnt.attackerEntity.GetComponent<PlayerSubScript>().myKillScore == 1)
+            if (evnt.attackerEntity.GetComponent<PlayerSubScript>().myKillScore == 18)
             {
                 isResult = true;
 
@@ -211,26 +216,49 @@ public class NetworkManager : GlobalEventListener
 
     private void ProgressScore()
     {
-        playersScore.text = "";
+        rank.text = "";
+        userName.text = "";
+        kill.text = "";
+        death.text = "";
 
         List<string> nickList = new List<string>();
         List<int> scoreList = new List<int>();
+        List<int> deathList = new List<int>();
 
         int scoreTemp = 0;
+        int deathTemp = 0;
         string nickTemp = "";
 
         for (int i = 0; i < players.Count; i++)
         {
             nickList.Add(players[i].GetComponent<Player>().nicknameText.text);
             scoreList.Add(players[i].GetComponent<PlayerSubScript>().myKillScore);
+            deathList.Add(players[i].GetComponent<PlayerSubScript>().death);
         }
 
-        // 닉네임과 점수 정렬
+        // 닉네임과 킬, 데스 정렬
         for (int i = 0; i < scoreList.Count - 1; i++)
         {
             for (int j = i + 1; j < scoreList.Count; j++)
             {
-                if (scoreList[i] < scoreList[j])
+                if (scoreList[i] == scoreList[j])
+                {
+                    if (deathList[i] < deathList[j])
+                    {
+                        scoreTemp = scoreList[i];
+                        scoreList[i] = scoreList[j];
+                        scoreList[j] = scoreTemp;
+
+                        nickTemp = nickList[i];
+                        nickList[i] = nickList[j];
+                        nickList[j] = nickTemp;
+
+                        deathTemp = deathList[i];
+                        deathList[i] = deathList[j];
+                        deathList[j] = deathTemp;
+                    }
+                }
+                else if (scoreList[i] < scoreList[j])
                 {
                     scoreTemp = scoreList[i];
                     scoreList[i] = scoreList[j];
@@ -239,12 +267,21 @@ public class NetworkManager : GlobalEventListener
                     nickTemp = nickList[i];
                     nickList[i] = nickList[j];
                     nickList[j] = nickTemp;
+
+                    deathTemp = deathList[i];
+                    deathList[i] = deathList[j];
+                    deathList[j] = deathTemp;
                 }
             }
         }
 
         for (int i = 0; i < nickList.Count; i++)
-            playersScore.text += nickList[i] + " : " + scoreList[i] + "Kill\n";
+        {
+            rank.text += (i + 1).ToString() + "\n";
+            userName.text += nickList[i] + "\n";
+            kill.text += scoreList[i] + "\n";
+            death.text += deathList[i] + "\n";
+        }
     }
 
     private void Update()
