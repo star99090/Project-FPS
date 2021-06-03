@@ -329,11 +329,6 @@ public class NetworkManager : GlobalEventListener
         evnt.Send();
     }
 
-    public void ShutdownRequest()
-    {
-        StartCoroutine(Shutdown());
-    }
-
     IEnumerator UpdateEntityAndSessionName()
     {
         yield return null;
@@ -342,6 +337,11 @@ public class NetworkManager : GlobalEventListener
         myUpdate.rotation = myPlayer.transform.rotation.eulerAngles;
         myUpdate.sessionName = currentSession;
         myUpdate.Send();
+    }
+
+    public void ShutdownRequest()
+    {
+        StartCoroutine(Shutdown());
     }
 
     IEnumerator Shutdown(float delay = 0f)

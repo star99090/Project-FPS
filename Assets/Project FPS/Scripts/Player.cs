@@ -224,7 +224,7 @@ public class Player : Bolt.EntityBehaviour<IFPSPlayerState>
             {
                 if(scoreList[i] == scoreList[j])
                 {
-                    if(deathList[i] < deathList[j])
+                    if(deathList[i] > deathList[j])
                     {
                         scoreTemp = scoreList[i];
                         scoreList[i] = scoreList[j];
