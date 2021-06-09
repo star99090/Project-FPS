@@ -9,6 +9,13 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 #pragma warning disable CS0618
 
+struct PlayerInfo
+{
+    public string userName;
+    public int killScore;
+    public int death;
+}
+
 public class NetworkManager : GlobalEventListener
 {
     public static NetworkManager NM { get; set; }
@@ -101,7 +108,7 @@ public class NetworkManager : GlobalEventListener
             if (players[i] != myPlayer)
             {
                 players[i].GetComponent<PlayerSubScript>().HideObject();
-                players[i].GetComponent<PlayerSubScript>().MyBodySet();
+                players[i].GetComponent<PlayerSubScript>().BodyLayerChange();
             }
             else
                 players[i].GetComponent<PlayerSubScript>().MySet();
@@ -159,12 +166,9 @@ public class NetworkManager : GlobalEventListener
             if (evnt.attackerEntity.GetComponent<PlayerSubScript>().myKillScore == 18)
             {
                 isResult = true;
-
                 winnerNickname.text = evnt.killer;
                 myPlayer.GetComponent<PlayerSubScript>().ProgressSub(false);
-
                 ProgressScore();
-
                 resultPanel.SetActive(true);
 
                 if (BoltNetwork.IsServer)
@@ -221,66 +225,45 @@ public class NetworkManager : GlobalEventListener
         kill.text = "";
         death.text = "";
 
-        List<string> nickList = new List<string>();
-        List<int> scoreList = new List<int>();
-        List<int> deathList = new List<int>();
-
-        int scoreTemp = 0;
-        int deathTemp = 0;
-        string nickTemp = "";
+        PlayerInfo[] p = new PlayerInfo[players.Count];
+        PlayerInfo temp;
 
         for (int i = 0; i < players.Count; i++)
         {
-            nickList.Add(players[i].GetComponent<Player>().nicknameText.text);
-            scoreList.Add(players[i].GetComponent<PlayerSubScript>().myKillScore);
-            deathList.Add(players[i].GetComponent<PlayerSubScript>().death);
+            p[i].userName = players[i].GetComponent<Player>().nicknameText.text;
+            p[i].killScore = players[i].GetComponent<PlayerSubScript>().myKillScore;
+            p[i].death = players[i].GetComponent<PlayerSubScript>().death;
         }
 
-        // 닉네임과 킬, 데스 정렬
-        for (int i = 0; i < scoreList.Count - 1; i++)
+        // 플레이어 정보 내림차순 정렬
+        for (int i = 0; i < p.Length - 1; i++)
         {
-            for (int j = i + 1; j < scoreList.Count; j++)
+            for (int j = i + 1; j < p.Length; j++)
             {
-                if (scoreList[i] == scoreList[j])
+                if (p[i].killScore == p[j].killScore)
                 {
-                    if (deathList[i] < deathList[j])
+                    if (p[i].death < p[j].death)
                     {
-                        scoreTemp = scoreList[i];
-                        scoreList[i] = scoreList[j];
-                        scoreList[j] = scoreTemp;
-
-                        nickTemp = nickList[i];
-                        nickList[i] = nickList[j];
-                        nickList[j] = nickTemp;
-
-                        deathTemp = deathList[i];
-                        deathList[i] = deathList[j];
-                        deathList[j] = deathTemp;
+                        temp = p[i];
+                        p[i] = p[j];
+                        p[j] = temp;
                     }
                 }
-                else if (scoreList[i] < scoreList[j])
+                else if (p[i].killScore < p[j].killScore)
                 {
-                    scoreTemp = scoreList[i];
-                    scoreList[i] = scoreList[j];
-                    scoreList[j] = scoreTemp;
-
-                    nickTemp = nickList[i];
-                    nickList[i] = nickList[j];
-                    nickList[j] = nickTemp;
-
-                    deathTemp = deathList[i];
-                    deathList[i] = deathList[j];
-                    deathList[j] = deathTemp;
+                    temp = p[i];
+                    p[i] = p[j];
+                    p[j] = temp;
                 }
             }
         }
 
-        for (int i = 0; i < nickList.Count; i++)
+        for (int i = 0; i < p.Length; i++)
         {
             rank.text += (i + 1).ToString() + "\n";
-            userName.text += nickList[i] + "\n";
-            kill.text += scoreList[i] + "\n";
-            death.text += deathList[i] + "\n";
+            userName.text += p[i].userName + "\n";
+            kill.text += p[i].killScore + "\n";
+            death.text += p[i].death + "\n";
         }
     }
 
@@ -329,16 +312,6 @@ public class NetworkManager : GlobalEventListener
         evnt.Send();
     }
 
-    IEnumerator UpdateEntityAndSessionName()
-    {
-        yield return null;
-        var myUpdate = HostMigrationEvent.Create();
-        myUpdate.position = myPlayer.transform.position;
-        myUpdate.rotation = myPlayer.transform.rotation.eulerAngles;
-        myUpdate.sessionName = currentSession;
-        myUpdate.Send();
-    }
-
     public void ShutdownRequest()
     {
         StartCoroutine(Shutdown());
@@ -350,6 +323,16 @@ public class NetworkManager : GlobalEventListener
         BoltNetwork.Shutdown();
         yield return new WaitForEndOfFrame();
         SceneManager.LoadScene("Title&Lobby");
+    }
+
+    IEnumerator UpdateEntityAndSessionName()
+    {
+        yield return null;
+        var myUpdate = HostMigrationEvent.Create();
+        myUpdate.position = myPlayer.transform.position;
+        myUpdate.rotation = myPlayer.transform.rotation.eulerAngles;
+        myUpdate.sessionName = currentSession;
+        myUpdate.Send();
     }
 
     public override void Disconnected(BoltConnection connection) => StartCoroutine(UpdateEntityAndSessionName());

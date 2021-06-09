@@ -191,7 +191,6 @@ public class AutomaticGun : EntityBehaviour<IFPSPlayerState>
 	private bool soundHasPlayed = false;
 
 	[Header("Other Settings")]
-	[SerializeField] private BoltEntity myEntity;
 	[SerializeField] private GameObject myCharacterModel;
 	public Transform bloodImpactPrefabs;
 	public bool isCurrentWeapon;
@@ -365,7 +364,9 @@ public class AutomaticGun : EntityBehaviour<IFPSPlayerState>
 
 	void PlayerHitCheck()
     {
-		Physics.Raycast(Spawnpoints.bulletSpawnPoint.position, Spawnpoints.bulletSpawnPoint.forward, out RaycastHit hit);
+		Physics.Raycast(Spawnpoints.bulletSpawnPoint.position,
+			Spawnpoints.bulletSpawnPoint.forward,
+			out RaycastHit hit);
 		if (hit.collider != null && hit.collider.gameObject.CompareTag("FPSPlayer"))
 		{
 			Instantiate(bloodImpactPrefabs.gameObject, hit.point,
@@ -375,7 +376,7 @@ public class AutomaticGun : EntityBehaviour<IFPSPlayerState>
 			evnt.attacker = attacker.text;
 			evnt.targetEntity = hit.collider.gameObject.GetComponent<BoltEntity>();
 			evnt.damage = Random.Range(damage - 2, damage + 2);
-			evnt.attackerEntity = myEntity;
+			evnt.attackerEntity = entity;
 			evnt.Send();
 		}
     }
@@ -383,8 +384,14 @@ public class AutomaticGun : EntityBehaviour<IFPSPlayerState>
     private void Update()
 	{
 		if (!entity.IsOwner || NM.isResult
-			|| myEntity.GetComponent<Player>().isESC
-			|| myEntity.GetComponent<Player>().isSettings) return;
+			|| entity.GetComponent<Player>().isESC
+			|| entity.GetComponent<Player>().isSettings)
+		{
+			if (NM.isResult)
+				aimPoint.SetActive(false);
+
+			return;
+		}
 
 		if (isDraw && !anim.GetCurrentAnimatorStateInfo(0).IsName("Draw"))
 			isDraw = false;
@@ -529,7 +536,7 @@ public class AutomaticGun : EntityBehaviour<IFPSPlayerState>
 				currentAmmo -= 1;
 
 				// 소음기 장착시 사격 효과음
-				if (silencer == true && WeaponAttachmentRenderers.silencerRenderer != null)
+				if (silencer == true)
 				{
 					shootAudioSource.clip = SoundClips.silencerShootSound;
 					shootAudioSource.Play();
@@ -557,16 +564,6 @@ public class AutomaticGun : EntityBehaviour<IFPSPlayerState>
 						Random.Range(normalHitRateMin, normalHitRateMax),
 						Random.Range(normalHitRateMin, normalHitRateMax),
 						0);
-
-					// 총알 생성
-					var bullet = Instantiate(
-						Prefabs.bulletPrefab,
-						Spawnpoints.bulletSpawnPoint.transform.position,
-						Spawnpoints.bulletSpawnPoint.transform.rotation);
-
-					// 총알에 힘 싣기
-					bullet.GetComponent<Rigidbody>().velocity =
-						bullet.transform.forward * bulletForce;
 				}
 				// 조준 사격 모드
 				else
@@ -586,18 +583,22 @@ public class AutomaticGun : EntityBehaviour<IFPSPlayerState>
 					Spawnpoints.bulletSpawnPoint.transform.localRotation = Quaternion.Euler(
 						Random.Range(aimHitRateMin, aimHitRateMax),
 						Random.Range(aimHitRateMin, aimHitRateMax),
-						0);
-
-					// 총알 생성
-					var bullet = Instantiate(
-						Prefabs.bulletPrefab,
-						Spawnpoints.bulletSpawnPoint.transform.position,
-						Spawnpoints.bulletSpawnPoint.transform.rotation);
-
-					// 총알에 힘 싣기
-					bullet.GetComponent<Rigidbody>().velocity =
-						bullet.transform.forward * bulletForce;
+						0);					
 				}
+				// 총알 생성
+				var bullet = Instantiate(
+					Prefabs.bulletPrefab,
+					Spawnpoints.bulletSpawnPoint.transform.position,
+					Spawnpoints.bulletSpawnPoint.transform.rotation);
+
+				// 소음기 여부를 탄환에 전달
+				if (silencer)
+					bullet.GetComponent<BulletScriptBefore>().isSilencer = silencer;
+
+				// 총알에 힘 싣기
+				bullet.GetComponent<Rigidbody>().velocity =
+					bullet.transform.forward * bulletForce;
+
 
 				// 탄피 생성
 				Instantiate(Prefabs.casingPrefab,
@@ -673,7 +674,6 @@ public class AutomaticGun : EntityBehaviour<IFPSPlayerState>
 		mainAudioSource.clip = SoundClips.reloadSoundAmmoLeft;
 		mainAudioSource.Play();
 
-		// 떨어진 탄피들을 인스펙터 창에서 삭제
 		if (bulletInMagRenderer != null)
 		{
 			bulletInMagRenderer.GetComponent

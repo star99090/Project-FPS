@@ -4,7 +4,6 @@ ScriptsOnlyBuild:
     - AutomaticGun
     - BlinkingLightLPFP
     - BoltActionSniperScriptLPFP
-    - BulletScript
     - BulletScriptBefore
     - CasingScriptBefore
     - CharacterAnimation
@@ -158,8 +157,6 @@ ScriptsOnlyBuild:
       Script: {instanceID: 3178}
     - Class: 114
       Script: {instanceID: 3248}
-    - Class: 114
-      Script: {instanceID: 3292}
     - Class: 114
       Script: {instanceID: 3346}
     - Class: 114
@@ -319,8 +316,6 @@ ScriptsOnlyBuild:
       Script: {instanceID: 3248}
     - Class: 114
       Script: {instanceID: 3250}
-    - Class: 114
-      Script: {instanceID: 3292}
     - Class: 114
       Script: {instanceID: 3346}
     - Class: 114
@@ -1054,7 +1049,7 @@ ScriptsOnlyBuild:
     className: ImpactScriptBefore
   - hash:
       serializedVersion: 2
-      Hash: 1f0b9efe66e88f4869d0ad4575dcbaaa
+      Hash: 3611f503b839b2f14cfc9afdb176e55c
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: PlayerSubScript
@@ -1132,7 +1127,7 @@ ScriptsOnlyBuild:
     className: SignalEmitter
   - hash:
       serializedVersion: 2
-      Hash: 2c24a7872db89a47634bd9169156ef2d
+      Hash: e021e02a89c955296b28925bd266b81b
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: AutomaticGun

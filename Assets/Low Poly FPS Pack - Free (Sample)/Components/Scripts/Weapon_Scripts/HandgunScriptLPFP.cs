@@ -313,9 +313,14 @@ public class HandgunScriptLPFP : EntityBehaviour<IFPSPlayerState>
 	private void Update ()
 	{
 		if (!entity.IsOwner || NM.isResult
-			|| myEntity.GetComponent<Player>().isESC
-			|| myEntity.GetComponent<Player>().isSettings) return;
+			|| entity.GetComponent<Player>().isESC
+			|| entity.GetComponent<Player>().isSettings)
+		{
+			if (NM.isResult)
+				aimPoint.SetActive(false);
 
+			return;
+		}
 		if (isDraw && !anim.GetCurrentAnimatorStateInfo(0).IsName("Draw"))
 			isDraw = false;
 
@@ -489,6 +494,7 @@ public class HandgunScriptLPFP : EntityBehaviour<IFPSPlayerState>
 				Spawnpoints.bulletSpawnPoint.transform.position,
 				Spawnpoints.bulletSpawnPoint.transform.rotation);
 
+			// 소음기 여부를 탄환에 전달
 			if (silencer)
 				bullet.GetComponent<BulletScriptBefore>().isSilencer = silencer;
 

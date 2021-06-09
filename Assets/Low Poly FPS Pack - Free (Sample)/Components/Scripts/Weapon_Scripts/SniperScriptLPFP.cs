@@ -210,8 +210,9 @@ public class SniperScriptLPFP : EntityBehaviour<IFPSPlayerState>
 	private void Update()
 	{
 		if (!entity.IsOwner || NM.isResult
-			|| myEntity.GetComponent<Player>().isESC
-			|| myEntity.GetComponent<Player>().isSettings) return;
+			|| entity.GetComponent<Player>().isESC
+			|| entity.GetComponent<Player>().isSettings)
+			return;
 
 		if (isDraw && !anim.GetCurrentAnimatorStateInfo(0).IsName("Draw"))
 			isDraw = false;
@@ -340,6 +341,10 @@ public class SniperScriptLPFP : EntityBehaviour<IFPSPlayerState>
 					Prefabs.bulletPrefab,
 					Spawnpoints.bulletSpawnPoint.transform.position,
 					Spawnpoints.bulletSpawnPoint.transform.rotation);
+
+				// 소음기 여부를 탄환에 전달
+				if (silencer)
+					bullet.GetComponent<BulletScriptBefore>().isSilencer = silencer;
 
 				// 총알에 힘 싣기
 				bullet.GetComponent<Rigidbody>().velocity = 

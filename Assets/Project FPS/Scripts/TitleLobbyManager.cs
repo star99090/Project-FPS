@@ -19,7 +19,7 @@ public class TitleLobbyManager : Bolt.GlobalEventListener
 
     [Header("Sounds")]
     [Tooltip("로비 BGM"), SerializeField]
-    private string bgm = "DayDreamSound - TTRM";
+    private string bgm = "TTRM - 웅장한 느낌의 곡";
 
     [Tooltip("마우스 클릭 효과음"), SerializeField]
     AudioClip mouseClick;

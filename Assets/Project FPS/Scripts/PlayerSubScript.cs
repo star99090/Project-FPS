@@ -7,7 +7,6 @@ public class PlayerSubScript : Bolt.EntityBehaviour<IFPSPlayerState>
 {
     public GameObject[] HideObjects;
     public GameObject[] MyBody;
-    public GameObject[] MyCharacterModelWeapon;
 
     public GameObject NicknameCanvas;
     public GameObject GunCamera;
@@ -59,13 +58,10 @@ public class PlayerSubScript : Bolt.EntityBehaviour<IFPSPlayerState>
         MinimapCamera.SetActive(true);
     }
 
-    public void MyBodySet()
+    public void BodyLayerChange()
     {
         for (int i = 0; i < MyBody.Length; i++)
             MyBody[i].layer = 0;
-
-        for (int i = 0; i < MyCharacterModelWeapon.Length; i++)
-            MyCharacterModelWeapon[i].layer = 0;
     }
 
     public void HealthChange(int damage, string attackers, BoltEntity aEntity)

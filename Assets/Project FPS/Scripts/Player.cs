@@ -202,66 +202,45 @@ public class Player : Bolt.EntityBehaviour<IFPSPlayerState>
         kill.text = "";
         death.text = "";
 
-        List<string> nickList = new List<string>();
-        List<int> scoreList = new List<int>();
-        List<int> deathList = new List<int>();
+        PlayerInfo[] p = new PlayerInfo[NM.players.Count];
+        PlayerInfo temp;
 
-        int scoreTemp = 0;
-        int deathTemp = 0;
-        string nickTemp = "";
-
-        for (int i = 0; i < NM.players.Count; i++)
+        for (int i = 0; i < p.Length; i++)
         {
-            nickList.Add(NM.players[i].GetComponent<Player>().nicknameText.text);
-            scoreList.Add(NM.players[i].GetComponent<PlayerSubScript>().myKillScore);
-            deathList.Add(NM.players[i].GetComponent<PlayerSubScript>().death);
+            p[i].userName = NM.players[i].GetComponent<Player>().nicknameText.text;
+            p[i].killScore = NM.players[i].GetComponent<PlayerSubScript>().myKillScore;
+            p[i].death = NM.players[i].GetComponent<PlayerSubScript>().death;
         }
-        
-        // 닉네임과 킬, 데스 정렬
-        for (int i = 0; i < scoreList.Count - 1; i++)
+
+        // 플레이어 정보 내림차순 정렬
+        for (int i = 0; i < p.Length - 1; i++)
         {
-            for (int j = i + 1; j < scoreList.Count; j++)
+            for (int j = i + 1; j < p.Length; j++)
             {
-                if(scoreList[i] == scoreList[j])
+                if (p[i].killScore == p[j].killScore)
                 {
-                    if(deathList[i] > deathList[j])
+                    if (p[i].death < p[j].death)
                     {
-                        scoreTemp = scoreList[i];
-                        scoreList[i] = scoreList[j];
-                        scoreList[j] = scoreTemp;
-
-                        nickTemp = nickList[i];
-                        nickList[i] = nickList[j];
-                        nickList[j] = nickTemp;
-
-                        deathTemp = deathList[i];
-                        deathList[i] = deathList[j];
-                        deathList[j] = deathTemp;
+                        temp = p[i];
+                        p[i] = p[j];
+                        p[j] = temp;
                     }
                 }
-                else if (scoreList[i] < scoreList[j])
+                else if (p[i].killScore < p[j].killScore)
                 {
-                    scoreTemp = scoreList[i];
-                    scoreList[i] = scoreList[j];
-                    scoreList[j] = scoreTemp;
-
-                    nickTemp = nickList[i];
-                    nickList[i] = nickList[j];
-                    nickList[j] = nickTemp;
-
-                    deathTemp = deathList[i];
-                    deathList[i] = deathList[j];
-                    deathList[j] = deathTemp;
+                    temp = p[i];
+                    p[i] = p[j];
+                    p[j] = temp;
                 }
             }
         }
 
-        for(int i = 0; i < nickList.Count; i++)
+        for (int i = 0; i < p.Length; i++)
         {
-            rank.text += (i+1).ToString() + "\n";
-            userName.text += nickList[i] + "\n";
-            kill.text += scoreList[i] + "\n";
-            death.text += deathList[i] + "\n";
+            rank.text += (i + 1).ToString() + "\n";
+            userName.text += p[i].userName + "\n";
+            kill.text += p[i].killScore + "\n";
+            death.text += p[i].death + "\n";
         }
     }
 
@@ -350,7 +329,6 @@ public class Player : Bolt.EntityBehaviour<IFPSPlayerState>
                     myWeapon[mKS - 1].GetComponent<BoltActionSniperScriptLPFP>().isCurrentWeapon = false;
                 else if (myWeapon[mKS - 1].CompareTag("RocketLauncher"))
                     myWeapon[mKS - 1].GetComponent<RocketLauncherScriptLPFP>().isCurrentWeapon = false;
-                
                 myWeapon[mKS - 1].SetActive(false);
 
                 myWeapon[mKS].SetActive(true);
@@ -433,15 +411,13 @@ public class Player : Bolt.EntityBehaviour<IFPSPlayerState>
         var direction = new Vector3(input.Move, 0f, input.LeftRight).normalized;
         var worldDirection = transform.TransformDirection(direction);
         var velocity = worldDirection * (input.Run ? runningSpeed : walkingSpeed);
-
-        // 벽이나 오브젝트에 부딪힐 때 캐릭터가 버벅거리거나 멈추지 않도록 충돌을 미리 확인
+        // 벽이나 오브젝트에 부딪힐 때 캐릭터가 버벅거리거나 끼지 않도록 충돌을 미리 확인
         var intersectsWall = CheckCollisionsWithWalls(velocity);
         if (intersectsWall)
         {
             _velocityX.Current = _velocityZ.Current = 0f;
             return;
         }
-
         var smoothX = _velocityX.Update(velocity.x, movementSmoothness);
         var smoothZ = _velocityZ.Update(velocity.z, movementSmoothness);
         var rigidbodyVelocity = _rigidbody.velocity;
@@ -452,9 +428,7 @@ public class Player : Bolt.EntityBehaviour<IFPSPlayerState>
     // 벽과 붙어있는지 검사
     private bool CheckCollisionsWithWalls(Vector3 velocity)
     {
-        // 지면은 제외
         if (_isGrounded) return false;
-
         var bounds = _collider.bounds;
         var radius = _collider.radius;
         var halfHeight = _collider.height * 0.5f - radius * 1.0f;
@@ -462,18 +436,16 @@ public class Player : Bolt.EntityBehaviour<IFPSPlayerState>
         point1.y += halfHeight;
         var point2 = bounds.center;
         point2.y -= halfHeight;
-
         // CapsuleCastNonAlloc() : Scene 안의 모든 캡슐 콜라이더에 대한 Raycast를 통해 무엇과 충돌했는지 정보를 반환
         Physics.CapsuleCastNonAlloc(point1, point2, radius, velocity.normalized, _wallCastResults,
             radius * 0.04f, ~0, QueryTriggerInteraction.Ignore);
-
         var collides = _wallCastResults.Any(hit => hit.collider != null && hit.collider != _collider);
 
         if (!collides) return false;
 
         for (int i = 0; i < _wallCastResults.Length; i++)
             _wallCastResults[i] = new RaycastHit();
-
+        
         return true;
     }
 
@@ -490,7 +462,8 @@ public class Player : Bolt.EntityBehaviour<IFPSPlayerState>
     // 발소리 재생
     private void PlayFootstepSounds()
     {
-        // Vector3.sqrMagnitude : 벡터의 길이의 제곱값을 반환하여 움직이기 시작할 때 사운드 재생을 유도
+        // Vector3.sqrMagnitude
+        // 벡터의 길이의 제곱값을 반환하여 움직이기 시작할 때 사운드 재생을 유도
         if (_isGrounded && _rigidbody.velocity.sqrMagnitude > 0.1f)
         {
             _audioSource.clip = input.Run ? runningSound : walkingSound;
@@ -634,37 +607,26 @@ public class Player : Bolt.EntityBehaviour<IFPSPlayerState>
          SerializeField]
         private string jump = "Jump";
 
-        // 카메라를 y축을 중심으로 회전하도록 매핑된 가상 축의 값을 반환
         public float RotateX
         {
             get { return Input.GetAxisRaw(rotateX); }
-        }
-
-        // 카메라를 x축을 중심으로 회전하도록 매핑된 가상 축의 값을 반환       
+        }     
         public float RotateY
         {
             get { return Input.GetAxisRaw(rotateY); }
         }
-
-        // 캐릭터를 앞뒤로 이동하도록 매핑된 가상 축의 값을 반환       
         public float Move
         {
             get { return Input.GetAxisRaw(move); }
-        }
-
-        // 캐릭터를 좌우로 이동하도록 매핑된 가상 축의 값을 반환        
+        }        
         public float LeftRight
         {
             get { return Input.GetAxisRaw(leftRight); }
-        }
-
-        // Left Shift 버튼을 누르는 동안 매핑된 가상 버튼이 true를 반환         
+        }         
         public bool Run
         {
             get { return Input.GetButton(run); }
         }
-
-        /// Space bar를 누르면 매핑된 가상 버튼이 true를 반환
         public bool Jump
         {
             get { return Input.GetButtonDown(jump); }
